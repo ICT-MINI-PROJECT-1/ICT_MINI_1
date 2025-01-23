@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>
-	미니프로젝트 작업장소 ㅇㅇ
+	미니프로젝트 작업장소 ㅇㅇ 광식 왔다감
 </h1>
 
 <P>  The time on the server is ${serverTime}. </P>
