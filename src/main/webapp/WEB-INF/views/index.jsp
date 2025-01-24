@@ -11,7 +11,7 @@
 	<script src="${pageContext.request.contextPath}/js/public.js"></script>
 </head>
 <body>
-	<div id="test">안녕하세요? 여기다 작업할거에요 ㅎㅇㅎㅇ2</div>
+	<div id="test">안녕하세요? 여기다 작업할거에요zz</div>
 	<button onclick="test()">테스트</button>
 </body>
 </html>
