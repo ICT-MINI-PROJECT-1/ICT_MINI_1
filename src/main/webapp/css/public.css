@@ -1,5 +1,22 @@
 @charset "UTF-8";
 
+body {
+	margin:0;
+	padding:0;
+}
+
 #test {
 	background-color:red;
+}
+
+.header {
+	background-color:yellow;
+}
+
+.footer {
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background-color:green;
+	color: white;
 }
