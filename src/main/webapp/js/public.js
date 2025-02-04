@@ -30,6 +30,20 @@ window.addEventListener("scroll", (e) => {
 	lastScrollY = curScrollY;
 });
 
-function moveNav(page) {
-	window.location.href="/page/"+page;
+function moveNav(page, a) {
+	let top = document.getElementsByClassName("header")[0].style.top;
+	let curY = window.scrollY;
+	console.log(document.getElementsByClassName("header")[0].style.top);
+	if(a==0) window.scrollTo({top:0,left:0,behavior:'smooth'});
+	if(top=='0px' || top=='') {
+		if(a==0) {
+			window.location.href="/page/"+page;
+		}
+		setTimeout(function() {
+		  	window.location.href="/page/"+page;
+		}, 600);
+	}
+	setTimeout(function() {
+	  	moveNav(page,a+1);
+	}, 10);
 }
