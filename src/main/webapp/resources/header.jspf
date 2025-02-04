@@ -29,23 +29,23 @@
 		</div>
 	</div>
 	<ul class="nav">
-		<li <c:if test="${page!='about'}">onClick="moveNav('about')"</c:if> <c:if test="${page=='about'}">style="background:transparent;
+		<li <c:if test="${page!='about'}">onClick="moveNav('about',0)"</c:if> <c:if test="${page=='about'}">style="background:transparent;
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),
     4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>About</li>
-		<li <c:if test="${page!='reservation'}">onClick="moveNav('reservation')"</c:if> <c:if test="${page=='reservation'}">style="background:transparent;
+		<li <c:if test="${page!='reservation'}">onClick="moveNav('reservation',0)"</c:if> <c:if test="${page=='reservation'}">style="background:transparent;
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),
     4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Reservation</li>
-		<li <c:if test="${page!='dining'}">onClick="moveNav('dining')"</c:if> <c:if test="${page=='dining'}">style="background:transparent;
+		<li <c:if test="${page!='dining'}">onClick="moveNav('dining',0)"</c:if> <c:if test="${page=='dining'}">style="background:transparent;
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),
     4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Dining</li>
-		<li <c:if test="${page!='faculty'}">onClick="moveNav('faculty')"</c:if> <c:if test="${page=='faculty'}">style="background:transparent;
+		<li <c:if test="${page!='faculty'}">onClick="moveNav('faculty',0)"</c:if> <c:if test="${page=='faculty'}">style="background:transparent;
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),
     4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Faculty</li>
-		<li <c:if test="${page!='review'}">onClick="moveNav('review')"</c:if> <c:if test="${page=='review'}">style="background:transparent;
+		<li <c:if test="${page!='review'}">onClick="moveNav('review',0)"</c:if> <c:if test="${page=='review'}">style="background:transparent;
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),
     4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Review</li>
