@@ -21,6 +21,10 @@ public class UserController {
 	public String moveSignUp() {
 		return "user/signup";
 	}
+	@GetMapping("/login")
+	public String moveLogin() {
+		return "user/login";
+	}
 	@PostMapping("/signUpChk")
 	public ModelAndView signUpChk(UserVO vo) {
 		int result;
