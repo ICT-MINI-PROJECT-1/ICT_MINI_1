@@ -14,8 +14,10 @@
 <body>
 	<div class="header">
 		<div id="header-left">
-			<div><img style="width:50px; height:50px;" src="${pageContext.request.contextPath}/js/artpart_logo.png"/></div>
-			<div>ArtPart</div>
+			<a href="/"><img style="width:80px; height:80px;" src="${pageContext.request.contextPath}/img/artpart_logo.png"/></a>
+		</div>
+		<div id="header-center">
+			<a href="/">ArtPart</a>
 		</div>
 		<div id="header-right">
 			<div>
@@ -27,11 +29,26 @@
 		</div>
 	</div>
 	<ul class="nav">
-		<li><a href="#">About</a></li>
-		<li><a href="#">Reservation</a></li>
-		<li><a href="#">Dining</a></li>
-		<li><a href="#">Faculty</a></li>
-		<li><a href="#">Review</a></li>
+		<li <c:if test="${page!='about'}">onClick="moveNav('about',0)"</c:if> <c:if test="${page=='about'}">style="background:transparent;
+    box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
+    7px 7px 20px 0px rgba(0,0,0,.05),
+    4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>About</li>
+		<li <c:if test="${page!='reservation'}">onClick="moveNav('reservation',0)"</c:if> <c:if test="${page=='reservation'}">style="background:transparent;
+    box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
+    7px 7px 20px 0px rgba(0,0,0,.05),
+    4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Reservation</li>
+		<li <c:if test="${page!='dining'}">onClick="moveNav('dining',0)"</c:if> <c:if test="${page=='dining'}">style="background:transparent;
+    box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
+    7px 7px 20px 0px rgba(0,0,0,.05),
+    4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Dining</li>
+		<li <c:if test="${page!='faculty'}">onClick="moveNav('faculty',0)"</c:if> <c:if test="${page=='faculty'}">style="background:transparent;
+    box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
+    7px 7px 20px 0px rgba(0,0,0,.05),
+    4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Faculty</li>
+		<li <c:if test="${page!='review'}">onClick="moveNav('review',0)"</c:if> <c:if test="${page=='review'}">style="background:transparent;
+    box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
+    7px 7px 20px 0px rgba(0,0,0,.05),
+    4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Review</li>
 	</ul>
 </body>
 </html>
