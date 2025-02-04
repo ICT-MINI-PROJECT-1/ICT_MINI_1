@@ -116,10 +116,14 @@ ul {
 .nav > li {
 	float:left;
 	width:20%;
+	transition: all 0.6s;
+	cursor:pointer;
+	color:#593415;
 }
 
-.nav a {
-	color:#593415;
+.nav > li:hover {
+	background-color:#EBE6DE;
+	color:#9E5B22;
 }
 
 .footer {

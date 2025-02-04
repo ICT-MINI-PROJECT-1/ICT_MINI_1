@@ -29,3 +29,7 @@ window.addEventListener("scroll", (e) => {
 	
 	lastScrollY = curScrollY;
 });
+
+function moveNav(page) {
+	window.location.href="/page/"+page;
+}
