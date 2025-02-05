@@ -64,8 +64,9 @@
 	transform:translate(-50%, -50%);
 	width:400px;
 	height:200px;
-	left:-3000px;
+	left:-1000px;
 	transition: all 1.5s;
+	opacity:0;
 }
 #main-content-two {
 	display:flex;
@@ -75,7 +76,7 @@
 	width:400px;
 	height:200px;
 	background-color:blue;
-	right:-3000px;
+	right:-1000px;
 	transition: all 1.5s;
 }
 #main-content-three {
@@ -85,7 +86,7 @@
 	width:400px;
 	height:200px;
 	background-color:green;
-	left:-3000px;
+	left:-1000px;
 	transition: all 1.5s;
 }
 
