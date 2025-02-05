@@ -17,7 +17,9 @@ var main_content_one;
 var main_content_two;
 var main_content_three;
 
-
+window.addEventListener('resize', function(){
+    if(main_content_three != null) main_content_three.style.transition='all 1.5s';
+});
 
 var moving=0;
 
@@ -93,7 +95,6 @@ window.addEventListener("scroll", (e) => {
 			main_content_three.style.top='50%';
 		}
 		if(curScrollY >= offset*2 + 400) {
-			console.log(window.scrollY);
 			main_content_three.style.position='absolute';
 			main_content_three.style.transition='0.0s';
 			main_content_three.style.top='2150px';
