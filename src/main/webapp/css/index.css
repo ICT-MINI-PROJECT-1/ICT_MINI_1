@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap');
+
 .main-wrap {
 	
 }
@@ -70,7 +72,7 @@
 	top:50%;
 	transform:translate(-50%, -50%);
 	left:50%;
-	transition: all 1.0s ease-in-out;
+	transition: all 0.8s ease-in-out;
 	opacity:0;
 }
 
@@ -112,6 +114,26 @@
 	width:460px;
 	height:300px;
 	flex-direction:column;
+}
+
+.main-hello {
+	position:fixed;
+	top:50%;
+	left:50%;
+	transform:translate(-50%, -50%);
+	width:520px;
+	height:600px;
+	transition: all 1.2s ease-in-out;
+	opacity:0;
+}
+
+#main-hello-text {
+	text-align:center;
+	font-family: "Gowun Batang", serif;
+	font-weight: 400;
+	font-style: normal;
+	color:#6A3D17;
+	font-size:21px;
 }
 
 @media (min-width:576px){
