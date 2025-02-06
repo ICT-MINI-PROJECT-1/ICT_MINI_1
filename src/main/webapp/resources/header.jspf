@@ -41,10 +41,10 @@
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),
     4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Dining</li>
-		<li <c:if test="${page!='faculty'}">onClick="moveNav('faculty',0)"</c:if> <c:if test="${page=='faculty'}">style="background:transparent;
+		<li <c:if test="${page!='facility'}">onClick="moveNav('facility',0)"</c:if> <c:if test="${page=='facility'}">style="background:transparent;
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),
-    4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Faculty</li>
+    4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>facility</li>
 		<li <c:if test="${page!='review'}">onClick="moveNav('review',0)"</c:if> <c:if test="${page=='review'}">style="background:transparent;
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),
