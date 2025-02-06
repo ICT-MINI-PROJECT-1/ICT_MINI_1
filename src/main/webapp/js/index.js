@@ -107,7 +107,7 @@ window.addEventListener("scroll", (e) => {
 		if(curScrollY<offset) {
 			resetStatus();
 			main_hello.style.opacity=1;
-			main_content_one.style.left='-1000px';
+			main_content_one.style.left='0px';
 			main_content_one.style.transition='all 0.8s ease-in-out';
 		}
 		if(curScrollY < offset*2 && curScrollY >= offset) {	//최초 화면
@@ -123,7 +123,7 @@ window.addEventListener("scroll", (e) => {
 		if(curScrollY < offset*4 && curScrollY >= offset*3) {
 			resetStatus();
 			main_content_one_three.style.opacity=1;
-			main_content_two.style.right='-1000px';
+			main_content_two.style.right='0px';
 			main_content_two.style.transition='all 0.8s ease-in-out';
 		}
 		if(curScrollY < offset*5 &&curScrollY >= offset*4) {
@@ -135,7 +135,7 @@ window.addEventListener("scroll", (e) => {
 		if(curScrollY>=offset*5 && curScrollY<offset*6) {
 			resetStatus();
 			main_content_two_two.style.opacity=1;
-			main_content_three.style.left='-1000px';
+			main_content_three.style.left='0px';
 			main_content_three.style.transition='all 0.8s ease-in-out';
 		}
 		if(curScrollY>=offset*6) {
