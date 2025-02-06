@@ -32,11 +32,11 @@ public class PageController {
 		return mav;
 	}
 	
-	@GetMapping("/faculty")
-	public ModelAndView faculty(){
+	@GetMapping("/facility")
+	public ModelAndView facility(){
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("page","faculty");
-		mav.setViewName("page/faculty");
+		mav.addObject("page","facility");
+		mav.setViewName("page/facility");
 		return mav;
 	}
 	
