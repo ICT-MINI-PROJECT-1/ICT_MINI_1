@@ -68,7 +68,7 @@ window.addEventListener("wheel", (e) => {
 			if(cur_state==1&&moving++==0) {
 				main_image.style.top = '-1600px';
 				main_image.style.transition = 'all 1.5s';
-				main_content.style.height='4000px';
+				main_content.style.height='4600px';
 				main_content_one.style.left='50%';
 				main_content_one.style.opacity=1;
 				setTimeout(function() {
@@ -83,7 +83,7 @@ window.addEventListener("wheel", (e) => {
 let lastScrollY_main=0;
 
 window.addEventListener("scroll", (e) => {
-	let offset=500;
+	let offset=600;
 	let curScrollY = window.scrollY;
 	let header = document.getElementsByClassName("header")[0];
 	let nav = document.getElementsByClassName("nav")[0];
