@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 var arr;
-var arr_top = [[53,57,20,12],[23,57,53],[24,59,47],[62,28]];
+var arr_top = [[63,67,30,22],[23,57,53],[24,59,47],[62,28]];
 var arr_left = [[7,30,23,11],[10,30,3],[8,-5,13],[1,12]];
 
 function moveItem(len,who){

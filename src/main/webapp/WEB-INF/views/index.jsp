@@ -48,6 +48,7 @@
 					</div>
 					<div class="main-content-box" id="main-content-one">
 						<div id="main-content-title">Rest & Comfort</div>
+						<div id="main-top-line"></div>
 						<div id="main-content-box-right">
 							<div class="box-big-img" id="main-content-one-left">
 							</div>
@@ -60,9 +61,11 @@
 								 동시에 경험하세요.</div>
 							</div>
 						</div>
+						<div id="main-bottom-line"></div>
 					</div>
 					<div class="main-content-box" id="main-content-one-two">
 						<div id="main-content-title">Rest & Comfort</div>
+						<div id="main-top-line"></div>
 						<div id="main-content-box-right">
 							<div id="main-content-one-left-two">
 								<div class="box-img" id="two-box-1">
@@ -84,9 +87,11 @@
 								</div>
 							</div>
 						</div>
+						<div id="main-bottom-line"></div>
 					</div>
 					<div class="main-content-box" id="main-content-one-three">
 						<div id="main-content-title">Rest & Comfort</div>
+						<div id="main-top-line"></div>
 						<div id="main-content-box-right">
 							<div id="main-content-one-left-three">
 								<div class="box-img" id="three-box-1">
@@ -104,9 +109,11 @@
 								</div>
 							</div>
 						</div>
+						<div id="main-bottom-line"></div>
 					</div>
 					<div class="main-content-box" id="main-content-two">
 						<div id="main-content-title">Visual Amusement</div>
+						<div id="main-top-line"></div>
 						<div id="main-content-box-right">
 							<div id="main-content-two-left">
 								<div class="box-img" id="two-one-box-1">
@@ -127,9 +134,11 @@
 								</div>
 							</div>
 						</div>
+						<div id="main-bottom-line"></div>
 					</div>
 					<div class="main-content-box" id="main-content-two-two">
 						<div id="main-content-title">Visual Amusement</div>
+						<div id="main-top-line"></div>
 						<div id="main-content-box-right">
 							<div id="main-content-two-left-two">
 								<div class="box-img" id="two-two-box-1">
@@ -144,6 +153,7 @@
 							깃든 특별한 휴식을 경험하세요.
 							</div></div>
 						</div>
+						<div id="main-bottom-line"></div>
 					</div>
 					<div class="main-content-box" id="main-content-three">
 						<div id="main-content-title">Destination</div>
