@@ -9,6 +9,8 @@
 <title>ArtPart</title>
 
 <link href="${pageContext.request.contextPath }/css/public.css" rel="stylesheet" type="text/css"/>
+<link href="${pageContext.request.contextPath }/css/user/signup.css" rel="stylesheet" type="text/css"/>
+<link href="${pageContext.request.contextPath }/css/user/login.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/public.js"></script>
 </head>
 <body>

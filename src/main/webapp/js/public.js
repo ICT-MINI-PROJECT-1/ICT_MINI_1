@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 var footer;
 
+var where="";
+
 let lastScrollY=0;
 
 window.addEventListener("scroll", (e) => {
@@ -29,7 +31,8 @@ window.addEventListener("scroll", (e) => {
 			header.style.top='0px';
 			nav.style.top='80px';
 			nav.style.opacity=1;
-			footer.style.opacity=0;
+			if(where!="login" && where!="signup")
+				footer.style.opacity=0;
 		}
 	}
 	
