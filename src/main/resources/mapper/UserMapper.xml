@@ -8,4 +8,10 @@
 		insert into user(userid,userpw,username)
 		values(#{userid},#{userpw},#{username})
 	</insert>
+	<select id="loginIdChk" resultType="int">
+		select count(userid) from user where userid=#{userid}
+	</select>
+	<select id="loginPwChk" resultType="int">
+		select count(userid) from user where userid=#{userid} and userpw=#{userpw}
+	</select>
 </mapper>

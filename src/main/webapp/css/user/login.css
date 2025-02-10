@@ -1,0 +1,134 @@
+.login-container, .login-background {
+	position:fixed;
+	left:50%;
+	top:50%;
+	transform:translate(-50%, -50%);
+	width:60%;
+	height:40vh;
+	transition:all 0.5s;
+}
+
+.login-background {
+	background-color:transparent;
+	border-radius:15px;
+	filter: blur(1px);
+	box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    2px 2px 7px 0px rgba(106,61,23,.6),
+    1px 1px 3px 0px rgba(106,61,23,.6);
+}
+
+#login-title{
+	text-align:center;
+	font-size:45px;
+	line-height:10vh;
+	font-family: "Bona Nova SC", serif;
+	color: #6A3D17;
+}
+
+#login-box {
+	display:grid;
+	grid-template-columns: 1fr 5fr;
+	width:70%;
+	margin-left:20%;
+	height:20vh;
+	font-family: "Bona Nova SC", serif;
+}
+
+#login-left, #login-left-two{
+	margin-left:auto;
+	width:70%;
+	text-align:left;
+}
+
+#idpw{
+	color: #6A3D17;
+	height:4vh;
+	line-height:4vh;
+	font-size:20px;
+	font-size:2.5vh;
+}
+
+#login-left{
+	align-self:end;
+}
+#login-left-two{
+	align-self:start;
+}
+
+#login-right{
+	align-self:end;
+}
+#login-right-two{
+	align-self:start;
+}
+#login-right > input, #login-right-two > input {
+	padding:0;
+	margin:0;
+	width:62%;
+	height:4vh;
+	background:transparent;
+	border:none;
+	border-radius:4px;
+    background:transparent;
+    box-shadow:inset 2px 2px 2px 0px rgba(106,61,23, 0.5),
+    1px 1px 3px 0px rgba(106,61,23, 0.2),
+    4px 4px 5px 0px rgba(106,61,23, 0.2);
+    padding-left:15px;
+    color:#6A3D17;
+    transition:all 0.7s;
+}
+
+#login-right > input:focus, #login-right-two > input:focus {
+	outline:none;
+	background-color:rgba(106,61,23, 0.25);
+	color:white;
+}
+
+#login-submit {
+	color:white;
+    font-family: "Cormorant Garamond", serif;
+    font-size:25px;
+	display:block;
+	margin:auto;
+	width: 45%;
+	border:none;
+	height:6vh;
+	cursor:pointer;
+	border-radius:10px;
+	background:rgba(106,61,23, 0.7);
+    box-shadow:inset 2px 2px 2px 0px rgba(255, 255, 255, 0.7),
+    1px 1px 3px 0px rgba(106,61,23,.5),
+    3px 3px 2px 0px rgba(106,61,23, 0.5);
+    color:#white;
+    
+    transition:all 0.6s;
+}
+
+#login-submit:hover {
+	background:rgba(106,61,23, 0.4);
+}
+
+#hidden-height{
+	opacity:0;
+	line-height:30px;
+}
+
+#alert-id, #alert-pw{
+	padding-left:10px;
+	color:#ED494C;
+	line-height:30px;
+	transition: all 1.0s;
+	opacity:0;
+}
+
+@media (min-width:1500px){
+	.login-container, .login-background {
+		width:900px;
+	}
+}
+
+@media (max-width:820px) {
+	.login-container, .login-background {
+		width:492px;
+	}
+}

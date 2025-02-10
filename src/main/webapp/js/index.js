@@ -48,18 +48,18 @@ function moveItemBack(who,len,idx) {
 function addImgListener(imgs){
 	imgs.addEventListener('mouseover', function(){
 		if(cur_state == 2){
-			if(where==2)moveItem(4,"two");
-			if(where==3) moveItem(3,"three");
-			if(where==4) moveItem(3,"two-one");
-			if(where==5) moveItem(2,"two-two");
+			moveItem(4,"two");
+			moveItem(3,"three");
+			moveItem(3,"two-one");
+			moveItem(2,"two-two");
 		}
 	});
 	imgs.addEventListener('mouseout', function(){
 		if(cur_state == 2) {
-			if(where==2) moveItemBack("two",4,0);
-			if(where==3) moveItemBack("three",3,1);
-			if(where==4) moveItemBack("two-one",3,2);
-			if(where==5) moveItemBack("two-two",2,3);
+			moveItemBack("two",4,0);
+			moveItemBack("three",3,1);
+			moveItemBack("two-one",3,2);
+			moveItemBack("two-two",2,3);
 		}
 	});
 }

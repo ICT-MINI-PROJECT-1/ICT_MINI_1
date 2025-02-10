@@ -1,7 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-	<div class="footer">
-		copyRight@ArtPart
-	</div>
+	<ul class="footer">
+		<li id="footer-logo">
+			<ul>
+				<li>Privacy Policy</li>
+				<li>Site Terms of Use</li>
+				<li>Cookie Preferences</li>
+			</ul>
+		</li>
+		<li id="footer-contact">
+			<p>Email. artpartkor@gmail.com<br><br><br><br>
+			   Tel. 010-0000-0000</p>
+			   <img src="${pageContext.request.contextPath }/img/footer/footer_kakao.png" width=45 height=45/>
+			   <img src="${pageContext.request.contextPath }/img/footer/footer_insta.png" width=45 height=45/>
+			   <img src="${pageContext.request.contextPath }/img/footer/footer_facebook.png" width=45 height=45/>
+		</li>
+		
+		<li id="footer-copyright">
+			Copyright 2025, ArtPart
+		</li>
+	</ul>
 </body>
 </html>
