@@ -2,8 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     window.setTimeout(() => {
         //document.body.classList.remove('fade');
         document.getElementById("fade").style.opacity=1;
+        footer = document.getElementsByClassName("footer")[0];
+        footer.style.opacity=0;
     });
 });
+
+var footer;
 
 let lastScrollY=0;
 
@@ -17,6 +21,7 @@ window.addEventListener("scroll", (e) => {
 			//window.scrollTo({top:80,left:0,behavior:'smooth'});
 			nav.style.top='-2px';
 			nav.style.opacity=0.6;
+			footer.style.opacity=1;
 		}
 	}
 	else {
@@ -24,6 +29,7 @@ window.addEventListener("scroll", (e) => {
 			header.style.top='0px';
 			nav.style.top='80px';
 			nav.style.opacity=1;
+			footer.style.opacity=0;
 		}
 	}
 	
