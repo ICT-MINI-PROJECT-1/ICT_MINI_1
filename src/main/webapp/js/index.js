@@ -64,29 +64,6 @@ function addImgListener(imgs){
 	});
 }
 
-function getNumberFromPixel(_px) {
-    if (_px == null || _px == "") {
-        return 0;
-    }
-   
-    _px = _px + "";
-   
-    if (_px.indexOf("px") > -1) {
-        _px = _px.replace("px", "");
-    }
-   
-    if (_px.indexOf("PX") > -1) {
-        _px = _px.replace("PX", "");
-    }
-   
-    var result = parseInt(_px, 10);
-    if ((result + "") == "NaN") {
-        return 0;
-    }
-   
-    return result;
-}
-
 var cur_state=0;
 var where=0;
 

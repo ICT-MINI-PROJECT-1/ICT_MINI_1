@@ -12,8 +12,18 @@
 <link href="${pageContext.request.contextPath }/css/user/signup.css" rel="stylesheet" type="text/css"/>
 <link href="${pageContext.request.contextPath }/css/user/login.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/public.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.js"></script>
+<script src="${pageContext.request.contextPath}/js/float.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
+<link href="${pageContext.request.contextPath }/css/float.css" rel="stylesheet" type="text/css"/>
+
 </head>
 <body>
+	<div class="center menu">
+        <div id="myMenu"></div>
+    </div>
 	<div class="header">
 		<div id="header-left">
 			<a href="/"><img style="width:80px; height:80px;" src="${pageContext.request.contextPath}/img/artpart_logo.png"/></a>
