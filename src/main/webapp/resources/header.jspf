@@ -9,8 +9,6 @@
 <title>ArtPart</title>
 
 <link href="${pageContext.request.contextPath }/css/public.css" rel="stylesheet" type="text/css"/>
-<link href="${pageContext.request.contextPath }/css/user/signup.css" rel="stylesheet" type="text/css"/>
-<link href="${pageContext.request.contextPath }/css/user/login.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/public.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
