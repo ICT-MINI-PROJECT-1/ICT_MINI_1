@@ -22,4 +22,8 @@ public class UserVO {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	@Override
+	public String toString() {
+		return "UserVO [userid=" + userid + ", userpw=" + userpw + ", username=" + username + "]";
+	}
 }

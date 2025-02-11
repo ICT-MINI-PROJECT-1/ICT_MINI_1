@@ -8,4 +8,6 @@ public interface UserService {
 	public int loginIdChk(UserVO vo);
 	
 	public int loginPwChk(UserVO vo);
+	
+	public UserVO userSelect(String userid);
 }

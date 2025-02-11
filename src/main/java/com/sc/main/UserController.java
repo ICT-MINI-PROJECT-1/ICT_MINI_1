@@ -1,6 +1,7 @@
 package com.sc.main;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,7 +51,18 @@ public class UserController {
 		}
 	}
 	@PostMapping("/loginOk")
-	public String loginOk() {
+	public ModelAndView loginOk(String userid, HttpSession session) {
+		UserVO cu = service.userSelect(userid);
+		ModelAndView mav = new ModelAndView();
+		session.setAttribute("loginId", cu.getUserid());
+		session.setAttribute("loginName", cu.getUsername());
+		session.setAttribute("loginStatus", "Y");
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+	@GetMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
 		return "redirect:/";
 	}
 }

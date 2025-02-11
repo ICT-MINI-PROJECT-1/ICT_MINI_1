@@ -20,7 +20,7 @@ public class PageController {
 	public ModelAndView reservation(){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("page","reservation");
-		mav.setViewName("page/reservation");
+		mav.setViewName("page/reservation/reserv_main");
 		return mav;
 	}
 	
@@ -28,7 +28,7 @@ public class PageController {
 	public ModelAndView dining(){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("page","dining");
-		mav.setViewName("page/dining");
+		mav.setViewName("page/dining/dining_main");
 		return mav;
 	}
 	
@@ -36,7 +36,7 @@ public class PageController {
 	public ModelAndView facility(){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("page","facility");
-		mav.setViewName("page/facility");
+		mav.setViewName("page/facility/facil_main");
 		return mav;
 	}
 	
@@ -44,7 +44,7 @@ public class PageController {
 	public ModelAndView review(){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("page","review");
-		mav.setViewName("page/review");
+		mav.setViewName("page/review/review_main");
 		return mav;
 	}
 }
