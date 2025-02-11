@@ -53,6 +53,6 @@ async function loginChk(){
 				}		
 			}).catch(err=> {
 			console.log(err);
-	});
+		});
 	}
 }

@@ -14,4 +14,7 @@
 	<select id="loginPwChk" resultType="int">
 		select count(userid) from user where userid=#{userid} and userpw=#{userpw}
 	</select>
+	<select id="userSelect" resultType="com.sc.main.vo.UserVO">
+		select userid, username from user where userid=#{param1}
+	</select>
 </mapper>

@@ -22,12 +22,22 @@
 			<a href="/">ArtPart</a>
 		</div>
 		<div id="header-right">
-			<div>
-				<a href="${pageContext.request.contextPath}/user/login">Login</a>
-			</div>
-			<div>
-				<a href="${pageContext.request.contextPath}/user/signup">SignUp</a>
-			</div>
+			<c:if test="${loginStatus!='Y' }">
+				<div>
+					<a href="${pageContext.request.contextPath}/user/login">Login</a>
+				</div>
+				<div>
+					<a href="${pageContext.request.contextPath}/user/signup">SignUp</a>
+				</div>
+			</c:if>
+			<c:if test="${loginStatus=='Y' }">
+				<div>
+					<a href="${pageContext.request.contextPath}/user/logout">Logout</a>
+				</div>
+				<div style="color:#6A3D17; font-size:18px;font-family: 'Gowun Batang', serif;">
+					Welcome &nbsp;<span style="font-size:20px;">${loginName }.</span>
+				</div>
+			</c:if>
 		</div>
 	</div>
 	<ul class="nav">
