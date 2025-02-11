@@ -105,7 +105,7 @@ function settingMenu() {
 
     contents.innerHTML=
     `
-    	연락처/주소 등 적을 곳
+    	<div>연락처/주소 등 적을 곳</div>
     `
     ;
 
