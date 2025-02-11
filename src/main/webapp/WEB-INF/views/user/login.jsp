@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <script src="${pageContext.request.contextPath}/js/user/login.js"></script>
+<link href="${pageContext.request.contextPath }/css/user/login.css" rel="stylesheet" type="text/css"/>
 
 <div id="fade">
 <div class="container">
