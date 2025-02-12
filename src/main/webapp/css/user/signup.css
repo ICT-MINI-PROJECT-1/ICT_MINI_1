@@ -4,7 +4,7 @@
 	margin-top:200px;
 	margin-bottom:100px;
 	width:60%;
-	height:800px;
+	height:850px;
 	transition:all 0.5s;
 	background-color:transparent;
 	border-radius:15px;
@@ -38,7 +38,7 @@
 	grid-template-columns: 2fr 5fr;
 	width:70%;
 	margin-left:20%;
-	height:500px;
+	height:600px;
 	font-family: "Bona Nova SC", serif;
 }
 
@@ -86,7 +86,7 @@
 	color:white;
 }
 
-#signup-submit {
+.signup-submit {
 	color:white;
     font-family: "Cormorant Garamond", serif;
     font-size:25px;
@@ -107,7 +107,31 @@
     transition:all 0.6s;
 }
 
-#signup-submit:hover {
+.buttons{
+	border-radius:10px;
+	color:white;
+    font-family: "Cormorant Garamond", serif;
+    font-size:20px;
+	background:rgba(106,61,23, 0.7);
+    box-shadow:inset 2px 2px 2px 0px rgba(255, 255, 255, 0.7),
+    1px 1px 3px 0px rgba(106,61,23,.5),
+    3px 3px 2px 0px rgba(106,61,23, 0.5);
+    margin-left:20px;
+    border:none;
+	height:30px;
+	line-height:30px;
+	padding:0px;
+	text-align:center;
+    cursor:pointer;
+    
+    transition:all 0.6s;
+}
+
+.buttons:hover{
+	background:rgba(106,61,23, 0.4);
+}
+
+.signup-submit:hover {
 	background:rgba(106,61,23, 0.4);
 }
 
@@ -116,12 +140,14 @@
 	line-height:30px;
 }
 
-#alert-id, #alert-pw, #alert-name{
+#alert-id, #alert-pw, #alert-name, #alert-pwchk, #alert-email, #alert-tel, #alert-zipcode, #alert-addr, #alert-addrdetail, #alert-credit{
 	padding-left:10px;
+	font-family: "Gowun Batang", serif;
 	color:#ED494C;
 	line-height:30px;
 	transition: all 1.0s;
 	opacity:0;
+	font-size:13px;
 }
 
 @media (min-width:1500px){

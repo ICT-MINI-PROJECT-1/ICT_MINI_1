@@ -30,15 +30,12 @@ public class UserController {
 	}
 	@PostMapping("/signUpChk")
 	public ModelAndView signUpChk(UserVO vo) {
-		int result;
-		try {
-			result = service.userInsert(vo);
-		} catch(Exception e) {
-			e.printStackTrace();
-			result=0;
-		}
+		vo.setCreditcardno();
+		vo.setEmail();
+		vo.setTel();
+		service.userInsert(vo);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/");
+		mav.setViewName("user/login");
 		return mav;
 	}
 	@PostMapping("/loginChk")
@@ -64,5 +61,10 @@ public class UserController {
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:/";
+	}
+	@PostMapping("/idChk")
+	@ResponseBody
+	public int idChk(@RequestBody UserVO vo) {
+		return service.loginIdChk(vo);
 	}
 }

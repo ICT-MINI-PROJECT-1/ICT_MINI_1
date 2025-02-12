@@ -15,6 +15,13 @@ public class PageController {
 		mav.setViewName("page/about");
 		return mav;
 	}
+	@GetMapping("/room")
+	public ModelAndView room(){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("page","room");
+		mav.setViewName("page/room/room_main");
+		return mav;
+	}
 	
 	@GetMapping("/reservation")
 	public ModelAndView reservation(){

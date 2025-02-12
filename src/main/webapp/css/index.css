@@ -162,28 +162,28 @@
 
 #main-top-line {
 	position:absolute;
-	width:105%;
-	left:-5%;
+	width:150%;
+	left:-25%;
 	background-color:#6A3D17;
-	height:7px;
+	height:1px;
 	top:10%;
 	transition:all 0.7s;
 	box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-    2px 2px 7px 0px rgba(0,0,0,.6),
-    1px 1px 3px 0px rgba(0,0,0,.6);
+    2px 2px 7px 0px rgba(106,61,23,.6),
+    1px 1px 3px 0px rgba(106,61,23,.6);
 }
 
 #main-bottom-line {
 	position:absolute;
-	width:105%;
-	left:-5%;
+	width:150%;
+	left:-25%;
 	background-color:#6A3D17;
-	height:7px;
+	height:1px;
 	top:105%;
 	transition:all 0.7s;
 	box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
-	    2px 2px 7px 0px rgba(0,0,0,.6),
-	    1px 1px 3px 0px rgba(0,0,0,.6);
+    2px 2px 7px 0px rgba(106,61,23,.6),
+    1px 1px 3px 0px rgba(106,61,23,.6);
 }
 
 @media (min-width:576px){
@@ -199,7 +199,7 @@
   		line-height:23px;
   	}
   	#main-top-line, #main-bottom-line {
-  		height:7px;
+
   	}
 }
 
@@ -216,7 +216,7 @@
   		line-height:25px;
   	}
   	#main-top-line, #main-bottom-line {
-  		height:9px;
+
   	}
 }
 
@@ -233,7 +233,7 @@
   		line-height:27px;
   	}
   	#main-top-line, #main-bottom-line {
-  		height:10px;
+
   	}
 }
 
@@ -250,7 +250,7 @@
   		line-height:30px;
   	}
   	#main-top-line, #main-bottom-line {
-  		height:12px;
+
   	}
 }
 

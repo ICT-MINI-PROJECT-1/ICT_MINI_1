@@ -5,8 +5,7 @@
   
 <mapper namespace="com.sc.main.dao.UserDAO">
 	<insert id="userInsert">
-		insert into user(userid,userpw,username)
-		values(#{userid},#{userpw},#{username})
+		insert into user values(#{userid},#{userpw},#{username},#{tel},#{email},#{zipcode},#{addr},#{addrdetail},#{creditcardno})
 	</insert>
 	<select id="loginIdChk" resultType="int">
 		select count(userid) from user where userid=#{userid}

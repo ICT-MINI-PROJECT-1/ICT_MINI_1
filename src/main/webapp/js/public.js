@@ -24,7 +24,8 @@ window.addEventListener("scroll", (e) => {
 			//window.scrollTo({top:80,left:0,behavior:'smooth'});
 			nav.style.top='-2px';
 			nav.style.opacity=0.6;
-			footer.style.opacity=1;
+			if(footer != null)
+				footer.style.opacity=1;
 		}
 	}
 	else {
