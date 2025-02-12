@@ -49,6 +49,10 @@
 		</div>
 	</div>
 	<ul class="nav">
+	<li <c:if test="${page!='room'}">onClick="moveNav('room',0)"</c:if> <c:if test="${page=='room'}">style="background:transparent;
+	    box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
+	    7px 7px 20px 0px rgba(0,0,0,.05),
+	    4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Room</li>
 		<li <c:if test="${page!='reservation'}">onClick="moveNav('reservation',0)"</c:if> <c:if test="${page=='reservation'}">style="background:transparent;
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),
@@ -60,7 +64,7 @@
 		<li <c:if test="${page!='facility'}">onClick="moveNav('facility',0)"</c:if> <c:if test="${page=='facility'}">style="background:transparent;
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),
-    4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>facility</li>
+    4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Facility</li>
 		<li <c:if test="${page!='review'}">onClick="moveNav('review',0)"</c:if> <c:if test="${page=='review'}">style="background:transparent;
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),

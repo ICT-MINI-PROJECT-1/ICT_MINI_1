@@ -10,8 +10,8 @@
 		<div id="login-title">Login</div>
 		<form name="loginForm" method="post" action="loginOk">
 			<div id="login-box">
-				<div id="login-left"><div id="idpw">ID</div><div id="hidden-height">I</div></div> <div id="login-right"><input type="text" id="userid" name="userid"/><div id="alert-id">Invalid ID</div></div>
-				<div id="login-left-two"><div id="idpw">PW</div><div id="hidden-height">I</div></div> <div id="login-right-two"><input type="password" id="userpw" name="userpw"/><div id="alert-pw">Invalid PW</div></div>
+				<div id="login-left"><div id="idpw">ID</div><div id="hidden-height">I</div></div> <div id="login-right"><input type="text" id="userid" name="userid" value="test1234"/><div id="alert-id">Invalid ID</div></div>
+				<div id="login-left-two"><div id="idpw">PW</div><div id="hidden-height">I</div></div> <div id="login-right-two"><input type="password" id="userpw" name="userpw" value="test1234!!"/><div id="alert-pw">Invalid PW</div></div>
 			</div>
 			<input id="login-submit" type="button" onclick="loginChk()" value="Login"/>
 		</form>
