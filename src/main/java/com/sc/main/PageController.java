@@ -15,12 +15,19 @@ public class PageController {
 		mav.setViewName("page/about");
 		return mav;
 	}
+	@GetMapping("/room")
+	public ModelAndView room(){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("page","room");
+		mav.setViewName("page/room/room_main");
+		return mav;
+	}
 	
 	@GetMapping("/reservation")
 	public ModelAndView reservation(){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("page","reservation");
-		mav.setViewName("page/reservation");
+		mav.setViewName("page/reservation/reserv_main");
 		return mav;
 	}
 	
@@ -28,15 +35,15 @@ public class PageController {
 	public ModelAndView dining(){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("page","dining");
-		mav.setViewName("page/dining");
+		mav.setViewName("page/dining/dining_main");
 		return mav;
 	}
 	
-	@GetMapping("/faculty")
-	public ModelAndView faculty(){
+	@GetMapping("/facility")
+	public ModelAndView facility(){
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("page","faculty");
-		mav.setViewName("page/faculty");
+		mav.addObject("page","facility");
+		mav.setViewName("page/facility/facil_main");
 		return mav;
 	}
 	
@@ -44,7 +51,7 @@ public class PageController {
 	public ModelAndView review(){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("page","review");
-		mav.setViewName("page/review");
+		mav.setViewName("page/review/review_main");
 		return mav;
 	}
 }
