@@ -32,7 +32,7 @@ window.addEventListener("scroll", (e) => {
 			header.style.top='0px';
 			nav.style.top='80px';
 			nav.style.opacity=1;
-			if(where!="login" && where!="signup")
+			if(where!="login" && where!="signup" && where!="room")
 				footer.style.opacity=0;
 		}
 	}
@@ -163,6 +163,38 @@ function settingMenu() {
     			<li>ID: 7~15자 입력</li>
     			<li>PW: 8~15자 문자, 특수문자, 숫자 조합입력</li>
     			<li>NAME: 3자 이상 입력</li>
+    		</ul>
+		`;
+	}
+	if(where=="dining") {
+		contents.innerHTML=`
+			<div id="contents-title">Dining</div>
+		`;
+	}
+	if(where=="facility") {
+		contents.innerHTML=`
+			<div id="contents-title">Facility</div>
+		`;
+	}
+	if(where=="reservation") {
+		contents.innerHTML=`
+			<div id="contents-title">Reservation</div>
+		`;
+	}
+	if(where=="review") {
+		contents.innerHTML=`
+			<div id="contents-title">Review</div>
+		`;
+	}
+	if(where=="room") {
+		contents.innerHTML=`
+			<div id="contents-title">Room</div>
+			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
+				<li><b style="line-height:30px;">각 아트 컨셉에 맞는 객실을 선택하실 수 있습니다.</b></li>
+    			<li>Contemporary Art: 현대 미술 풍 객실</li>
+    			<li>Art Nouveau: 아르누보 풍 객실</li>
+    			<li>Art Déco: 아르데코 풍 객실</li>
+    			<li>Asia: 동양 풍 객실</li>
     		</ul>
 		`;
 	}
