@@ -1,6 +1,7 @@
 package com.sc.main;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,15 +30,12 @@ public class UserController {
 	}
 	@PostMapping("/signUpChk")
 	public ModelAndView signUpChk(UserVO vo) {
-		int result;
-		try {
-			result = service.userInsert(vo);
-		} catch(Exception e) {
-			e.printStackTrace();
-			result=0;
-		}
+		vo.setCreditcardno();
+		vo.setEmail();
+		vo.setTel();
+		service.userInsert(vo);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:/");
+		mav.setViewName("user/login");
 		return mav;
 	}
 	@PostMapping("/loginChk")
@@ -50,7 +48,23 @@ public class UserController {
 		}
 	}
 	@PostMapping("/loginOk")
-	public String loginOk() {
+	public ModelAndView loginOk(String userid, HttpSession session) {
+		UserVO cu = service.userSelect(userid);
+		ModelAndView mav = new ModelAndView();
+		session.setAttribute("loginId", cu.getUserid());
+		session.setAttribute("loginName", cu.getUsername());
+		session.setAttribute("loginStatus", "Y");
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+	@GetMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
 		return "redirect:/";
+	}
+	@PostMapping("/idChk")
+	@ResponseBody
+	public int idChk(@RequestBody UserVO vo) {
+		return service.loginIdChk(vo);
 	}
 }

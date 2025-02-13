@@ -9,11 +9,19 @@
 <title>ArtPart</title>
 
 <link href="${pageContext.request.contextPath }/css/public.css" rel="stylesheet" type="text/css"/>
-<link href="${pageContext.request.contextPath }/css/user/signup.css" rel="stylesheet" type="text/css"/>
-<link href="${pageContext.request.contextPath }/css/user/login.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/public.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.js"></script>
+<script src="${pageContext.request.contextPath}/js/float.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery-ui.min.js"></script>
+<link href="${pageContext.request.contextPath }/css/float.css" rel="stylesheet" type="text/css"/>
+
 </head>
 <body>
+	<div class="center menu">
+        <div id="myMenu"></div>
+    </div>
 	<div class="header">
 		<div id="header-left">
 			<a href="/"><img style="width:80px; height:80px;" src="${pageContext.request.contextPath}/img/artpart_logo.png"/></a>
@@ -22,15 +30,29 @@
 			<a href="/">ArtPart</a>
 		</div>
 		<div id="header-right">
-			<div>
-				<a href="${pageContext.request.contextPath}/user/login">Login</a>
-			</div>
-			<div>
-				<a href="${pageContext.request.contextPath}/user/signup">SignUp</a>
-			</div>
+			<c:if test="${loginStatus!='Y' }">
+				<div>
+					<a href="${pageContext.request.contextPath}/user/login">Login</a>
+				</div>
+				<div>
+					<a href="${pageContext.request.contextPath}/user/signup">SignUp</a>
+				</div>
+			</c:if>
+			<c:if test="${loginStatus=='Y' }">
+				<div>
+					<a href="${pageContext.request.contextPath}/user/logout">Logout</a>
+				</div>
+				<div style="color:#6A3D17; font-size:18px;font-family: 'Gowun Batang', serif;">
+					Welcome &nbsp;<span style="font-size:20px;">${loginName }.</span>
+				</div>
+			</c:if>
 		</div>
 	</div>
 	<ul class="nav">
+	<li <c:if test="${page!='room'}">onClick="moveNav('room',0)"</c:if> <c:if test="${page=='room'}">style="background:transparent;
+	    box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
+	    7px 7px 20px 0px rgba(0,0,0,.05),
+	    4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Room</li>
 		<li <c:if test="${page!='reservation'}">onClick="moveNav('reservation',0)"</c:if> <c:if test="${page=='reservation'}">style="background:transparent;
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),
@@ -42,7 +64,7 @@
 		<li <c:if test="${page!='facility'}">onClick="moveNav('facility',0)"</c:if> <c:if test="${page=='facility'}">style="background:transparent;
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),
-    4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>facility</li>
+    4px 4px 5px 0px rgba(0,0,0,.05); color:#9E5B22; cursor:default;"</c:if>>Facility</li>
 		<li <c:if test="${page!='review'}">onClick="moveNav('review',0)"</c:if> <c:if test="${page=='review'}">style="background:transparent;
     box-shadow:inset 0px 0px 1px 0px rgba(55,55,55,.9),
     7px 7px 20px 0px rgba(0,0,0,.05),

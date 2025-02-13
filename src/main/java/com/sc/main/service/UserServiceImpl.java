@@ -26,4 +26,9 @@ public class UserServiceImpl implements UserService{
 	public int loginPwChk(UserVO vo) {
 		return dao.loginPwChk(vo);
 	}
+
+	@Override
+	public UserVO userSelect(String userid) {
+		return dao.userSelect(userid);
+	}
 }
