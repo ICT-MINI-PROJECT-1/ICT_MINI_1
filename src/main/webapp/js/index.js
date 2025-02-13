@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-	//document.getElementsByClassName("footer")[0].style.display="none";
-	
 	main_hello=document.getElementsByClassName("main-hello")[0];
 	
 	main_title=document.getElementsByClassName("main-title")[0];
@@ -90,7 +88,7 @@ window.addEventListener('resize', function(){
 var moving=0;
 
 window.addEventListener("wheel", (e) => {
-	if(main_title!=null && main_image!=null && window.scrollY==0) {
+	if(main_title!=null && main_image!=null && window.scrollY==0 && infoOn==0) {
 		if (e.wheelDelta > 0 || e.detail < 0){
 			if(cur_state==1&&moving++==0) {
 				main_title.style.top = '100px';
@@ -203,3 +201,5 @@ window.addEventListener("scroll", (e) => {
 	}
 	lastScrollY_main = curScrollY;
 });
+
+where = "index";

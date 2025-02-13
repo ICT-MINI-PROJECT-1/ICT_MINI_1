@@ -177,3 +177,5 @@ function signUpChk(){
 	
 	if(result==9) document.signupForm.submit();
 }
+
+where="signup";
