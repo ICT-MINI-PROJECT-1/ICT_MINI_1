@@ -8,17 +8,12 @@
 		room			
 	</div>
 	<div class="room-wrap">
-		룸?<br><br><br>룸?<br><br><br>
-		룸?<br><br><br>
-		룸?<br><br><br>
-		룸?<br><br><br>
-		룸?<br><br><br>
-		룸?<br><br><br>
-		룸?<br><br><br>
-		룸?<br><br><br>
-		룸?<br><br><br>
-		룸?<br><br><br>
-		룸?<br><br><br>
+		<div class="room-grid-box">
+			<div class="grid-item" id="room-contemp"><span>Contemporary Art</span></div>
+			<div class="grid-item" id="room-artnou"><span>Art Nouveau</span></div>
+			<div class="grid-item" id="room-artdec"><span style="background-color:#121212; color:#eeeeee;">Art Déco</span></div>
+			<div class="grid-item" id="room-asian"><span>Asian</span></div>
+		</div>
 	</div>
 </div>
 </div>

@@ -21,7 +21,6 @@ window.addEventListener("scroll", (e) => {
 	if(lastScrollY < curScrollY) {
 		if(curScrollY >= 15) {
 			header.style.top='-80px';
-			//window.scrollTo({top:80,left:0,behavior:'smooth'});
 			nav.style.top='-2px';
 			nav.style.opacity=0.6;
 			if(footer != null)
@@ -33,7 +32,7 @@ window.addEventListener("scroll", (e) => {
 			header.style.top='0px';
 			nav.style.top='80px';
 			nav.style.opacity=1;
-			if(where!="login" && where!="signup")
+			if(where!="login" && where!="signup" && where!="room")
 				footer.style.opacity=0;
 		}
 	}
@@ -83,6 +82,30 @@ function getNumberFromPixel(_px) {
     return result;
 }
 
+
+function mainMove(ofs){
+	if(cur_state!=2) {
+		main_title.style.top = '-400px';
+		main_image.style.transition = 'all 0.8s';
+		main_image.style.top = '100px';
+		setTimeout(function() {
+		  	moving=0;
+		}, 1000);
+		cur_state=1;
+		main_image.style.transition = 'all 3.0s';
+		main_image.style.top = '-1600px';
+		main_content.style.height='5000px';
+		main_hello.style.opacity=1;
+		setTimeout(function() {
+		  	moving=0;
+		}, 1000);
+		cur_state=2;
+	}
+	window.scrollTo({top:ofs*600,left:0,behavior:'smooth'});
+}
+
+var infoOn=0;
+
 function settingMenu() {
     menu = new Menu("#myMenu");
     var item1 = new Item("list", "fas fa-bars", "");
@@ -104,12 +127,77 @@ function settingMenu() {
     var myInfoButton=document.getElementById("my-info");
     var contents=document.getElementById("info-contents");
 
-    contents.innerHTML=
-    `
-    	<div>연락처/주소 등 적을 곳</div>
-    `
-    ;
-
+	if(where == "index") {
+    	contents.innerHTML=`
+    		<div id="contents-title">Main Page List</div>
+    		<h3 id="contents-list-title">Info</h3>
+    		<ul id="contents-list">
+    			<li><a onclick="mainMove(0)">ABOUT</a></li>
+    		</ul>
+    		<h3 id="contents-list-title">Rest & Comfort</h3>
+    		<ul id="contents-list">
+    			<li><a onclick="mainMove(1)">REST</a></li>
+    			<li><a onclick="mainMove(2)">FACILITY</a></li>
+    			<li><a onclick="mainMove(3)">DINING</a></li>
+    		</ul>
+    		<h3 id="contents-list-title">Visual Amusement</h3>
+    		<ul id="contents-list">
+    			<li><a onclick="mainMove(4)">GALLERY</a></li>
+    			<li><a onclick="mainMove(5)">ROOM</a></li>
+    		</ul>
+    		<h3 id="contents-list-title">Destination</h3>
+    		<ul id="contents-list">
+    			<li><a onclick="mainMove(6)">DESTINATION</a></li>
+    		</ul>
+    	`;
+    }
+	if(where=="login") {
+		contents.innerHTML=`
+			<div id="contents-title">Login</div>
+		`;
+	}
+	if(where=="signup") {
+		contents.innerHTML=`
+			<div id="contents-title">SignUp</div>
+			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
+    			<li>ID: 7~15자 입력</li>
+    			<li>PW: 8~15자 문자, 특수문자, 숫자 조합입력</li>
+    			<li>NAME: 3자 이상 입력</li>
+    		</ul>
+		`;
+	}
+	if(where=="dining") {
+		contents.innerHTML=`
+			<div id="contents-title">Dining</div>
+		`;
+	}
+	if(where=="facility") {
+		contents.innerHTML=`
+			<div id="contents-title">Facility</div>
+		`;
+	}
+	if(where=="reservation") {
+		contents.innerHTML=`
+			<div id="contents-title">Reservation</div>
+		`;
+	}
+	if(where=="review") {
+		contents.innerHTML=`
+			<div id="contents-title">Review</div>
+		`;
+	}
+	if(where=="room") {
+		contents.innerHTML=`
+			<div id="contents-title">Room</div>
+			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
+				<li><b style="line-height:30px;">각 아트 컨셉에 맞는 객실을 선택하실 수 있습니다.</b></li>
+    			<li>Contemporary Art: 현대 미술 풍 객실</li>
+    			<li>Art Nouveau: 아르누보 풍 객실</li>
+    			<li>Art Déco: 아르데코 풍 객실</li>
+    			<li>Asia: 동양 풍 객실</li>
+    		</ul>
+		`;
+	}
     homeButton.addEventListener('click', () => {
         window.location.href = '/';
     });
@@ -126,14 +214,22 @@ function settingMenu() {
         }
     });
 
+	if(contents != null){
+		contents.addEventListener('mouseover',() =>{
+			if(contents.style.display == 'block') infoOn=1;
+		});
+		contents.addEventListener('mouseout',() =>{
+			infoOn=0;
+		});
+	}
     myInfoButton.addEventListener('click', () => {
         if(!clicked) {
             contents.style.left=getNumberFromPixel(myInfoButton.style.left)-470+'px';
             contents.style.top=getNumberFromPixel(myInfoButton.style.top)-220+'px';
-            contents.style.opacity=1;
+            contents.style.display='block';
         }
         else {
-            contents.style.opacity=0;
+            contents.style.display='none';
         }
         clicked = !clicked;
     });
