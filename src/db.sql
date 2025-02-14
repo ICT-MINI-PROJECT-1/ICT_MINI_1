@@ -16,8 +16,6 @@ CREATE TABLE IF NOT EXISTS `artpart`.`user` (
   `creditcardno` VARCHAR(19) NULL,
   PRIMARY KEY (`userid`));
 
-insert into user values('user1234','user1234','�씠嫄대え','010-1234-5678','rjsah5676@gmail.com',12345,'�궛�꽦��濡�383踰덇만 27','A�룞 303�샇','1000-2000-3000-4000');
-
 CREATE TABLE IF NOT EXISTS `artpart`.`reservation` (
   `reservno` INT NOT NULL,
   `reservdate` DATETIME NOT NULL DEFAULT now(),
