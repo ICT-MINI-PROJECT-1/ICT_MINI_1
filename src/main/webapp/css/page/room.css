@@ -17,7 +17,7 @@
 .room-wrap{
 	opacity:0;
 	width:80%;
-	transition: all 1.1s;
+	transition: all 1.5s;
 	margin:0 auto;
 	margin-top: 200px;
 	margin-bottom:100px;
@@ -29,7 +29,7 @@
 .room-grid-box {
 	display:grid;
 	grid-template-columns:  repeat(2, 1fr);
-    transition: all 0.7s;
+    transition: all 1.5s;
 }
 
 .room-grid-box > div {
@@ -47,7 +47,7 @@
     5px 5px 15px 0px rgba(0,0,0,.6),
     2px 2px 5px 0px rgba(0,0,0,.6);
     opacity:0.8;
-    transition: all 0.7s;
+    transition: all 1.5s;
 }
 
 .room-grid-box > div:hover {
@@ -77,26 +77,26 @@
 	background:url("../../img/page/room/main_contemp.png") no-repeat;
 	background-size:cover;
 	background-position:center;
-	transition:all 0.7s;
+	transition:all 1.1s;
 }
 
 #room-artnou {
 	background:url("../../img/page/room/main_artnou.png") no-repeat;
 	background-size:cover;
 	background-position:center;
-	transition:all 0.7s;
+	transition:all 1.1s;
 }
 #room-artdec {
 	background:url("../../img/page/room/main_artdec.png") no-repeat;
 	background-size:cover;
 	background-position:center;
-	transition:all 0.7s;
+	transition:all 1.1s;
 }
 #room-asian {
 	background:url("../../img/page/room/main_asian.png") no-repeat;
 	background-size:cover;
 	background-position:center;
-	transition:all 0.7s;
+	transition:all 1.1s;
 }
 
 #span-back{
