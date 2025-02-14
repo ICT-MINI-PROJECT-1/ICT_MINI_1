@@ -26,6 +26,7 @@ window.addEventListener("wheel", (e) => {
 			if(room_state==1&&room_moving++==0) {
 				room_title.style.top = '100px';
 				room_wrap.style.opacity=0;
+				room_wrap.style.height='0px';
 				grid_1.style.paddingBottom=0;		
 				grid_2.style.paddingBottom=0;				
 				grid_3.style.paddingBottom=0;
@@ -39,6 +40,7 @@ window.addEventListener("wheel", (e) => {
 			if(room_state==0&&room_moving++==0) {
 				room_title.style.top = '-1000px';
 				room_wrap.style.opacity= 1;
+				room_wrap.style.height='70vw';
 				grid_1.style.paddingBottom='60%';		
 				grid_2.style.paddingBottom='60%';				
 				grid_3.style.paddingBottom='60%';
@@ -53,3 +55,19 @@ window.addEventListener("wheel", (e) => {
 });
 
 where="room";
+
+function moveToRoom(loc) {
+	let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', 'room/list');
+    document.body.appendChild(f);
+	
+	let obj;
+    obj = document.createElement('input');
+    obj.setAttribute('type', 'hidden');
+    obj.setAttribute('name', 'loc');
+    obj.setAttribute('value', loc);
+	f.appendChild(obj);
+    f.submit();
+	//location.href="/page/room/list?loc="+loc;
+}
