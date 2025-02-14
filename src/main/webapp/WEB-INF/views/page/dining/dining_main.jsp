@@ -5,7 +5,8 @@
 <div id="fade">
 <div class="container">
 	<div class="dining-title">
-		Dining		
+		<div id="span-back"></div>
+		<span>DINING</span>
 	</div>
 	<div class="dining-wrap">
 		식사?<br><br><br>

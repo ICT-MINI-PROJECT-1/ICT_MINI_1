@@ -5,7 +5,8 @@
 <div id="fade">
 <div class="container">
 	<div class="facility-title">
-		facility		
+		<div id="span-back"></div>
+		<span>FACILITY</span>
 	</div>
 	<div class="facility-wrap">
 		시설?<br><br><br>

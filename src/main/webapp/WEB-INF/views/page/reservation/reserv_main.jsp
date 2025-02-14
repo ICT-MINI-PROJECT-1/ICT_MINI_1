@@ -5,7 +5,8 @@
 <div id="fade">
 <div class="container">
 	<div class="reserv-title">
-		Reservation			
+		<div id="span-back"></div>
+		<span>RESERVATION</span>
 	</div>
 	<div class="reserv-wrap">
 		예약?<br><br><br>예약?<br><br><br>
