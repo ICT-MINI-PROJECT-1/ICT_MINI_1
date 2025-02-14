@@ -106,4 +106,13 @@ CREATE TABLE IF NOT EXISTS `artpart`.`reviewimg` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(301,'contemp',200000,'double','view',4,20);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(302,'contemp',205000,'double','view',4,21);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(303,'contemp',150000,'single','view',2,14);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(304,'contemp',190000,'super_single','view',3,18);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(305,'contemp',250000,'queen','view',6,27);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(306,'contemp',230000,'queen','view',6,25);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(307,'contemp',180000,'super_single','view',3,17);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(308,'contemp',200000,'double','view',4,20);
+
 commit;
