@@ -9,19 +9,13 @@
 		<span>DINING</span>
 	</div>
 	<div class="dining-wrap">
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
+		<div>
+			<div id="kor-pic"></div>
+			<div id="wes-pic"></div>
+			<div id="jap-pic"></div>
+		</div>
 	</div>
+	
 </div>
 </div>
+

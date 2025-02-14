@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `artpart`.`user` (
   `creditcardno` VARCHAR(19) NULL,
   PRIMARY KEY (`userid`));
 
-insert into user values('user1234','user1234','이건모','010-1234-5678','rjsah5676@gmail.com',12345,'산성대로383번길 27','A동 303호','1000-2000-3000-4000');
+insert into user values('user1234','user1234','�씠嫄대え','010-1234-5678','rjsah5676@gmail.com',12345,'�궛�꽦��濡�383踰덇만 27','A�룞 303�샇','1000-2000-3000-4000');
 
 CREATE TABLE IF NOT EXISTS `artpart`.`reservation` (
   `reservno` INT NOT NULL,
@@ -115,4 +115,30 @@ insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values
 insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(307,'contemp',180000,'super_single','view',3,17);
 insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(308,'contemp',200000,'double','view',4,20);
 
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(401,'artnou',180000,'super_single','view',3,18);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(402,'artnou',200000,'double','view',4,21);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(403,'artnou',210000,'double','view',4,20);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(404,'artnou',185000,'single','view',3,17);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(405,'artnou',195000,'double','view',4,20);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(406,'artnou',215000,'double','view',4,20);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(407,'artnou',220000,'queen','view',6,25);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(408,'artnou',250000,'queen','view',7,28);
+
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(501,'artdec',180000,'super_single','view',3,18);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(502,'artdec',200000,'double','view',4,19);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(503,'artdec',210000,'double','view',4,20);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(504,'artdec',185000,'super_single','view',3,18);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(505,'artdec',190000,'single','view',3,19);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(506,'artdec',250000,'queen','view',7,28);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(507,'artdec',230000,'queen','view',6,24);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(508,'artdec',215000,'double','view',4,20);
+
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(601,'asian',200000,'double','view',4,19);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(602,'asian',200000,'double','view',4,19);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(603,'asian',210000,'single','view',3,19);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(604,'asian',185000,'double','view',4,20);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(605,'asian',190000,'single','view',3,19);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(606,'asian',250000,'super_single','view',3,18);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(607,'asian',210000,'double','view',4,20);
+insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(608,'asian',215000,'double','view',4,20);
 commit;
