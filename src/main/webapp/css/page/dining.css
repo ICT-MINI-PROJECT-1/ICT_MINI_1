@@ -49,3 +49,24 @@
 	font-size:30px;
 	text-align:center;
 }
+
+#kor-pic {
+	background: url("../../img/page/dining/koreanMain.jpg")
+}
+
+#wes-pic {
+	background: url("../../img/page/dining/westernMain.jpg")
+}
+
+#jap-pic {
+	background: url("../../img/page/dining/japaneseMain.jpg")
+}
+
+#dining-wrap {
+	
+}
+
+
+
+
+
