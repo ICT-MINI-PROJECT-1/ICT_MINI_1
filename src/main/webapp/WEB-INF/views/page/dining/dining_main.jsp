@@ -5,22 +5,16 @@
 <div id="fade">
 <div class="container">
 	<div class="dining-title">
-		Dining		
+		<i>특별한 공간과 함께하는 최고의 미식을 경험해보세요(기능)</i>
 	</div>
 	<div class="dining-wrap">
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
-		식사?<br><br><br>
+		<div>
+			<div id="kor-pic"></div>
+			<div id="wes-pic"></div>
+			<div id="jap-pic"></div>
+		</div>
 	</div>
+	
 </div>
 </div>
+
