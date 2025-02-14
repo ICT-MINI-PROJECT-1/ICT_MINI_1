@@ -5,7 +5,8 @@
 <div id="fade">
 <div class="container">
 	<div class="dining-title">
-		<i>특별한 공간과 함께하는 최고의 미식을 경험해보세요(기능)</i>
+		<div id="span-back"></div>
+		<span>DINING</span>
 	</div>
 	<div class="dining-wrap">
 		<div>
