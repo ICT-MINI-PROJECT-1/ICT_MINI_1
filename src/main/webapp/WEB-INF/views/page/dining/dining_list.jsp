@@ -7,8 +7,21 @@
 <div id="fade">
 	<div class="container">
 		<div class="dining-menu">
+			<c:if test="${foodType=='korean'}">
+				<div id="korean-page">
+					
+				</div>
+			</c:if>
+			<c:if test="${foodType=='western'}">
+				<div id="western-page">
 				
-	
+				</div>
+			</c:if>
+			<c:if test="${foodType=='japanese'}">
+				<div id="japanese-page">
+				
+				</div>
+			</c:if>	
 		</div>
 	</div>
 </div>
