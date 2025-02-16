@@ -37,3 +37,13 @@ window.addEventListener("wheel", (e) => {
 });
 
 where="dining";
+
+function moveToRest(foodType) {
+	
+}
+
+
+
+
+
+
