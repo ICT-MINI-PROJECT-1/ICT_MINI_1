@@ -49,3 +49,6 @@ public class RoomController {
 		return service.wishSelect((String)session.getAttribute("loginId"));
 	}
 }
+
+
+
