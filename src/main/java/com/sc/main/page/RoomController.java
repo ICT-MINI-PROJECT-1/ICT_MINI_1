@@ -67,3 +67,6 @@ public class RoomController {
 		else service.insertWish(input);
 	}
 }
+
+
+
