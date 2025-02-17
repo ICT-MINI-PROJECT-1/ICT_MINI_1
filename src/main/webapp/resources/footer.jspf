@@ -3,9 +3,9 @@
 	<ul class="footer">
 		<li id="footer-logo">
 			<ul>
-				<li>Privacy Policy</li>
-				<li>Site Terms of Use</li>
-				<li>Cookie Preferences</li>
+			    <li><a href="/policies/privacy-policy">Privacy Policy</a></li>
+			    <li><a href="/policies/terms-of-use">Site Terms of Use</a></li>
+			    <li><a href="/policies/cookie-preferences">Cookie Preferences</a></li>
 			</ul>
 		</li>
 		<li id="footer-contact">
