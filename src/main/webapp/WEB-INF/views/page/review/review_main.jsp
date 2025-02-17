@@ -9,19 +9,74 @@
 		<span>REVIEW</span>
 	</div>
 	<div class="review-wrap">
-		<div class="review-list-grid-box">
-			<div class="review-img">이미지</div>
-			<ul class="review-text">
-				<li>제목</li>
-				<li>추천수</li>
-			</ul>
+		<!-- 검색창 -->
+		<div class="search-Review">
+			<select>
+				<option>Contemporary Art</option>
+				<option>Art Nouveau</option>
+				<option>Art Déco</option>
+				<option>Asian</option>
+			</select>
+			<input type="text" name="search-Review-text"><input type="submit" value="검색">
 		</div>
+		<!-- 리뷰 나오는 곳 -->
 		<div class="review-list-grid-box">
-			<div class="review-img">이미지</div>
-			<ul class="review-text">
-				<li>제목</li>
-				<li>추천수</li>
-			</ul>
+			<div class="review-list-grid-item">
+				<div class="review-img">이미지</div>
+				<ul class="review-text">
+					<li>제목제목제목제목</li>
+					<li>추천수</li>
+				</ul>
+			</div>
+			<div class="review-list-grid-item">
+				<div class="review-img">이미지</div>
+				<ul class="review-text">
+					<li>제목제목제목제목</li>
+					<li>추천수</li>
+				</ul>
+			</div>
+			<div class="review-list-grid-item">
+				<div class="review-img">이미지</div>
+				<ul class="review-text">
+					<li>제목제목제목제목</li>
+					<li>추천수</li>
+				</ul>
+			</div>
+			<div class="review-list-grid-item">
+				<div class="review-img">이미지</div>
+				<ul class="review-text">
+					<li>제목제목제목제목</li>
+					<li>추천수</li>
+				</ul>
+			</div>
+			<div class="review-list-grid-item">
+				<div class="review-img">이미지</div>
+				<ul class="review-text">
+					<li>제목제목제목제목</li>
+					<li>추천수</li>
+				</ul>
+			</div>
+			<div class="review-list-grid-item">
+				<div class="review-img">이미지</div>
+				<ul class="review-text">
+					<li>제목제목제목제목</li>
+					<li>추천수</li>
+				</ul>
+			</div>
+			<div class="review-list-grid-item">
+				<div class="review-img">이미지</div>
+				<ul class="review-text">
+					<li>제목제목제목제목</li>
+					<li>추천수</li>
+				</ul>
+			</div>
+			<div class="review-list-grid-item">
+				<div class="review-img">이미지</div>
+				<ul class="review-text">
+					<li>제목제목제목제목</li>
+					<li>추천수</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>
