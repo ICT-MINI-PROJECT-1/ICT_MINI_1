@@ -3,6 +3,7 @@ package com.sc.main.vo;
 public class RoomVO {
 	private int roomno;
 	private String roomconcept;
+	private String roominfo;
 	private int price;
 	private String bedtype;
 	private String viewtype;
@@ -20,9 +21,16 @@ public class RoomVO {
 	}
 	@Override
 	public String toString() {
-		return "RoomVO [roomno=" + roomno + ", roomconcept=" + roomconcept + ", price=" + price + ", bedtype=" + bedtype
-				+ ", viewtype=" + viewtype + ", capacity=" + capacity + ", area=" + area + ", reservno=" + reservno
-				+ ", checkin=" + checkin + ", checkout=" + checkout + ", rating=" + rating + "]";
+		return "RoomVO [roomno=" + roomno + ", roomconcept=" + roomconcept + ", roominfo=" + roominfo + ", price="
+				+ price + ", bedtype=" + bedtype + ", viewtype=" + viewtype + ", capacity=" + capacity + ", area="
+				+ area + ", reservno=" + reservno + ", checkin=" + checkin + ", checkout=" + checkout + ", rating="
+				+ rating + "]";
+	}
+	public String getRoominfo() {
+		return roominfo;
+	}
+	public void setRoominfo(String roominfo) {
+		this.roominfo = roominfo;
 	}
 	public String getRoomconcept() {
 		return roomconcept;

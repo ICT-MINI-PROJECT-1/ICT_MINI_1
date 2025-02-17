@@ -32,7 +32,7 @@ window.addEventListener("scroll", (e) => {
 			header.style.top='0px';
 			nav.style.top='80px';
 			nav.style.opacity=1;
-			if(where!="login" && where!="signup" && where!="room")
+			if(where!="login" && where!="signup")
 				footer.style.opacity=0;
 		}
 	}
