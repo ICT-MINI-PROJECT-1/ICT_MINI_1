@@ -8,18 +8,24 @@
 	<div class="container">
 		<div class="dining-menu">
 			<c:if test="${foodType=='korean'}">
+				loadKorean();
 				<div id="korean-page">
-					
+					<div id="menu-korean">${pageContext.request.contextPath}/img/page/dining/menu-korean.jpg</div>
+					<div id="info-korean"></div>
 				</div>
 			</c:if>
 			<c:if test="${foodType=='western'}">
 				<div id="western-page">
-				
+					loadWestern();
+					<div id="menu-western">${pageContext.request.contextPath}/img/page/dining/menu-western.jpg</div>
+					<div id="info-western"></div>
 				</div>
 			</c:if>
 			<c:if test="${foodType=='japanese'}">
 				<div id="japanese-page">
-				
+					loadJapanese();
+					<div id="menu-japanese">${pageContext.request.contextPath}/img/page/dining/menu-japanese.jpg</div>
+					<div id="info-japanese"></div>
 				</div>
 			</c:if>	
 		</div>

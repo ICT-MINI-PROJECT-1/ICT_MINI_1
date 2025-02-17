@@ -40,16 +40,14 @@
 
 .dining-wrap{
 	opacity:0;
-	position:fixed;
+	position:static;
 	width:85vmax;  
-	max
-	left:10%;
+	left:7.5%;
 	transition: all 1.1s;
 	margin:0 auto;
 	margin-top: 130px;
 	font-size:30px;
 	text-align:center;
-	/* overflow: auto;  설정 해제시 오른쪽 구석에 footer때문에 밀림 */
 }
 
 .dining-pic {
@@ -58,7 +56,6 @@
 	padding-bottom:20%;  
 	box-shadow: 0 19px 38px rgba(0, 0, 0, 0.65), 0 15px 12px rgba(0, 0, 0, 0.4);
 	border-collapse: collapse;
-	/*overflow: auto;*/
 	transition: all 0.35s;
 }
 
@@ -108,9 +105,28 @@
 
 /*================dining_list================*/
 
-.dining_list {
-	
+#korean-page {
+	background: url("../../img/page/dining/kFood.jpg") no-repeat;
+	background-size: cover;
+	background-position: left -15%; 
+	z-index: 1;
 }
+
+#western-page {
+	background: url("../../img/page/dining/wFood.jpg") no-repeat;
+	background-size: cover;
+	background-position: right -15%;
+	z-index: 1;
+}
+
+#japanese-page {
+	background: url("../../img/page/dining/jFood.jpg") no-repeat;
+	background-size: cover;
+	background-position: left -15%;
+	z-index: 1;
+}
+
+
 
 
 
