@@ -2,25 +2,99 @@
 
 <link href="${pageContext.request.contextPath }/css/page/room.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/page/room.js"></script>
+
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		renderWish();
+	});
+</script>
+
 <div id="fade">
 <div class="container">
+	<div id="room-list-modal">
+		<div id="modal-exit" onclick="closeModal()"></div>
+		<div id="modal-grid">
+			<div id="modal-img"></div>
+			<div id="modal-contents">
+				<ul>
+					<li id="contents-roominfo">
+					</li>
+				</ul>
+				<ul>
+					<li>호수</li>
+					<li id="contents-roomno">
+					</li>
+					<li>화풍</li>
+					<li id="contents-roomconcept">
+					</li>
+					<li>뷰</li>
+					<li id="contents-viewtype">
+					</li>
+				</ul>
+				<ul>
+					<li>인원</li>
+					<li id="contents-capacity">
+					</li>
+					<li>면적</li>
+					<li id="contents-area">
+					</li>
+					<li>침대</li>
+					<li id="contents-bedtype">
+					</li>
+				</ul>
+				<ul>
+					<li>가격</li>
+					<li id="contents-price">
+					</li>
+					<li>평점</li>
+					<li id="contents-rating">
+					</li>
+				</ul>
+				<ul>
+					<li>예약하러가기</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 	<div style="margin-top:200px;">
 		<c:if test="${loc=='contemp'}">
 			<div class="room-list-title">Contemporary Art Room</div>
+			<script>
+				document.addEventListener('DOMContentLoaded', () => {
+					renderList(301,'contemp');
+				});
+			</script>
 		</c:if>
 		<c:if test="${loc=='artnou'}">
 			<div class="room-list-title">Art Nouveau Room</div>
+			<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				renderList(401,'artnou');
+			});
+			</script>
 		</c:if>
 		<c:if test="${loc=='artdec'}">
 			<div class="room-list-title">Art Déco Room</div>
+			<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				renderList(501,'artdec');
+			});
+			</script>
 		</c:if>
 		<c:if test="${loc=='asian'}">
 			<div class="room-list-title">Asian Room</div>
+			<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				renderList(601,'asian');
+			});
+			</script>
 		</c:if>
 		<div class="room-list-grid-box">
 			<c:forEach var="data" items="${list}">
 				<div class="room-list-grid-item">
-					<div class="room-list-grid-item-img" id="item-${data.roomno}"></div>
+					<div class="wish-button" id="wish-${data.roomno}" onclick="doWish()"></div>
+					<div class="room-list-grid-item-img" onclick="openModal(${data.roomno})" id="item-${data.roomno}">
+					</div>
 					<ul class="item-top">
 						<li>
 							호수
@@ -32,7 +106,15 @@
 							평점
 						</li>
 						<li>
-							${data.rating}
+							<div class="star-box">
+								<div class="star-fill" style="width:90%;position:absolute;
+	height:100%;
+	background:url('../../img/public/star_fill.png') no-repeat;
+	background-size:cover;
+	z-index:2;
+	will-change: transform;"></div>
+							</div>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${data.rating}
 						</li>
 					</ul>
 					<ul class="item-bottom">
