@@ -12,8 +12,7 @@ document.addEventListener('keydown', function(event) {
         loginChk();
     }
 });
-
-async function loginChk(){
+function loginChk(){
 	var userid = document.getElementById("userid").value;
 	var userpw = document.getElementById("userpw").value;
 	var alert_id = document.getElementById("alert-id");
@@ -34,7 +33,7 @@ async function loginChk(){
 			userid:userid,
 			userpw:userpw
 		}
-		await fetch("/user/loginChk",{
+		fetch("/user/loginChk",{
 			method:"POST",
 			headers:{
 				"Content-Type":"application/json",

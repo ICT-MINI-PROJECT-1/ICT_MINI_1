@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `artpart`.`reservation` (
 CREATE TABLE IF NOT EXISTS `artpart`.`room` (
   `roomno` INT NOT NULL,
   `roomconcept` VARCHAR(45) NOT NULL,
+  `roominfo` VARCHAR(200),
   `price` INT NOT NULL,
   `bedtype` VARCHAR(45) NOT NULL,
   `viewtype` VARCHAR(45) NOT NULL,
@@ -104,39 +105,49 @@ CREATE TABLE IF NOT EXISTS `artpart`.`reviewimg` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(301,'contemp',200000,'double','view',4,20);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(302,'contemp',205000,'double','view',4,21);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(303,'contemp',150000,'single','view',2,14);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(304,'contemp',190000,'super_single','view',3,18);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(305,'contemp',250000,'queen','view',6,27);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(306,'contemp',230000,'queen','view',6,25);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(307,'contemp',180000,'super_single','view',3,17);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(308,'contemp',200000,'double','view',4,20);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area) values(301,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',200000,'double','view',4,20);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(302,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',205000,'double','view',4,21);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(303,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',150000,'single','view',2,14);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(304,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',190000,'single','view',3,18);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(305,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',250000,'queen','view',6,27);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(306,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',230000,'queen','view',6,25);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(307,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',180000,'single','view',3,17);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(308,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',200000,'double','view',4,20);
 
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(401,'artnou',180000,'super_single','view',3,18);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(402,'artnou',200000,'double','view',4,21);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(403,'artnou',210000,'double','view',4,20);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(404,'artnou',185000,'single','view',3,17);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(405,'artnou',195000,'double','view',4,20);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(406,'artnou',215000,'double','view',4,20);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(407,'artnou',220000,'queen','view',6,25);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(408,'artnou',250000,'queen','view',7,28);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(401,'artnou','안녕하세요\n반갑습니다\n설명입니다\n',180000,'single','view',3,18);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(402,'artnou','안녕하세요\n반갑습니다\n설명입니다\n',200000,'double','view',4,21);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(403,'artnou','안녕하세요\n반갑습니다\n설명입니다\n',210000,'double','view',4,20);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(404,'artnou','안녕하세요\n반갑습니다\n설명입니다\n',185000,'single','view',3,17);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(405,'artnou','안녕하세요\n반갑습니다\n설명입니다\n',195000,'double','view',4,20);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(406,'artnou','안녕하세요\n반갑습니다\n설명입니다\n',215000,'double','view',4,20);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(407,'artnou','안녕하세요\n반갑습니다\n설명입니다\n',220000,'queen','view',6,25);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(408,'artnou','안녕하세요\n반갑습니다\n설명입니다\n',250000,'queen','view',7,28);
 
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(501,'artdec',180000,'super_single','view',3,18);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(502,'artdec',200000,'double','view',4,19);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(503,'artdec',210000,'double','view',4,20);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(504,'artdec',185000,'super_single','view',3,18);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(505,'artdec',190000,'single','view',3,19);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(506,'artdec',250000,'queen','view',7,28);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(507,'artdec',230000,'queen','view',6,24);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(508,'artdec',215000,'double','view',4,20);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(501,'artdec','안녕하세요\n반갑습니다\n설명입니다\n',180000,'single','view',3,18);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(502,'artdec','안녕하세요\n반갑습니다\n설명입니다\n',200000,'double','view',4,19);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(503,'artdec','안녕하세요\n반갑습니다\n설명입니다\n',210000,'double','view',4,20);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(504,'artdec','안녕하세요\n반갑습니다\n설명입니다\n',185000,'single','view',3,18);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(505,'artdec','안녕하세요\n반갑습니다\n설명입니다\n',190000,'single','view',3,19);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(506,'artdec','안녕하세요\n반갑습니다\n설명입니다\n',250000,'queen','view',7,28);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(507,'artdec','안녕하세요\n반갑습니다\n설명입니다\n',230000,'queen','view',6,24);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(508,'artdec','안녕하세요\n반갑습니다\n설명입니다\n',215000,'double','view',4,20);
 
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(601,'asian',200000,'double','view',4,19);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(602,'asian',200000,'double','view',4,19);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(603,'asian',210000,'single','view',3,19);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(604,'asian',185000,'double','view',4,20);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(605,'asian',190000,'single','view',3,19);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(606,'asian',250000,'super_single','view',3,18);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(607,'asian',210000,'double','view',4,20);
-insert into room(roomno,roomconcept,price,bedtype,viewtype,capacity,area) values(608,'asian',215000,'double','view',4,20);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(601,'asian','안녕하세요\n반갑습니다\n설명입니다\n',200000,'double','view',4,19);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(602,'asian','안녕하세요\n반갑습니다\n설명입니다\n',200000,'double','view',4,19);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(603,'asian','안녕하세요\n반갑습니다\n설명입니다\n',210000,'single','view',3,19);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(604,'asian','안녕하세요\n반갑습니다\n설명입니다\n',185000,'double','view',4,20);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(605,'asian','안녕하세요\n반갑습니다\n설명입니다\n',190000,'single','view',3,19);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(606,'asian','안녕하세요\n반갑습니다\n설명입니다\n',250000,'single','view',3,18);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(607,'asian','안녕하세요\n반갑습니다\n설명입니다\n',210000,'double','view',4,20);
+insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(608,'asian','안녕하세요\n반갑습니다\n설명입니다\n',215000,'double','view',4,20);
 commit;
+
+select * from wishlist;
+select * from user;
+
+insert into user values('test1234','test1234!!','이건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
+
+insert into wishlist values('test1234',301);
+
+insert into wishlist values('test1234',304);
+select * from user;
