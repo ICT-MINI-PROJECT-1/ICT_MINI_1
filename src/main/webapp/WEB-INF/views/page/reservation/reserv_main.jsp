@@ -9,19 +9,10 @@
 		<span>RESERVATION</span>
 	</div>
 	<div class="reserv-wrap">
-		예약?<br><br><br>예약?<br><br><br>
-		예약?<br><br><br>
-		예약?<br><br><br>
-		예약?<br><br><br>
-		예약?<br><br><br>
-		예약?<br><br><br>
-		예약?<br><br><br>
-		예약?<br><br><br>
-		예약?<br><br><br>
-		예약?<br><br><br>
-		예약?!<br><br><br>
-		
-
+		<div id="reserv-box">
+			<div id="reserv-blank"></div>
+			<div id="reserv-button">예약하기</div>
+		</div>
 	</div>
 </div>
 </div>

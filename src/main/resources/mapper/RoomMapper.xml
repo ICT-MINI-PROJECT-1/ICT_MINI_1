@@ -13,4 +13,10 @@
 	<select id="wishSelect" resultType="com.sc.main.vo.WishlistVO">
 		select * from wishlist where userid=#{param1}
 	</select>
+	<insert id="insertWish">
+		insert into wishlist values(#{userid}, #{roomno})
+	</insert>
+	<delete id="deleteWish">
+		delete from wishlist where userid=#{userid} and roomno=#{roomno}
+	</delete>
 </mapper>
