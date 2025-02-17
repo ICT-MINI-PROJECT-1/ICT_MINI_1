@@ -183,6 +183,10 @@ ul {
 	font-family: "Cormorant Garamond", serif;
 }
 
+.star-rating { width:88px;text-align:left; }
+.star-rating,.star-rating span { text-align:left;display:inline-block; height:16.5px; overflow:hidden; background:url('../img/public/star.png')no-repeat; }
+.star-rating span{ text-align:left;background-position:left bottom; line-height:0; vertical-align:top;}
+
 @media (max-width:720px){
     #header-left{
     	width:30%;

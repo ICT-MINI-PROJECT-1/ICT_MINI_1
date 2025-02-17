@@ -7,4 +7,10 @@
 	<select id="roomSelect" resultType="com.sc.main.vo.RoomVO">
 		select * from room where roomconcept=#{param1}
 	</select>
+	<select id="roomInfo" resultType="com.sc.main.vo.RoomVO">
+		select * from room where roomno=#{param1}
+	</select>
+	<select id="wishSelect" resultType="com.sc.main.vo.WishlistVO">
+		select * from wishlist where userid=#{param1}
+	</select>
 </mapper>
