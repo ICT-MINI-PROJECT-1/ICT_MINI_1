@@ -45,7 +45,25 @@ public class RoomController {
 	@GetMapping("/renderWish")
 	@ResponseBody
 	public List<WishlistVO> renderWish(HttpSession session) {
-		System.out.println(session.getAttribute("loginId"));
 		return service.wishSelect((String)session.getAttribute("loginId"));
+	}
+	@PostMapping("/doWish")
+	@ResponseBody
+	public void doWish(HttpSession session, @RequestBody String data) {
+		String user_id = (String)session.getAttribute("loginId");
+		int roomno = Integer.parseInt(data);
+		List<WishlistVO> wVO = service.wishSelect(user_id);
+		int res=0;
+		for(int i=0;i<wVO.size();i++) {
+			if(wVO.get(i).getRoomno()==roomno) {
+				res++;
+				break;
+			}
+		}
+		WishlistVO input = new WishlistVO();
+		input.setUserid(user_id);
+		input.setRoomno(roomno);
+		if(res==1) service.deleteWish(input);
+		else service.insertWish(input);
 	}
 }
