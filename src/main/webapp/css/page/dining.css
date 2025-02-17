@@ -7,11 +7,12 @@
 	background-position:center;
 	height:0;
 	top:100px;
-	transition: all 1.5s;
+	transition: all 0.9s;
 	text-align:center;
 	padding-top:50px;
 	padding-bottom:30%;
 	color:#FFFCF9;
+	overflow:auto;
 }
 
 #span-back{
@@ -39,10 +40,9 @@
 
 .dining-wrap{
 	opacity:0;
-	position:fixed;
-	width:80%;
-	left:10%;
-	background-color:gray;
+	position:static;
+	width:85vmax;  
+	left:7.5%;
 	transition: all 1.1s;
 	margin:0 auto;
 	margin-top: 130px;
@@ -50,20 +50,80 @@
 	text-align:center;
 }
 
+.dining-pic {
+	float: left;
+	height: 400px;
+	padding-bottom:20%;  
+	box-shadow: 0 19px 38px rgba(0, 0, 0, 0.65), 0 15px 12px rgba(0, 0, 0, 0.4);
+	border-collapse: collapse;
+	transition: all 0.35s;
+}
+
 #kor-pic {
-	background: url("../../img/page/dining/koreanMain.jpg")
+	background: url("../../img/page/dining/koreanMain.jpg") no-repeat;
+	background-size: cover;
+	width: 33%;
+	border-bottom-left-radius: 10px;
+}
+
+#kor-pic:hover {
+	transform: scale(1.04);
+	cursor: pointer;
 }
 
 #wes-pic {
-	background: url("../../img/page/dining/westernMain.jpg")
+	background: url("../../img/page/dining/westernMain.jpg") no-repeat;
+	background-size: cover;
+	width: 33%;
+}
+
+#wes-pic:hover {
+	transform: scale(1.04);
+	cursor: pointer;
 }
 
 #jap-pic {
-	background: url("../../img/page/dining/japaneseMain.jpg")
+	background: url("../../img/page/dining/japaneseMain.jpg") no-repeat;
+	background-size: cover;
+	width: 33%;
+	border-bottom-right-radius: 10px;
 }
 
-#dining-wrap {
-	
+#jap-pic:hover {
+	transform: scale(1.04);
+	cursor: pointer;
+}
+
+.dining-intro {
+	font-family: "Cormorant Garamond", serif;
+	font-size:3vw;
+	color: #FFFFFF;
+	padding-top: 30px;
+	line-height: 480px;
+}
+
+
+/*================dining_list================*/
+
+#korean-page {
+	background: url("../../img/page/dining/kFood.jpg") no-repeat;
+	background-size: cover;
+	background-position: left -15%; 
+	z-index: 1;
+}
+
+#western-page {
+	background: url("../../img/page/dining/wFood.jpg") no-repeat;
+	background-size: cover;
+	background-position: right -15%;
+	z-index: 1;
+}
+
+#japanese-page {
+	background: url("../../img/page/dining/jFood.jpg") no-repeat;
+	background-size: cover;
+	background-position: left -15%;
+	z-index: 1;
 }
 
 
