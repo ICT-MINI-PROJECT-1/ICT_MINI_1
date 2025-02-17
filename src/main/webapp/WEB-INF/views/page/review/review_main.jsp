@@ -4,22 +4,25 @@
 <script src="${pageContext.request.contextPath}/js/page/review.js"></script>
 <div id="fade">
 <div class="container">
-		<div class="review-title">
+	<div class="review-title">
 		<div id="span-back"></div>
 		<span>REVIEW</span>
 	</div>
 	<div class="review-wrap">
-		후기?<br><br><br>후기?<br><br><br>
-		후기?<br><br><br>
-		후기?<br><br><br>
-		후기?<br><br><br>
-		후기?<br><br><br>
-		후기?<br><br><br>
-		후기?<br><br><br>
-		후기?<br><br><br>
-		후기?<br><br><br>
-		후기?<br><br><br>
-		후기?<br><br><br>
+		<div class="review-list-grid-box">
+			<div class="review-img">이미지</div>
+			<ul class="review-text">
+				<li>제목</li>
+				<li>추천수</li>
+			</ul>
+		</div>
+		<div class="review-list-grid-box">
+			<div class="review-img">이미지</div>
+			<ul class="review-text">
+				<li>제목</li>
+				<li>추천수</li>
+			</ul>
+		</div>
 	</div>
 </div>
 </div>
