@@ -1,0 +1,15 @@
+.policy-title {
+	z-index:2;
+	position:fixed;
+	width:100%;
+	background:no-repeat;
+	background-size:cover;
+	background-position:center;
+	height:0;
+	top:100px;
+	transition: all 1.5s;
+	text-align:center;
+	padding-top:50px;
+	padding-bottom:30%;
+	color:#FFFCF9;
+}
