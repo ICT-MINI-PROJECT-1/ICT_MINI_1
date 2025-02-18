@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Policy</title>
-</head>
-<body>
-    <h1>정책 내용</h1>
-    <pre>${policyContent}</pre>
-</body>
-</html>
+
+<link href="${pageContext.request.contextPath }/css/page/policy.css" rel="stylesheet" type="text/css"/>
+
+<div id="fade">
+<div class="container">
+	<div class="policy-title">
+		<div id="span-back"></div>
+		<span>POLICY</span>
+	</div>
+		<h1>${policyTitle}</h1>
+    	<div>${policyContent}</div>
+	
+	</div>
+</div>
+    
+    
+    
+    
+ 
