@@ -2,12 +2,12 @@
 
 	<ul class="footer">
 		<li id="footer-logo">
-			<ul>
-			    <li><a href="/policies/privacy-policy">Privacy Policy</a></li>
-			    <li><a href="/policies/terms-of-use">Site Terms of Use</a></li>
-			    <li><a href="/policies/cookie-preferences">Cookie Preferences</a></li>
-			</ul>
-		</li>
+        <ul>
+            <li><a href="${pageContext.request.contextPath}/page/policies/privacy-policy">Privacy Policy</a></li>
+            <li><a href="${pageContext.request.contextPath}/page/policies/terms-of-use">Site Terms of Use</a></li>
+            <li><a href="${pageContext.request.contextPath}/page/policies/cookie-preferences">Cookie Preferences</a></li>
+        </ul>
+    </li>
 		<li id="footer-contact">
 			<p>Email. artpartkor@gmail.com<br><br><br><br>
 			   Tel. 010-0000-0000</p>
