@@ -124,6 +124,16 @@ Form
     1px 1px 2px 0px rgba(0,0,0,.6);
 }
 
+#reserv-img-1, #reserv-img-2,#reserv-img-3{
+	position:absolute;
+	width:100%;
+	height:0;
+	padding-bottom:63%;
+	border-radius:7px;
+	opacity:0;
+	transition: all 0.7s;
+}
+
 #img-left-button, #img-right-button{
 	top:50%;
 	transform:translateY(-50%);
@@ -202,15 +212,8 @@ Form
 	color: #6A3D17;
 	height:30px;
 	line-height:30px;
-	font-size:18px;
-}
-
-#reserv-left{
-
-}
-
-#reserv-right{
-
+	font-size:1.3vw;
+	white-space:nowrap;
 }
 
 #reserv-right > input, #reserv-right-two > input {
@@ -300,6 +303,55 @@ Form
 	font-size:13px;
 }
 
+#reserv-room-modal{
+	position:fixed;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	width:330px;
+	height:320px;
+	background-color:white;
+	border-radius:5px;
+	box-shadow:inset 2px 2px 2px 0px rgba(255, 255, 255, 0.7),
+    1px 1px 3px 0px rgba(106,61,23,.5),
+    3px 3px 2px 0px rgba(106,61,23, 0.5);
+	z-index:-1;
+	opacity:0;
+	transition: all 0.9s;
+}
+
+#reserv-room-exit{
+	position:absolute;
+	padding:7px;
+	left:92%;
+	transition:all 0.5s;
+}
+
+#reserv-room-exit:hover{
+	color:#888888;
+	cursor:pointer;
+}
+
+#reserv-room-modal > ul {
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+#reserv-room-modal > ul >li{
+	padding:20px;
+	text-align:center;
+	font-size:24px;
+	font-family: "Cormorant Garamond", serif;
+}
+#reserv-room-modal > ul >li>ul>li{
+	transition: all 0.5s;
+	margin:5px;
+}
+#reserv-room-modal > ul >li>ul>li:hover{
+	color:#888888;
+	cursor:pointer;
+}
 @media (min-width:1500px){
 	.reserv-container {
 		width:900px;
@@ -311,11 +363,14 @@ Form
 	#img-left-button{
 		left:-75px;
 	}
+	#idpw{
+		font-size:20px;
+	}
 }
 
 @media (max-width:820px) {
 	#idpw{
-		font-size:15px;
+		font-size:12px;
 	}
 	.reserv-container {
 		width:492px;
@@ -327,4 +382,91 @@ Form
 	#img-left-button{
 		left:-41px;
 	}
+}
+
+/*
+calendar
+*/
+
+.calendarBox {
+	font-family: "Bona Nova SC", serif;
+	font-size:16px;
+	position:fixed;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	width:350px;
+	height:320px;
+    color: white;
+    background-color:black;
+    z-index:-1;
+    opacity:0;
+    border-radius:7px;
+    transition:all 0.7s;
+}
+
+#month {
+    display: inline-block;
+  	position: relative;
+    float: left;
+    margin-left: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#month h2 {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0px;
+}
+
+.icon1 {
+    display: inline-block;
+  	position: relative;
+    float: right;
+    margin-right: 10px;
+    width: 16px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.calendarBox table {
+    border-collapse: collapse;
+    border: none;
+    width: 100%;
+}
+
+.calendarBox th {
+    border: none;
+    height: 10px;
+    padding: 8px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.calendarBox td {
+    border: none;
+    height: 20px;
+    padding: 8px;
+    text-align: center;
+}
+
+/* 오늘 날짜 배경색 지정 */
+.calendarBox #today {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10%;
+    color: black;
+}
+
+#calendar-exit {
+	position:absolute;
+	font-size:24px;
+	top:3%;
+	left:92%;
+	transition: all 0.7s;
+}
+
+#calendar-exit:hover{
+	cursor:pointer;
+	color:#888888;
 }
