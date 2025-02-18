@@ -10,8 +10,8 @@
 	</div>
 	<div class="reserv-wrap">
 		<div id="reserv-box">
-			<div id="reserv-blank"></div>
-			<div id="reserv-button">예약하기</div>
+			<div id="reserv-blank"><p id="reserv-typing"></p></div>
+			<div id="reserv-button" onclick="moveReserv('')">예약하기</div>
 		</div>
 	</div>
 </div>

@@ -45,7 +45,7 @@
 					</li>
 				</ul>
 				<ul>
-					<li>예약하러가기</li>
+					<li onclick="moveReserv()">예약하러가기</li>
 				</ul>
 			</div>
 		</div>
