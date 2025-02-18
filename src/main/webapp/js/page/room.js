@@ -129,18 +129,46 @@ function closeModal(){
 	modal.style.zIndex=-5;
 }
 
-function renderWish(){
+function renderWish(roomno){
 	fetch("/page/room/renderWish")
 	.then(response => response.json())
 	.then(data=>{
-		console.log(data);
+		for(var i=roomno*100+1;i<=roomno*100+8;i++){
+			let ok=0;
+			let x = document.getElementById("wish-"+i);
+			for(var j=0;j<data.length;j++) {
+				if(i==data[j].roomno) {
+					x.style.background="url('../../img/public/wish.png') no-repeat";
+					x.style.backgroundSize="cover";
+					x.style.backgroundPosition="center";
+					ok=1;
+					break;
+				}
+			}
+			if(!ok) {
+				x.style.background="url('../../img/public/unwish.png') no-repeat";
+				x.style.backgroundSize="cover";
+				x.style.backgroundPosition="center";
+			}
+		}
 	}).catch(err=> {
 	console.log(err);
 	});
 }
 
-function doWish(){
-	alert("!!");
+function doWish(roomno){
+	fetch("/page/room/doWish",{
+		method:"POST",
+		headers:{
+			"Content-Type":"text/plain",
+		},
+		body:roomno
+		})
+		.then((res) =>
+			{renderWish(parseInt(roomno/100));}
+		).catch(err=> {
+		console.log(err);
+	});
 }
 
 document.addEventListener('keydown', function(event) {

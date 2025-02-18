@@ -29,4 +29,14 @@ public class RoomServiceImpl implements RoomService{
 	public List<WishlistVO> wishSelect(String userid) {
 		return dao.wishSelect(userid);
 	}
+
+	@Override
+	public int insertWish(WishlistVO wVO) {
+		return dao.insertWish(wVO);
+	}
+
+	@Override
+	public int deleteWish(WishlistVO wVO) {
+		return dao.deleteWish(wVO);
+	}
 }

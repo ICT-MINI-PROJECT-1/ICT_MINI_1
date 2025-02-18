@@ -9,4 +9,6 @@ public interface RoomService {
 	public List<RoomVO> roomSelect(String loc);
 	public RoomVO roomInfo(int roomno);
 	public List<WishlistVO> wishSelect(String userid);
+	public int insertWish(WishlistVO wVO);
+	public int deleteWish(WishlistVO wVO);
 }

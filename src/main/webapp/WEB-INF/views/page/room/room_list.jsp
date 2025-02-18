@@ -3,12 +3,6 @@
 <link href="${pageContext.request.contextPath }/css/page/room.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/page/room.js"></script>
 
-<script>
-	document.addEventListener('DOMContentLoaded', () => {
-		renderWish();
-	});
-</script>
-
 <div id="fade">
 <div class="container">
 	<div id="room-list-modal">
@@ -62,6 +56,7 @@
 			<script>
 				document.addEventListener('DOMContentLoaded', () => {
 					renderList(301,'contemp');
+					renderWish(3);
 				});
 			</script>
 		</c:if>
@@ -70,6 +65,7 @@
 			<script>
 			document.addEventListener('DOMContentLoaded', () => {
 				renderList(401,'artnou');
+				renderWish(4);
 			});
 			</script>
 		</c:if>
@@ -78,6 +74,7 @@
 			<script>
 			document.addEventListener('DOMContentLoaded', () => {
 				renderList(501,'artdec');
+				renderWish(5);
 			});
 			</script>
 		</c:if>
@@ -86,13 +83,16 @@
 			<script>
 			document.addEventListener('DOMContentLoaded', () => {
 				renderList(601,'asian');
+				renderWish(6);
 			});
 			</script>
 		</c:if>
 		<div class="room-list-grid-box">
 			<c:forEach var="data" items="${list}">
 				<div class="room-list-grid-item">
-					<div class="wish-button" id="wish-${data.roomno}" onclick="doWish()"></div>
+					<c:if test="${loginStatus=='Y'}">
+					<div class="wish-button" id="wish-${data.roomno}" onclick="doWish('${data.roomno}')"></div>
+					</c:if>
 					<div class="room-list-grid-item-img" onclick="openModal(${data.roomno})" id="item-${data.roomno}">
 					</div>
 					<ul class="item-top">
