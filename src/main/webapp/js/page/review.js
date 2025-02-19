@@ -37,3 +37,14 @@ window.addEventListener("wheel", (e) => {
 });
 
 where="review";
+
+
+window.onload = function(){
+	closeModal();
+}
+function openModal(){
+	document.getElementById("review-list-modal").style.display = "block";
+}
+function closeModal(){
+	document.getElementById("review-list-modal").style.display = "none";
+}
