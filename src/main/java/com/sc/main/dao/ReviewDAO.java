@@ -1,5 +1,10 @@
 package com.sc.main.dao;
 
-public interface ReviewDAO {
+import java.util.List;
 
+import com.sc.main.vo.ReviewVO;
+
+public interface ReviewDAO {
+	public List<ReviewVO> reviewSelect();
+	public ReviewVO reviewDetail(int reviewno);
 }
