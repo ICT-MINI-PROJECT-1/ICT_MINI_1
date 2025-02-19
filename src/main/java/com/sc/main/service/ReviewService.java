@@ -1,5 +1,10 @@
 package com.sc.main.service;
 
-public interface ReviewService {
+import java.util.List;
 
+import com.sc.main.vo.ReviewVO;
+
+public interface ReviewService {
+	public List<ReviewVO> reviewSelect();
+	public ReviewVO reviewDetail(int reviewno);
 }
