@@ -52,7 +52,7 @@
 		</script>
 	</c:if>
 	
-	<div class="reserv-container">
+	<div class="reserv-edit-container">
 		<div id="reserv-title">Reservation Information</div>
 		<div id="reserv-img-list">
 			<div id="reserv-img-1"></div>

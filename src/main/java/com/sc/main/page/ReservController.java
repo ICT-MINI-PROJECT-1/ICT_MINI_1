@@ -48,17 +48,24 @@ public class ReservController {
 	}
 	
 	@PostMapping("/form")
-	public ModelAndView formRoom(String roomno) {
+	public ModelAndView formRoom(HttpSession session, String roomno) {
 		mav = new ModelAndView();
-		mav.setViewName("page/reservation/reserv_form");
-		RoomVO vo = room_service.roomInfo(Integer.parseInt(roomno));
-		mav.addObject("vo",vo);
+		String user_id = (String)session.getAttribute("loginId");
+		ReservationVO rVO = service.selectReservation(user_id);
+		if(rVO==null) {
+			RoomVO vo = room_service.roomInfo(Integer.parseInt(roomno));
+			mav.addObject("vo",vo);
+			mav.setViewName("page/reservation/reserv_form");
+		} else {
+			mav.addObject("reservVO",rVO);
+			mav.addObject("roomVO",room_service.roomInfo(rVO.getRoomno()));
+			mav.setViewName("page/reservation/reserv_edit");
+		}
 		return mav;
 	}
 	@PostMapping("/selectRoom")
 	@ResponseBody
 	public RoomVO selectRoom(@RequestBody String roomno) {
-		System.out.println(roomno);
 		return room_service.roomInfo(Integer.parseInt(roomno));
 	}
 	@PostMapping("/setCalendar")

@@ -172,13 +172,12 @@ Form
 	left:102%;	
 }
 
-.reserv-container{
+.reserv-container,.reserv-edit-container{
 	position:static;
 	margin:0 auto;
 	margin-top:200px;
 	margin-bottom:100px;
 	width:60%;
-	height:1500px;
 	transition:all 0.5s;
 	background-color:transparent;
 	border-radius:15px;
@@ -187,6 +186,15 @@ Form
     2px 2px 7px 0px rgba(106,61,23,.6),
     1px 1px 3px 0px rgba(106,61,23,.6);
 }
+
+.reserv-container {
+	height:1500px;
+}
+
+.reserv-edit-container{
+	height:1350px;
+}
+
 
 #reserv-title{
 	text-align:center;
@@ -348,7 +356,7 @@ Form
 	cursor:pointer;
 }
 @media (min-width:1500px){
-	.reserv-container {
+	.reserv-container,.reserv-edit-container {
 		width:900px;
 	}
 	#img-left-button, #img-right-button{
@@ -367,7 +375,7 @@ Form
 	#idpw{
 		font-size:12px;
 	}
-	.reserv-container {
+	.reserv-container,.reserv-edit-container {
 		width:492px;
 	}
 	#img-left-button, #img-right-button{
