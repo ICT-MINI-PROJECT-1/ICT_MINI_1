@@ -38,27 +38,55 @@ window.addEventListener("wheel", (e) => {
 
 where="dining";
 
-function moveToRest(foodType) {
+function moveToRest(foodType) {	
 	
-	location.href="${pageContext.request.contextPath}/page/dining/dining_list";
-
-	if(foodType=='korean') {
-		document.getElementById("info-korean").value = "<div>직접 담근 장, 김치, 식초, 장아찌로 전국에 진귀한 식재료를 이용하여 이 시대에 맞는 한국요리를 선보이는 한식<div>"
-		
-		//var tag = "<div>직접 담근 장, 김치, 식초, 장아찌로 전국에 진귀한 식재료를 이용하여 이 시대에 맞는 한국요리를 선보이는 한식<div>"
-		//document.getElementById("info-korean").value = tag;	
-	} else if(foodType=='western') {
-		document.getElementById("info-western").value = "<div>한국의 식재료를 재해석하여 선보이는 과감하고 창의적인 음식으로 압도적인 새로운 장르의 가치있는 경험을 선사시켜드리겠습니다.</div>"
-		
-		//var tag = "<div>한국의 식재료를 재해석하여 선보이는 과감하고 창의적인 음식으로 압도적인 새로운 장르의 가치있는 경험을 선사시켜드리겠습니다.</div>"
-		//document.getElementById("info-western").value = tag;
-	} else {
-		document.getElementById("info-japanese").value = "<div>전통과 혁신을 겸비한 에도마에 스시가 있는 편안하고 고급스러운 공간</div>"
-		
-		//var tag = "<div>전통과 혁신을 겸비한 에도마에 스시가 있는 편안하고 고급스러운 공간</div>"
-		//document.getElementById("info-japanese").value = tag;
-	}
+	let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', 'dining/list');
+	document.body.appendChild(f);
+	
+	let obj;
+    obj = document.createElement('input');
+    obj.setAttribute('type', 'hidden');
+    obj.setAttribute('name', 'foodType');
+    obj.setAttribute('value', foodType);
+	f.appendChild(obj);
+    f.submit();
 }
+
+/*function 
+
+	var infoKorean = document.getElementById("korean-page");
+	var infoWestern = document.getElementById("info-western");
+	var infoJapanese = document.getElementById("info-japanese");
+
+	if(foodType=="korean") {
+		infoKorean.style.display = "block";
+		infoWestern.style.display = "none";
+		infoJapanese.style.display = "none";
+	} else if(foodType=="western") {
+		infoKorean.style.display = "none";
+		infoWestern.style.display = "block";
+		infoJapanese.style.display = "none";
+	} else if(foodType=="japanese") {
+		infoKorean.style.display = "none";
+		infoWestern.style.display = "none";
+		infoJapanese.style.display = "block";
+	}
+}*/
+
+/* 사진 확대(모달) */
+/*const modal = document.querySelector(".modal");
+const modalOpen = document.querySelector(".pic-modal");
+const modalClose = document.querySelector(".close-modal");
+
+modalOpen.addEventListener('click', function(){
+	modal.style.display('block');
+});
+
+modalClose.addEventListener('click', function(){
+	modal.style.display('none');
+});*/
 
 
 

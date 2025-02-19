@@ -7,4 +7,3 @@ import org.apache.ibatis.annotations.Param;
 public interface PolicyDAO {   
     String getPolicyContent(@Param("policyName") String policyName);
 }
-
