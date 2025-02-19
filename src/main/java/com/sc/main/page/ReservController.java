@@ -32,8 +32,19 @@ public class ReservController {
 	RoomService room_service;
 	
 	@GetMapping("/form")
-	public String formHome() {
-		return "page/reservation/reserv_form";
+	public ModelAndView formHome(HttpSession session) {
+		mav = new ModelAndView();
+		String user_id = (String)session.getAttribute("loginId");
+		ReservationVO rVO = service.selectReservation(user_id);
+		if(rVO==null) {
+			mav.setViewName("page/reservation/reserv_form");
+		}
+		else {
+			mav.addObject("reservVO",rVO);
+			mav.addObject("roomVO",room_service.roomInfo(rVO.getRoomno()));
+			mav.setViewName("page/reservation/reserv_edit");
+		}	
+		return mav;
 	}
 	
 	@PostMapping("/form")

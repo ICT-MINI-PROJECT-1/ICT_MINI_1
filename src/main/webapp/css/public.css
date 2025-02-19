@@ -67,7 +67,7 @@ body {
 	float:right;
 	width:30%;
 	margin-right:25px;
-	font-size:22px;
+	font-size:2.3vw;
 }
 
 #header-right a {
@@ -183,6 +183,7 @@ ul {
 	font-family: "Cormorant Garamond", serif;
 }
 
+
 .star-rating { width:88px;text-align:left; }
 .star-rating,.star-rating span { text-align:left;display:inline-block; height:16.5px; overflow:hidden; background:url('../img/public/star.png')no-repeat; }
 .star-rating span{ text-align:left;background-position:left bottom; line-height:0; vertical-align:top;}
@@ -193,8 +194,8 @@ ul {
     }
     #header-right{
 		margin-right:20px;
-		font-size:18px;
 		width:50%;
+		font-size:2vw;
 	}
 	#header-center {
 		font-size:40px;
@@ -204,3 +205,16 @@ ul {
 		font-size:14px;
 	}
 }
+
+@media (max-width:1400px) {
+	#header-right{
+		font-size:1.8vw;
+	}
+}
+
+@media (min-width:1400px) {
+	#header-right{
+		font-size:24px;
+	}
+}
+

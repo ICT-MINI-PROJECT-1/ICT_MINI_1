@@ -179,6 +179,12 @@ function settingMenu() {
 	if(where=="reservation") {
 		contents.innerHTML=`
 			<div id="contents-title">Reservation</div>
+			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
+				<li><b style="line-height:30px;">원하는 객실을 예약 가능합니다.</b></li>
+    			<li>한 사람당 하나의 예약이 가능합니다.</li>
+    			<li>예약이 된 객실에는 예약이 불가능합니다.</li>
+    			<li>로그인 후 예약이 가능합니다.</li>
+    		</ul>
 		`;
 	}
 	if(where=="review") {

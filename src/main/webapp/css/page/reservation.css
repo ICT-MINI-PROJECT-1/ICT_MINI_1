@@ -47,10 +47,15 @@
 	background-size:cover;
 	background-positoin:center;
 	margin:0 auto;
-	margin-top: 130px;
+	margin-top: 200px;
+	margin-bottom:100px;
 	font-size:30px;
 	text-align:center;
 	font-family:'Gowun Batang';
+	box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    2px 2px 5px 0px rgba(0,0,0,.6),
+    1px 1px 2px 0px rgba(0,0,0,.6);
+    border-radius:10px;
 }
 
 #reserv-box{
@@ -293,16 +298,6 @@ Form
 	line-height:30px;
 }
 
-#alert-id, #alert-pw, #alert-name, #alert-pwchk, #alert-email, #alert-tel, #alert-zipcode, #alert-addr, #alert-addrdetail, #alert-credit{
-	padding-left:10px;
-	font-family: "Gowun Batang", serif;
-	color:#ED494C;
-	line-height:30px;
-	transition: all 1.0s;
-	opacity:0;
-	font-size:13px;
-}
-
 #reserv-room-modal{
 	position:fixed;
 	top:50%;
@@ -504,6 +499,7 @@ calendar
 	font-size:13px;
 	font-family:'Gowun Batang';
 	padding:0;
+	padding-top:10px;
 	margin:0;
 	width:55%;
 	height:60px;
@@ -518,4 +514,14 @@ calendar
     color:#6A3D17;
     transition:all 0.7s;
     resize:none;
+}
+
+#alert-people, #alert-date, #alert-roomno{
+	padding-left:10px;
+	font-family: "Gowun Batang", serif;
+	color:#ED494C;
+	line-height:30px;
+	transition: all 1.0s;
+	opacity:0;
+	font-size:13px;
 }

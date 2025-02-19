@@ -309,5 +309,42 @@ function moveCalendar(wh) {
 }
 
 function reservChk(){
-	document.reservForm.submit();
+	var ok=0;
+	let roomno = document.getElementById("roomno");
+	let usercnt = document.getElementById("usercnt");
+	let reservdate = document.getElementById("reservdate");
+	var alert_roomno = document.getElementById("alert-roomno");
+	var alert_people = document.getElementById("alert-people");
+	var alert_date = document.getElementById("alert-date");
+	if(roomno.value=="") {
+		alert_roomno.innerHTML = "객실을 선택해주세요.";
+    	alert_roomno.style.opacity = 1;
+	} else {
+		alert_roomno.style.opacity = 0;
+		ok++;
+	}
+	if(usercnt.value=="") {
+		alert_people.innerHTML = "인원을 입력해주세요.";
+    	alert_people.style.opacity = 1;
+	} else if(isNaN(usercnt.value)) {
+		alert_people.innerHTML = "숫자를 입력해주세요.";
+    	alert_people.style.opacity = 1;
+	} else if(document.getElementById("capacity").value == "") {
+		alert_people.innerHTML = "객실을 먼저 선택해주세요.";
+    	alert_people.style.opacity = 1;
+	} else if(document.getElementById("capacity").value < usercnt.value){
+		alert_people.innerHTML = "인원 초과 입니다.";
+    	alert_people.style.opacity = 1;
+	} else {
+		alert_people.style.opacity = 0;
+		ok++;
+	}
+	if(reservdate.value=="") {
+		alert_date.innerHTML = "날짜를 선택해주세요.";
+    	alert_date.style.opacity = 1;
+	} else {
+		alert_date.style.opacity = 0;
+		ok++;
+	}
+	if(ok==3) document.reservForm.submit();
 }
