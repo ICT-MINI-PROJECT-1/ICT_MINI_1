@@ -2,7 +2,7 @@
 	z-index:2;
 	position:fixed;
 	width:100%;
-	background:no-repeat;
+	background:url("../../img/page/policies/Policies.jpg") no-repeat;no-repeat;
 	background-size:cover;
 	background-position:center;
 	height:0;
@@ -13,3 +13,40 @@
 	padding-bottom:30%;
 	color:#FFFCF9;
 }
+
+
+#span-back{
+	padding:0px;
+	position:absolute;
+	background-color:transparent;
+	height:7vw;
+	width:23%;
+	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%,-50%);
+  	backdrop-filter:blur(1px);
+  	border-radius:10px;
+  	
+.policy-title > span {
+	font-size:7vw;
+	font-family: "Bona Nova SC", serif;
+	position:absolute;
+	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%,-50%);
+  	color:#FFFAF2;
+}
+
+.policy-wrap{
+	opacity:0;
+	position:fixed;
+	width:80%;
+	left:10%;
+	background-color:#f3eee7;
+	transition: all 1.1s;
+	margin:0 auto;
+	margin-top: 130px;
+	font-size:30px;
+	text-align:center;
+}  	
+
