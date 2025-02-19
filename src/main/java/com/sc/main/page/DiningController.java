@@ -1,7 +1,12 @@
 package com.sc.main.page;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -9,17 +14,17 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/page/dining")
 public class DiningController {
 	
-	ModelAndView mav;
-	
-	public ModelAndView diningList() {
-		mav.addObject("/dining_list");
+	@PostMapping("/list")
+	//@ResponseBody
+	//@RequestMapping("/page/dining")
+	public ModelAndView diningList(String foodType) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("page/dining/dining_list");
+		mav.addObject("foodType",foodType);
 		return mav;
 	}
-	
-	
-
-	
 }
+
 
 
 
