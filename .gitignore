@@ -1,3 +1,8 @@
+<<<<<<< Updated upstream
 target/
 
 .properties
+=======
+/target
+/.metadata/
+>>>>>>> Stashed changes
