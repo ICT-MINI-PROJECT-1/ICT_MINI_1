@@ -104,6 +104,7 @@ function openModal(data){
 		.then(data=>{
 			document.getElementById("contents-roominfo").innerHTML="<pre>"+data.roominfo+"</pre>";
 			document.getElementById("contents-roomno").innerHTML=data.roomno;
+			move_roomno=data.roomno;
 			if(data.roomconcept=='contemp')document.getElementById("contents-roomconcept").innerHTML="현대풍";
 			if(data.roomconcept=='artnou')document.getElementById("contents-roomconcept").innerHTML="아르누보풍";
 			if(data.roomconcept=='artdec')document.getElementById("contents-roomconcept").innerHTML="아르데코풍";
@@ -123,6 +124,9 @@ function openModal(data){
 		console.log(err);
 	});
 }
+
+var move_roomno;
+
 function closeModal(){
 	let modal=document.getElementById("room-list-modal");
 	modal.style.opacity=0;
@@ -176,3 +180,18 @@ document.addEventListener('keydown', function(event) {
         closeModal();
     }
 });
+
+function moveReserv(){
+	let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '../reservation/form');
+    document.body.appendChild(f);
+	
+	let obj;
+    obj = document.createElement('input');
+    obj.setAttribute('type', 'hidden');
+    obj.setAttribute('name', 'roomno');
+    obj.setAttribute('value', move_roomno);
+	f.appendChild(obj);
+    f.submit();
+}
