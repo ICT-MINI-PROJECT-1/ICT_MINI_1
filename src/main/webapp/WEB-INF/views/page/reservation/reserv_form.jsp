@@ -39,6 +39,8 @@
 	</div>
 	<div class="calendarBox">
 		<div id="calendar-exit" onclick="closeCalendar()">X</div>
+		<div id="calendar-next" onclick="moveCalendar(1)">▶</div>
+		<div id="calendar-prev" onclick="moveCalendar(-1)">◀</div>
 		<div id="month"></div>
 		<div id="calendar"></div>
 	</div>
@@ -59,18 +61,20 @@
 			<div onclick="goListPage(-1)" id="img-left-button"></div>
 			<div onclick="goListPage(1)" id="img-right-button"></div>
 		</div>
-		<form name="reservForm" method="post" action="reservChk">
+		<form name="reservForm" method="post" action="doReservation">
 			<div id="reserv-form-box">
 				<div id="reserv-left"><div id="idpw">ROOM</div></div><div id="reserv-right">
 					<input type="text" style="padding:0;width:40%;text-align:center;" id="roomno" name="roomno" value="" readonly/>
 					<button class="buttons" style="width:20%;" type="button" onclick="findRoom(5,1)">Find</button>
 				</div>
-				<div id="reserv-left"><div id="idpw">CAPACITY</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="capacity" name="capacity" value="" readonly/></div>
-				<div id="reserv-left"><div id="idpw">BED-TYPE</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="bedtype" name="bedtype" value="" readonly/></div>
-				<div id="reserv-left"><div id="idpw">VIEW-TYPE</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="viewtype" name="viewtype" value="" readonly/></div>
-				<div id="reserv-left"><div id="idpw">CHECK-IN</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="checkin" name="checkin" value="" readonly/></div>
-				<div id="reserv-left"><div id="idpw">CHECK-OUT</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="checkout" name="checkout" value="" readonly/></div>
+				<div id="reserv-left"><div id="idpw">CAPACITY</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="capacity" value="" readonly/></div>
+				<div id="reserv-left"><div id="idpw">BED-TYPE</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="bedtype" value="" readonly/></div>
+				<div id="reserv-left"><div id="idpw">VIEW-TYPE</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="viewtype" value="" readonly/></div>
+				<div id="reserv-left"><div id="idpw">CHECK-IN</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="checkin" value="" readonly/></div>
+				<div id="reserv-left"><div id="idpw">CHECK-OUT</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="checkout" value="" readonly/></div>
 				<div id="reserv-left"><div id="idpw">PRICE</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="price" name="price" value="" readonly/></div>
+				<div id="reserv-left"><div id="idpw">PEOPLE</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="usercnt" name="usercnt" value=""/></div>
+				<div id="reserv-left"><div id="idpw">REQUEST</div></div> <div id="reserv-right"><textarea id="request" name="request"></textarea></div>
 				<div id="reserv-left"><div id="idpw">DATE</div></div><div id="reserv-right">
 					<input type="text" style="padding:0;width:40%;text-align:center;" id="reservdate" name="reservdate" value="" readonly/>
 					<button class="buttons" style="width:20%;" type="button" onclick="openCalendar()">Find</button>

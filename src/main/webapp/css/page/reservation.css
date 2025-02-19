@@ -396,7 +396,7 @@ calendar
 	left:50%;
 	transform:translate(-50%,-50%);
 	width:350px;
-	height:320px;
+	height:360px;
     color: white;
     background-color:black;
     z-index:-1;
@@ -469,4 +469,53 @@ calendar
 #calendar-exit:hover{
 	cursor:pointer;
 	color:#888888;
+}
+
+#calendar-next {
+	position:absolute;
+	font-size:24px;
+	top:90%;
+	left:92%;
+	transition: all 0.7s;
+}
+
+#calendar-next:hover{
+	cursor:pointer;
+	color:#888888;
+}
+
+#calendar-prev {
+	position:absolute;
+	font-size:24px;
+	top:90%;
+	left:1%;
+	transition: all 0.7s;
+}
+
+#calendar-prev:hover{
+	cursor:pointer;
+	color:#888888;
+}
+#can-reserv{
+	cursor:pointer;
+}
+
+#request{
+	font-size:13px;
+	font-family:'Gowun Batang';
+	padding:0;
+	margin:0;
+	width:55%;
+	height:60px;
+	background:transparent;
+	border:none;
+	border-radius:4px;
+    background:transparent;
+    box-shadow:inset 2px 2px 2px 0px rgba(106,61,23, 0.5),
+    1px 1px 3px 0px rgba(106,61,23, 0.2),
+    4px 4px 5px 0px rgba(106,61,23, 0.2);
+    padding-left:15px;
+    color:#6A3D17;
+    transition:all 0.7s;
+    resize:none;
 }

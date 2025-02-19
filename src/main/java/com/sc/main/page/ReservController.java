@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sc.main.service.ReservService;
 import com.sc.main.service.RoomService;
+import com.sc.main.vo.ReservationVO;
 import com.sc.main.vo.RoomVO;
 import com.sc.main.vo.WishlistVO;
 
@@ -48,6 +49,26 @@ public class ReservController {
 	public RoomVO selectRoom(@RequestBody String roomno) {
 		System.out.println(roomno);
 		return room_service.roomInfo(Integer.parseInt(roomno));
+	}
+	@PostMapping("/setCalendar")
+	@ResponseBody
+	public List<ReservationVO> setCalendar(@RequestBody String roomno) {
+		return service.selectReservationByRoom(Integer.parseInt(roomno));
+	}
+	@PostMapping("/doReservation")
+	public String doReservation(HttpSession session, ReservationVO vo) {
+		String user_id = (String)session.getAttribute("loginId");
+		if(user_id != null) {
+			ReservationVO rVO = service.selectReservation(user_id);
+			if(rVO == null) {	// 예약 없을때
+				vo.setUserid(user_id);
+				service.insertReservation(vo);
+				return "redirect:/";
+			} else {	//이미 한 예약이 있을때
+				return "page/reservation/reserv_form";
+			}
+		}
+		return "redirect:/";
 	}
 }
 

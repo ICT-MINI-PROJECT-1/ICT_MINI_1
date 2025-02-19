@@ -16,21 +16,6 @@ CREATE TABLE IF NOT EXISTS `artpart`.`user` (
   `creditcardno` VARCHAR(19) NULL,
   PRIMARY KEY (`userid`));
 
-CREATE TABLE IF NOT EXISTS `artpart`.`reservation` (
-  `reservno` INT NOT NULL,
-  `reservdate` DATETIME NOT NULL DEFAULT now(),
-  `usercnt` INT NOT NULL,
-  `request` VARCHAR(500) NULL,
-  `userid` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`reservno`),
-  INDEX `fk_reservation_user1_idx` (`userid` ASC) VISIBLE,
-  CONSTRAINT `fk_reservation_user1`
-    FOREIGN KEY (`userid`)
-    REFERENCES `artpart`.`user` (`userid`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-
 CREATE TABLE IF NOT EXISTS `artpart`.`room` (
   `roomno` INT NOT NULL,
   `roomconcept` VARCHAR(45) NOT NULL,
@@ -40,17 +25,31 @@ CREATE TABLE IF NOT EXISTS `artpart`.`room` (
   `viewtype` VARCHAR(45) NOT NULL,
   `capacity` INT NOT NULL,
   `area` INT NOT NULL,
-  `reservno` INT NULL,
   `checkin` VARCHAR(10) NULL DEFAULT '15:00',
   `checkout` VARCHAR(10) NULL DEFAULT '11:00',
   `rating` FLOAT NULL,
-  PRIMARY KEY (`roomno`),
-  INDEX `fk_room_reservation1_idx` (`reservno` ASC) VISIBLE,
-  CONSTRAINT `fk_room_reservation1`
-    FOREIGN KEY (`reservno`)
-    REFERENCES `artpart`.`reservation` (`reservno`)
+  PRIMARY KEY (`roomno`));
+
+CREATE TABLE IF NOT EXISTS `artpart`.`reservation` (
+  `reservno` INT NOT NULL AUTO_INCREMENT,
+  `reservdate` DATETIME NOT NULL DEFAULT now(),
+  `usercnt` INT NOT NULL,
+  `request` VARCHAR(500) NULL,
+  `userid` VARCHAR(20) NOT NULL,
+  `roomno` INT NOT NULL,
+  PRIMARY KEY (`reservno`),
+  INDEX `fk_reservation_user1_idx` (`userid` ASC) VISIBLE,
+  CONSTRAINT `fk_reservation_user1`
+    FOREIGN KEY (`userid`)
+    REFERENCES `artpart`.`user` (`userid`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_reservation_room1`
+    FOREIGN KEY (`roomno`)
+    REFERENCES `artpart`.`room` (`roomno`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
 
 CREATE TABLE IF NOT EXISTS `artpart`.`wishlist` (
   `userid` VARCHAR(20) NOT NULL,
@@ -146,7 +145,7 @@ select * from wishlist;
 select * from user;
 
 insert into user values('test1234','test1234!!','이건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
-
+insert into user values('user1234','user1234!!','김건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
 insert into wishlist values('test1234',301);
 
 insert into wishlist values('test1234',304);
