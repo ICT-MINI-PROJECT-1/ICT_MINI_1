@@ -95,8 +95,10 @@ function moveReserv(loc) {
 function findRoom(zIndex,opacity){
 	closeCalendar();
 	let modal = document.getElementById("reserv-room-modal");
-	modal.style.zIndex=zIndex;
-	modal.style.opacity=opacity;
+	if(modal!=null){
+		modal.style.zIndex=zIndex;
+		modal.style.opacity=opacity;
+	}
 }
 
 var dateArr = new Array();
@@ -347,4 +349,17 @@ function reservChk(){
 		ok++;
 	}
 	if(ok==3) document.reservForm.submit();
+}
+
+function reservDelete(wh){
+	let dm = document.getElementById("reserv-edit-modal");
+	if(wh==0){ //open modal
+		dm.style.opacity=1;
+		dm.style.zIndex=5;
+	} else if(wh==1) {
+		document.reservEditForm.submit();
+	} else {
+		dm.style.opacity=0;
+		dm.style.zIndex=-1;
+	}
 }

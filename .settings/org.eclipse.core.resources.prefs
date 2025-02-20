@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/db.sql=UTF-8
+encoding//src/main/java/com/sc/main/PolicyController.java=UTF-8
+encoding//src/main/webapp/resources/cookie.txt=UTF-8
+encoding//src/main/webapp/resources/privacy.txt=UTF-8
+encoding//src/main/webapp/resources/terms.txt=UTF-8

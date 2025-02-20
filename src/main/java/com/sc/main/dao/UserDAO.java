@@ -10,4 +10,6 @@ public interface UserDAO {
 	public int loginPwChk(UserVO vo);
 	
 	public UserVO userSelect(String userid);
+	
+	public int userUpdate(UserVO vo);
 }

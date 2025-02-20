@@ -10,7 +10,9 @@
 	</div>
 	<div class="review-wrap">
 		<div id="review-write-search">
-			<a href="${pageContext.request.contextPath}/page/review/review_write" id="review-write">리뷰작성</a>
+			<c:if test="${loginStatus=='Y' }">
+				<a href="${pageContext.request.contextPath}/page/review/write" id="review-write">리뷰작성</a>
+			</c:if>
 			<!-- 검색창 -->
 			<div class="review-search">
 				<form>
@@ -67,7 +69,7 @@
 					<li>글쓴이</li>
 					<li id="modal-userid"></li>
 				</ul>
-					<div id="modal-content"></div>
+				<div id="modal-content"></div>
 			</div>
 		</div>
 	</div><!-- 모달팝업 끝 -->

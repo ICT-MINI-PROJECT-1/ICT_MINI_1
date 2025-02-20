@@ -2,7 +2,7 @@
 	z-index:2;
 	position:fixed;
 	width:100%;
-	background:url("../../img/page/policies/Policies.jpg") no-repeat;no-repeat;
+	background:url("../../img/page/policies/Policies.jpg") no-repeat;
 	background-size:cover;
 	background-position:center;
 	height:0;
@@ -20,13 +20,14 @@
 	position:absolute;
 	background-color:transparent;
 	height:7vw;
-	width:23%;
+	width:50%;
 	top: 50%;
   	left: 50%;
   	transform: translate(-50%,-50%);
-  	backdrop-filter:blur(1px);
+  	backdrop-filter:blur(3px);
   	border-radius:10px;
-  	
+}
+
 .policy-title > span {
 	font-size:7vw;
 	font-family: "Bona Nova SC", serif;
@@ -48,5 +49,16 @@
 	margin-top: 130px;
 	font-size:30px;
 	text-align:center;
+	overflow: auto;
 }  	
+
+#policyContent{
+	font-family: "Cormorant Garamond", serif;
+    font-size: 16px; 
+    line-height: 2; 
+    text-align: left; 
+    padding: 20px;
+    color: black; 
+    background-color: #f3eee7;
+}
 
