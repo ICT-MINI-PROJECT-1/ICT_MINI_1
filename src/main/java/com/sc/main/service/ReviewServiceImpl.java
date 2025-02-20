@@ -23,4 +23,9 @@ public class ReviewServiceImpl implements ReviewService {
 	public ReviewVO reviewDetail(int reviewno) {
 		return dao.reviewDetail(reviewno);
 	}
+
+	@Override
+	public int reviewInsert(ReviewVO vo) {
+		return dao.reviewInsert(vo);
+	}
 }

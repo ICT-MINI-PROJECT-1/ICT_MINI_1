@@ -70,6 +70,10 @@
 					<li id="modal-userid"></li>
 				</ul>
 				<div id="modal-content"></div>
+				<div id="btn">
+					<input type="button" value="수정">
+					<input type="button" value="삭제">
+				</div>
 			</div>
 		</div>
 	</div><!-- 모달팝업 끝 -->
