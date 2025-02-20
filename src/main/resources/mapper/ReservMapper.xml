@@ -13,4 +13,7 @@
 	<select id="selectReservationByRoom" resultType="com.sc.main.vo.ReservationVO">
 		select * from reservation where roomno=#{param1}
 	</select>
+	<delete id="deleteReservation">
+		delete from reservation where reservno=#{param1}
+	</delete>
 </mapper>

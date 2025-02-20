@@ -4,38 +4,10 @@
 <script src="${pageContext.request.contextPath}/js/page/reservation.js"></script>
 <div id="fade">
 <div class="container">
-	<div id="reserv-room-modal">
-		<div id="reserv-room-exit" onclick="findRoom(-1,0)">X</div>
-		<ul>
-			<li>
-				<ul>
-				<c:forEach var="i" begin="301" end="308">
-					<li onclick="selectRoom('${i}')">${i}</li>
-				</c:forEach>
-				</ul>
-			</li>
-			<li>
-				<ul>
-				<c:forEach var="i" begin="401" end="408">
-					<li onclick="selectRoom('${i}')">${i}</li>
-				</c:forEach>
-				</ul>
-			</li>
-			<li>
-				<ul>
-				<c:forEach var="i" begin="501" end="508">
-					<li onclick="selectRoom('${i}')">${i}</li>
-				</c:forEach>
-				</ul>
-			</li>
-			<li>
-				<ul>
-				<c:forEach var="i" begin="601" end="608">
-					<li onclick="selectRoom('${i}')">${i}</li>
-				</c:forEach>
-				</ul>
-			</li>
-		</ul>
+	<div id="reserv-edit-modal">
+		<div id="reserv-edit-exit" onclick="reservDelete(2)">X</div>
+		<p>정말 예약을 취소하실건가요?</p>
+		<button class="reserv-submit" id="reserv-edit-button" onclick="reservDelete(1)">취소하기</button>
 	</div>
 	<div class="calendarBox">
 		<div id="calendar-exit" onclick="closeCalendar()">X</div>
@@ -61,7 +33,8 @@
 			<div onclick="goListPage(-1)" id="img-left-button"></div>
 			<div onclick="goListPage(1)" id="img-right-button"></div>
 		</div>
-		<form name="reservForm" method="post" action="doReservation">
+		<form name="reservEditForm" method="post" action="doReservationEdit">
+			<input type="hidden" name="reservno" id="reservno" value="${reservVO.reservno}"/>
 			<div id="reserv-form-box">
 				<div id="reserv-left"><div id="idpw">ROOM</div></div><div id="reserv-right">
 					<input type="text" style="padding:0;width:40%;text-align:center;" id="roomno" name="roomno" value="" readonly/>
@@ -78,7 +51,7 @@
 					<input type="text" style="padding:0;width:40%;text-align:center;" id="reservdate" name="reservdate" value="${reservVO.reservdate.substring(0,10)}" readonly/>
 				</div>
 			</div>
-			<input class="reserv-submit" type="button" onclick="reservChk()" value="예약취소"/>
+			<input class="reserv-submit" type="button" onclick="reservDelete(0)" value="예약취소"/>
 		</form>
 	</div>
 </div>
