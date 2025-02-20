@@ -6,8 +6,9 @@
 		align-items: center; /* 이미지와 텍스트 수직 정렬 */
 		justify-content: center; /* 수평 가운데 정렬 */
 		font-size: 16px;
-		text-align: center;
-		line-height:70px;
+		text-align: left;
+		line-height:40px;
+		padding:20px
 		height:900px;
 		font-family: "Open Sans", sans-serif;
 	}
@@ -20,10 +21,11 @@
 	<div class="container">
 		<div class="policy-title">
 			<div id="span-back"></div>
-			<h1>${policyTitle}</h1>
+			<span>${policyTitle}</span>
 		</div>	
 
 		<div class="policy-wrap">
+			<div></div>
 			<div id='policyContent'>
 				<div>${policyContent}</div>
 			</div>		
