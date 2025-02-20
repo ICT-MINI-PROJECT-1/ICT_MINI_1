@@ -117,7 +117,7 @@
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${data.rating}
 						</li>
 					</ul>
-					<ul class="item-bottom">
+				<!-- <ul class="item-bottom">
 						<li>
 							화풍
 						</li>
@@ -147,7 +147,7 @@
 						<li>
 							₩ ${data.price }
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 			</c:forEach>
 		</div>
