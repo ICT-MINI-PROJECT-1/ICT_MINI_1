@@ -56,24 +56,95 @@
 
 <div id="fade">
 <div class="container">
-	<div class="signup-container">
-		<div id="signup-title">My Page</div>
-		<form name="signupEditForm" method="post" action="signUpEditChk">
-			<div id="signup-box">
-				<div id="signup-left"><div id="idpw">ID</div><div id="hidden-height">I</div></div> <div id="signup-right"><input type="text" id="userid" name="userid" value="${vo.userid}" readonly/><div id="alert-id">Invalid ID</div></div>
-				<div id="signup-left"><div id="idpw">PW</div><div id="hidden-height">I</div></div> <div id="signup-right"><input type="password" id="userpw" name="userpw"/><div id="alert-pw">Invalid PW</div></div>
-				<div id="signup-left"><div id="idpw">NAME</div><div id="hidden-height">I</div></div> <div id="signup-right"><input type="text" id="username" name="username" value="${vo.username}" readonly/><div id="alert-name">Invalid NAME</div></div>
-				<div id="signup-left"><div id="idpw">EMAIL</div><div id="hidden-height">I</div></div> <div id="signup-right"><input style="width:26%;" type="text" id="email1" name="email1" value="${vo.email1}" readonly/> @ <input style="width:26%;" type="text" id="email2" name="email2" value="${vo.email2}" readonly/><div id="alert-email">Invalid EMAIL</div></div>
-				<div id="signup-left"><div id="idpw">TEL</div><div id="hidden-height">I</div></div> <div id="signup-right"><input style="width:13%;" type="text" id="tel1" name="tel1" maxlength=3 value="${vo.tel1}" readonly/> - <input style="width:13%;" type="text" id="tel2" name="tel2" maxlength=4 value="${vo.tel2}" readonly/>
-				- <input style="width:13%;" type="text" id="tel3" name="tel3" maxlength=4 value="${vo.tel3}" readonly/><div id="alert-tel">Invalid TEL</div></div>
-				<div id="signup-left"><div id="idpw">ZIPCODE</div><div id="hidden-height">I</div></div> <div id="signup-right"><input style="width:30%;" type="text" id="zipcode" name="zipcode" value="${vo.zipcode}" readonly/><button class="buttons" style="width:20%;" type="button" onclick="daumPostCodeSearch()">Find</button><div id="alert-zipcode">Invalid ZIPCODE</div></div>
-				<div id="signup-left"><div id="idpw">ADDRESS</div><div id="hidden-height">I</div></div> <div id="signup-right"><input type="text" id="addr" name="addr" value="${vo.addr}" readonly/><div id="alert-addr">Invalid ADDRESS</div></div>
-				<div id="signup-left"><div id="idpw">DETAIL</div><div id="hidden-height">I</div></div> <div id="signup-right"><input type="text" id="addrdetail" name="addrdetail"  value="${vo.addrdetail}"/><div id="alert-addrdetail">Invalid DETAIL</div></div>
-				<div id="signup-left"><div id="idpw">CREDIT</div><div id="hidden-height">I</div></div> <div id="signup-right"><input style="width:12%; padding-left:5px;" type="text" id="credit1" name="credit1" value="${vo.credit1}" maxlength=4/> - <input style="width:12%; padding-left:5px;" type="text" id="credit2" name="credit2" value="${vo.credit2}" maxlength=4/>
-				- <input style="width:12%; padding-left:5px;" type="text" id="credit3" name="credit3" value="${vo.credit3}" maxlength=4/> - <input style="width:12%; padding-left:5px;" type="text" id="credit4" name="credit4" value="${vo.credit4}" maxlength=4/><div id="alert-credit">Invalid CREDIT</div></div>
-			</div>
-			<input class="signup-submit" type="button" onclick="signUpEditChk()" value="Edit"/>
-		</form>
+	<div class="mypage-wrap">
+		<div class="mypage-container-reserv">
+			<div id="signup-title">WishList</div>
+			<ul id="mr-title">
+				<li>
+					방 번호
+				</li>
+				<li>
+					화풍
+				</li>
+				<li>
+					체크인
+				</li>
+				<li>
+					체크아웃
+				</li>
+				<li>
+					가격
+				</li>
+				<li>
+					평점
+				</li>
+			</ul>
+			<ul>
+				<li>
+					000
+				</li>
+				<li>
+					000
+				</li>
+				<li>
+					000
+				</li>
+				<li>
+					000
+				</li>
+				<li>
+					000
+				</li>
+				<li>
+					000
+				</li>
+			</ul>
+			<ul>
+				<li>
+					000
+				</li>
+				<li>
+					000
+				</li>
+				<li>
+					000
+				</li>
+				<li>
+					000
+				</li>
+				<li>
+					000
+				</li>
+				<li>
+					000
+				</li>
+			</ul>
+			<div id="signup-title">Reservation</div>
+			<ul>
+				<li>
+					aaaaaaaaaaaaaaaa
+				</li>
+			</ul>
+		</div>
+		<div class="mypage-container-info">
+			<div id="signup-title">My Page</div>
+			<form name="signupEditForm" method="post" action="signUpEditChk">
+				<div id="signup-box">
+					<div id="signup-left"><div id="idpw">ID</div><div id="hidden-height">I</div></div> <div id="signup-right"><input type="text" id="userid" name="userid" value="${vo.userid}" readonly/><div id="alert-id">Invalid ID</div></div>
+					<div id="signup-left"><div id="idpw">PW</div><div id="hidden-height">I</div></div> <div id="signup-right"><input type="password" id="userpw" name="userpw"/><div id="alert-pw">Invalid PW</div></div>
+					<div id="signup-left"><div id="idpw">NAME</div><div id="hidden-height">I</div></div> <div id="signup-right"><input type="text" id="username" name="username" value="${vo.username}" readonly/><div id="alert-name">Invalid NAME</div></div>
+					<div id="signup-left"><div id="idpw">EMAIL</div><div id="hidden-height">I</div></div> <div id="signup-right"><input style="width:26%;" type="text" id="email1" name="email1" value="${vo.email1}" readonly/> @ <input style="width:26%;" type="text" id="email2" name="email2" value="${vo.email2}" readonly/><div id="alert-email">Invalid EMAIL</div></div>
+					<div id="signup-left"><div id="idpw">TEL</div><div id="hidden-height">I</div></div> <div id="signup-right"><input style="width:13%;" type="text" id="tel1" name="tel1" maxlength=3 value="${vo.tel1}" readonly/> - <input style="width:13%;" type="text" id="tel2" name="tel2" maxlength=4 value="${vo.tel2}" readonly/>
+					- <input style="width:13%;" type="text" id="tel3" name="tel3" maxlength=4 value="${vo.tel3}" readonly/><div id="alert-tel">Invalid TEL</div></div>
+					<div id="signup-left"><div id="idpw">ZIPCODE</div><div id="hidden-height">I</div></div> <div id="signup-right"><input style="width:30%;" type="text" id="zipcode" name="zipcode" value="${vo.zipcode}" readonly/><button class="buttons" style="width:20%;" type="button" onclick="daumPostCodeSearch()">Find</button><div id="alert-zipcode">Invalid ZIPCODE</div></div>
+					<div id="signup-left"><div id="idpw">ADDRESS</div><div id="hidden-height">I</div></div> <div id="signup-right"><input type="text" id="addr" name="addr" value="${vo.addr}" readonly/><div id="alert-addr">Invalid ADDRESS</div></div>
+					<div id="signup-left"><div id="idpw">DETAIL</div><div id="hidden-height">I</div></div> <div id="signup-right"><input type="text" id="addrdetail" name="addrdetail"  value="${vo.addrdetail}"/><div id="alert-addrdetail">Invalid DETAIL</div></div>
+					<div id="signup-left"><div id="idpw">CREDIT</div><div id="hidden-height">I</div></div> <div id="signup-right"><input style="width:12%; padding-left:5px;" type="text" id="credit1" name="credit1" value="${vo.credit1}" maxlength=4/> - <input style="width:12%; padding-left:5px;" type="text" id="credit2" name="credit2" value="${vo.credit2}" maxlength=4/>
+					- <input style="width:12%; padding-left:5px;" type="text" id="credit3" name="credit3" value="${vo.credit3}" maxlength=4/> - <input style="width:12%; padding-left:5px;" type="text" id="credit4" name="credit4" value="${vo.credit4}" maxlength=4/><div id="alert-credit">Invalid CREDIT</div></div>
+				</div>
+				<input class="signup-submit" type="button" onclick="signUpEditChk()" value="Edit"/>
+			</form>
+		</div>
 	</div>
 </div>
 </div>
