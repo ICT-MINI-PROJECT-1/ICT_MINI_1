@@ -14,6 +14,9 @@
 		select count(userid) from user where userid=#{userid} and userpw=#{userpw}
 	</select>
 	<select id="userSelect" resultType="com.sc.main.vo.UserVO">
-		select userid, username from user where userid=#{param1}
+		select * from user where userid=#{param1}
 	</select>
+	<update id="userUpdate">
+		update user set zipcode=#{zipcode}, addr=#{addr}, addrdetail=#{addrdetail}, creditcardno=#{creditcardno} where userid=#{userid}
+	</update>
 </mapper>

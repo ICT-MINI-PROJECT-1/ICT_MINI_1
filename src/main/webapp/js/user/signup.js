@@ -64,16 +64,17 @@ document.addEventListener('DOMContentLoaded', () => {
     			pwOk=1;
     		}
     	});
-    	userpw_chk.addEventListener("input",()=>{
-    		if(userpw_chk.value != userpw.value) {
-    			alert_pwchk.innerHTML = "비밀번호가 일치하지 않습니다.";
-    			alert_pwchk.style.opacity = 1;
-    			pw_chkOk=0;
-    		} else {
-    			alert_pwchk.style.opacity = 0;
-    			pw_chkOk=1;
-    		}
-    	});
+    	if(userpw_chk != null)
+	    	userpw_chk.addEventListener("input",()=>{
+	    		if(userpw_chk.value != userpw.value) {
+	    			alert_pwchk.innerHTML = "비밀번호가 일치하지 않습니다.";
+	    			alert_pwchk.style.opacity = 1;
+	    			pw_chkOk=0;
+	    		} else {
+	    			alert_pwchk.style.opacity = 0;
+	    			pw_chkOk=1;
+	    		}
+	    	});
     	username.addEventListener("input",()=>{
     		if(username.value.length < 3) {
     			alert_name.innerHTML = "3자 이상 입력해주세요.";
@@ -176,6 +177,69 @@ function signUpChk(){
 	var result = pwOk+pw_chkOk+nameOk+emailOk+zipcodeOk+idOk+telOk+creditOk+emailOk2;
 	
 	if(result==9) document.signupForm.submit();
+}
+
+function signUpEditChk(){
+	var userid = document.getElementById("userid");
+	var userpw = document.getElementById("userpw");
+	var alert_pw = document.getElementById("alert-pw");
+
+	var tel1 = document.getElementById("tel1");
+	var tel2 = document.getElementById("tel2");
+	var tel3 = document.getElementById("tel3");
+	var alert_tel = document.getElementById("alert-tel");
+	
+	var credit1 = document.getElementById("credit1");
+	var credit2 = document.getElementById("credit2");
+	var credit3 = document.getElementById("credit3");
+	var credit4 = document.getElementById("credit4");
+	var alert_credit = document.getElementById("alert-credit");
+	
+	var regex_tel = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+	if(!regex_tel.test(tel1.value+'-'+tel2.value+'-'+tel3.value)) {
+		alert_tel.innerHTML = "올바른 전화번호를 입력해주세요.";
+		alert_tel.style.opacity = 1;
+		telOk=0;
+	} else {
+		alert_tel.style.opacity = 0;
+		telOk=1;
+	}
+	
+	var regex_credit = /^[0-9]{4}-?[0-9]{4}-?[0-9]{4}-?[0-9]{4}$/;
+	if(!regex_credit.test(credit1.value+'-'+credit2.value+'-'+credit3.value+'-'+credit4.value)) {
+		alert_credit.innerHTML = "올바른 카드번호를 입력해주세요.";
+		alert_credit.style.opacity = 1;
+		creditOk=0;
+	} else {
+		alert_credit.style.opacity = 0;
+		creditOk=1;
+	}
+	var params = {
+		userid:userid.value,
+		userpw:userpw.value
+	}
+	fetch("/user/loginChk",{
+			method:"POST",
+			headers:{
+				"Content-Type":"application/json",
+			},
+			body:JSON.stringify(params)
+			}).then(response => response.json())
+			.then(data=>{
+				if(data=="0"){
+				} else if(data=="1"){
+					alert_pw.innerHTML = "비밀번호가 틀립니다.";
+					alert_pw.style.opacity = 1;
+					pwOk=0;
+				} else{
+					alert_pw.style.opacity = 0;
+					pwOk=1;
+				}		
+			}).catch(err=> {
+			console.log(err);
+		});
+	var result = pwOk+telOk+creditOk;
+	if(result==3) document.signupEditForm.submit();
 }
 
 where="signup";

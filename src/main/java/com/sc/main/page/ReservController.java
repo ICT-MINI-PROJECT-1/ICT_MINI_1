@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sc.main.service.ReservService;
 import com.sc.main.service.RoomService;
 import com.sc.main.vo.ReservationVO;
 import com.sc.main.vo.RoomVO;
-import com.sc.main.vo.WishlistVO;
 
 @Controller
 @RequestMapping("/page/reservation")
@@ -74,19 +74,30 @@ public class ReservController {
 		return service.selectReservationByRoom(Integer.parseInt(roomno));
 	}
 	@PostMapping("/doReservation")
-	public String doReservation(HttpSession session, ReservationVO vo) {
+	public String doReservation(HttpSession session, ReservationVO vo, RedirectAttributes redirect) {
 		String user_id = (String)session.getAttribute("loginId");
 		if(user_id != null) {
 			ReservationVO rVO = service.selectReservation(user_id);
 			if(rVO == null) {	// 예약 없을때
 				vo.setUserid(user_id);
 				service.insertReservation(vo);
-				return "redirect:/";
+				redirect.addAttribute("msg","rio");
+				return "redirect:/notice";
 			} else {	//이미 한 예약이 있을때
 				return "page/reservation/reserv_form";
 			}
 		}
 		return "redirect:/";
+	}
+	@PostMapping("/doReservationEdit")
+	public String doReservationEdit(HttpSession session, ReservationVO vo, RedirectAttributes redirect) {
+		String user_id = (String)session.getAttribute("loginId");
+		if(user_id != null) {
+			service.deleteReservation(vo.getReservno());
+			
+			redirect.addAttribute("msg","rdo");
+		}
+		return "redirect:/notice";
 	}
 }
 
