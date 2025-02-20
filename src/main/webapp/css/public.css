@@ -188,6 +188,30 @@ ul {
 .star-rating,.star-rating span { text-align:left;display:inline-block; height:16.5px; overflow:hidden; background:url('../img/public/star.png')no-repeat; }
 .star-rating span{ text-align:left;background-position:left bottom; line-height:0; vertical-align:top;}
 
+.notice-wrap{
+	margin-top:300px;
+	width:100%;
+	font-family:'Gowun Batang';
+	color:#6A3D17;
+}
+
+.notice-img{
+	text-align:center;
+}
+
+.notice-msg{
+	text-align:center;
+	font-size: 30px;
+	margin-top:30px
+}
+
+#mini-msg{
+	font-size:18px;
+	margin-top:13px;
+	text-align:center;
+}
+
+
 @media (max-width:720px){
     #header-left{
     	width:30%;

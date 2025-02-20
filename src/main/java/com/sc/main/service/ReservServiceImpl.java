@@ -30,4 +30,9 @@ public class ReservServiceImpl implements ReservService {
 		return dao.selectReservationByRoom(roomno);
 	}
 
+	@Override
+	public int deleteReservation(int reservno) {
+		return dao.deleteReservation(reservno);
+	}
+
 }
