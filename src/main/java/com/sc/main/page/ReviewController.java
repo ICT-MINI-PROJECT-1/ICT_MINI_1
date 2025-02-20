@@ -32,9 +32,9 @@ public class ReviewController {
 	}
 
 	//府轰 累己
-	@GetMapping("/review_write")
+	@GetMapping("/write")
 	public String reviewWrite() {
-		return "review_write";
+		return "page/review/review_write";
 	}
 
 	//府轰 累己(DB)
