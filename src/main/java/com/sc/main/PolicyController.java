@@ -28,7 +28,7 @@ public class PolicyController {
 
     @GetMapping("/terms-of-use")
     public ModelAndView termsOfUse() {
-        return getPolicyView("Site Terms of Use", "terms.txt");
+        return getPolicyView("Terms of Use", "terms.txt");
     }
 
     @GetMapping("/cookie-preferences")
