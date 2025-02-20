@@ -19,7 +19,7 @@
     	font-family:"Cormorant Garamond", serif;
     	height:9%;
     	color:gray;
-    	margin-top:22%;
+    	margin-top:26.5%;
     }
 
     .SliderBox {
@@ -32,9 +32,9 @@
 
     /* 슬라이더의 이미지들 */
     #slider {
-    	width:25%;
+    	width:20%;
         display: flex;
-        transition: transform 0.5s ease; /* 슬라이드 이동 부드럽게 하기 */
+        transition: transform 0.8s ease; /* 슬라이드 이동 부드럽게 하기 */
     }
 
     #slider img {
@@ -71,11 +71,11 @@
 <div id="fade">
 <div id='container'>
 <hr/>
-    <h1 id="text">Spa & Sauna</h1>
+    <h1 id="text">Pool</h1>
     <hr/>
     <div class="SliderBox">
         <div id="slider">
-            <img src="${pageContext.request.contextPath}/img/page/facility/sauna.png" />
+            <img src="${pageContext.request.contextPath}/img/page/facility/PoolMainSize.png" />
             <img src="${pageContext.request.contextPath}/img/page/facility/sauna2.png" />
             <img src="${pageContext.request.contextPath}/img/page/facility/sauna3.png"/>
             <img src="${pageContext.request.contextPath}/img/page/facility/sauna4.jpg"/>
@@ -87,7 +87,7 @@
         <button class="next" onclick="moveSlide(1)">❯</button>
 	    </div>
 	    <hr/>
-	    <h1 id="text2">B1F</h1>
+	    <h1 id="text2">1F</h1>
 	</div>
 </div>
 <script>
@@ -96,28 +96,25 @@
     
     let slides;
     let totalSlides;
+
     
     function moveSlide(step) {
-    	
-    	  if (currentIndex === totalSlides && step > 0) return;
- 
      	console.log(totalSlides);
         currentIndex += step;
 
-        if (currentIndex >= totalSlides) {
+        if (currentIndex >= 10) {
             currentIndex = 0;
         } else if (currentIndex < 0) {
-            currentIndex = totalSlides - 1;
+            currentIndex = totalSlides - -2;
         }
 
         // 슬라이드 이동 (X축으로 이동)
         const slider = document.getElementById('slider');
         if (slider) {
-            slider.style.transform = "translateX("+(-currentIndex)*100 +"%)"; // 슬라이드를 이동
+            slider.style.transform = "translateX("+(-currentIndex)*84.7 +"%)"; // 슬라이드를 이동
             console.log(`Moved to slide` +currentIndex+ `, transform: `+slider.style.transform);
         }
     }
-   
 
     document.addEventListener("DOMContentLoaded", function() {
         const slider = document.getElementById('slider');
@@ -142,7 +139,3 @@
         }
     });
 </script>
-
-
-
-
