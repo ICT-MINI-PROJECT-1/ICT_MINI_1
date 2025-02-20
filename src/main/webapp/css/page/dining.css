@@ -138,8 +138,6 @@
 	width: 97%;
 	height: 75vh;
 	margin: 15px 15px;
-	/* display: flex;
-	justify-content: center; */
 }
 
 #d-content1 {
@@ -155,6 +153,10 @@
 	justify-content: center;
 	position: relative;
 	top: 120px;
+	font-family: 'RIDIBatang';
+	font-size: 1.1em;
+	text-align: center;
+	line-height: 100px;	
 }
 
 #subject-pic>div {
@@ -174,6 +176,7 @@
 
 #menu-pic>img {
 	width:31%;
+	box-shadow: 0 19px 38px rgba(0, 0, 0, 0.65), 0 15px 12px rgba(0, 0, 0, 0.4);
 }
 
 #subject-pic>div:first-child {
@@ -212,7 +215,6 @@
 	line-height: 50px;
 	font-size: 1.5em;
 	font-family: 'RIDIBatang';
-	color:#;
 	text-align: center;
 	
 }
@@ -227,8 +229,140 @@
 	z-index: 1;
 }
 
-.modal {
+#d-content2 {
+	width:100%;
+	text-align: center;
+	position: relative;
+	/* top: 120px; */
+}
+
+#menu-pic2 {
+	width: 100%;
+	margin: 10px auto;
+	display: flex;
+	justify-content: center;
+}
+
+#menu-pic2>img {
+	width: 31%;
+	position: relative;
+	top: 400px;
+	box-shadow: 0 19px 38px rgba(0, 0, 0, 0.65), 0 15px 12px rgba(0, 0, 0, 0.4);
+}
+
+#menu-pic2>img:first-child {
+	position: relative;
+	top: 325px;
+}
+
+#menu-pic2>img:last-child {
+	position: relative;
+	top: 475px;
+}
+
+#menu-pic>img:hover, #menu-pic2>img:hover {
+	transform: scale(1.07);
+	cursor: pointer;
+	transition: all 0.35s;
+}
+
+#subject-pic2 {
+	width: 95%;
+	height: 15%;
+	margin: 0 auto 10px;
+	display: flex;
+	justify-content: center;
+	position: relative;
+	top: 420px;
+	font-family: 'RIDIBatang';
+	font-size: 1.1em;
+	text-align: center;
+	line-height: 100px;	
+}
+
+#subject-pic2>div {
+	background-color: #dfd3c3;
+	width:33%;
+	margin: 0 20px 10px;
+	border-radius: 0 0 50px 50px;
+	opacity: 0.5;
+}
+
+#subject-pic2>div:first-child {
+	position: relative;
+	top: -75px
+}
+
+#subject-pic2>div:last-child {
+	position: relative;
+	top: 75px
+}
+
+/* ==================================== */
+
+#forBlur {
+	width: 100%;
+	hegith: 100%;
+	background-color: gray;
+}
+
+#d-modal {
+	background: #dfd3c3;
+	width: 80%;
+	height: 70%;
+	border-radius: 20px;
+	position: fixed;
+	top: 14%;
+	left: 100%;
+	opacity: 0.9;
+	box-shadow: 0 19px 38px rgba(0, 0, 0, 0.65), 0 15px 12px rgba(0, 0, 0, 0.4);
+	z-index: 10;
 	display: none;
+	backdrop-filter:blur(8px);
+}
+
+.modal-content {
+	position: absolute;
+	top: 10%;
+	text-align: center;
+	height: 80%;
+	width: 100%;
+}
+
+#d-modal>input {
+	position: absolute;
+	top: 3%;
+	right: 3%;
+	width:35px;
+}
+
+.modal-content>div {
+	margin: 0 auto;
+	width: 95%;
+	margin: auto;
+	height: 10%;
+	border-bottom: 3px double;
+	line-height: 55px;
+}
+
+.modal-content>img {
+	margin: 10px auto 0;
+	width: 95%;	
+	height: 90%;
+}
+
+#move-btn {
+	width: 100%;
+	text-align:: center;
+	height: 10%;
+	position: absolute;
+	top: 90%;
+	display: flex;
+	justify-content: center;
+}
+
+#move-bnt>input {
+	width: 25px;
 }
 
 /* ==================================== */

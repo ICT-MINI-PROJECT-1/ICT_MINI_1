@@ -35,6 +35,7 @@
 		
 		transition: filter 0.3s ease;
         filter:blur(2px);
+        cursor:pointer;
 	}
 
 	#Bar > img, #Laundry > img {
@@ -141,8 +142,15 @@
 			실내 수영장에서는 탁월한 온도 조절 시스템 덕분에 사계절 내내 편안한 수영이 가능하며,<br/>
 			실외 수영장은 청명한 하늘과 푸른 자연을 배경으로 시원한 물속에 몸을 담그며 편안한 시간을 만끽할 수 있습니다.
 			</div>
-			<img src="../img/page/facility/PoolMain.jpg"/>
+			<img src="../img/page/facility/PoolMain.jpg" id="linkPool"/>
 		</div>
+		
+		<script>
+		document.getElementById('linkPool').onclick = function(){
+			window.location.href = "facility/facil-pool-picture";
+		};
+		</script>
+		
 		<hr/>
 		<br/>
 		<div id="PoolSize">
