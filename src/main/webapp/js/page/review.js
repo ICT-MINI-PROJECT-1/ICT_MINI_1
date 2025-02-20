@@ -68,5 +68,6 @@ function openModal(reviewno){
 	});
 }
 function closeModal(){
-	document.getElementById("review-list-modal").style.display = "none";
+	if(document.getElementById("review-list-modal")!=null)
+		document.getElementById("review-list-modal").style.display = "none";
 }
