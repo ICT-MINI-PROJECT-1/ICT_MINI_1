@@ -7,6 +7,7 @@
 	background-position:center;
 	height:0;
 	top:100px;
+	transition: all 1.5s;
 	text-align:center;
 	padding-top:50px;
 	padding-bottom:30%;
@@ -94,8 +95,8 @@
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 
-				2px 2px 7px 0px rgba(186, 179, 172, .6), 
-				3px 3px 5px 0px rgba(186, 179, 172, .6);
+				1px 1px 1px 0px rgba(186, 179, 172, .6), 
+				1px 1px 1px 0px rgba(186, 179, 172, .6);
 	padding-top: 40px;
     padding-bottom: 40px;
     border-radius: 10px;
@@ -105,17 +106,20 @@
 .review-list-grid-item{
 	width: 95%;
 	border-bottom: 1px solid #E0E0E0;
-	margin: auto;
+	margin: 10px auto;
 	font-size: 1.5vw;
+	background: #fff;
+	padding-top: 24px;
+	border-radius: 5px;
 }
 .review-list-img{
 	margin: 0 auto;
 	width: 78%;
 	height: 14.5vw;
 	background: #fff;
-	border-radius: 20px;
+	border-radius: 5px;
 	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 
-				2px 2px 5px 0px rgba(0, 0, 0, .6), 
+				1px 1px 1px 0px rgba(0, 0, 0, .6), 
 				1px 1px 2px 0px rgba(0, 0, 0, .6);
 	transition: all 0.7s;
 	margin-bottom: 0.8vw;
@@ -136,7 +140,7 @@
 /* 모달 반응형 */
 #review-list-modal{
 	font-family:'Gowun Batang';
-	font-size: 1.7vw; 
+	font-size: 1.3vw; 
 	width: 80%;
 	height: 0;
 	padding-bottom: 40%;
@@ -168,7 +172,6 @@
 #modal-img{
 	width: 100%;
 	height: 0;
-	/*background: yellow;*/
 	padding-bottom: 100%;
 }
 #modal-img-main{
@@ -182,7 +185,6 @@
 #modal-img-list{
 	margin: 0 auto;
 	width: 70%;
-	/*background: blue;*/
 }
 #modal-img-list>ul{
 	display: flex;
@@ -201,10 +203,10 @@
 #modal-contents{
 	box-sizing: border-box;
 	width: 100%;
+	height: 27.5vw;
 	background: #fff;
 	padding: 10px;
 	border-radius: 15px;
-	
 }
 #modal-subject{
 	text-align: center;
@@ -227,9 +229,15 @@
 }
 #modal-content{
 	overflow-y: scroll;
-	height: 18vw;
+	height: 15vw;
     min-height: 100px;
     margin-top: 3%;
+}
+#btn{
+	text-align: right;
+}
+input[type=button]{
+	width: 20%;
 }
 
 @media(max-width:1024px){
@@ -238,6 +246,27 @@
 	}
 	.review-list-img{
 		height: 28.4vw;
+	}
+}
+@media(min-width:1400px){
+	#review-list-modal{
+		width: 1120px;
+		padding-bottom: 560px;
+	}
+	#review-list-modal{
+		font-size: 18.2px;
+	}
+	#modal-img-main{
+		height: 378px;
+	}
+	#modal-img-list>ul li{
+		height: 46.62px;
+	}
+	#modal-contents{
+		height: 385px;
+	}
+	#modal-content{
+		height: 252px;
 	}
 }
 
