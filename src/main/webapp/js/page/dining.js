@@ -64,17 +64,34 @@ const foods = [
 	"흑임자가루를 뿌린 다쿠아즈와 요거트 아이스크림"
 ];
 
-//Ajax
-$(function(){
-	$('a[data-target="#"]').click(function(){
-		$.ajax({
-			
-		});
-	})
-}); 
-	
-	
+const thisImg = "${pageContext.request.contextPath}/img/page/dining/${this.img}";
 
+//Ajax
+async function fetchData() {
+	try {
+		const response = await fetch('EndPoint', {
+			method: 'POST',
+			headers: {
+			'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({foods, img: thisImg})
+			});
+			
+			if(!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			
+		const data = await response.json();
+		console.log('Fetched data : ', data);
+		
+		document.querySelector('.modal-content div').innerText = data.thisInfo;
+		document.querySelector('.modal-content img').src = data.thisImg;
+		
+	} catch(error) {
+		console.error('Fetch error : ', error);
+	}
+}
+fetchData();
 
 //모달열기
 let orgPosition = '10%';
