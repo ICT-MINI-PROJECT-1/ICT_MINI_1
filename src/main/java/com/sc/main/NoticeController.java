@@ -12,6 +12,7 @@ public class NoticeController {
 		ModelAndView mav = new ModelAndView();
 		if(msg.equals("rdo")) mav.addObject("msg","예약이 성공적으로 취소 되었습니다.");
 		if(msg.equals("rio")) mav.addObject("msg","예약이 성공적으로 처리 되었습니다.");
+		if(msg.equals("se")) mav.addObject("msg","정보가 정상적으로 수정되었습니다.");
 		mav.setViewName("notice/notice");
 		return mav;
 	}

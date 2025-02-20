@@ -31,16 +31,19 @@
 		</div>
 		<div id="header-right">
 			<c:if test="${loginStatus!='Y' }">
-				<div>
+				<div class="hrd">
 					<a href="${pageContext.request.contextPath}/user/login">Login</a>
 				</div>
-				<div>
+				<div class="hrd">
 					<a href="${pageContext.request.contextPath}/user/signup">SignUp</a>
 				</div>
 			</c:if>
 			<c:if test="${loginStatus=='Y' }">
-				<div>
+				<div id="header-logout">
 					<a href="${pageContext.request.contextPath}/user/logout">Logout</a>
+				</div>
+				<div id="header-mypage">
+					<a href="${pageContext.request.contextPath}/user/mypage">MyPage</a>
 				</div>
 				<div id="hdr" style="color:#6A3D17; font-family: 'Gowun Batang', serif;">
 					Welcome &nbsp;<span style="">${loginName }.</span>

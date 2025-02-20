@@ -79,9 +79,23 @@ body {
 	color:#999680;
 }
 
-#header-right > div {
+.hrd {
 	float:right;
 	padding: 0px 0px 10px 30px;
+}
+
+#header-logout,#header-mypage{
+	width:105px;
+	padding:0;
+	float:right;
+	text-align:right;
+}
+#hdr{
+	position:absolute;
+	font-size:13px;
+	right:60px;
+	top:-25px;
+	height:0;
 }
 
 a {
@@ -228,9 +242,15 @@ ul {
 	.nav > li {
 		font-size:14px;
 	}
+	#header-logout,#header-mypage{
+		width:80px;
+		padding:0;
+		float:right;
+		text-align:right;
+	}
 }
 
-@media (max-width:1400px) {
+@media (min-width:720px) {
 	#header-right{
 		font-size:1.8vw;
 	}
@@ -240,5 +260,10 @@ ul {
 	#header-right{
 		font-size:24px;
 	}
+	#header-logout,#header-mypage{
+		width:105px;
+		padding:0;
+		float:right;
+		text-align:right;
+	}
 }
-
