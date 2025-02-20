@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sc.main.service.UserService;
 import com.sc.main.vo.UserVO;
@@ -66,5 +67,29 @@ public class UserController {
 	@ResponseBody
 	public int idChk(@RequestBody UserVO vo) {
 		return service.loginIdChk(vo);
+	}
+	@GetMapping("/mypage")
+	public ModelAndView mypage(HttpSession session) {
+		String user_id = (String) session.getAttribute("loginId");
+		ModelAndView mav = new ModelAndView();
+		UserVO vo = service.userSelect(user_id);
+		vo.setEmailSplit();
+		vo.setTelSplit();
+		vo.setCreditSplit();
+		System.out.println(vo.toString());
+		mav.addObject("vo",vo);
+		mav.setViewName("user/mypage");
+		return mav;
+	}
+	@PostMapping("/signUpEditChk")
+	public ModelAndView signUpEditChk(UserVO vo, RedirectAttributes redirect) {
+		vo.setCreditcardno();
+		vo.setEmail();
+		vo.setTel();
+		service.userUpdate(vo);
+		redirect.addAttribute("msg","se");
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/notice");
+		return mav;
 	}
 }

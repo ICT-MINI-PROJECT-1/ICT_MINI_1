@@ -21,6 +21,27 @@ public class UserVO {
 	private String email;
 	private String creditcardno;
 	
+	public void setTelSplit() {
+		String[] stel=tel.split("-");
+		this.tel1 = stel[0];
+		this.tel2 = stel[1];
+		this.tel3 = stel[2];
+	}
+	
+	public void setEmailSplit() {
+		String[] semail=email.split("@");
+		this.email1 = semail[0];
+		this.email2 = semail[1];
+	}
+	
+	public void setCreditSplit() {
+		String[] scard = creditcardno.split("-");
+		this.credit1 = scard[0];
+		this.credit2 = scard[1];
+		this.credit3 = scard[2];
+		this.credit4 = scard[3];
+	}
+	
 	public String getTel() {
 		return tel;
 	}

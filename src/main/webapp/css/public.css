@@ -79,9 +79,23 @@ body {
 	color:#999680;
 }
 
-#header-right > div {
+.hrd {
 	float:right;
 	padding: 0px 0px 10px 30px;
+}
+
+#header-logout,#header-mypage{
+	width:105px;
+	padding:0;
+	float:right;
+	text-align:right;
+}
+#hdr{
+	position:absolute;
+	font-size:13px;
+	right:60px;
+	top:-25px;
+	height:0;
 }
 
 a {
@@ -188,6 +202,30 @@ ul {
 .star-rating,.star-rating span { text-align:left;display:inline-block; height:16.5px; overflow:hidden; background:url('../img/public/star.png')no-repeat; }
 .star-rating span{ text-align:left;background-position:left bottom; line-height:0; vertical-align:top;}
 
+.notice-wrap{
+	margin-top:300px;
+	width:100%;
+	font-family:'Gowun Batang';
+	color:#6A3D17;
+}
+
+.notice-img{
+	text-align:center;
+}
+
+.notice-msg{
+	text-align:center;
+	font-size: 30px;
+	margin-top:30px
+}
+
+#mini-msg{
+	font-size:18px;
+	margin-top:13px;
+	text-align:center;
+}
+
+
 @media (max-width:720px){
     #header-left{
     	width:30%;
@@ -204,9 +242,15 @@ ul {
 	.nav > li {
 		font-size:14px;
 	}
+	#header-logout,#header-mypage{
+		width:80px;
+		padding:0;
+		float:right;
+		text-align:right;
+	}
 }
 
-@media (max-width:1400px) {
+@media (min-width:720px) {
 	#header-right{
 		font-size:1.8vw;
 	}
@@ -216,5 +260,10 @@ ul {
 	#header-right{
 		font-size:24px;
 	}
+	#header-logout,#header-mypage{
+		width:105px;
+		padding:0;
+		float:right;
+		text-align:right;
+	}
 }
-

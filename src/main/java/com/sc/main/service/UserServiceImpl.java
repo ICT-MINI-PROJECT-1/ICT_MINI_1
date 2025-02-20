@@ -31,4 +31,9 @@ public class UserServiceImpl implements UserService{
 	public UserVO userSelect(String userid) {
 		return dao.userSelect(userid);
 	}
+
+	@Override
+	public int userUpdate(UserVO vo) {
+		return dao.userUpdate(vo);
+	}
 }
