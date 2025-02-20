@@ -10,10 +10,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class FacilityController {
 	
 	@GetMapping("/facil-sauna-picture")
-	public ModelAndView room(){
+	public ModelAndView sauna(){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("page","facility");
 		mav.setViewName("page/facility/facil-sauna-picture");
+		return mav;
+	}
+	@GetMapping("/facil-pool-picture")
+	public ModelAndView pool(){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("page","facility");
+		mav.setViewName("page/facility/facil-pool-picture");
 		return mav;
 	}
 }

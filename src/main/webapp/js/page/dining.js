@@ -64,8 +64,6 @@ const foods = [
 	"흑임자가루를 뿌린 다쿠아즈와 요거트 아이스크림"
 ];
 
-const [thisImg] = {"${pageContext.request.contextPath}/img/page/dining/" + this.img};
-
 //Ajax
 $(function(){
 	$('a[data-target="#"]').click(function(){

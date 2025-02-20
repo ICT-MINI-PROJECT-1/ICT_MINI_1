@@ -1,13 +1,15 @@
 package com.sc.main;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletContext;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,8 +18,8 @@ import java.nio.file.Paths;
 @RequestMapping("/page/policies")
 public class PolicyController {
 
-    @Value("${policy.files.location:/src/main/webapp/resources}")
-    private String policyFilesLocation;
+    @Autowired
+    private ServletContext servletContext;  
 
     @GetMapping("/privacy-policy")
     public ModelAndView privacyPolicy() {
@@ -43,24 +45,19 @@ public class PolicyController {
     }
 
     private String readPolicyFile(String fileName) {
-        try {
-            // 1. Àı´ë °æ·Î¸¦ »ç¿ëÇÏ¿© ÆÄÀÏÀ» Ã£±â (Å×½ºÆ®¿ë)
-            Path absolutePath = Paths.get(policyFilesLocation, fileName);
-            if (Files.exists(absolutePath)) {
-                return Files.readString(absolutePath);
-            }
+        String realPath = servletContext.getRealPath("/resources/" + fileName);
+        Path filePath = Paths.get(realPath);
 
-            // 2. classpath ±âÁØÀ¸·Î ÆÄÀÏ Ã£±â
-            ClassPathResource resource = new ClassPathResource("resources/" + fileName);
-            if (resource.exists()) {
-                Path filePath = Paths.get(resource.getURI());
-                return Files.readString(filePath);
+        try {
+            if (Files.exists(filePath)) {
+                // íŒŒì¼ì´ ì¡´ì¬í•˜ë©´ UTF-8ë¡œ ì½ì–´ì„œ ë°˜í™˜
+                return Files.readString(filePath, StandardCharsets.UTF_8);
+            } else {
+                return "í•´ë‹¹ ì •ì±… ë‚´ìš©ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤."; // íŒŒì¼ì´ ì—†ìœ¼ë©´ ë©”ì‹œì§€ ë°˜í™˜
             }
         } catch (IOException e) {
-            return "Á¤Ã¥ ³»¿ëÀ» ºÒ·¯¿À´Â Áß ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.";
+            e.printStackTrace();
+            return "ì •ì±… ë‚´ìš©ì„ ë¶ˆëŸ¬ì˜¤ëŠ” ì¤‘ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤."; // ì˜¤ë¥˜ ë°œìƒ ì‹œ ë©”ì‹œì§€ ë°˜í™˜
         }
-
-        // ÆÄÀÏÀÌ Á¸ÀçÇÏÁö ¾ÊÀ» °æ¿ì ¹İÈ¯
-        return "ÇØ´ç Á¤Ã¥ ³»¿ëÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.";
     }
 }
