@@ -44,16 +44,16 @@
 		<div id="month"></div>
 		<div id="calendar"></div>
 	</div>
-	<c:if test="${vo!=null}">
+	<c:if test="${roomVO!=null}">
 		<script>
 			document.addEventListener('DOMContentLoaded', () => {
-				selectRoom('${vo.roomno}');
+				selectRoom('${roomVO.roomno}');
 			});
 		</script>
 	</c:if>
 	
-	<div class="reserv-container">
-		<div id="reserv-title">Reservation</div>
+	<div class="reserv-edit-container">
+		<div id="reserv-title">Reservation Information</div>
 		<div id="reserv-img-list">
 			<div id="reserv-img-1"></div>
 			<div id="reserv-img-2"></div>
@@ -63,10 +63,8 @@
 		</div>
 		<form name="reservForm" method="post" action="doReservation">
 			<div id="reserv-form-box">
-				<div id="reserv-left"><div id="idpw">ROOM</div><div id="hidden-height">I</div></div><div id="reserv-right">
+				<div id="reserv-left"><div id="idpw">ROOM</div></div><div id="reserv-right">
 					<input type="text" style="padding:0;width:40%;text-align:center;" id="roomno" name="roomno" value="" readonly/>
-					<button class="buttons" style="width:20%;" type="button" onclick="findRoom(5,1)">Find</button>
-				<div id="alert-roomno">Invalid roomno</div>
 				</div>
 				<div id="reserv-left"><div id="idpw">CAPACITY</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="capacity" value="" readonly/></div>
 				<div id="reserv-left"><div id="idpw">BED-TYPE</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="bedtype" value="" readonly/></div>
@@ -74,15 +72,13 @@
 				<div id="reserv-left"><div id="idpw">CHECK-IN</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="checkin" value="" readonly/></div>
 				<div id="reserv-left"><div id="idpw">CHECK-OUT</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="checkout" value="" readonly/></div>
 				<div id="reserv-left"><div id="idpw">PRICE</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="price" name="price" value="" readonly/></div>
-				<div id="reserv-left"><div id="idpw">PEOPLE</div><div id="hidden-height">I</div></div> <div id="reserv-right"><input type="text" style="padding:0;width:40%;text-align:center;" id="usercnt" name="usercnt" value=""/><div id="alert-people">Invalid PEOPLE</div></div>
-				<div id="reserv-left"><div id="idpw">REQUEST</div></div> <div id="reserv-right"><textarea id="request" name="request"></textarea></div>
-				<div id="reserv-left"><div id="idpw">DATE</div><div id="hidden-height">I</div></div><div id="reserv-right">
-					<input type="text" style="padding:0;width:40%;text-align:center;" id="reservdate" name="reservdate" value="" readonly/>
-					<button class="buttons" style="width:20%;" type="button" onclick="openCalendar()">Find</button>
-				<div id="alert-date">Invalid DATE</div>
+				<div id="reserv-left"><div id="idpw">PEOPLE</div></div> <div id="reserv-right"><input readonly type="text" style="padding:0;width:40%;text-align:center;" id="usercnt" name="usercnt" value="${reservVO.usercnt}"/></div>
+				<div id="reserv-left"><div id="idpw">REQUEST</div></div> <div id="reserv-right"><textarea readonly id="request" name="request">${reservVO.request}</textarea></div>
+				<div id="reserv-left"><div id="idpw">DATE</div></div><div id="reserv-right">
+					<input type="text" style="padding:0;width:40%;text-align:center;" id="reservdate" name="reservdate" value="${reservVO.reservdate.substring(0,10)}" readonly/>
 				</div>
 			</div>
-			<input class="reserv-submit" type="button" onclick="reservChk()" value="예약하기"/>
+			<input class="reserv-submit" type="button" onclick="reservChk()" value="예약취소"/>
 		</form>
 	</div>
 </div>

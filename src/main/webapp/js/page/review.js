@@ -42,8 +42,30 @@ where="review";
 window.onload = function(){
 	closeModal();
 }
-function openModal(){
+function openModal(reviewno){
 	document.getElementById("review-list-modal").style.display = "block";
+	
+	fetch("/page/review/modalReview",{
+		method: "POST",
+		headers: {
+			"Content-Type":"text/plain"
+		},
+		body: reviewno
+	}).then(response => {
+		return response.json()
+	}).then(data => {
+		console.log(data);
+		document.getElementById("modal-subject").innerHTML = data.subject;
+		document.getElementById("modal-roomno").innerHTML = data.roomno;
+		document.getElementById("modal-rating").innerHTML = data.rating;
+		document.getElementById("modal-writedate").innerHTML = data.writedate;
+		document.getElementById("modal-userid").innerHTML = data.userid;
+		document.getElementById("modal-content").innerHTML = data.content;
+
+
+	}).catch(error => {
+		console.log(error);
+	});
 }
 function closeModal(){
 	document.getElementById("review-list-modal").style.display = "none";
