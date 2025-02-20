@@ -16,21 +16,6 @@ CREATE TABLE IF NOT EXISTS `artpart`.`user` (
   `creditcardno` VARCHAR(19) NULL,
   PRIMARY KEY (`userid`));
 
-CREATE TABLE IF NOT EXISTS `artpart`.`reservation` (
-  `reservno` INT NOT NULL,
-  `reservdate` DATETIME NOT NULL DEFAULT now(),
-  `usercnt` INT NOT NULL,
-  `request` VARCHAR(500) NULL,
-  `userid` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`reservno`),
-  INDEX `fk_reservation_user1_idx` (`userid` ASC) VISIBLE,
-  CONSTRAINT `fk_reservation_user1`
-    FOREIGN KEY (`userid`)
-    REFERENCES `artpart`.`user` (`userid`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-
 CREATE TABLE IF NOT EXISTS `artpart`.`room` (
   `roomno` INT NOT NULL,
   `roomconcept` VARCHAR(45) NOT NULL,
@@ -40,17 +25,31 @@ CREATE TABLE IF NOT EXISTS `artpart`.`room` (
   `viewtype` VARCHAR(45) NOT NULL,
   `capacity` INT NOT NULL,
   `area` INT NOT NULL,
-  `reservno` INT NULL,
   `checkin` VARCHAR(10) NULL DEFAULT '15:00',
   `checkout` VARCHAR(10) NULL DEFAULT '11:00',
   `rating` FLOAT NULL,
-  PRIMARY KEY (`roomno`),
-  INDEX `fk_room_reservation1_idx` (`reservno` ASC) VISIBLE,
-  CONSTRAINT `fk_room_reservation1`
-    FOREIGN KEY (`reservno`)
-    REFERENCES `artpart`.`reservation` (`reservno`)
+  PRIMARY KEY (`roomno`));
+
+CREATE TABLE IF NOT EXISTS `artpart`.`reservation` (
+  `reservno` INT NOT NULL AUTO_INCREMENT,
+  `reservdate` DATETIME NOT NULL DEFAULT now(),
+  `usercnt` INT NOT NULL,
+  `request` VARCHAR(500) NULL,
+  `userid` VARCHAR(20) NOT NULL,
+  `roomno` INT NOT NULL,
+  PRIMARY KEY (`reservno`),
+  INDEX `fk_reservation_user1_idx` (`userid` ASC) VISIBLE,
+  CONSTRAINT `fk_reservation_user1`
+    FOREIGN KEY (`userid`)
+    REFERENCES `artpart`.`user` (`userid`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_reservation_room1`
+    FOREIGN KEY (`roomno`)
+    REFERENCES `artpart`.`room` (`roomno`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
 
 CREATE TABLE IF NOT EXISTS `artpart`.`wishlist` (
   `userid` VARCHAR(20) NOT NULL,
@@ -140,14 +139,45 @@ insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,are
 insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(606,'asian','안녕하세요\n반갑습니다\n설명입니다\n',250000,'single','view',3,18);
 insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(607,'asian','안녕하세요\n반갑습니다\n설명입니다\n',210000,'double','view',4,20);
 insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(608,'asian','안녕하세요\n반갑습니다\n설명입니다\n',215000,'double','view',4,20);
-commit;
 
-select * from wishlist;
-select * from user;
 
 insert into user values('test1234','test1234!!','이건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
+insert into user values('user1234','user1234!!','김건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
+insert into user values('test1111','test1111!!','삼건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
+insert into user values('test2222','test2222!!','사건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
+insert into user values('test3222','test3222!!','오건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
+insert into user values('test4222','test4222!!','육건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
+insert into user values('test5222','test5222!!','칠건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
+insert into user values('test6222','test6222!!','팔건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
+insert into user values('test7222','test7222!!','구건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
+
+insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-03-01',2,'냠냠','test1111',301);
+insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-03-02',2,'냠냠','test2222',301);
+insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-03-03',2,'냠냠','test3222',301);
+insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-02-23',2,'냠냠','test4222',301);
+insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-02-24',2,'냠냠','test5222',301);
+insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-02-25',2,'냠냠','test6222',301);
+insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-02-26',2,'냠냠','test7222',301);
+insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-02-28',2,'냠냠','user1234',301);
+
 
 insert into wishlist values('test1234',301);
 
 insert into wishlist values('test1234',304);
-select * from user;
+
+insert into review (subject, content, userid, roomno, rating)
+values ("301호 추천합니다.", "301호 강력추천, 301호 강력추천, 301호 강력추천", "test1234", 301, 4.5);
+insert into review (subject, content, userid, roomno, rating)
+values ("308호 추천합니다.", "308호 강력추천, 308호 강력추천, 308호 강력추천", "test1234", 308, 5);
+insert into review (subject, content, userid, roomno, rating)
+values ("405호 추천합니다.", "405호 강력추천, 405호 강력추천, 405호 강력추천", "test1234", 405, 3.8);
+insert into review (subject, content, userid, roomno, rating)
+values ("504호 추천합니다.", "504호 강력추천, 504호 강력추천, 504호 강력추천", "test1234", 504, 2.1);
+insert into review (subject, content, userid, roomno, rating)
+values ("607호 추천합니다.", "607호 강력추천, 607호 강력추천, 607호 강력추천", "test1234", 607, 2.1);
+insert into review (subject, content, userid, roomno, rating)
+values ("501호 추천합니다.", "501호 강력추천, 501호 강력추천, 501호 강력추천", "test1234", 504, 4.8);
+insert into review (subject, content, userid, roomno, rating)
+values ("602호 추천합니다.", "602호 강력추천, 602호 강력추천, 602호 강력추천", "test1234", 602, 3.2);
+
+commit;

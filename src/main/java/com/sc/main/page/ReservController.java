@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sc.main.service.ReservService;
 import com.sc.main.service.RoomService;
+import com.sc.main.vo.ReservationVO;
 import com.sc.main.vo.RoomVO;
 import com.sc.main.vo.WishlistVO;
 
@@ -31,23 +32,61 @@ public class ReservController {
 	RoomService room_service;
 	
 	@GetMapping("/form")
-	public String formHome() {
-		return "page/reservation/reserv_form";
+	public ModelAndView formHome(HttpSession session) {
+		mav = new ModelAndView();
+		String user_id = (String)session.getAttribute("loginId");
+		ReservationVO rVO = service.selectReservation(user_id);
+		if(rVO==null) {
+			mav.setViewName("page/reservation/reserv_form");
+		}
+		else {
+			mav.addObject("reservVO",rVO);
+			mav.addObject("roomVO",room_service.roomInfo(rVO.getRoomno()));
+			mav.setViewName("page/reservation/reserv_edit");
+		}	
+		return mav;
 	}
 	
 	@PostMapping("/form")
-	public ModelAndView formRoom(String roomno) {
+	public ModelAndView formRoom(HttpSession session, String roomno) {
 		mav = new ModelAndView();
-		mav.setViewName("page/reservation/reserv_form");
-		RoomVO vo = room_service.roomInfo(Integer.parseInt(roomno));
-		mav.addObject("vo",vo);
+		String user_id = (String)session.getAttribute("loginId");
+		ReservationVO rVO = service.selectReservation(user_id);
+		if(rVO==null) {
+			RoomVO vo = room_service.roomInfo(Integer.parseInt(roomno));
+			mav.addObject("vo",vo);
+			mav.setViewName("page/reservation/reserv_form");
+		} else {
+			mav.addObject("reservVO",rVO);
+			mav.addObject("roomVO",room_service.roomInfo(rVO.getRoomno()));
+			mav.setViewName("page/reservation/reserv_edit");
+		}
 		return mav;
 	}
 	@PostMapping("/selectRoom")
 	@ResponseBody
 	public RoomVO selectRoom(@RequestBody String roomno) {
-		System.out.println(roomno);
 		return room_service.roomInfo(Integer.parseInt(roomno));
+	}
+	@PostMapping("/setCalendar")
+	@ResponseBody
+	public List<ReservationVO> setCalendar(@RequestBody String roomno) {
+		return service.selectReservationByRoom(Integer.parseInt(roomno));
+	}
+	@PostMapping("/doReservation")
+	public String doReservation(HttpSession session, ReservationVO vo) {
+		String user_id = (String)session.getAttribute("loginId");
+		if(user_id != null) {
+			ReservationVO rVO = service.selectReservation(user_id);
+			if(rVO == null) {	// 예약 없을때
+				vo.setUserid(user_id);
+				service.insertReservation(vo);
+				return "redirect:/";
+			} else {	//이미 한 예약이 있을때
+				return "page/reservation/reserv_form";
+			}
+		}
+		return "redirect:/";
 	}
 }
 

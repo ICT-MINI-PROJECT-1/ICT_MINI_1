@@ -42,8 +42,8 @@
 				<div>
 					<a href="${pageContext.request.contextPath}/user/logout">Logout</a>
 				</div>
-				<div style="color:#6A3D17; font-size:18px;font-family: 'Gowun Batang', serif;">
-					Welcome &nbsp;<span style="font-size:20px;">${loginName }.</span>
+				<div id="hdr" style="color:#6A3D17; font-family: 'Gowun Batang', serif;">
+					Welcome &nbsp;<span style="">${loginName }.</span>
 				</div>
 			</c:if>
 		</div>
