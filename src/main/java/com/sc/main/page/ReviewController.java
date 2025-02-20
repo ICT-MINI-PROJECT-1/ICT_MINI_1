@@ -3,6 +3,8 @@ package com.sc.main.page;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +40,23 @@ public class ReviewController {
 	}
 
 	//¸®ºä ÀÛ¼º(DB)
+	@PostMapping("/writeOk")
+	public ModelAndView reviewWriteOk(ReviewVO vo, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		mav = new ModelAndView();
+		
+		vo.setUserid((String)session.getAttribute("loginId"));
+
+		int result = service.reviewInsert(vo);
+		
+		if(result==1) {
+			mav.setViewName("redirect:/page/review");
+		}else {
+			mav.setViewName("page/review/review_write");
+		}
+		
+		return mav;
+	}
 
 	//¸®ºä ¼öÁ¤
 

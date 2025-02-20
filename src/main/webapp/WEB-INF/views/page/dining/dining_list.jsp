@@ -23,8 +23,8 @@
 						
 						<%-- <c:if test=""> --%>
 						<div class="modal-content">
-							<div><%-- ${thisInfo} --%></div>
-							<img src="#"/>
+							<div>${thisInfo}</div>
+							<img src="${thisImg}"/>
 						</div>
 						<%-- </c:if> --%>
 						
@@ -38,7 +38,10 @@
 				<div id="d-content">
 					<div id="d-content1">
 						<div id="menu-info">
-							<div id="info-dish"><p>전국에 진귀한 식재료를 이용하여<wbr> 직접 담근 장, 김치, 식초, 장아찌와 <wbr>이 시대에 맞는 한국요리를 맛보세요.</p></div>
+							<div id="info-dish">
+								<p>전국에 진귀한 식재료를 이용하여 직접 담근 <ruby>전통음식<rt style="color: brown; margin-bottom:5px;">
+								   장, 김치, 식초, 장아찌</rt></ruby>과 이 시대에 맞는 한국요리를 맛보세요.</p>
+					 	  	</div>
 						</div>
 						
 						<div id="subject-pic">
@@ -60,12 +63,12 @@
 							<img src="/img/page/dining/content/kFood1-1.jpg" title="자세한 내용" onclick="openModal()"/>
 							<img src="/img/page/dining/content/kFood3-1.jpg" title="자세한 내용" onclick="openModal()"/>
 						</div>
-					</div>
 					
-					<div id="subject-pic2">
-						<div>전통 한식의 근원을 존중하되,</div>
-						<div>오늘날의 새로운 기술과 감성을 덧입혀</div>
-						<div>새로운 한국의 맛을 전하겠습니다.</div>
+						<div id="subject-pic2">
+							<div>단품(양갈비)</div>
+							<div>단품(떡갈비)</div>
+							<div>단품(디저트)</div>
+						</div>
 					</div>
 				</div>
 			</c:if>
