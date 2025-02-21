@@ -109,7 +109,7 @@
 				for(var i=data.pvo.startPageNum; i<data.pvo.startPageNum+data.pvo.onePageCount;i++) {
 					if(i==data.pvo.startPageNum) {
 						if(data.pvo.nowPage == 1) document.getElementById("page-box").innerHTML += `<li>◀</li>`;
-						else document.getElementById("page-box").innerHTML += `<li onclick="adminUserList(`+(data.pvo.nowPage-1)+`)">◀</li>`;
+						else document.getElementById("page-box").innerHTML += `<li onclick="adminReservList(`+(data.pvo.nowPage-1)+`)">◀</li>`;
 					}
 					if(i<=data.pvo.totalPage) {
 						if(i==data.pvo.nowPage)document.getElementById("page-box").innerHTML+=`<li style='color:blue' onclick="adminReservList(`+i+`)">`+i+`</li>`;
@@ -117,7 +117,7 @@
 					}
 				}
 				if(data.pvo.nowPage == data.pvo.totalPage) document.getElementById("page-box").innerHTML += `<li>▶</li>`;
-				else document.getElementById("page-box").innerHTML += `<li onclick="adminUserList(`+(data.pvo.nowPage+1)+`)">▶</li>`;
+				else document.getElementById("page-box").innerHTML += `<li onclick="adminReservList(`+(data.pvo.nowPage+1)+`)">▶</li>`;
 			}).catch(err=> {
 				console.log(err);
 			});
