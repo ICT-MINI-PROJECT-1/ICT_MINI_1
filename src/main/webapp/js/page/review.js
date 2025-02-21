@@ -43,6 +43,7 @@ window.onload = function(){
 	closeModal();
 }
 function openModal(reviewno){
+	selected_reviewno=reviewno;
 	document.getElementById("review-list-modal").style.display = "block";
 	
 	fetch("/page/review/modalReview",{
@@ -61,8 +62,6 @@ function openModal(reviewno){
 		document.getElementById("modal-writedate").innerHTML = data.writedate;
 		document.getElementById("modal-userid").innerHTML = data.userid;
 		document.getElementById("modal-content").innerHTML = data.content;
-
-
 	}).catch(error => {
 		console.log(error);
 	});
@@ -70,4 +69,22 @@ function openModal(reviewno){
 function closeModal(){
 	if(document.getElementById("review-list-modal")!=null)
 		document.getElementById("review-list-modal").style.display = "none";
+}
+
+var selected_reviewno;
+
+function reviewEdit(){
+	alert(selected_reviewno);
+	let f = document.createElement('form');
+	f.setAttribute('method','post');
+	f.setAttribute('action','review/edit');
+	document.getElementById('review-list-modal').appendChild(f);
+	
+	let obj;
+	obj = document.createElement('input');
+	obj.setAttribute('type','hidden');
+	obj.setAttribute('name','reviewno');
+	obj.setAttribute('value', selected_reviewno);
+	f.appendChild(obj);
+	f.submit();
 }
