@@ -90,10 +90,10 @@
 				<div id="modal-img-list">
 					<ul>
 						<li class="modal-img-mini">1</li>
-						<li class="modal-img-mini">1</li>
-						<li class="modal-img-mini">1</li>
-						<li class="modal-img-mini">1</li>
-						<li class="modal-img-mini">1</li>
+						<li class="modal-img-mini">2</li>
+						<li class="modal-img-mini">3</li>
+						<li class="modal-img-mini">4</li>
+						<li class="modal-img-mini">5</li>
 					</ul>
 				</div>
 			</div>	

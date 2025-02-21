@@ -46,6 +46,8 @@ window.onload = function(){
 	closeModal();
 }
 function openModal(reviewno,userid,sessionid){
+	selected_reviewno = reviewno;
+	
 	document.getElementById("btn").style.display='none';
 	document.getElementById("review-list-modal").style.display = "block";
 	
@@ -104,7 +106,6 @@ function reviewDelete(){
 	f.appendChild(obj);
 	f.submit();
 }
-
 
 //function reviewPrevPage(pageNum){
 	//let f = document.createElement('form');

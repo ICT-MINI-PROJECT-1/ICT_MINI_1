@@ -62,7 +62,7 @@ public class ReviewController {
 	@PostMapping("/edit")
 	public ModelAndView reviewEdit(String reviewno) {
 		mav = new ModelAndView();
-		
+		System.out.println(reviewno);
 		mav.addObject("vo", service.reviewDetail(Integer.parseInt(reviewno)));	
 		mav.setViewName("page/review/review_edit");
 		
