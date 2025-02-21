@@ -68,7 +68,6 @@ function moveToRoom(loc) {
     obj.setAttribute('value', loc);
 	f.appendChild(obj);
     f.submit();
-	//location.href="/page/room/list?loc="+loc;
 }
 
 function renderList(arg,path){
