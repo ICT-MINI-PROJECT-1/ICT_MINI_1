@@ -38,6 +38,36 @@
 				</div>
 			</c:forEach>	 
 		</div>
+		<!-- 페이징 -->
+		<ul id="paging">
+			<!-- 이전페이지 -->
+			<c:if test="${pVO.nowPage==1 }">
+				<li><a href="#">Prev</a></li>
+			</c:if>
+			<c:if test="${pVO.nowPage>1 }">
+	    		<li><a href="${pageContext.request.contextPath}/page/review?nowPage=${pVO.nowPage-1}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if>">Prev</a></li>
+	    	</c:if>
+	    	<!-- 페이지번호 -->
+	    	<c:forEach var="p" begin="${pVO.startPageNum }" end="${pVO.startPageNum+pVO.onePageCount-1 }">
+	    		<c:if test="${p<=pVO.totalPage }">
+		    		<c:if test="${p==pVO.nowPage }">
+		    			<li>
+		    		</c:if>
+		    		<c:if test="${p!=pVO.nowPage }">
+		    			<li>
+		    		</c:if>
+		    		<!-- href="javascript:void(0)-> 임시로 이렇게 적었다가 변경함 -->
+		    		<a href="${pageContext.request.contextPath}/page/review?nowPage=${p}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if>">${p}</a></li>
+	    		</c:if>
+			</c:forEach>
+	    	<!-- 다음페이지 -->
+	    	<c:if test="${pVO.nowPage==pVO.totalPage }">
+				<li><a href="#">Next</a></li>
+			</c:if>
+			<c:if test="${pVO.nowPage<pVO.totalPage }">
+	    		<li><a href="${pageContext.request.contextPath}/page/review?nowPage=${pVO.nowPage+1}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if>">Next</a></li>
+	    	</c:if>
+		</ul>
 	</div>
 	<!-- 모달팝업 -->
 	<div id="review-list-modal">
@@ -72,7 +102,7 @@
 				<div id="modal-content"></div>
 				<div id="btn">
 					<input type="button" value="수정" onclick="reviewEdit()">
-					<input type="button" value="삭제">
+					<input type="button" value="삭제" onclick="reviewDelete()">
 				</div>
 			</div>
 		</div>

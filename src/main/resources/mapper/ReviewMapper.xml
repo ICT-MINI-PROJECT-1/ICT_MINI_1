@@ -6,10 +6,10 @@
   
 <mapper namespace="com.sc.main.dao.ReviewDAO">
 	<select id="reviewSelect" resultType="com.sc.main.vo.ReviewVO">
-		select * from review
+		select * from review limit ${onePageRecord} offset ${offset}
 	</select>
 	<select id="reviewDetail" resultType="com.sc.main.vo.ReviewVO">
-		select subject, content, userid, roomno, rating, date_format(writedate, '%Y-%m-%d') writedate from review where reviewno=#{param1}
+		select reviewno, subject, content, userid, roomno, rating, date_format(writedate, '%Y-%m-%d') writedate from review where reviewno=#{param1}
 	</select>
 	<insert id="reviewInsert">
 		insert into review (userid, roomno, rating, subject, content) 
@@ -19,4 +19,10 @@
 		update review set subject=#{subject}, content=#{content}, rating=${rating} 
 		where reviewno=${reviewno}
 	</update>
+	<delete id="reviewDelete">
+		delete from review where reviewno=${reviewno}
+	</delete>
+	<select id="reviewTotalRecord" resultType="int">
+		select count(reviewno) cnt from review
+	</select>
 </mapper>
