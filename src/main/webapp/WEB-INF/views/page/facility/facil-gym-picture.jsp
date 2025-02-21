@@ -5,8 +5,8 @@
 
 <style>
     #container {
-        display:flex;
-        width:530px;
+        display: flex;
+        width:510px;
         height:60vh;
         margin:15%;;
     }
@@ -68,55 +68,35 @@
     .next {
         right: 10px;
     }
-    
-    #line{
-    	display:none;
-    	align-items: center;
-   	    justify-content: center;
-    	line-height: 30px;
-   	    text-align: left;
-    	margin-left:10%;
-    	width:40%;
-    	background-color:gray;
-    }
 
    
 </style>
-
 <div id="fade">
-    <div id="container">
-        <hr/>
-        <h1 id="text">Spa & Sauna</h1>
-        
-        <div class="SliderBox" id="sliderContainer">
-            <div id="slider">
-                <img src="${pageContext.request.contextPath}/img/page/facility/sauna.png" />
-                <img src="${pageContext.request.contextPath}/img/page/facility/sauna3.png"/>
-                <img src="${pageContext.request.contextPath}/img/page/facility/sauna4.jpg"/>
-                <img src="${pageContext.request.contextPath}/img/page/facility/sauna5.jpg"/>
-                <img src="${pageContext.request.contextPath}/img/page/facility/sauna6.jpg"/>
-                <img src="${pageContext.request.contextPath}/img/page/facility/sauna7.jpg"/>
-            </div>
-          	  <button class="prev" onclick="moveSlide(-1)">❮</button>
-      		  <button class="next" onclick="moveSlide(1)">❯</button>
-            </div>
-        <h1 id="text2">B1F</h1>
-        <hr/>
-       	<div id="line">
-       		<h1>부대시설 개요</h1>
-       		<ul>
-       		<lu>asdasd</lu>
-       		</ul>
-       	</div>
-    </div>
+<div id='container'>
+<hr/>
+    <h1 id="text">Pool</h1>
+   
+    <div class="SliderBox">
+        <div id="slider">
+            <img src="${pageContext.request.contextPath}/img/page/facility/gym.png" />
+            <img src="${pageContext.request.contextPath}/img/page/facility/gym2.png" />
+            <img src="${pageContext.request.contextPath}/img/page/facility/gym3.png"/>
+            <img src="${pageContext.request.contextPath}/img/page/facility/gym4.png"/>
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">❮</button>
+        <button class="next" onclick="moveSlide(1)">❯</button>
+	    </div>
+	    
+	    <h1 id="text2">1F</h1>
+	    <hr/>
+	</div>
 </div>
-
 <script>
     let currentIndex = 0;
 
     
     let slides;
-    let totalSlides = 7; //---------------------- 사진갯수 -1
+    let totalSlides = 5; //---------------------- 사진갯수 -1
     
     function moveSlide(step) {
     	
@@ -130,8 +110,8 @@
 		}else if (currentIndex >= totalSlides) {
 	        currentIndex = totalSlides - 1;
 		}
-		if (currentIndex >= 11){
-			currentIndex = 11;
+		if (currentIndex >= 7){
+			currentIndex = 7;
 		}
 		
         // 슬라이드 이동 (X축으로 이동)
@@ -147,7 +127,7 @@
         const slider = document.getElementById('slider');
         if (slider) {
             slides = slider.querySelectorAll('img');
-            totalSlides = 11;
+            totalSlides = 7;
         }
 
         const prevButton = document.querySelector('.prev');
