@@ -10,7 +10,7 @@
 			<span>DINING</span>
 		</div>
 		<div class="dining-wrap">
-			<div>
+			<div> <!-- style="padding-bottom: 780px;" -->
 				<div onclick="moveToRest('korean')" id="kor-pic" class="dining-pic"><span class="dining-intro">Korean</span></div>
 				<div onclick="moveToRest('western')" id="wes-pic" class="dining-pic"><span class="dining-intro">Western</span></div>
 				<div onclick="moveToRest('japanese')" id="jap-pic" class="dining-pic"><span class="dining-intro">Japanese</span></div>

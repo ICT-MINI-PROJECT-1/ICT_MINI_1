@@ -9,12 +9,6 @@ public class ReviewVO {
 	private String userid;
 	private int roomno;
 	private float rating;
-	
-	@Override
-	public String toString() {
-		return "ReviewVO [reviewno=" + reviewno + ", subject=" + subject + ", writedate=" + writedate + ", content="
-				+ content + ", userid=" + userid + ", roomno=" + roomno + ", rating=" + rating + "]";
-	}
 	public int getReviewno() {
 		return reviewno;
 	}
@@ -56,5 +50,10 @@ public class ReviewVO {
 	}
 	public void setRating(float rating) {
 		this.rating = rating;
+	}
+	@Override
+	public String toString() {
+		return "ReviewVO [reviewno=" + reviewno + ", subject=" + subject + ", writedate=" + writedate + ", content="
+				+ content + ", userid=" + userid + ", roomno=" + roomno + ", rating=" + rating + "]";
 	}
 }

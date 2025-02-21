@@ -1,98 +1,191 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <style>
-	#Sauna,#Pool,#PoolSize{
-		display: flex;
-		align-items: center; /* 이미지와 텍스트 수직 정렬 */
-		justify-content: center; /* 수평 가운데 정렬 */
-		font-size: 16px;
-		text-align: center;
-		line-height:70px;
-		height:900px;
-		font-family: 'Gowun Batang';
-	}
-	#Bar, #Laundry{
-		display: flex;
-		align-items: center;
-		font-size: 30px;
-		text-align: center;
-		line-height:70px;
-		height:700px;
-		font-family: 'Gowun Batang';
-	}
-	
-	#Gym, #Restaurant{
-		align-items: center;
-		justify-content: center;
-		font-size: 16px;
-		text-align: center;
-		line-height:70px;
-		height:1050px;
-		font-family: 'Gowun Batang';
-	}
-	
-	#Sauna > img:hover, #Pool > img:hover, #Gym > img:hover, #Restaurant > img:hover, #Bar > img:hover, #Laundry > img:hover{
-		
-		transition: filter 0.3s ease;
-        filter:blur(2px);
-        cursor:pointer;
-	}
+#Sauna, #Pool, #PoolSize{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px; 
+    text-align: center;
+    line-height: 5vh; 
+    height: 100vh; 
+    font-family: 'Gowun Batang';
+    width: 80vw; 
+    flex-shrink: 0;
+    flex-grow: 0; 
+    flex-basis: auto;
+    min-width: 300px; 
+    min-height: 400px; 
+    border-bottom:1px solid gray;
+}
 
-	#Bar > img, #Laundry > img {
-		margin-right: 200px;
-		width:50%;
-		box-shadow:10px 10px 15px  rgba(0, 0, 0, 0.2); 
-	}
-	
-	#Restaurant > img {
-		width:100%;
-		box-shadow:10px 10px 15px  rgba(0, 0, 0, 0.2); 
-	}
-	
-	
-	#food > img{
-		width:100%;
-		height:100%;
-	}
-	
-	#PoolSize > img, #Gym > img {
-		width:90%;
-		box-shadow:10px 10px 15px  rgba(0, 0, 0, 0.2); 
-	}
+#Bar, #Laundry {
+    display: flex;
+    align-items: center;
+    font-size: 30px; 
+    text-align: center;
+    line-height: 5vh; 
+    height: 100vh; 
+    font-family: 'Gowun Batang';
+    flex-shrink: 0;
+    flex-grow: 0; 
+    flex-basis: auto;
+    min-width: 300px; 
+    min-height: 400px; 
+    border-bottom:1px solid gray;
+}
 
-	#Sauna > img, #Pool > img{
-		width: 600px;
-		margin-right: 50px; /* 이미지와 텍스트 사이의 간격 */
-		box-shadow:10px 10px 15px  rgba(0, 0, 0, 0.2); 
-	}
-	.text{
-	font-weight:bold;
-	font-size:32px;
-	font-family: "Cormorant Garamond", serif;
-	}
-	
-	.linkBox {
-		position: fixed;
-		right: 3%;
-		top: 37%;
-		width: 100px;
-		height: 185px;
-	}
+#Gym, #Restaurant {
+	line-height: 10vh; 
+    height: 130vh;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    text-align: center;
+    width: 80vw; 
+    font-family: 'Gowun Batang';
+    flex-shrink: 0;
+    flex-grow: 0; 
+    flex-basis: auto;
+    min-width: 300px; 
+    min-height: 400px; 
+    border-bottom:1px solid gray;
+}
 
-	.linkBox > ul > li {
-		top: 20%;
-		font-size: 16px;
-		line-height: 30px;
-		text-align: center;
-		color: Black;
-		font-family: "Cormorant Garamond", serif;
-	}
+#food{
+	border-bottom:1px solid gray;
+}
+#line{
+	height:5px;
+}
+#line2{
+	height:100px;
+}
+#line3{
+	height:100px;
+}
 
-	.linkBox > ul > li:hover {
-		width: 100%;
-        transition: transform 0.3s ease;
-        transform: scale(1.1);
+#Sauna > img:hover, #Pool > img:hover, #Gym > img:hover, #Restaurant > img:hover, #Bar > img:hover, #Laundry > img:hover {
+    transition: filter 0.3s ease;
+    filter: blur(2px);
+    cursor: pointer;
+}
+
+#Bar > img, #Laundry > img {
+    margin-right: 200px;
+    width: 50%;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+#Restaurant > img {
+    width: 100%;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+#food > img {
+    width: 100%;
+    height: 100%;
+}
+
+#PoolSize > img, #Gym > img {
+    width: 90%;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+#Sauna > img, #Pool > img {
+    width: 22vw;
+    margin-right: 50px; /* 이미지와 텍스트 사이의 간격 */
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+}
+
+.text {
+    font-weight: bold;
+    font-size: 32px;
+    font-family: "Cormorant Garamond", serif;
+}
+
+.linkBox {
+    position: fixed;
+    right: 3%;
+    top: 37%;
+    width: 100px;
+    height: 185px;
+}
+
+.linkBox > ul > li {
+    top: 20%;
+    font-size: 16px;
+    line-height: 30px;
+    text-align: center;
+    color: Black;
+    font-family: "Cormorant Garamond", serif;
+}
+
+.linkBox > ul > li:hover {
+    width: 100%;
+    transition: transform 0.3s ease;
+    transform: scale(1.1);
+}
+
+@media (max-width: 2100px){
+	#Bar > img, #Laundry > img{
+		width:60%;
 	}
+}
+
+@media (max-width: 1600px) {
+    #Bar > img, #Laundry > img {
+        font-size: 16px; /* 작은 화면에서 폰트 크기 줄임 */
+        width:40%;
+    }
+}
+
+/* 화면 크기가 1600px 이하일 때 */
+@media (max-width: 1600px) {
+    #Sauna, #Pool, #PoolSize,#Gym,#Restaurant,, #food, #line,#Bar, #Laundry {
+        font-size: 14px; /* 작은 화면에서 폰트 크기 줄임 */
+        width: 100%; 
+    }
+}
+
+/* 화면 크기가 1315px 이하일 때 */
+@media (max-width: 1315px{
+    #Sauna, #Pool, #PoolSize, #Gym,#Restaurant, #food, #line,#Bar, #Laundry {
+        font-size: 14px; /* 화면 크기에 맞춰 폰트 크기 줄이기 */
+        width: 1100px; 
+        height: auto;
+        min-width: 300px;
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 1117px) {
+    #Sauna, #Pool, #PoolSize, #Gym,#Restaurant, #food, #line,#Bar, #Laundry {
+        font-size: 13px; /* 화면 크기에 맞춰 폰트 크기 줄이기 */
+        width: 700px; 
+        height: auto;
+        min-width: 300px;
+        min-height: 400px;
+    }
+}
+
+/* 화면 크기가 768px 이하일 때 */
+@media (max-width: 768px) {
+    #Sauna, #Pool, #PoolSize,#Gym,#Restaurant, #food, #line,#Bar, #Laundry  {
+        font-size: 12px; /* 폰트 크기 추가로 줄이기 */
+        width: 768px; 
+        height: auto; 
+    }
+}
+
+@media (max-width: 600px) {
+    #Sauna, #Pool, #PoolSize,#Gym,#Restaurant, #food, #line,#Bar, #Laundry  {
+        font-size: 11px; /* 폰트 크기 추가로 줄이기 */
+        width: 400px; 
+        height: auto; 
+    }
+}
+
 </style>
 
 <link href="${pageContext.request.contextPath }/css/page/facility.css" rel="stylesheet" type="text/css"/>
@@ -115,8 +208,7 @@
 				<li>Laundry</li>
 			</ul>
 		</div>
-		<hr/>
-		<hr/>
+
 		<div id='Sauna'>
 			<img src="../img/page/facility/main.jpg" id="linkSauna"/>
 			<div>
@@ -133,8 +225,7 @@
 		};
 		</script>
 		
-		<hr/>
-		<hr/>
+
 		<div id=Pool>
 			<div>
 			<strong Class="text">Pool</strong><br/>
@@ -150,17 +241,16 @@
 			window.location.href = "facility/facil-pool-picture";
 		};
 		</script>
-		
-		<hr/>
-		<br/>
 		<div id="PoolSize">
 			<img src="../img/page/facility/Pool.jpg"/>
 		</div>
-		<br/>
-		<hr/>
+		
+		<div id="line2"/>
+		</div>
+
 		<br/>
 		<div id='Gym'>
-			<img src='../img/page/facility/Gym.jpg'/>
+			<img src='../img/page/facility/gym11.png' id="linkGym"/>
 			<div>
 			<strong Class="text">Gym</strong><br/>
 			여행 중에도 건강한 라이프스타일을 유지하고 싶은 고객님을 위해 준비되었습니다.<br/>
@@ -169,13 +259,20 @@
 			처음 시작하는 분들도 부담 없이 운동을 즐길 수 있습니다.
 			</div>
 		</div>
-		<br/>
-		<hr/>
+		<script>
+		document.getElementById('linkGym').onclick = function(){
+			window.location.href = "facility/facil-gym-picture";
+		};
+		</script>
+		<div id="line">
+		</div>
 		<div id="food">
 			<img src="../img/page/facility/food.jpg">
 		</div>
-		<hr/>
+		
 		<div id="Restaurant">
+			<div id="line3">
+			</div>
 			<div>
 				<strong Class="text">Restaurant</strong><br/>
 				우리 호텔의 식당은 맛과 분위기, 서비스가 어우러진 특별한 공간으로,<br/>
@@ -183,8 +280,7 @@
 			    다양한 메뉴와 정성스러운 요리로 고객님의 미각을 만족시킬 준비가 되어 있습니다.     <br/>	
 			</div>
 			<img src="../img/page/facility/Restaurant.jpg"/>
-			<hr/>
-		<hr/>
+
 		</div>
 		<div id="Bar">
 		    <img src="../img/page/facility/BarMain.jpg"/>
@@ -192,8 +288,7 @@
 		        <strong Class="text">Lounge & Bar</strong>
 		    </div>
 		</div>
-		<hr/>
-		<hr/>
+
 		<div id="Laundry">
 			<img src="../img/page/facility/Laundry.jpg"/>
 			<div>

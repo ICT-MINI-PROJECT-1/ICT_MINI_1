@@ -154,6 +154,10 @@ ul {
 	display:flex;
 }
 
+.footer a {
+    color: grey;
+}
+
 #footer-logo{
 	float:left;
 	width:30%;

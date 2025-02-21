@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.sc.main.dao.AdminDAO">
+	<select id="renderUserList" resultType="com.sc.main.vo.UserVO">
+		select * from user limit ${onePageRecord} offset ${offset}
+	</select>
+	<select id="renderReservList" resultType="com.sc.main.vo.ReservationVO">
+		select * from reservation limit ${onePageRecord} offset ${offset}
+	</select>
+	<!--
+	<select id="reviewDetail" resultType="com.sc.main.vo.ReviewVO">
+		select reviewno, subject, content, userid, roomno, rating, date_format(writedate, '%Y-%m-%d') writedate from review where reviewno=#{param1}
+	</select>
+	<insert id="reviewInsert">
+		insert into review (userid, roomno, rating, subject, content) 
+		values (#{userid}, #{roomno}, #{rating}, #{subject}, #{content})
+	</insert>
+	<update id="reviewUpdate">
+		update review set subject=#{subject}, content=#{content}, rating=${rating} 
+		where reviewno=${reviewno}
+	</update>
+	<delete id="reviewDelete">
+		delete from review where reviewno=${reviewno}
+	</delete>
+	-->
+	<select id="userTotalRecord" resultType="int">
+		select count(userid) cnt from user
+	</select>
+	<select id="reservTotalRecord" resultType="int">
+		select count(userid) cnt from reservation
+	</select>
+</mapper>
