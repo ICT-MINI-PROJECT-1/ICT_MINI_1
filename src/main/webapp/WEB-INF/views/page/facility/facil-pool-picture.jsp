@@ -6,43 +6,44 @@
 <style>
     #container {
         display: flex;
-        width:85%;
-        margin:10%;;
+        width:510px;
+        height:60vh;
+        margin:15%;;
     }
     #text{
     	font-family:"Cormorant Garamond", serif;
-   		border-bottom: 1px solid gray;
-   		height:9%;
+   		height:5vh;
+   		margin:3%;
    		color:gray;
     }
     #text2{
     	font-family:"Cormorant Garamond", serif;
-    	height:9%;
+    	height:12vh;
     	color:gray;
-    	margin-top:26.5%;
+    	margin:3%;
     }
 
     .SliderBox {
-        width: 80%;
+    	flex-shrink: 0;
+        width: 84.5%;
         margin: 0px auto;
-        overflow: hidden; /* 슬라이더 밖의 이미지 숨기기 */
+        overflow: hidden;/* 슬라이더 밖의 이미지 숨기기 */
         position: relative; /* 버튼을 위치시키기 위해 사용 */
         
     }
 
     /* 슬라이더의 이미지들 */
     #slider {
-    	width:20%;
+    	flex-shrink: 0;
+    	width:1550px;
         display: flex;
-        transition: transform 0.8s ease; /* 슬라이드 이동 부드럽게 하기 */
+        transition: transform 0.5s ease; /* 슬라이드 이동 부드럽게 하기 */
     }
 
     #slider img {
-        
+    	margin-top:1%;
+    	width:100%;
         height: auto;
-        
-        margin-right:10%;
-        border:1px solid #7A7A7A;
         box-shadow:10px 10px 15px  rgba(0, 0, 0, 0.1); 
     }
 
@@ -52,8 +53,8 @@
         top: 50%;
         transform: translateY(-50%);
         background-color: rgba(0, 0, 0, 0.2);
-        color: yellow;
-        border: none;
+        color: white;
+        border: 1px solid black;
         border-radius: 20%;
         padding: 15px;
         cursor: pointer;
@@ -67,27 +68,29 @@
     .next {
         right: 10px;
     }
+
+   
 </style>
 <div id="fade">
 <div id='container'>
 <hr/>
     <h1 id="text">Pool</h1>
-    <hr/>
+
     <div class="SliderBox">
         <div id="slider">
             <img src="${pageContext.request.contextPath}/img/page/facility/PoolMainSize.png" />
-            <img src="${pageContext.request.contextPath}/img/page/facility/sauna2.png" />
-            <img src="${pageContext.request.contextPath}/img/page/facility/sauna3.png"/>
-            <img src="${pageContext.request.contextPath}/img/page/facility/sauna4.jpg"/>
-            <img src="${pageContext.request.contextPath}/img/page/facility/sauna5.jpg"/>
-            <img src="${pageContext.request.contextPath}/img/page/facility/sauna6.jpg"/>
-            <img src="${pageContext.request.contextPath}/img/page/facility/sauna7.jpg"/>
+            <img src="${pageContext.request.contextPath}/img/page/facility/Pool2.jpg" />
+            <img src="${pageContext.request.contextPath}/img/page/facility/Pool4.jpg"/>
+            <img src="${pageContext.request.contextPath}/img/page/facility/Pool5.jpg"/>
+            <img src="${pageContext.request.contextPath}/img/page/facility/Pool3.jpg"/>
+            <img src="${pageContext.request.contextPath}/img/page/facility/Pool6.jpg"/>
         </div>
         <button class="prev" onclick="moveSlide(-1)">❮</button>
         <button class="next" onclick="moveSlide(1)">❯</button>
 	    </div>
-	    <hr/>
+	    
 	    <h1 id="text2">1F</h1>
+	    <hr/>
 	</div>
 </div>
 <script>
@@ -95,32 +98,38 @@
 
     
     let slides;
-    let totalSlides;
-
+    let totalSlides = 7; //---------------------- 사진갯수 -1
     
     function moveSlide(step) {
+    	
+    	const move = 14.5; //----------------- 움직일 거리
+ 
      	console.log(totalSlides);
         currentIndex += step;
 
-        if (currentIndex >= 10) {
-            currentIndex = 0;
-        } else if (currentIndex < 0) {
-            currentIndex = totalSlides - -2;
-        }
-
+		if (currentIndex < 0){
+			 currentIndex = 0;
+		}else if (currentIndex >= totalSlides) {
+	        currentIndex = totalSlides - 1;
+		}
+		if (currentIndex >= 11){
+			currentIndex = 11;
+		}
+		
         // 슬라이드 이동 (X축으로 이동)
         const slider = document.getElementById('slider');
         if (slider) {
-            slider.style.transform = "translateX("+(-currentIndex)*84.7 +"%)"; // 슬라이드를 이동
+            slider.style.transform = "translateX("+(-currentIndex * move) +"%)"; // 슬라이드를 이동
             console.log(`Moved to slide` +currentIndex+ `, transform: `+slider.style.transform);
         }
     }
+   
 
     document.addEventListener("DOMContentLoaded", function() {
         const slider = document.getElementById('slider');
         if (slider) {
             slides = slider.querySelectorAll('img');
-            totalSlides = slides.length;
+            totalSlides = 11;
         }
 
         const prevButton = document.querySelector('.prev');
@@ -139,3 +148,5 @@
         }
     });
 </script>
+
+

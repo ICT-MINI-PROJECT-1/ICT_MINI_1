@@ -2,34 +2,34 @@ package com.sc.main.vo;
 
 public class DiningVO {
 	
-	private String Category;
-	private String dishName;
-	private String dateOfManufacture;
+	private String foodType;
+	private String subject;
+	private String content;
 	
 	
-	public String getCategory() {
-		return Category;
+	public String getFoodType() {
+		return foodType;
 	}
-	public void setCategory(String category) {
-		Category = category;
+	public void setFoodType(String foodType) {
+		this.foodType = foodType;
 	}
-	public String getDishName() {
-		return dishName;
+	public String getSubject() {
+		return subject;
 	}
-	public void setDishName(String dishName) {
-		this.dishName = dishName;
+	public void setSubject(String subject) {
+		this.subject = subject;
 	}
-	public String getDateOfManufacture() {
-		return dateOfManufacture;
+	public String getContent() {
+		return content;
 	}
-	public void setDateOfManufacture(String dateOfManufacture) {
-		this.dateOfManufacture = dateOfManufacture;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	
 	
 	@Override
 	public String toString() {
-		return "DiningVO [음식종류 = " + Category + ", 음식종류 = " + dishName + ", 제조일 = " + dateOfManufacture+ "]";
-	}
+		return "DiningVO [음식종류=" + foodType + ", 제목=" + subject + ", 내용=" + content + "]";
+	}	
 }
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:if test="${loginStatus !='A' }">
 	<ul class="footer">
 		<li id="footer-logo">
         <ul>
@@ -25,3 +26,4 @@
 	</ul>
 </body>
 </html>
+</c:if>

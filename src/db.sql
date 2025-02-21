@@ -104,6 +104,28 @@ CREATE TABLE IF NOT EXISTS `artpart`.`reviewimg` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+DELIMITER $$
+	create trigger insert_review
+	after insert
+	on review
+	for each row
+	begin
+		UPDATE room SET rating = 
+		(select sum(rating)/count(rating) from review where roomno=new.roomno) where roomno=new.roomno;
+    END $$
+DELIMITER ;
+
+DELIMITER $$
+	create trigger update_review
+	after update
+	on review
+	for each row
+	begin
+		UPDATE room SET rating = 
+		(select sum(rating)/count(rating) from review where roomno=new.roomno) where roomno=new.roomno;
+    END $$
+DELIMITER ;
+
 insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area) values(301,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',200000,'double','view',4,20);
 insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(302,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',205000,'double','view',4,21);
 insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(303,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',150000,'single','view',2,14);
@@ -150,6 +172,7 @@ insert into user values('test4222','test4222!!','육건모','010-6385-4676','rjs
 insert into user values('test5222','test5222!!','칠건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
 insert into user values('test6222','test6222!!','팔건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
 insert into user values('test7222','test7222!!','구건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
+insert into user values('admin','admin','관리자','0','0',0,'0','0','0');
 
 insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-03-01',2,'냠냠','test1111',301);
 insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-03-02',2,'냠냠','test2222',301);
@@ -179,5 +202,11 @@ insert into review (subject, content, userid, roomno, rating)
 values ("501호 추천합니다.", "501호 강력추천, 501호 강력추천, 501호 강력추천", "test1234", 504, 4.8);
 insert into review (subject, content, userid, roomno, rating)
 values ("602호 추천합니다.", "602호 강력추천, 602호 강력추천, 602호 강력추천", "test1234", 602, 3.2);
+
+insert into reservation(reservdate,usercnt,request,userid,roomno)
+values('2025-01-05',4,'ㅎㅎ','test1234',301);
+
+insert into reservation(reservdate,usercnt,request,userid,roomno)
+values('2025-02-20',4,'ㅎㅎ','test1234',403);
 
 commit;

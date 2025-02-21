@@ -29,11 +29,11 @@ public class ReviewController {
 	@PostMapping("/modalReview")
 	@ResponseBody
 	public ReviewVO modalReview(@RequestBody String reviewno) {
-		System.out.println(reviewno);
+		//System.out.println(reviewno);
 		return service.reviewDetail(Integer.parseInt(reviewno));
 	}
 
-	//¸®ºä ÀÛ¼º
+	//¸®ºä ÀÛ¼ºÆû
 	@GetMapping("/write")
 	public String reviewWrite() {
 		return "page/review/review_write";
@@ -58,9 +58,48 @@ public class ReviewController {
 		return mav;
 	}
 
-	//¸®ºä ¼öÁ¤
+	//¸®ºä ¼öÁ¤Æû
+	@PostMapping("/edit")
+	public ModelAndView reviewEdit(String reviewno) {
+		mav = new ModelAndView();
+		System.out.println(reviewno);
+		mav.addObject("vo", service.reviewDetail(Integer.parseInt(reviewno)));	
+		mav.setViewName("page/review/review_edit");
+		
+		return mav;
+	}
+	
+	//¸®ºä ¼öÁ¤(DB)
+	@PostMapping("/editOk")
+	public ModelAndView reviewEdit(ReviewVO vo) {
+		int result = service.reviewUpdate(vo);
+		System.out.println(vo.toString());
+		
+		mav = new ModelAndView();
+		if(result>0) {
+			mav.setViewName("redirect:/page/review");
+		}else {
+			mav.setViewName("page/review/review_result");
+		}
+		
+		return mav;
+	}
 
 	//¸®ºä »èÁ¦
+	@PostMapping("/delete")
+	public ModelAndView reviewDelete(String reviewno) {
+		int result = service.reviewDelete(Integer.parseInt(reviewno));
+		
+		mav = new ModelAndView();
+		
+		if(result>0) {
+			mav.setViewName("redirect:/page/review");
+		}else {
+			mav.setViewName("page/review/review_result");
+		}
+		
+		return mav;
+	}
 
 	//¸®ºä °Ë»ö
 	

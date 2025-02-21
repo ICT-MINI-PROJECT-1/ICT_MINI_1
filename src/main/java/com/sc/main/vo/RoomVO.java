@@ -12,7 +12,7 @@ public class RoomVO {
 	private int reservno;
 	private String checkin;
 	private String checkout;
-	private int rating;
+	private float rating;
 	public int getRoomno() {
 		return roomno;
 	}
@@ -86,10 +86,10 @@ public class RoomVO {
 	public void setCheckout(String checkout) {
 		this.checkout = checkout;
 	}
-	public int getRating() {
+	public float getRating() {
 		return rating;
 	}
-	public void setRating(int rating) {
+	public void setRating(float rating) {
 		this.rating = rating;
 	}
 }

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <link href="${pageContext.request.contextPath }/css/page/room.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/page/room.js"></script>
@@ -123,14 +124,15 @@
 						</li>
 						<li>
 							<div class="star-box">
-								<div class="star-fill" style="width:90%;position:absolute;
+
+								<div class="star-fill" style="width:${data.rating*20}%; position:absolute;
 	height:100%;
 	background:url('../../img/public/star_fill.png') no-repeat;
 	background-size:cover;
 	z-index:2;
 	will-change: transform;"></div>
 							</div>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${data.rating}
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${data.rating }" pattern="0.0"/>
 						</li>
 					</ul>
 				<!-- <ul class="item-bottom">
