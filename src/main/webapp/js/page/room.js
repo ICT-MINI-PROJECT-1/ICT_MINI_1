@@ -68,7 +68,6 @@ function moveToRoom(loc) {
     obj.setAttribute('value', loc);
 	f.appendChild(obj);
     f.submit();
-	//location.href="/page/room/list?loc="+loc;
 }
 
 function renderList(arg,path){
@@ -117,9 +116,9 @@ function openModal(data){
 			document.getElementById("contents-price").innerHTML=data.price;
 			document.getElementById("contents-rating").innerHTML=`
 				<div class="modal-star-box">
-					<div class="modal-star-fill" style="width:90%"></div>
+					<div class="modal-star-fill" style="width:`+data.rating*20+`%"></div>
 				</div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			` + data.rating;
+			` + data.rating.toFixed(1);
 		}).catch(err=> {
 		console.log(err);
 	});

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sc.main.service.ReviewService;
+import com.sc.main.vo.PagingVO;
 import com.sc.main.vo.ReviewVO;
 
 @Controller
@@ -63,10 +64,15 @@ public class PageController {
 	}
 	
 	@GetMapping("/review")
-	public ModelAndView review(){
-		List<ReviewVO> list = review_service.reviewSelect();
+	public ModelAndView review(PagingVO pVO){
+		System.out.println(pVO.toString());
+		pVO.setTotalRecord(review_service.reviewTotalRecord(pVO));
+		
+		
+		List<ReviewVO> list = review_service.reviewSelect(pVO);
 
 		mav = new ModelAndView();
+		mav.addObject("pVO", pVO);
 		mav.addObject("list", list);
 		mav.setViewName("page/review/review_main");
 		return mav;

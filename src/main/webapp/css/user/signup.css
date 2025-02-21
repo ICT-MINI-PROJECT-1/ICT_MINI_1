@@ -197,28 +197,64 @@
 	padding-bottom:1%;
 }
 
-.mypage-container-reserv ul>li:nth-child(6n+1) {
+.wish_list>li:nth-child(6n+1) {
+	width:13.2%;
+}
+
+.wish_list>li:nth-child(6n+2) {
+	width:20%;
+}
+
+.wish_list>li:nth-child(6n+3) {
 	width:16.6%;
 }
 
-.mypage-container-reserv ul>li:nth-child(6n+2) {
+.wish_list>li:nth-child(6n+4) {
 	width:16.6%;
 }
 
-.mypage-container-reserv ul>li:nth-child(6n+3) {
+.wish_list>li:nth-child(6n+5) {
 	width:16.6%;
 }
 
-.mypage-container-reserv ul>li:nth-child(6n+4) {
+.wish_list>li:nth-child(6n+6) {
 	width:16.6%;
 }
 
-.mypage-container-reserv ul>li:nth-child(6n+5) {
-	width:16.6%;
+.reserv-ul>li:nth-child(5n+1) {
+	width:18%;
+}
+.reserv-ul>li:nth-child(5n+2) {
+	width:12%;
+}
+.reserv-ul>li:nth-child(5n+3) {
+	width:12%;
+}
+.reserv-ul>li:nth-child(5n+4) {
+	width:25%;
+}
+.reserv-ul>li:nth-child(5n+5) {
+	width:33%;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+.reserv-lm{
+	width:80%;
+	margin:auto;
+	font-family:'Gowun Batang';
+	text-align:center;
+	color: #6A3D17;
+	font-size:18px;
+	padding:5px;
 }
 
-.mypage-container-reserv ul>li:nth-child(6n+6) {
-	width:16.6%;
+.no-reserv{
+	width:80%;
+	margin:auto;
+	font-family:'Gowun Batang';
+	text-align:center;
+	font-size:15px;
 }
 
 @media (min-width:1500px){

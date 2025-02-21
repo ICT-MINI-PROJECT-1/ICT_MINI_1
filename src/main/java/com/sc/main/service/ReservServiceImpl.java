@@ -35,4 +35,9 @@ public class ReservServiceImpl implements ReservService {
 		return dao.deleteReservation(reservno);
 	}
 
+	@Override
+	public List<ReservationVO> selectLastReservation(String userid) {
+		return dao.selectLastReservation(userid);
+	}
+
 }
