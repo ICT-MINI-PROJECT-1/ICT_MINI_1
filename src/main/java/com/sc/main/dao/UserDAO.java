@@ -1,5 +1,8 @@
 package com.sc.main.dao;
 
+import java.util.List;
+
+import com.sc.main.vo.RoomVO;
 import com.sc.main.vo.UserVO;
 
 public interface UserDAO {
@@ -12,4 +15,6 @@ public interface UserDAO {
 	public UserVO userSelect(String userid);
 	
 	public int userUpdate(UserVO vo);
+	
+	public List<RoomVO> selectWishList(String userid);
 }

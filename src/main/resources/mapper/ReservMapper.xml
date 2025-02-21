@@ -8,7 +8,7 @@
 		insert into reservation(reservdate,usercnt,request,userid,roomno) values(#{reservdate},#{usercnt},#{request},#{userid},#{roomno})
 	</insert>
 	<select id="selectReservation" resultType="com.sc.main.vo.ReservationVO">
-		select * from reservation where userid=#{param1}
+		select * from reservation where userid=#{param1} and reservdate > now()
 	</select>
 	<select id="selectReservationByRoom" resultType="com.sc.main.vo.ReservationVO">
 		select * from reservation where roomno=#{param1}
@@ -16,4 +16,7 @@
 	<delete id="deleteReservation">
 		delete from reservation where reservno=#{param1}
 	</delete>
+	<select id="selectLastReservation" resultType="com.sc.main.vo.ReservationVO">
+		select * from reservation where userid=#{param1} and now() > reservdate
+	</select>
 </mapper>
