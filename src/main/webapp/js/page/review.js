@@ -10,6 +10,8 @@ var review_title;
 var review_moving=0;
 var review_state=0;
 
+var selected_reviewno;
+
 window.addEventListener("wheel", (e) => {
 	if(review_title!=null && review_wrap!=null && window.scrollY==0) {
 		if (e.wheelDelta > 0 || e.detail < 0){
@@ -71,10 +73,7 @@ function closeModal(){
 		document.getElementById("review-list-modal").style.display = "none";
 }
 
-var selected_reviewno;
-
 function reviewEdit(){
-	alert(selected_reviewno);
 	let f = document.createElement('form');
 	f.setAttribute('method','post');
 	f.setAttribute('action','review/edit');
@@ -85,6 +84,21 @@ function reviewEdit(){
 	obj.setAttribute('type','hidden');
 	obj.setAttribute('name','reviewno');
 	obj.setAttribute('value', selected_reviewno);
+	f.appendChild(obj);
+	f.submit();
+}
+
+function reviewDelete(){
+	let f = document.createElement('form');
+	f.setAttribute('method','post');
+	f.setAttribute('action','review/delete');
+	document.getElementById('review-list-modal').appendChild(f);
+	
+	let obj;
+	obj = document.createElement('input');
+	obj.setAttribute('type','hidden');
+	obj.setAttribute('name','reviewno');
+	obj.setAttribute('value',selected_reviewno);
 	f.appendChild(obj);
 	f.submit();
 }

@@ -136,6 +136,9 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+#paging{
+	display: flex;
+}
 
 /* 모달 반응형 */
 #review-list-modal{
