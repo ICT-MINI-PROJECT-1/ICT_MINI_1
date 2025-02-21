@@ -63,7 +63,14 @@ public class UserController {
 		session.setAttribute("loginId", cu.getUserid());
 		session.setAttribute("loginName", cu.getUsername());
 		session.setAttribute("loginStatus", "Y");
-		mav.setViewName("redirect:/");
+		if(userid.equals("admin")) {
+			session.setAttribute("loginStatus", "A");
+			mav.setViewName("redirect:/");
+		}
+		else { 
+			session.setAttribute("loginStatus", "Y");
+			mav.setViewName("redirect:/");
+		}
 		return mav;
 	}
 	@GetMapping("logout")
