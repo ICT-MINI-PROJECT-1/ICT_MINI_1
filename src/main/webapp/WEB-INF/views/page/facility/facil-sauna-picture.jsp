@@ -70,7 +70,7 @@
     }
     
     #line{
-    	display:none;
+    display:list-item;
     	align-items: center;
    	    justify-content: center;
     	line-height: 30px;

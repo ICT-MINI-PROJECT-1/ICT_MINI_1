@@ -77,6 +77,8 @@
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
 }
 
+
+
 #Restaurant > img {
     width: 100%;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
@@ -127,65 +129,23 @@
     transform: scale(1.1);
 }
 
-@media (max-width: 2100px){
-	#Bar > img, #Laundry > img{
-		width:60%;
+@media (max-width:900px){
+	#Sauna > #linkSauna, #Pool > img{
+		width:200px;
+	}
+	#Sauna > #SaunaText {
+		width:400px;
+		font-size:14px;
+		flex-shrink: 0;
+  		flex-grow: 0; 
+	}
+	#Pool > #PoolText {
+		width:550px;
+		font-size:14px;
+		flex-shrink: 0;
+   		flex-grow: 0; 
 	}
 }
-
-@media (max-width: 1600px) {
-    #Bar > img, #Laundry > img {
-        font-size: 16px; /* 작은 화면에서 폰트 크기 줄임 */
-        width:40%;
-    }
-}
-
-/* 화면 크기가 1600px 이하일 때 */
-@media (max-width: 1600px) {
-    #Sauna, #Pool, #PoolSize,#Gym,#Restaurant,, #food, #line,#Bar, #Laundry {
-        font-size: 14px; /* 작은 화면에서 폰트 크기 줄임 */
-        width: 100%; 
-    }
-}
-
-/* 화면 크기가 1315px 이하일 때 */
-@media (max-width: 1315px{
-    #Sauna, #Pool, #PoolSize, #Gym,#Restaurant, #food, #line,#Bar, #Laundry {
-        font-size: 14px; /* 화면 크기에 맞춰 폰트 크기 줄이기 */
-        width: 1100px; 
-        height: auto;
-        min-width: 300px;
-        min-height: 400px;
-    }
-}
-
-@media (max-width: 1117px) {
-    #Sauna, #Pool, #PoolSize, #Gym,#Restaurant, #food, #line,#Bar, #Laundry {
-        font-size: 13px; /* 화면 크기에 맞춰 폰트 크기 줄이기 */
-        width: 700px; 
-        height: auto;
-        min-width: 300px;
-        min-height: 400px;
-    }
-}
-
-/* 화면 크기가 768px 이하일 때 */
-@media (max-width: 768px) {
-    #Sauna, #Pool, #PoolSize,#Gym,#Restaurant, #food, #line,#Bar, #Laundry  {
-        font-size: 12px; /* 폰트 크기 추가로 줄이기 */
-        width: 768px; 
-        height: auto; 
-    }
-}
-
-@media (max-width: 600px) {
-    #Sauna, #Pool, #PoolSize,#Gym,#Restaurant, #food, #line,#Bar, #Laundry  {
-        font-size: 11px; /* 폰트 크기 추가로 줄이기 */
-        width: 400px; 
-        height: auto; 
-    }
-}
-
 </style>
 
 <link href="${pageContext.request.contextPath }/css/page/facility.css" rel="stylesheet" type="text/css"/>
@@ -211,7 +171,7 @@
 
 		<div id='Sauna'>
 			<img src="../img/page/facility/main.jpg" id="linkSauna"/>
-			<div>
+			<div id="SaunaText">
 				<strong Class="text">Spa & Sauna</strong><br/>
 				<br/>
 				마음과 몸을 재충전하는 특별한 경험을 제공하는 고급스러운 시설과 세심한 서비스로 고객님께 최상의 휴식을 선사합니다.<br/>
@@ -227,7 +187,7 @@
 		
 
 		<div id=Pool>
-			<div>
+			<div id="PoolText">
 			<strong Class="text">Pool</strong><br/>
 			실내와 실외 수영장 모두 준비되어 있어 날씨와 관계없이 언제든지 즐길 수 있습니다.<br/>
 			실내 수영장에서는 탁월한 온도 조절 시스템 덕분에 사계절 내내 편안한 수영이 가능하며,<br/>
