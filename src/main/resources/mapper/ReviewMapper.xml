@@ -15,4 +15,8 @@
 		insert into review (userid, roomno, rating, subject, content) 
 		values (#{userid}, #{roomno}, #{rating}, #{subject}, #{content})
 	</insert>
+	<update id="reviewUpdate">
+		update review set subject=#{subject}, content=#{content}, rating=${rating} 
+		where reviewno=${reviewno}
+	</update>
 </mapper>
