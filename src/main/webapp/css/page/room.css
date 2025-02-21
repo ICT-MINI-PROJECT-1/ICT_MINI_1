@@ -131,6 +131,15 @@
 	margin-bottom:2vw;
 }
 
+#titlecomment p {
+    font-family: 'Gowun Batang'; /* 폰트 */
+    font-size: 1.3vw; /* 글자 크기 */
+    text-align:center;
+    color: #6A3D17; /* 글자 색상 */
+    line-height: 1.6; /* 줄 간격 */
+    margin-bottom: 20px; /* 아래 여백 */
+}
+
 .room-list-grid-box {
 	padding-top:40px;
 	padding-bottom:40px;
@@ -261,6 +270,9 @@
 
 #modal-contents{
 	width:100%;
+	display: flex; /* flexbox 레이아웃 사용 */
+    flex-direction: column; /* 세로 방향 정렬 */
+    max-height: 80%; /* 최대 높이 설정 (조절 가능) */	
 }
 
 .star-box{
@@ -296,10 +308,13 @@ pre {
 	box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
     1px 1px 1px 0px rgba(0,0,0,.6),
     1px 1px 1px 0px rgba(0,0,0,.6);
+    flex-shrink: 0; 
+    overflow: hidden; 
 }
+    
 #modal-contents>ul:nth-child(1){
-	height:8vw;
-	margin-top:0px;
+	height: auto; 
+    margin-top: 0;
 }
 #modal-contents>ul:nth-child(5){
 	justify-content:center;
@@ -335,6 +350,25 @@ pre {
 	width:15%;
 	border-bottom:2px solid #E0E0E0;
 	border-right:2px solid #E0E0E0;
+}
+
+#contents-roominfo {
+    overflow-y: auto; 
+    max-height: 100%; 
+    padding-right: 15px; 
+    flex-grow: 1; 
+}
+
+#contents-roominfo pre {
+    white-space: pre-wrap; 
+    overflow-wrap: break-word; 
+    line-height: 1.6; 
+}
+
+#modal-contents pre {
+    white-space: pre-wrap; 
+    overflow-wrap: break-word; 
+    line-height: 1.6; 
 }
 /*
 .modal-star-blank{
