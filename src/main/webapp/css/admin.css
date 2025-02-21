@@ -1,9 +1,10 @@
 .admin-container{
 	margin:auto;
 	display:grid;
-	grid-template-columns: 0.3fr 1fr;
-	width:1024px;
-	height:100%;
+	grid-template-columns: 0.15fr 1fr;
+	width:1400px;
+	height:660px;
+	overflow:scroll;
 }
 
 .admin-list{
@@ -27,4 +28,41 @@
 h1{
 	width:100%;
 	text-align:center;
+}
+#user-box, #reserv-box{
+	display:flex;
+	padding:0;
+	margin:0;
+	list-style-type:none;
+}
+#user-box>li, #reserv-box>li{
+	float:left;
+	width:15%;
+	text-align:center;
+	border:1px solid #ddd;
+}
+#user-box>li:nth-child(9n+5) {
+	width:30%;
+}
+#reserv-box>li:nth-child(6n+1){
+	width:10%;
+}
+#reserv-box>li:nth-child(6n+3){
+	width:10%;
+}
+#reserv-box>li:nth-child(6n+6){
+	width:30%;
+}
+#page-box{
+	width:100%;
+	display:flex;
+	padding:0;
+	margin:0;
+	list-style-type:none;
+	justify-content:center;
+}
+#page-box>li{
+	padding:5px;
+	cursor:pointer;
+	font-size:25px;
 }
