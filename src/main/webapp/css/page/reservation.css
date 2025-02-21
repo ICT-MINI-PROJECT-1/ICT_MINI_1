@@ -43,9 +43,10 @@
 	width:80%;
 	height:60vw;
 	left:10%;
-	background:url('../../img/page/reservation/reservation_main.jpg');
-	background-size:cover;
-	background-positoin:center;
+	background:url('../../img/page/reservation/reservation-3.jpg');
+	background-size: cover;
+	background-position:center;
+	
 	margin:0 auto;
 	margin-top: 200px;
 	margin-bottom:100px;
