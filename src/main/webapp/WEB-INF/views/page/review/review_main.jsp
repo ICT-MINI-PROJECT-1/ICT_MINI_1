@@ -71,7 +71,7 @@
 				</ul>
 				<div id="modal-content"></div>
 				<div id="btn">
-					<input type="button" value="수정">
+					<input type="button" value="수정" onclick="reviewEdit()">
 					<input type="button" value="삭제">
 				</div>
 			</div>

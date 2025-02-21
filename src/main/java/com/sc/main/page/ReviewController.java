@@ -33,7 +33,7 @@ public class ReviewController {
 		return service.reviewDetail(Integer.parseInt(reviewno));
 	}
 
-	//∏Æ∫‰ ¿€º∫
+	//∏Æ∫‰ ¿€º∫∆˚
 	@GetMapping("/write")
 	public String reviewWrite() {
 		return "page/review/review_write";
@@ -58,7 +58,35 @@ public class ReviewController {
 		return mav;
 	}
 
-	//∏Æ∫‰ ºˆ¡§
+	//∏Æ∫‰ ºˆ¡§∆˚
+	@PostMapping("/edit")
+	public ModelAndView reviewEdit(String reviewno) {
+		mav = new ModelAndView();
+		
+		mav.addObject("vo", service.reviewDetail(Integer.parseInt(reviewno)));	
+		mav.setViewName("page/review/review_edit");
+		
+		System.out.println(reviewno);
+		
+		return mav;
+	}
+	
+	//∏Æ∫‰ ºˆ¡§(DB)
+	@PostMapping("/editOk")
+	public ModelAndView reviewEdit(ReviewVO vo) {
+		int result = service.reviewUpdate(vo);
+		
+		mav = new ModelAndView();
+		if(result>0) {
+			mav.setViewName("redirect:/page/review");
+		}else {
+			mav.setViewName("review/review_result");
+		}
+		
+		return mav;
+	}
+	
+	
 
 	//∏Æ∫‰ ªË¡¶
 
