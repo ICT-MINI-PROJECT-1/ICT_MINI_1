@@ -172,6 +172,7 @@ insert into user values('test4222','test4222!!','육건모','010-6385-4676','rjs
 insert into user values('test5222','test5222!!','칠건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
 insert into user values('test6222','test6222!!','팔건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
 insert into user values('test7222','test7222!!','구건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
+insert into user values('admin','admin','관리자','0','0',0,'0','0','0');
 
 insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-03-01',2,'냠냠','test1111',301);
 insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-03-02',2,'냠냠','test2222',301);

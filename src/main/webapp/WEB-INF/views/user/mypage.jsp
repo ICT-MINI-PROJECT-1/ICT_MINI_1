@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <link href="${pageContext.request.contextPath }/css/user/signup.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/user/signup.js"></script>
@@ -118,7 +119,7 @@
 					${data.price }
 				</li>
 				<li>
-					${data.rating }
+				<fmt:formatNumber value="${data.rating }" pattern="0.0"/>
 				</li>
 			</ul>
 			</c:forEach>
@@ -190,7 +191,7 @@
 			</c:if>
 		</div>
 		<div class="mypage-container-info">
-			<div id="signup-title">My Page</div>
+			<div id="signup-title">My Info</div>
 			<form name="signupEditForm" method="post" action="signUpEditChk">
 				<div id="signup-box">
 					<div id="signup-left"><div id="idpw">ID</div><div id="hidden-height">I</div></div> <div id="signup-right"><input type="text" id="userid" name="userid" value="${vo.userid}" readonly/><div id="alert-id">Invalid ID</div></div>

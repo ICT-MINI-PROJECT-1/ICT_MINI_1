@@ -22,8 +22,12 @@
 	 	<mvc:interceptor>
 			<mvc:mapping path="/page/reservation"/>
 			<mvc:mapping path="/page/reservation/form"/>
-			<mvc:mapping path="/user/mypage"/>	
+			<mvc:mapping path="/user/mypage"/>
 			<bean class="com.sc.main.LoginInterceptor"></bean>
+	 	</mvc:interceptor>
+	 	<mvc:interceptor>
+			<mvc:mapping path="/admin"/>	
+			<bean class="com.sc.main.AdminInterceptor"></bean>
 	 	</mvc:interceptor>
 	 </mvc:interceptors>
 </beans>
