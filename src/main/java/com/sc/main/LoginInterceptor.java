@@ -16,7 +16,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 		if(loginStatus==null || !loginStatus.equals("Y")) {
 			response.sendRedirect(request.getContextPath()+"/user/login");
 		}
-		
 		return true;
 	}
 }
