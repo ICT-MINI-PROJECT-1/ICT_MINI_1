@@ -6,7 +6,20 @@
   
 <mapper namespace="com.sc.main.dao.ReviewDAO">
 	<select id="reviewSelect" resultType="com.sc.main.vo.ReviewVO">
-		select * from review limit ${onePageRecord} offset ${offset}
+		select * from review 
+		<if test="searchWord!=null and searchWord!=''">
+			<choose>
+				<when test="searchKey!='total'">
+					where ${searchKey} like '%${searchWord}%'
+				</when>
+				<otherwise>
+					where subject like '%${searchWord}%'
+					or content like '%${searchWord}%'
+					or roomno like '%${searchWord}%'
+				</otherwise>
+			</choose>
+		</if>
+		limit ${onePageRecord} offset ${offset}
 	</select>
 	<select id="reviewDetail" resultType="com.sc.main.vo.ReviewVO">
 		select reviewno, subject, content, userid, roomno, rating, date_format(writedate, '%Y-%m-%d') writedate from review where reviewno=#{param1}
@@ -24,5 +37,17 @@
 	</delete>
 	<select id="reviewTotalRecord" resultType="int">
 		select count(reviewno) cnt from review
+		<if test="searchWord!=null and searchWord!=''">
+			<choose>
+				<when test="searchKey!='total'">
+					where ${searchKey} like '%${searchWord}%'
+				</when>
+				<otherwise>
+					where subject like '%${searchWord}%'
+					or content like '%${searchWord}%'
+					or roomno like '%${searchWord}%'
+				</otherwise>
+			</choose>
+		</if>
 	</select>
 </mapper>

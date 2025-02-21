@@ -65,9 +65,8 @@ public class PageController {
 	
 	@GetMapping("/review")
 	public ModelAndView review(PagingVO pVO){
+		System.out.println(pVO.toString());
 		pVO.setTotalRecord(review_service.reviewTotalRecord(pVO));
-		
-		//System.out.println(pVO.toString());
 		
 		
 		List<ReviewVO> list = review_service.reviewSelect(pVO);

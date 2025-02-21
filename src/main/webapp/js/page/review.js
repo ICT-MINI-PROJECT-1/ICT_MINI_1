@@ -11,7 +11,8 @@ var review_moving=0;
 var review_state=0;
 
 var selected_reviewno;
-
+var selected_userid;
+var selected_session_id;
 window.addEventListener("wheel", (e) => {
 	if(review_title!=null && review_wrap!=null && window.scrollY==0) {
 		if (e.wheelDelta > 0 || e.detail < 0){
@@ -44,8 +45,8 @@ where="review";
 window.onload = function(){
 	closeModal();
 }
-function openModal(reviewno){
-	selected_reviewno=reviewno;
+function openModal(reviewno,userid,sessionid){
+	document.getElementById("btn").style.display='none';
 	document.getElementById("review-list-modal").style.display = "block";
 	
 	fetch("/page/review/modalReview",{
@@ -67,6 +68,7 @@ function openModal(reviewno){
 	}).catch(error => {
 		console.log(error);
 	});
+	if(userid == sessionid) document.getElementById("btn").style.display='block';
 }
 function closeModal(){
 	if(document.getElementById("review-list-modal")!=null)
@@ -102,3 +104,11 @@ function reviewDelete(){
 	f.appendChild(obj);
 	f.submit();
 }
+
+
+//function reviewPrevPage(pageNum){
+	//let f = document.createElement('form');
+	//f.setAttribute('method','post');
+	//f.setAttribute('action','review');
+	//document.getElementById('').appendChild(f);
+//}

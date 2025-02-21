@@ -136,8 +136,19 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.review-list-title>li:nth-child(1):hover{
+	font-weight: bold;
+	cursor: pointer;
+}
 #paging{
 	display: flex;
+	width: 30%;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+#paging>li{
+	width: 20%;
+	background: red;
 }
 
 /* 모달 반응형 */

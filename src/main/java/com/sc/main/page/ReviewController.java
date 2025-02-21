@@ -29,7 +29,7 @@ public class ReviewController {
 	@PostMapping("/modalReview")
 	@ResponseBody
 	public ReviewVO modalReview(@RequestBody String reviewno) {
-		System.out.println(reviewno);
+		//System.out.println(reviewno);
 		return service.reviewDetail(Integer.parseInt(reviewno));
 	}
 
