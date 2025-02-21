@@ -23,4 +23,11 @@ public class FacilityController {
 		mav.setViewName("page/facility/facil-pool-picture");
 		return mav;
 	}
+	@GetMapping("/facil-gym-picture")
+	public ModelAndView gym(){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("page","facility");
+		mav.setViewName("page/facility/facil-gym-picture");
+		return mav;
+	}
 }
