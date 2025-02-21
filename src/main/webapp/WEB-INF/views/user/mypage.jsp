@@ -2,6 +2,7 @@
 
 <link href="${pageContext.request.contextPath }/css/user/signup.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/user/signup.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/mypage.js"></script>
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <script>
@@ -59,7 +60,7 @@
 	<div class="mypage-wrap">
 		<div class="mypage-container-reserv">
 			<div id="signup-title">WishList</div>
-			<ul id="mr-title">
+			<ul class="wish_list" id="mr-title">
 				<li>
 					방 번호
 				</li>
@@ -79,52 +80,114 @@
 					평점
 				</li>
 			</ul>
-			<ul>
+			<c:forEach var="data" items="${rvo}">
+			<ul class="wish_list">
 				<li>
-					000
+					<c:if test="${data.roomconcept=='contemp'}">
+						<a href="#" onclick="moveToRoom('contemp')">${data.roomno}</a>
+					</li>
+					<li>
+						현대풍
+					</c:if>
+					<c:if test="${data.roomconcept=='artnou'}">
+						<a href="#" onclick="moveToRoom('artnou')">${data.roomno}</a>
+					</li>
+					<li>
+						아르누보풍
+					</c:if>
+					<c:if test="${data.roomconcept=='artdec'}">
+						<a href="#" onclick="moveToRoom('artdec')">${data.roomno}</a>
+					</li>
+					<li>
+						아르데코풍
+					</c:if>
+					<c:if test="${data.roomconcept=='asian'}">
+						<a href="#" onclick="moveToRoom('asain')">${data.roomno}</a>
+					</li>
+					<li>
+						동양풍
+					</c:if>
 				</li>
 				<li>
-					000
+					${data.checkin }
 				</li>
 				<li>
-					000
+					${data.checkout }
 				</li>
 				<li>
-					000
+					${data.price }
 				</li>
 				<li>
-					000
-				</li>
-				<li>
-					000
+					${data.rating }
 				</li>
 			</ul>
-			<ul>
-				<li>
-					000
-				</li>
-				<li>
-					000
-				</li>
-				<li>
-					000
-				</li>
-				<li>
-					000
-				</li>
-				<li>
-					000
-				</li>
-				<li>
-					000
-				</li>
-			</ul>
+			</c:forEach>
 			<div id="signup-title">Reservation</div>
-			<ul>
+			<ul class="reserv-ul" id="mr-title">
 				<li>
-					aaaaaaaaaaaaaaaa
+					예약 번호
+				</li>
+				<li>
+					방 번호
+				</li>
+				<li>
+					인원수
+				</li>
+				<li>
+					예약일자
+				</li>
+				<li>
+					요청사항
 				</li>
 			</ul>
+			<div class="reserv-lm">현재 예약</div>
+			<c:if test="${reserv !=null}">
+			<ul class="reserv-ul">
+				<li>
+					<a href="#" onclick="moveReserv('')">${reserv.reservno }</a>
+				</li>
+				<li>
+					${reserv.roomno }
+				</li>
+				<li>
+					${reserv.usercnt }
+				</li>
+				<li>
+					${reserv.reservdate.substring(0,10) }
+				</li>
+				<li>
+					${reserv.request }
+				</li>
+			</ul>
+			</c:if>
+			<c:if test="${reserv==null }">
+				<div class="no-reserv">예약 내역이 없습니다.</div>
+			</c:if>
+			<div class="reserv-lm">지난 예약 목록</div>
+			<c:if test="${reserv_list !=null}">
+			<c:forEach var="data" items="${reserv_list}">
+			<ul class="reserv-ul">
+				<li>
+					${data.reservno }
+				</li>
+				<li>
+					${data.roomno }
+				</li>
+				<li>
+					${data.usercnt }
+				</li>
+				<li>
+					${data.reservdate.substring(0,10) }
+				</li>
+				<li>
+					${data.request }
+				</li>
+			</ul>
+			</c:forEach>
+			</c:if>
+			<c:if test="${reserv_list==null }">
+				<div class="no-reserv">예약 내역이 없습니다.</div>
+			</c:if>
 		</div>
 		<div class="mypage-container-info">
 			<div id="signup-title">My Page</div>
