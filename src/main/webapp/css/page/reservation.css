@@ -525,7 +525,7 @@ calendar
     resize:none;
 }
 
-#alert-people, #alert-date, #alert-roomno{
+#alert-people, #alert-date, #alert-roomno, #alert-enddate{
 	padding-left:10px;
 	font-family: "Gowun Batang", serif;
 	color:#ED494C;

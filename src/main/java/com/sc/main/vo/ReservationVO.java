@@ -3,6 +3,7 @@ package com.sc.main.vo;
 public class ReservationVO {
 	private int reservno;
 	private String reservdate;
+	private String reservenddate;
 	private int usercnt;
 	private String request;
 	private String userid;
@@ -18,6 +19,12 @@ public class ReservationVO {
 	}
 	public void setReservdate(String reservdate) {
 		this.reservdate = reservdate;
+	}
+	public String getReservenddate() {
+		return reservenddate;
+	}
+	public void setReservenddate(String reservenddate) {
+		this.reservenddate = reservenddate;
 	}
 	public int getUsercnt() {
 		return usercnt;
@@ -45,7 +52,7 @@ public class ReservationVO {
 	}
 	@Override
 	public String toString() {
-		return "ReservationVO [reservno=" + reservno + ", reservdate=" + reservdate + ", usercnt=" + usercnt
-				+ ", request=" + request + ", userid=" + userid + ", roomno=" + roomno + "]";
+		return "ReservationVO [reservno=" + reservno + ", reservdate=" + reservdate + ", reservenddate=" + reservenddate
+				+ ", usercnt=" + usercnt + ", request=" + request + ", userid=" + userid + ", roomno=" + roomno + "]";
 	}
 }
