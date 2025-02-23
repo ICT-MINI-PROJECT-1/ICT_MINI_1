@@ -154,7 +154,7 @@
 					${reserv.usercnt }
 				</li>
 				<li>
-					${reserv.reservdate.substring(0,10) }
+					${reserv.reservdate.substring(0,10) } ~ ${reserv.reservenddate.substring(0,10) }
 				</li>
 				<li>
 					${reserv.request }
@@ -178,7 +178,7 @@
 					${data.usercnt }
 				</li>
 				<li>
-					${data.reservdate.substring(0,10) }
+					${data.reservdate.substring(0,10) } ~ ${data.reservenddate.substring(0,10) }
 				</li>
 				<li>
 					${data.request }
