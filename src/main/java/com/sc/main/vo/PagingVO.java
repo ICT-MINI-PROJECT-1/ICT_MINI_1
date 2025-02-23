@@ -15,7 +15,16 @@ public class PagingVO {
 	//°Ë»ö¾î
 	private String searchKey;
 	private String searchWord;
+	private int searchConcept;
 	
+	public int getSearchConcept() {
+		return searchConcept;
+	}
+
+	public void setSearchConcept(int searchConcept) {
+		this.searchConcept = searchConcept;
+	}
+
 	@Override
 	public String toString() {
 		return "ReviewPagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord="
