@@ -9,15 +9,22 @@
 		select * from review 
 		<if test="searchWord!=null and searchWord!=''">
 			<choose>
-				<when test="searchKey!='total'">
+				<when test="searchKey!='total'"><!-- 전체검색이 아닐 때 -->
 					where ${searchKey} like '%${searchWord}%'
 				</when>
-				<otherwise>
-					where subject like '%${searchWord}%'
+				<otherwise><!-- 전체검색 -->
+					where (subject like '%${searchWord}%'
 					or content like '%${searchWord}%'
-					or roomno like '%${searchWord}%'
+					or roomno like '%${searchWord}%')
 				</otherwise>
 			</choose>
+			<choose>
+			<when test="searchConcept==0">
+			</when>
+			<otherwise>
+				<![CDATA[and roomno > ${searchConcept}-100 and roomno < ${searchConcept}]]>
+			</otherwise>
+			</choose>	
 		</if>
 		limit ${onePageRecord} offset ${offset}
 	</select>
@@ -28,6 +35,13 @@
 		insert into review (userid, roomno, rating, subject, content) 
 		values (#{userid}, #{roomno}, #{rating}, #{subject}, #{content})
 	</insert>
+	<insert id="imgInsert">
+		insert into reviewimg (reviewno, filename)
+		values (#{reviewno}, #{filename})
+	</insert>
+	<select id="reviewImage" resultType="int">
+		select reviewno from review where userid=#{param1} order by reviewno desc limit 1
+	</select>
 	<update id="reviewUpdate">
 		update review set subject=#{subject}, content=#{content}, rating=${rating} 
 		where reviewno=${reviewno}
@@ -49,5 +63,8 @@
 				</otherwise>
 			</choose>
 		</if>
+	</select>
+	<select id="reviewImageSelect" resultType="com.sc.main.vo.ReviewImgVO">
+		select * from reviewimg where reviewno=${reviewno}
 	</select>
 </mapper>
