@@ -53,7 +53,50 @@ public class ReviewController {
 
 	//리뷰 작성(DB), 파일 업로드
 	@PostMapping("/writeOk")
-	public ModelAndView reviewWriteOk(ReviewVO vo, HttpServletRequest request, ReviewImgVO imgVO, MultipartFile mf) {
+	public ModelAndView reviewWriteOk(ReviewVO vo, HttpServletRequest request, ReviewImgVO imgVO, MultipartFile[] mf) {
+		HttpSession session = request.getSession();
+		mav = new ModelAndView();
+		String userid = (String)session.getAttribute("loginId");
+		vo.setUserid(userid);
+		
+		int result = service.reviewInsert(vo);
+		int reviewno = service.reviewImage(userid);
+		
+		for(MultipartFile f: mf) {
+			String path = session.getServletContext().getRealPath("/uploadfile/"+Integer.toString(reviewno));
+			String orgFilename = f.getOriginalFilename();
+			
+			File file = new File(path, orgFilename);
+			orgFilename = fileRename(file, path, orgFilename);
+			
+			try {
+				file = new File(path, orgFilename);
+				f.transferTo(file);
+			}catch(Exception e) {e.printStackTrace();}
+			
+			imgVO.setFilename(orgFilename); //제목, 글내용, 글쓴이, 파일명
+			
+			int imgResult = 0;
+			
+			try {
+				imgVO.setReviewno(reviewno);
+				//레코드 추가
+				//vo.setUserid(null);	//오류테스트 : 일부러 오류내려고 not null 항목을 null로 셋팅함.
+				imgResult = service.imgInsert(imgVO);	
+			}catch(Exception e) { //insert하다가 실패하면 파일을 삭제해야함
+				e.printStackTrace();
+				//레코드가 생성되지 않아 이미 업로드 되어있는 파일을 삭제해야한다.
+				File fi = new File(path, orgFilename);
+				fi.delete();
+			}
+			if(result==1) {
+				mav.setViewName("redirect:/page/review");
+			}else {
+				mav.setViewName("page/review/review_write");
+			}
+		}
+		
+		/*
 		HttpSession session = request.getSession();
 		mav = new ModelAndView();
 		String userid = (String)session.getAttribute("loginId");
@@ -101,7 +144,8 @@ public class ReviewController {
 		}else {
 			mav.setViewName("page/review/review_write");
 		}
-		
+		*/
+
 		return mav;
 	}
 	
@@ -140,64 +184,122 @@ public class ReviewController {
 	
 	//리뷰 수정(DB)
 	@PostMapping("/editOk")
-	public ModelAndView reviewEdit(ReviewVO vo, ReviewImgVO imgVO, MultipartFile mf, HttpSession session) {
+	public ModelAndView reviewEdit(ReviewVO vo, ReviewImgVO imgVO, MultipartFile[] mf, HttpSession session) {
 		mav = new ModelAndView();
 		int reviewno = service.reviewImage((String)session.getAttribute("loginId"));
 		//업로드한 사진 파일명 불러와야함
 		String path = session.getServletContext().getRealPath("/uploadfile/"+Integer.toString(reviewno));
 
 		ArrayList<ReviewImgVO> orgVO = service.reviewImageSelect(vo.getReviewno()); //업데이트전 레코드 - 파일 삭제시 DB에 저장된 파일명이 필요함
-		
 		//첨부된 파일이 있을 때 - 제목, 글내용, 파일명 수정
 		//파일업로드 해야함.
 		//기존 파일 삭제 해야함.
 		String orgFilename="";
-		if(mf!=null) {
-			try {
-				orgFilename = mf.getOriginalFilename();
-			} catch(Exception e) {
-				orgFilename="";
-			}
-			if(orgFilename!="") {
-				File file = new File(path, orgFilename);
-				orgFilename = fileRename(file, path, orgFilename);
-				//업로드
-				try {
-					file = new File(path, orgFilename);
-					mf.transferTo(file);
-				}catch(Exception e) {
-					System.out.println("파일 업로드시 에러 ->"+e);
-				}
-				imgVO.setFilename(orgFilename);
-			}
+		int flag=0;
+		int over;
+		if(orgVO.size() > mf.length) {
+			flag=1;
+			over = orgVO.size()-mf.length;
 		}
-		int result = service.reviewUpdate(vo);	//review 글 업데이트
-
-		int imgResult = 0;
-	
+		if(orgVO.size() < mf.length) {
+			flag=2;
+		}
+		String p="";
+		boolean isOk=true;
 		try {
-			//리뷰이미지 db업데이트
-			if(orgFilename!="") {
-				imgResult = service.reviewImageUpdate(imgVO);	//review 이미지 업데이트
-	
-				//기존 업로드한 파일 삭제 - 업데이트 성공시
+			p = mf[0].getOriginalFilename();
+		} catch(Exception e) {
+			isOk=false;
+		}
+		System.out.println(isOk);
+		if(isOk && (p!=null && !p.equals(""))) {
 				for(int i=0;i<orgVO.size();i++) {
 					if(orgVO.get(i).getFilename()!=null) {
-						File f = new File(path, orgVO.get(i).getFilename());
-						f.delete();
+						File fi = new File(path, orgVO.get(i).getFilename());
+						int x = orgVO.get(i).getImgno();
+						orgVO.get(i).setImgno(x);
+						fi.delete();
+					}
+				}
+			int idx=-1;
+			for(MultipartFile f : mf) {
+				if(++idx == orgVO.size()) break;
+				orgFilename="";
+				if(f!=null) {
+					try {
+						orgFilename = f.getOriginalFilename();
+					} catch(Exception e) {
+						orgFilename="";
+					}
+					if(orgFilename!="") {
+						File file = new File(path, orgFilename);
+						orgFilename = fileRename(file, path, orgFilename);
+						//업로드
+						try {
+							file = new File(path, orgFilename);
+							f.transferTo(file);
+						}catch(Exception e) {
+							System.out.println("파일 업로드시 에러 ->"+e);
+						}
+						orgVO.get(idx).setFilename(orgFilename);
+					}
+					int imgResult = 0;
+					try {
+						//리뷰이미지 db업데이트
+						System.out.println(orgVO.get(idx).toString());
+						imgResult = service.reviewImageUpdate(orgVO.get(idx));	//review 이미지 업데이트
+	
+						mav.setViewName("redirect:/page/review");	//db업데이트 성공했을 때 review_main.jsp로 이동
+					}catch(Exception e) {
+						//새로 업로드한 파일 삭제 - 업데이트 실패시
+						System.out.println("새로 업로드한 파일 삭제 실패->"+e);
+						if(imgVO.getFilename()!=null) {
+							File fi = new File(path, imgVO.getFilename());
+							fi.delete();
+						}
+						mav.setViewName("page/review/review_result");
 					}
 				}
 			}
-			mav.setViewName("redirect:/page/review");	//db업데이트 성공했을 때 review_main.jsp로 이동
-		}catch(Exception e) {
-			//새로 업로드한 파일 삭제 - 업데이트 실패시
-			System.out.println("새로 업로드한 파일 삭제 실패->"+e);
-			if(imgVO.getFilename()!=null) {
-				File f = new File(path, imgVO.getFilename());
-				f.delete();
+			if(flag == 1) {
+				for(int i=mf.length;i<orgVO.size();i++) {
+					service.reviewImageDelete(orgVO.get(i).getImgno());
+				}
 			}
-			mav.setViewName("page/review/review_result");
+			if(flag == 2) {
+				for(int i=idx;i<mf.length;i++) {
+					orgFilename = mf[i].getOriginalFilename();
+					
+					File file = new File(path, orgFilename);
+					orgFilename = fileRename(file, path, orgFilename);
+					
+					try {
+						file = new File(path, orgFilename);
+						mf[i].transferTo(file);
+					}catch(Exception e) {e.printStackTrace();}
+					
+					imgVO.setFilename(orgFilename); //제목, 글내용, 글쓴이, 파일명
+					
+					int imgResult = 0;
+					
+					try {
+						imgVO.setReviewno(reviewno);
+						//레코드 추가
+						//vo.setUserid(null);	//오류테스트 : 일부러 오류내려고 not null 항목을 null로 셋팅함.
+						imgResult = service.imgInsert(imgVO);	
+					}catch(Exception e) { //insert하다가 실패하면 파일을 삭제해야함
+						e.printStackTrace();
+						//레코드가 생성되지 않아 이미 업로드 되어있는 파일을 삭제해야한다.
+						File fi = new File(path, orgFilename);
+						fi.delete();
+					}
+				}
+			}
+		} else {
+			mav.setViewName("redirect:/page/review");
 		}
+		int result = service.reviewUpdate(vo);	//review 글 업데이트
+	
 		return mav;
 	}
 
@@ -216,18 +318,20 @@ public class ReviewController {
 		System.out.println("reviewno="+reviewno);
 		System.out.println(imgVO.toString());
 		//해당레코드 지우기
-		try {
-			service.reviewImageDelete(Integer.parseInt(reviewno));
-			//파일삭제
-			String path = request.getSession().getServletContext().getRealPath("/uploadfile/"+reviewno);
-			System.out.println(imgVO.get(0).getFilename());
-			File file = new File(path, imgVO.get(0).getFilename());
-			file.delete();
-			//글목록
-			mav.setViewName("redirect:/page/review");
-		}catch(Exception e) {
-			System.out.println("리뷰이미지 삭제시 에러->"+e);
-			mav.setViewName("page/review/review_result");
+		for(int t=0;t<imgVO.size();t++) {
+			try {
+				//파일삭제
+				String path = request.getSession().getServletContext().getRealPath("/uploadfile/"+reviewno);
+				File file = new File(path, imgVO.get(t).getFilename());
+				file.delete();
+				File folder = new File(path,"");
+				folder.delete();
+				//글목록
+				mav.setViewName("redirect:/page/review");
+			}catch(Exception e) {
+				System.out.println("리뷰이미지 삭제시 에러->"+e);
+				mav.setViewName("page/review/review_result");
+			}
 		}
 		int result = service.reviewDelete(Integer.parseInt(reviewno));
 		if(result>0) {
