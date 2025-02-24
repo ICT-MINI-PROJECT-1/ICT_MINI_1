@@ -72,6 +72,11 @@
 	align-items: center;
 	padding: 1vw 1vw;
 }
+#review-sort-search{
+	overflow: auto;
+	display: flex;
+	align-items: center;
+}
 #review-write{
 	font-size: 1.6vw;
 	width: 30%;
@@ -89,6 +94,7 @@
 	height: 3.0vw;
 	border-radius: 5px;
 	font-size: 1.6vw;
+	vertical-align: middle;
 }
 .review-search #searchWord{
     width: 23%;
@@ -99,7 +105,6 @@
     border-radius: 4px;
     width: 10%;
     height: 3.0vw;
-    margin-top: 1.5vw;
     cursor: pointer;
 }
 .review-search>input[type=text]{
@@ -108,9 +113,10 @@
 #review-select-sort{
 	display: flex;
 	font-size: 1.6vw;	
+	width: 25%;
 }
 #review-select-sort>li{
-	width: 6.3%;
+	width: 25%;
 }
 #review-select-sort>#sort{
 	font-weight: bold;
@@ -137,22 +143,10 @@
 }
 .review-list-grid-item{
 	width: 95%;
-	/*
-	border-bottom: 1px solid #6a3d175c;
-	*/
 	margin: 10px auto;
 	font-size: 1.5vw;
-	/*
-	background: #fff;
-	*/
-	/*
-	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),  
-				1px 1px 1px 0px rgba(0, 0, 0, .6);
-	*/
 	padding-top: 24px;
-	/*
-	border-radius: 5px;
-	*/
+
 }
 .review-list-img{
 	margin: 0 auto;
@@ -191,14 +185,6 @@
 	width: 30%;
 	float: left;
 }
-/*
-.review-list-title>li:nth-child(1):hover{
-	transform: scale(1.07);
-	font-weight: bold;
-	cursor: pointer;
-	background: red;
-}
-*/
 .review-list-title:hover{
 	font-weight: bold;
 	cursor: pointer;
