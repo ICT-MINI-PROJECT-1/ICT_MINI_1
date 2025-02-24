@@ -17,4 +17,6 @@ public interface UserService {
 	public int userUpdate(UserVO vo);
 	
 	public List<RoomVO> selectWishList(String userid);
+	
+	public int userDelete(String userid);
 }
