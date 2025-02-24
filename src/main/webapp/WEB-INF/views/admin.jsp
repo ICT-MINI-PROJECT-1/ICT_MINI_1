@@ -206,6 +206,18 @@
 				  event.preventDefault();
 			});
 		});
+		
+		function adminReviewList(page) {
+			fetch("/admin/review/list", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify(params) 
+			})
+			.then(response => response.json())
+			.then(data => console.log(data))	
+		}
 	</script>
 </head>
 <body>
@@ -228,6 +240,9 @@
 				</li>
 				<li>
 					<a onclick="adminReservList(1)" href="#">예약 조회</a>
+				</li>
+				<li>
+					<a onclick="adminReviewList(1)" href="#">리뷰 조회</a>
 				</li>
 			</ul>
 		</div>

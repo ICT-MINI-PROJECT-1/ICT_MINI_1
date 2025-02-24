@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.sc.main.dao.AdminDAO;
 import com.sc.main.vo.PagingVO;
 import com.sc.main.vo.ReservationVO;
+import com.sc.main.vo.ReviewVO;
 import com.sc.main.vo.UserVO;
 
 @Service
@@ -34,5 +35,10 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public int reservTotalRecord(PagingVO pVO) {
 		return dao.reservTotalRecord(pVO);
+	}
+
+	@Override
+	public List<ReviewVO> renderReviewList(PagingVO pVO) {
+		return dao.renderReviewList(pVO);
 	}
 }

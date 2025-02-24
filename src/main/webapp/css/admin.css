@@ -12,6 +12,11 @@
 	border:1px solid gray;
 }
 
+.admin-search {
+	width: 80%;
+	margin: 0 auto;
+}
+
 .admin-contents{
 	width:100%;
 	border:1px solid gray;
@@ -19,7 +24,7 @@
 
 #logout-title{
 	display:block;
-	width:1024px;
+	width:200px;
 	margin:auto;
 	text-align:center;
 	font-size:25px;

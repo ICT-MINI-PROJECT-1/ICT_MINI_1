@@ -240,3 +240,13 @@ function settingMenu() {
         clicked = !clicked;
     });
 }
+
+//dining_main.jsp에서만 footer 제거
+const Footer = () => {
+	if(window.location.pathname === '/page/dining/dining_main') return null;
+}
+
+
+
+
+

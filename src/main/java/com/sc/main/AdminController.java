@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sc.main.service.AdminService;
 import com.sc.main.service.ReservService;
+import com.sc.main.service.ReviewService;
 import com.sc.main.service.UserService;
 import com.sc.main.vo.PagingVO;
 import com.sc.main.vo.ReservPagingVO;
 import com.sc.main.vo.ReservationVO;
+import com.sc.main.vo.ReviewVO;
 import com.sc.main.vo.UserPagingVO;
 import com.sc.main.vo.UserVO;
 
@@ -30,6 +32,9 @@ public class AdminController {
 	
 	@Inject
 	ReservService reserv_service;
+	
+	@Inject
+	ReviewService review_service;
 	
 	@PostMapping("/user")
 	@ResponseBody
@@ -66,5 +71,11 @@ public class AdminController {
 	public String deleteReserv(@RequestBody String reservno) {
 		reserv_service.deleteReservation(Integer.parseInt(reservno));
 		return "deleteOk";
+	}
+	
+	@PostMapping("/review")
+	@ResponseBody
+	public List<ReviewVO> review(@RequestBody PagingVO pVO) {
+		
 	}
 }

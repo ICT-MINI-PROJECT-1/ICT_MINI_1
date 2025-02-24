@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="dining-title">
 			<div id="span-back"></div>
-			<span>DINING</span>
+			<span>DINING(footer,admin작업하기)</span>
 		</div>
 		<div class="dining-wrap">
 			<div> <!-- style="padding-bottom: 780px;" -->
