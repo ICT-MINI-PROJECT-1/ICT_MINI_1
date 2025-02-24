@@ -42,6 +42,9 @@ public class ReviewController {
 		int reviewno = Integer.parseInt(requestData.get("reviewno").toString());
 		int roomno = Integer.parseInt(requestData.get("roomno").toString());
 		
+		//조회수 증가
+		service.reviewHitCount(reviewno);
+		System.out.println(service.reviewDetail(reviewno).toString());
 		return service.reviewDetail(reviewno);
 	}
 	
@@ -65,10 +68,10 @@ public class ReviewController {
 		for(MultipartFile f: mf) {
 			String path = session.getServletContext().getRealPath("/uploadfile/"+Integer.toString(reviewno));
 			String orgFilename = f.getOriginalFilename();
-			
+			System.out.println(orgFilename+"!!!");
 			File file = new File(path, orgFilename);
 			orgFilename = fileRename(file, path, orgFilename);
-			
+			System.out.println(orgFilename+"???");
 			try {
 				file = new File(path, orgFilename);
 				f.transferTo(file);

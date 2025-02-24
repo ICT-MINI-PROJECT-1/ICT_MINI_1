@@ -21,4 +21,6 @@ public interface ReviewDAO {
 	public ArrayList<ReviewImgVO> reviewImageSelect(int reviewno);
 	public int reviewImageUpdate(ReviewImgVO imgVO);
 	public void reviewImageDelete(int reveiwno);
+	
+	public void reviewHitCount(int reviewno);
 }
