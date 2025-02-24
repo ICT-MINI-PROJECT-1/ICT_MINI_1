@@ -257,6 +257,33 @@
 	font-size:15px;
 }
 
+
+.review-ul>li:nth-child(5n+1) {
+	width:18%;
+}
+.review-ul>li:nth-child(5n+2) {
+	width:12%;
+}
+.review-ul>li:nth-child(5n+3) {
+	width:40%;
+}
+.review-ul>li:nth-child(5n+4) {
+	width:10%;
+}
+.review-ul>li:nth-child(5n+5) {
+	width:40%;
+	white-space:nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	
+.no-review{
+	width:80%;
+	margin:auto;
+	font-family:'Gowun Batang';
+	text-align:center;
+	font-size:15px;
+}	
+
 @media (min-width:1500px){
 	.signup-container, .signup-background,.mypage-wrap {
 		width:900px;

@@ -123,6 +123,8 @@
 				</li>
 			</ul>
 			</c:forEach>
+			
+			
 			<div id="signup-title">Reservation</div>
 			<ul class="reserv-ul" id="mr-title">
 				<li>
@@ -189,7 +191,31 @@
 			<c:if test="${reserv_list==null }">
 				<div class="no-reserv">예약 내역이 없습니다.</div>
 			</c:if>
-		</div>
+			
+			
+			<div id="signup-title">Review List</div>
+			<ul class="review-ul" id="mr-title">
+				<li>리뷰 번호</li>
+				<li>방 번호</li>				
+				<li>제목</li>
+				<li>작성일</li>
+                <li>평점</li>
+			</ul>
+			<c:if test="${not empty reviewList}">
+				<c:forEach var="review" items="${reviewList}">
+				<ul class="review-ul">
+					<li>${review.reviewno}</li>
+					<li>${review.roomno}</li>
+					<li>${review.subject}</li>
+					<li>${review.writedate}</li>
+					<li>${review.rating}/></li>
+				</ul>
+				</c:forEach>
+			</c:if>
+			<c:if test="${review_list==null}">
+				<div class="no-review">리뷰 내역이 없습니다.</div>
+			</c:if>
+		
 		<div class="mypage-container-info">
 			<div id="signup-title">My Info</div>
 			<form name="signupEditForm" method="post" action="signUpEditChk">
