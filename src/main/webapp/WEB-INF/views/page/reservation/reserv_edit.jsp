@@ -22,6 +22,8 @@
 				selectRoom('${roomVO.roomno}');
 			});
 		</script>
+		
+		
 	</c:if>
 	
 	<div class="reserv-edit-container">

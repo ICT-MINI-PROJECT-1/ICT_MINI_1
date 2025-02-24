@@ -16,32 +16,32 @@
 					</li>
 				</ul>
 				<ul>
-					<li>No.</li>
+					<li><b>No.</b></li>
 					<li id="contents-roomno">
 					</li>
-					<li>컨셉</li>
+					<li><b>컨셉</b></li>
 					<li id="contents-roomconcept">
 					</li>
-					<li>뷰</li>
+					<li><b>뷰</b></li>
 					<li id="contents-viewtype">
 					</li>
 				</ul>
 				<ul>
-					<li>인원</li>
+					<li><b>인원</b></li>
 					<li id="contents-capacity">
 					</li>
-					<li>면적</li>
+					<li><b>면적</b></li>
 					<li id="contents-area">
 					</li>
-					<li>룸타입</li>
+					<li><b>룸타입</b></li>
 					<li id="contents-bedtype">
 					</li>
 				</ul>
 				<ul>
-					<li>가격</li>
+					<li><b>가격</b></li>
 					<li id="contents-price">
 					</li>
-					<li>평점</li>
+					<li><b>평점</b></li>
 					<li id="contents-rating">
 					</li>
 				</ul>
@@ -124,13 +124,13 @@
 						</li>
 						<li>
 							<div class="star-box">
-
-								<div class="star-fill" style="width:${data.rating*20}%; position:absolute;
-	height:100%;
-	background:url('../../img/public/star_fill.png') no-repeat;
-	background-size:cover;
-	z-index:2;
-	will-change: transform;"></div>
+							<div class="star-fill" style="width:${data.rating*20}%; position:absolute;
+										height:100%;
+										background:url('../../img/public/star_fill.png') no-repeat;
+										background-size:cover;
+										z-index:2;
+										will-change: transform;">
+										</div>
 							</div>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${data.rating }" pattern="0.0"/>
 						</li>
