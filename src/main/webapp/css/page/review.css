@@ -86,21 +86,37 @@
 }
 .review-search select, .review-search input{
 	box-sizing: border-box;
-	height: 3.7vw;
+	height: 3.0vw;
 	border-radius: 5px;
 	font-size: 1.6vw;
+}
+.review-search #searchWord{
+    width: 23%;
+}
+#review-search-btn{
+	color: white;
+    background: #6a3d17e0;
+    border-radius: 4px;
+    width: 10%;
+    height: 3.0vw;
+    margin-top: 1.5vw;
+    cursor: pointer;
 }
 .review-search>input[type=text]{
 	width: 30%;
 }
 #review-select-sort{
 	display: flex;
+	font-size: 1.6vw;	
+}
+#review-select-sort>li{
+	width: 6.3%;
 }
 #review-select-sort>#sort{
-	text-weight: bold;
+	font-weight: bold;
 }
-#review-select-sort a{
-	
+#review-select-sort a:hover{
+	font-weight: bold;
 }
 #review-search-result{
 	text-align: center;
@@ -195,7 +211,7 @@
 }
 #paging>li{
 	width: 20%;
-	background: red;
+	/*background: red;*/
 }
 
 /* 모달 반응형 */

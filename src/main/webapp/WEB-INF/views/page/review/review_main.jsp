@@ -30,15 +30,15 @@
 						<option value="roomno">호수</option>
 					</select>
 					<input type="text" id="searchWord" name="searchWord">
-					<input type="button" onclick="postSearching()" value="검색">
+					<input type="button" onclick="postSearching()" value="검색" id="review-search-btn">
 				</form>
 			</div>
 		</div>
-		<div id="review-select-sort">
-			<span id="sort">정렬</span>
-			<a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a>
-			<a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a>
-		</div>
+		<ul id="review-select-sort">
+			<li id="sort">정렬</li>
+			<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
+			<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
+		</ul>
 		<div class="review-list-grid-box">
 			<c:if test="${fn:length(list) > 0 }">
 			<c:forEach var="i" begin="0" end="${fn:length(list)-1}">
@@ -53,18 +53,7 @@
 				</div>
 			</c:forEach>
 			</c:if>
-			<!-- 
-			<c:forEach var="vo" items="${list}">
-				<div class="review-list-grid-item">
-					<div style="background:url('${pageContext.request.contextPath}/uploadfile/1.jpg'); background-size:cover;background-position:center;" class="review-list-img" onclick="openModal('${vo.reviewno}','${vo.userid }','${loginId }', '${vo.roomno }')"></div>
-					<ul class="review-list-title">
-						<li onclick="openModal('${vo.reviewno}','${vo.userid }','${loginId }', '${vo.roomno }')">${vo.subject }</li>
-						<li>${vo.rating }</li>
-					</ul>
-				</div>
-			</c:forEach>-->
 		</div>
-		
 		<c:if test="${fn:length(list)==0 }">
 			<span id="review-search-result">검색 결과가 없습니다.</span>
 		</c:if>
@@ -72,36 +61,30 @@
 		<ul id="paging">
 			<!-- 이전페이지 -->
 			<c:if test="${fn:length(list)!=0}">
-				<c:if test="${pVO.nowPage==1}">
-					<li><a href="#">◀</a></li>
+				 <c:if test="${pVO.nowPage==1}">
+					<li><a href="#"></a></li>
 				</c:if>
 			</c:if>
 			<c:if test="${pVO.nowPage>1 }">
-	    		<!-- Post방식으로 바꾸는 중
-	    		<li><a href="javascript:reviewPrevPage(${pVO.nowPage-1})">Prev</a></li>
-	    		 -->
-	    		 
 	    		<li>
 	    			<a href="#" onclick="postPaging('${pVO.nowPage-1}','${pVO.searchWord }','${pVO.searchKey }','${pVO.searchHR }','${pVO.searchConcept }')">◀</a>
     			</li>
- 
 	    	</c:if>
 	    	<!-- 페이지번호 -->
 	    	<c:forEach var="p" begin="${pVO.startPageNum }" end="${pVO.startPageNum+pVO.onePageCount-1 }">
 	    		<c:if test="${p<=pVO.totalPage }">
 		    		<c:if test="${p==pVO.nowPage }">
-		    			<li>
+		    			<li style="font-weight:bold;">
 		    		</c:if>
 		    		<c:if test="${p!=pVO.nowPage }">
 		    			<li>
 		    		</c:if>
-		    		<!-- href="javascript:void(0)-> 임시로 이렇게 적었다가 변경함 -->
 		    		<a href="#" onclick="postPaging('${p}','${pVO.searchWord }','${pVO.searchKey }','${pVO.searchHR }','${pVO.searchConcept }')">${p}</a></li>
 	    		</c:if>
 			</c:forEach>
 	    	<!-- 다음페이지 -->
 	    	<c:if test="${pVO.nowPage==pVO.totalPage }">
-				<li><a href="#">▶</a></li>
+				<li><a href="#"></a></li>
 			</c:if>
 			<c:if test="${pVO.nowPage<pVO.totalPage }">
 	    		<li><a href="#" onclick="postPaging('${pVO.nowPage+1}','${pVO.searchWord }','${pVO.searchKey }','${pVO.searchHR }','${pVO.searchConcept }')">▶</a></li>
