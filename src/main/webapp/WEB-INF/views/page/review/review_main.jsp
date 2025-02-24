@@ -14,30 +14,30 @@
 				<a href="${pageContext.request.contextPath}/page/review/write" id="review-write">리뷰작성</a>
 			</c:if>
 			<!-- 검색창 -->
-			<div class="review-search" action="${pageContext.request.contextPath }/page/review">
+			<div class="review-search">
 				<form>
-					<select name="searchConcept">
+					<select id="searchConcept" name="searchConcept">
 						<option value="0">전체 컨셉</option>
 						<option value="309">Contemporary Art</option>
 						<option value="409">Art Nouveau</option>
 						<option value="509">Art Déco</option>
 						<option value="609">Asian</option>
 					</select>
-					<select name="searchKey">
+					<select id="searchKey" name="searchKey">
 						<option value="total">전체 검색</option>
 						<option value="subject">제목</option>
 						<option value="content">내용</option>
 						<option value="roomno">호수</option>
 					</select>
-					<input type="text" name="searchWord">
-					<input type="submit" value="검색">
+					<input type="text" id="searchWord" name="searchWord">
+					<input type="button" onclick="postSearching()" value="검색">
 				</form>
 			</div>
 		</div>
 		<div id="review-select-sort">
 			<span id="sort">정렬</span>
-			<a href="${pageContext.request.contextPath}/page/review?nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if>&searchHR=hit">조회순</a>
-			<a href="${pageContext.request.contextPath}/page/review?nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if>&searchHR=rating">평점순</a>
+			<a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a>
+			<a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a>
 		</div>
 		<div class="review-list-grid-box">
 			<c:if test="${fn:length(list) > 0 }">
@@ -82,7 +82,7 @@
 	    		 -->
 	    		 
 	    		<li>
-	    			<a href="${pageContext.request.contextPath}/page/review?nowPage=${pVO.nowPage-1}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if><c:if test="${pVO.searchHR=='hit' }">&searchHR=hit</c:if><c:if test="${pVO.searchHR=='rating' }">&searchHR=rating</c:if>">◀</a>
+	    			<a href="#" onclick="postPaging('${pVO.nowPage-1}','${pVO.searchWord }','${pVO.searchKey }','${pVO.searchHR }','${pVO.searchConcept }')">◀</a>
     			</li>
  
 	    	</c:if>
@@ -96,7 +96,7 @@
 		    			<li>
 		    		</c:if>
 		    		<!-- href="javascript:void(0)-> 임시로 이렇게 적었다가 변경함 -->
-		    		<a href="${pageContext.request.contextPath}/page/review?nowPage=${p}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if><c:if test="${pVO.searchHR=='hit' }">&searchHR=hit</c:if><c:if test="${pVO.searchHR=='rating' }">&searchHR=rating</c:if>">${p}</a></li>
+		    		<a href="#" onclick="postPaging('${p}','${pVO.searchWord }','${pVO.searchKey }','${pVO.searchHR }','${pVO.searchConcept }')">${p}</a></li>
 	    		</c:if>
 			</c:forEach>
 	    	<!-- 다음페이지 -->
@@ -104,7 +104,7 @@
 				<li><a href="#">▶</a></li>
 			</c:if>
 			<c:if test="${pVO.nowPage<pVO.totalPage }">
-	    		<li><a href="${pageContext.request.contextPath}/page/review?nowPage=${pVO.nowPage+1}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if><c:if test="${pVO.searchHR=='hit' }">&searchHR=hit</c:if><c:if test="${pVO.searchHR=='rating' }">&searchHR=rating</c:if>">▶</a></li>
+	    		<li><a href="#" onclick="postPaging('${pVO.nowPage+1}','${pVO.searchWord }','${pVO.searchKey }','${pVO.searchHR }','${pVO.searchConcept }')">▶</a></li>
 	    	</c:if>
 		</ul>
 	</div>

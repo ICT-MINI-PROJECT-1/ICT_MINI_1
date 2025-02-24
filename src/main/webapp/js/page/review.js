@@ -159,3 +159,73 @@ function writeFormCheck(event){
 	//f.setAttribute('action','review');
 	//document.getElementById('').appendChild(f);
 //}
+
+function postPaging(now_page,search_word,search_key,search_hr, search_concept){
+	let f = document.createElement('form');
+	f.setAttribute('method','post');
+	f.setAttribute('action','review');
+	document.body.appendChild(f);
+	
+	let obj;
+	obj = document.createElement('input');
+	obj.setAttribute('type','hidden');
+	obj.setAttribute('name','nowPage');
+	obj.setAttribute('value',now_page);
+	f.appendChild(obj);
+	if(search_key!=null && search_key!="") {
+		obj = document.createElement('input');
+		obj.setAttribute('type','hidden');
+		obj.setAttribute('name','searchKey');
+		obj.setAttribute('value',search_key);
+		f.appendChild(obj);
+	}
+	if(search_word!=null && search_word!="") {
+		obj = document.createElement('input');
+		obj.setAttribute('type','hidden');
+		obj.setAttribute('name','searchWord');
+		obj.setAttribute('value',search_word);
+		f.appendChild(obj);
+	}
+	if(search_hr!=null && search_hr!="") {
+		obj = document.createElement('input');
+		obj.setAttribute('type','hidden');
+		obj.setAttribute('name','searchHR');
+		obj.setAttribute('value',search_hr);
+		f.appendChild(obj);
+	}
+	if(search_concept!=null && search_concept!="") {
+		obj = document.createElement('input');
+		obj.setAttribute('type','hidden');
+		obj.setAttribute('name','searchConcept');
+		obj.setAttribute('value',search_concept);
+		f.appendChild(obj);
+	}
+	f.submit();
+}
+
+function postSearching(){
+	let f = document.createElement('form');
+	f.setAttribute('method','post');
+	f.setAttribute('action','review');
+	document.body.appendChild(f);
+	
+	let obj = document.createElement('input');
+	obj.setAttribute('type','hidden');
+	obj.setAttribute('name','searchKey');
+	obj.setAttribute('value',document.getElementById("searchKey").value);
+	f.appendChild(obj);
+	
+	obj = document.createElement('input');
+	obj.setAttribute('type','hidden');
+	obj.setAttribute('name','searchWord');
+	obj.setAttribute('value',document.getElementById("searchWord").value);
+	f.appendChild(obj);
+	
+	obj = document.createElement('input');
+	obj.setAttribute('type','hidden');
+	obj.setAttribute('name','searchConcept');
+	obj.setAttribute('value',document.getElementById("searchConcept").value);
+	f.appendChild(obj);
+	
+	f.submit();
+}
