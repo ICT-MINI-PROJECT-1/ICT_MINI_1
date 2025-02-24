@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sc.main.service.ReviewService;
 import com.sc.main.service.RoomService;
+import com.sc.main.vo.ModalReviewVO;
 import com.sc.main.vo.ReviewImgVO;
 import com.sc.main.vo.ReviewVO;
 
@@ -35,7 +36,7 @@ public class ReviewController {
 	@PostMapping("/modalReview")
 	@ResponseBody
 	//public ReviewVO modalReview(@RequestBody String reviewno, String roomno) {
-	public ReviewVO modalReview(@RequestBody Map<String, Object> requestData) {
+	public ModalReviewVO modalReview(@RequestBody Map<String, Object> requestData) {
 		//System.out.println("reviewno->"+requestData.get("reviewno"));
 		//System.out.println("roomno->"+requestData.get("roomno"));
 		
@@ -44,8 +45,10 @@ public class ReviewController {
 		
 		//Á¶È¸¼ö Áõ°¡
 		service.reviewHitCount(reviewno);
-		System.out.println(service.reviewDetail(reviewno).toString());
-		return service.reviewDetail(reviewno);
+		ModalReviewVO mrvo= new ModalReviewVO();
+		mrvo.setVo(service.reviewDetail(reviewno));
+		mrvo.setRivo(service.reviewImageSelect(reviewno));
+		return mrvo;
 	}
 	
 	//¸®ºä ÀÛ¼ºÆû

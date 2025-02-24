@@ -31,7 +31,11 @@ window.addEventListener("wheel", (e) => {
 				review_wrap.style.position = 'static';
 				review_wrap.style.opacity= 1;
 				setTimeout(function() {
-				  	review_moving=0;
+				  	let f = document.createElement('form');
+					f.setAttribute('method','post');
+					f.setAttribute('action','review');
+					document.body.appendChild(f);
+					f.submit();
 				}, 1000);
 				review_state=1;
 			}
@@ -80,17 +84,24 @@ function openModal(reviewno,userid,sessionid,roomno){
 		return response.json()
 	}).then(data => {
 		console.log(data);
-		document.getElementById("modal-subject").innerHTML = data.subject;
-		document.getElementById("modal-roomno").innerHTML = data.roomno;
-		document.getElementById("modal-rating").innerHTML = data.rating;
-		document.getElementById("modal-writedate").innerHTML = data.writedate;
-		document.getElementById("modal-userid").innerHTML = data.userid;
-		document.getElementById("modal-content").innerHTML = data.content;
-		document.getElementById("modal-hit").innerHTML = data.hit;
-		console.log("data.hit="+data.hit);
+
+		let modal_main_img = document.getElementById("modal-img-main");
+		let modals = document.getElementById("modals");
+		modals.innerHTML="";
+		modal_main_img.innerHTML = `<div style="width:100%; height:100%; background:url('/uploadfile/`+data.vo.reviewno+`/`+data.rivo[0].filename+`') no-repeat;background-size:cover;background-position:center;"></div>`;
+		for(var t=0;t<data.rivo.length;t++) {
+			modals.innerHTML+=`<li class="modal-img-mini" onclick="moveModalPage('`+t+`','`+reviewno+`','`+roomno+`')" style="cursor:pointer;background:url('/uploadfile/`+data.vo.reviewno+`/`+data.rivo[t].filename+`') no-repeat; background-size:cover;background-position:center;"></li>`;
+		}
+		document.getElementById("modal-subject").innerHTML = data.vo.subject;
+		document.getElementById("modal-roomno").innerHTML = data.vo.roomno;
+		document.getElementById("modal-rating").innerHTML = data.vo.rating;
+		document.getElementById("modal-writedate").innerHTML = data.vo.writedate;
+		document.getElementById("modal-userid").innerHTML = data.vo.userid;
+		document.getElementById("modal-content").innerHTML = data.vo.content;
+		document.getElementById("modal-hit").innerHTML = data.vo.hit;
 		
 		var roomconcept = "";
-		var roomconceptKor = Math.trunc(data.roomno/100);
+		var roomconceptKor = Math.trunc(data.vo.roomno/100);
 		
 		if(roomconceptKor==3) roomconcept="현대풍";
 		if(roomconceptKor==4) roomconcept="아르누보풍";
@@ -228,4 +239,30 @@ function postSearching(){
 	f.appendChild(obj);
 	
 	f.submit();
+}
+
+function moveModalPage(page,reviewno,roomno){
+	fetch("/page/review/modalReview",{
+		method: "POST",
+		headers: {
+			"Content-Type":"application/json"
+		},
+		body: JSON.stringify({
+            reviewno: reviewno, 
+            roomno: roomno
+        })
+	}).then(response => {
+		if (!response.ok) {
+	        return response.text().then(text => {
+	            throw new Error('Network response was not ok: ' + text);
+	        });
+	    }
+		return response.json()
+	}).then(data => {
+		let modal_main_img = document.getElementById("modal-img-main");
+		modal_main_img.innerHTML = `<div style="width:100%; height:100%; background:url('/uploadfile/`+data.vo.reviewno+`/`+data.rivo[page].filename+`') no-repeat;background-size:cover;background-position:center;"></div>`;
+	}).catch(error => {
+		console.log(error);
+	});
+	console.log(page);
 }
