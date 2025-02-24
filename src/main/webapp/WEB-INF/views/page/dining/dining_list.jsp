@@ -9,12 +9,20 @@
 <div id="fade">
 	<div class="container">
 		<div class="dining-menu">
+			<div id="dining-page-nav">
+				<ul>
+					<li onclick="moveToRest('korean')">Korean</li>
+					<li onclick="moveToRest('western')">Western</li>
+					<li onclick="moveToRest('japanese')">Japanese</li>
+				</ul>
+			</div>
+		
 			<c:if test="${foodType=='korean'}">
 				<div id="d-title">
 					<div id="d-subject">
 						Korean
 					</div>
-					<a href="#">메뉴다운로드</a>
+					<a href="../../img/page/dining/download/menu-korean.jpg" download>메뉴다운로드</a>
 				</div>
 			
 				<div id="d-modal">
@@ -74,7 +82,7 @@
 					<div id="d-subject">
 						Western
 					</div>
-					<a href="#">메뉴다운로드</a>
+					<a href="../../img/page/dining/download/menu-western.jpg" download>메뉴다운로드</a>
 				</div>
 			
 				<div id="d-modal">
@@ -134,7 +142,7 @@
 						<div id="d-subject">
 							Japanese
 						</div>
-						<a href="#">메뉴다운로드</a>
+						<a href="../../img/page/dining/download/menu-japanese.jpg" download>메뉴다운로드</a>
 					</div>
 				
 					<div id="d-modal">

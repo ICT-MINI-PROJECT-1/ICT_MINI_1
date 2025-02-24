@@ -23,13 +23,9 @@ public class DiningController {
 		mav.addObject("foodType",foodType);
 		return mav;
 	}
-	
-	
 	  /*@GetMapping("/modalFetch")
 	  @ResponseBody 
 	  public int modalFetch() {}*/
-	 
-	
 }
 
 

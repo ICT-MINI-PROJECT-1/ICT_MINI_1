@@ -119,6 +119,22 @@
 	margin: auto;
 }
 
+#dining-page-nav {
+	position: fixed;
+	right: 3%;
+	top: 37%;
+	font-family: "Cormorant Garamond", serif;
+	font-size: 1.1em;
+	font-style: oblique;
+	text-align: center;
+	cursor: pointer;
+}
+
+#dining-page-nav>ul>li {
+	margin-bottom: 15px;
+	cursor: pointer;
+}
+
 #d-title {
 	width: 97%;
 	border-bottom: 3px double gray;
@@ -404,22 +420,25 @@
 /* ==================================== */
 
 @media(max-width:1420px) {
-	#info-dish {
-		
-	}
-
 	#subject-pic, #subject-pic2 {
 		max-height: 100px;
 	}
-	
-	#menu-pic, #menu-pic2 {
-	
+}
+
+@media(max-width:1670px) {
+	#dining-page-nav {
+		right: 0%;
+		top: 20%;
+		writing-mode: vertical-lr;
+		text-orientation: upright;
+		letter-spacing: -0.5em;
+		z-index: 0;
 	}
 }
 
-@media(max-width:1970px) {
-	.dining-wrap {
-		/* width: 85vmax; */
+@media(max-width: 1580px) {
+	#dining-page-nav {
+		display: none;
 	}
 }
 
