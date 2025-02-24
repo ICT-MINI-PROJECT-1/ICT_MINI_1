@@ -80,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `artpart`.`review` (
   `writedate` DATETIME NULL DEFAULT now(),
   `content` VARCHAR(500) NOT NULL,
   `userid` VARCHAR(20) NOT NULL,
+  `hit` int default 0,
   `roomno` INT NOT NULL,
   `rating` FLOAT NULL,
   PRIMARY KEY (`reviewno`),
