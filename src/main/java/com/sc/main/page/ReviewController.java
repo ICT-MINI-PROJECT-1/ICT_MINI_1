@@ -65,7 +65,7 @@ public class ReviewController {
 		/////////////////////////////////////////////////////////
 		//파일업로드
 		//파일 업로드할 폴더의 절대경로
-		String path = "/mini_proj/ICT_MINI_1/src/main/webapp/uploadfile";
+		String path = session.getServletContext().getRealPath("/uploadfile/"+Integer.toString(reviewno));
 		System.out.println("path: "+path);
 		//업로드한 실제 파일명 구하기
 		String orgFilename = mf.getOriginalFilename();
