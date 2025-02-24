@@ -179,7 +179,7 @@ insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) 
 insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-07','2025-03-09',2,'냠냠','test2222',301);
 insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-11','2025-03-11',2,'냠냠','test3222',301);
 insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-31','2025-03-31',2,'냠냠','test4222',301);
-insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-22','2025-02-24',2,'냠냠','test1234',301);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-22','2025-02-23',2,'냠냠','test1234',301);
 
 insert into wishlist values('test1234',301);
 

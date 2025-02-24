@@ -35,10 +35,11 @@
 			</div>
 		</div>
 		<div class="review-list-grid-box">
+			<c:if test="${fn:length(list) > 0 }">
 			<c:forEach var="i" begin="0" end="${fn:length(list)-1}">
 				<div class="review-list-grid-item">
 					<c:if test="${fn:length(imgList.get(i)) > 0}">
-						<div style="background:url('${pageContext.request.contextPath}/uploadfile/${imgList.get(i).get(0).filename}'); background-size:cover;background-position:center;" class="review-list-img" onclick="openModal('${list.get(i).reviewno}','${list.get(i).userid }','${loginId }', '${list.get(i).roomno }')"></div>
+						<div style="background:url('${pageContext.request.contextPath}/uploadfile/${list.get(i).reviewno }/${imgList.get(i).get(0).filename}'); background-size:cover;background-position:center;" class="review-list-img" onclick="openModal('${list.get(i).reviewno}','${list.get(i).userid }','${loginId }', '${list.get(i).roomno }')"></div>
 					</c:if>
 					<ul class="review-list-title">
 						<li onclick="openModal('${list.get(i).reviewno}','${list.get(i).userid }','${loginId }', '${list.get(i).roomno }')">${list.get(i).subject }</li>
@@ -46,6 +47,7 @@
 					</ul>
 				</div>
 			</c:forEach>
+			</c:if>
 			<!-- 
 			<c:forEach var="vo" items="${list}">
 				<div class="review-list-grid-item">
