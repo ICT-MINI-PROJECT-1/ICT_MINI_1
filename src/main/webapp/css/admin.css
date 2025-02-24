@@ -50,7 +50,7 @@ h1{
 #reserv-box>li:nth-child(6n+3){
 	width:10%;
 }
-#reserv-box>li:nth-child(6n+6){
+#reserv-box>li:nth-child(6n+7){
 	width:30%;
 }
 #page-box{
@@ -65,4 +65,7 @@ h1{
 	padding:5px;
 	cursor:pointer;
 	font-size:25px;
+}
+.admin-search{
+
 }

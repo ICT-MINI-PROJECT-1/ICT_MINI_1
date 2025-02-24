@@ -22,4 +22,7 @@
 	<select id="selectWishList" resultType="com.sc.main.vo.RoomVO">
 		select * from room where roomno = any(select roomno from wishlist where userid=#{param1})
 	</select>
+	<delete id="userDelete">
+		delete from user where userid=#{param1}
+	</delete>
 </mapper>

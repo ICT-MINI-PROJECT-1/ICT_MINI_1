@@ -34,11 +34,17 @@
 				</form>
 			</div>
 		</div>
+		<div id="review-select-sort">
+			<span id="sort">정렬</span>
+			<a href="${pageContext.request.contextPath}/page/review?nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if>&searchHR=hit">조회순</a>
+			<a href="${pageContext.request.contextPath}/page/review?nowPage=${pVO.nowPage}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if>&searchHR=rating">평점순</a>
+		</div>
 		<div class="review-list-grid-box">
+			<c:if test="${fn:length(list) > 0 }">
 			<c:forEach var="i" begin="0" end="${fn:length(list)-1}">
 				<div class="review-list-grid-item">
 					<c:if test="${fn:length(imgList.get(i)) > 0}">
-						<div style="background:url('${pageContext.request.contextPath}/uploadfile/${imgList.get(i).get(0).filename}'); background-size:cover;background-position:center;" class="review-list-img" onclick="openModal('${list.get(i).reviewno}','${list.get(i).userid }','${loginId }', '${list.get(i).roomno }')"></div>
+						<div style="background:url('${pageContext.request.contextPath}/uploadfile/${list.get(i).reviewno }/${imgList.get(i).get(0).filename}'); background-size:cover;background-position:center;" class="review-list-img" onclick="openModal('${list.get(i).reviewno}','${list.get(i).userid }','${loginId }', '${list.get(i).roomno }')"></div>
 					</c:if>
 					<ul class="review-list-title">
 						<li onclick="openModal('${list.get(i).reviewno}','${list.get(i).userid }','${loginId }', '${list.get(i).roomno }')">${list.get(i).subject }</li>
@@ -46,6 +52,7 @@
 					</ul>
 				</div>
 			</c:forEach>
+			</c:if>
 			<!-- 
 			<c:forEach var="vo" items="${list}">
 				<div class="review-list-grid-item">
@@ -75,7 +82,7 @@
 	    		 -->
 	    		 
 	    		<li>
-	    			<a href="${pageContext.request.contextPath}/page/review?nowPage=${pVO.nowPage-1}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if>">◀</a>
+	    			<a href="${pageContext.request.contextPath}/page/review?nowPage=${pVO.nowPage-1}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if><c:if test="${pVO.searchHR=='hit' }">&searchHR=hit</c:if><c:if test="${pVO.searchHR=='rating' }">&searchHR=rating</c:if>">◀</a>
     			</li>
  
 	    	</c:if>
@@ -89,7 +96,7 @@
 		    			<li>
 		    		</c:if>
 		    		<!-- href="javascript:void(0)-> 임시로 이렇게 적었다가 변경함 -->
-		    		<a href="${pageContext.request.contextPath}/page/review?nowPage=${p}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if>">${p}</a></li>
+		    		<a href="${pageContext.request.contextPath}/page/review?nowPage=${p}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if><c:if test="${pVO.searchHR=='hit' }">&searchHR=hit</c:if><c:if test="${pVO.searchHR=='rating' }">&searchHR=rating</c:if>">${p}</a></li>
 	    		</c:if>
 			</c:forEach>
 	    	<!-- 다음페이지 -->
@@ -97,7 +104,7 @@
 				<li><a href="#">▶</a></li>
 			</c:if>
 			<c:if test="${pVO.nowPage<pVO.totalPage }">
-	    		<li><a href="${pageContext.request.contextPath}/page/review?nowPage=${pVO.nowPage+1}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if>">▶</a></li>
+	    		<li><a href="${pageContext.request.contextPath}/page/review?nowPage=${pVO.nowPage+1}<c:if test='${pVO.searchWord!=null }'>&searchKey=${pVO.searchKey }&searchWord=${pVO.searchWord }</c:if><c:if test="${pVO.searchHR=='hit' }">&searchHR=hit</c:if><c:if test="${pVO.searchHR=='rating' }">&searchHR=rating</c:if>">▶</a></li>
 	    	</c:if>
 		</ul>
 	</div>
