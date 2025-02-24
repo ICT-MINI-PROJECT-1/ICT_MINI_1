@@ -2,20 +2,39 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link href="${pageContext.request.contextPath }/css/page/review.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/page/review.js"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const search_form = document.getElementById("write-srch");
+		search_form.addEventListener("submit", (event) => {
+			  event.preventDefault();
+			  postSearching();
+		});
+	});
+</script>
 <div id="fade">
 <div class="container">
+	<c:if test="${pVO == null}">
 	<div class="review-title">
 		<div id="span-back"></div>
 		<span>REVIEW</span>
 	</div>
+	</c:if>
 	<div class="review-wrap">
+		<c:if test="${pVO != null}">
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				review_wrap=document.getElementsByClassName("review-wrap")[0];
+				review_wrap.style.position = 'static';
+				review_wrap.style.opacity= 1;
+			});
+		</script>
 		<div id="review-write-search">
 			<c:if test="${loginStatus=='Y' }">
 				<a href="${pageContext.request.contextPath}/page/review/write" id="review-write">리뷰작성</a>
 			</c:if>
 			<!-- 검색창 -->
 			<div class="review-search">
-				<form>
+				<form id="write-srch">
 					<select id="searchConcept" name="searchConcept">
 						<option value="0">전체 컨셉</option>
 						<option value="309">Contemporary Art</option>
@@ -98,12 +117,7 @@
 			<div id="modal-img">
 				<div id="modal-img-main"></div>
 				<div id="modal-img-list">
-					<ul>
-						<li class="modal-img-mini">1</li>
-						<li class="modal-img-mini">2</li>
-						<li class="modal-img-mini">3</li>
-						<li class="modal-img-mini">4</li>
-						<li class="modal-img-mini">5</li>
+					<ul id="modals">
 					</ul>
 				</div>
 			</div>	
@@ -134,6 +148,7 @@
 				</div>
 			</div>
 		</div>
+		</c:if>
 	</div><!-- 모달팝업 끝 -->
 </div><!-- container 끝 -->
 </div>
