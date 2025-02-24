@@ -67,4 +67,10 @@
 	<select id="reviewImageSelect" resultType="com.sc.main.vo.ReviewImgVO">
 		select * from reviewimg where reviewno=${reviewno}
 	</select>
+	<update id="reviewImageUpdate">
+		update reviewimg set filename=#{filename} where reviewno=${reviewno}
+	</update>
+	<delete id="reviewImageDelete">
+		delete from reviewimg where reviewno=${param1}
+	</delete>
 </mapper>
