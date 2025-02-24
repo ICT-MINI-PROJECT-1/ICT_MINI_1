@@ -17,6 +17,7 @@
 	<resources mapping="/js/**" location="/js/" />
 	<resources mapping="/img/**" location="/img/"/>
 	<resources mapping="/ckeditor/**" location="/ckeditor/"/>
+	<resources mapping="/uploadfile/**" location="uploadfile/"/>
 	<resources mapping="/favicon.ico" location="/favicon.ico"/>
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
