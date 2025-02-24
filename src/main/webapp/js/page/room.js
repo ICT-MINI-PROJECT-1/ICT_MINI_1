@@ -93,6 +93,13 @@ function openModal(data){
 	modal_img.style.background="url('../../img/page/room/"+path+"/"+data+".jpg') no-repeat";
 	modal_img.style.backgroundSize="cover";
 	modal_img.style.backgroundPosition="center";
+	
+	let roomInfo = document.getElementById("contents-roominfo");
+    if (roomInfo) {
+        roomInfo.scrollTop = 0;
+    }
+	
+	
 	fetch("/page/room/modalinfo",{
 		method:"POST",
 		headers:{
@@ -104,16 +111,16 @@ function openModal(data){
 			document.getElementById("contents-roominfo").innerHTML="<pre>"+data.roominfo+"</pre>";
 			document.getElementById("contents-roomno").innerHTML=data.roomno;
 			move_roomno=data.roomno;
-			if(data.roomconcept=='contemp')document.getElementById("contents-roomconcept").innerHTML="현대풍";
-			if(data.roomconcept=='artnou')document.getElementById("contents-roomconcept").innerHTML="아르누보풍";
-			if(data.roomconcept=='artdec')document.getElementById("contents-roomconcept").innerHTML="아르데코풍";
-			if(data.roomconcept=='asian')document.getElementById("contents-roomconcept").innerHTML="동양풍";
+			if(data.roomconcept=='contemp')document.getElementById("contents-roomconcept").innerHTML="모던현대";
+			if(data.roomconcept=='artnou')document.getElementById("contents-roomconcept").innerHTML="아르누보";
+			if(data.roomconcept=='artdec')document.getElementById("contents-roomconcept").innerHTML="아르데코";
+			if(data.roomconcept=='asian')document.getElementById("contents-roomconcept").innerHTML="동양";
 			
 			document.getElementById("contents-viewtype").innerHTML=data.viewtype;
 			document.getElementById("contents-capacity").innerHTML=data.capacity;
-			document.getElementById("contents-area").innerHTML=data.area;
+			document.getElementById("contents-area").innerHTML=data.area+"㎡";
 			document.getElementById("contents-bedtype").innerHTML=data.bedtype;
-			document.getElementById("contents-price").innerHTML=data.price;
+			document.getElementById("contents-price").innerHTML=data.price.toLocaleString() + " 원";
 			document.getElementById("contents-rating").innerHTML=`
 				<div class="modal-star-box">
 					<div class="modal-star-fill" style="width:`+data.rating*20+`%"></div>

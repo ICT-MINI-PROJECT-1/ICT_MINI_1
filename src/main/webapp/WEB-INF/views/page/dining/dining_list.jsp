@@ -9,12 +9,20 @@
 <div id="fade">
 	<div class="container">
 		<div class="dining-menu">
+			<div id="dining-page-nav">
+				<ul>
+					<li onclick="moveToRestNav('korean')">Korean</li>
+					<li onclick="moveToRestNav('western')">Western</li>
+					<li onclick="moveToRestNav('japanese')">Japanese</li>
+				</ul>
+			</div>
+		
 			<c:if test="${foodType=='korean'}">
 				<div id="d-title">
 					<div id="d-subject">
 						Korean
 					</div>
-					<a href="#">메뉴다운로드</a>
+					<a href="../../img/page/dining/download/menu-korean.jpg" download>메뉴다운로드</a>
 				</div>
 			
 				<div id="d-modal">
@@ -74,7 +82,7 @@
 					<div id="d-subject">
 						Western
 					</div>
-					<a href="#">메뉴다운로드</a>
+					<a href="../../img/page/dining/download/menu-western.jpg" download>메뉴다운로드</a>
 				</div>
 			
 				<div id="d-modal">
@@ -95,7 +103,10 @@
 					<div id="d-content1">
 						<div id="menu-info">
 							<div id="info-dish">
-								<p style="margin-left: -350px;">한국의 식재료를 재해석하여 과감하고 창의적인 음식으로,</p>
+								<p style="margin-left: -350px;">
+									한국의 식재료를 재해석하여 과감하고 <ruby>창의적인 음식으로,
+									<rt style="color: brown; margin-bottom:5px; letter-spacing: 0.1em;">분기별 팝업스토어 진행중</rt></ruby>
+								</p>
 								<p style="margin-top: -30px;">압도적인 새로운 장르의 가치있는 경험을 선사시켜드리겠습니다.</p>
 					 	  	</div>
 						</div>
@@ -134,7 +145,7 @@
 						<div id="d-subject">
 							Japanese
 						</div>
-						<a href="#">메뉴다운로드</a>
+						<a href="../../img/page/dining/download/menu-japanese.jpg" download>메뉴다운로드</a>
 					</div>
 				
 					<div id="d-modal">
@@ -154,8 +165,8 @@
 				<div id="d-content">
 					<div id="d-content1">
 						<div id="menu-info">
-							<div id="info-dish">
-								<p>전통과 혁신을 겸비한 에도마에 스시가 있는 편안하고 고급스러운 공간</p>
+							<div id="info-dish" style="position: relative; left: -70px;">
+								<p>전통과 혁신을 겸비한 <ruby>에도마에 스시<rt style="color: brown; margin-bottom:5px;">300년전통의</rt></ruby>가 있는 편안하고 고급스러운 공간</p>
 					 	  	</div>
 						</div>
 						
