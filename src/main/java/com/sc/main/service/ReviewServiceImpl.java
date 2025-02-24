@@ -71,4 +71,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public void reviewImageDelete(int reveiwno) {
 		dao.reviewImageDelete(reveiwno);
 	}
+
+	@Override
+	public void reviewHitCount(int reviewno) {
+		dao.reviewHitCount(reviewno);
+	}
+
 }

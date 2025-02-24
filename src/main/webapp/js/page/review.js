@@ -65,10 +65,8 @@ function openModal(reviewno,userid,sessionid,roomno){
 	fetch("/page/review/modalReview",{
 		method: "POST",
 		headers: {
-			//"Content-Type":"text/plain"
 			"Content-Type":"application/json"
 		},
-		//body: reviewno
 		body: JSON.stringify({
             reviewno: reviewno, 
             roomno: roomno
@@ -88,6 +86,8 @@ function openModal(reviewno,userid,sessionid,roomno){
 		document.getElementById("modal-writedate").innerHTML = data.writedate;
 		document.getElementById("modal-userid").innerHTML = data.userid;
 		document.getElementById("modal-content").innerHTML = data.content;
+		document.getElementById("modal-hit").innerHTML = data.hit;
+		console.log("data.hit="+data.hit);
 		
 		var roomconcept = "";
 		var roomconceptKor = Math.trunc(data.roomno/100);

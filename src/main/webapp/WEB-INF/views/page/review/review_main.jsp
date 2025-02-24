@@ -129,6 +129,8 @@
 				<ul>
 					<li>컨셉</li>
 					<li id="modal-concept"></li>
+					<li>조회수</li>
+					<li id="modal-hit"></li>
 				</ul>
 				<ul>
 					<li>호수</li>

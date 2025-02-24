@@ -9,6 +9,8 @@ public class ReviewVO {
 	private String userid;
 	private int roomno;
 	private float rating;
+	private int hit;
+
 	public int getReviewno() {
 		return reviewno;
 	}
@@ -51,9 +53,16 @@ public class ReviewVO {
 	public void setRating(float rating) {
 		this.rating = rating;
 	}
+	public int getHit() {
+		return hit;
+	}
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+	
 	@Override
 	public String toString() {
 		return "ReviewVO [reviewno=" + reviewno + ", subject=" + subject + ", writedate=" + writedate + ", content="
-				+ content + ", userid=" + userid + ", roomno=" + roomno + ", rating=" + rating + "]";
+				+ content + ", userid=" + userid + ", roomno=" + roomno + ", rating=" + rating + ", hit=" + hit + "]";
 	}
 }
