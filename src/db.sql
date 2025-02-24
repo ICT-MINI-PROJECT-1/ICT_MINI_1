@@ -185,21 +185,6 @@ insert into wishlist values('test1234',301);
 
 insert into wishlist values('test1234',304);
 
-insert into review (subject, content, userid, roomno, rating)
-values ("301호 추천합니다.", "301호 강력추천, 301호 강력추천, 301호 강력추천", "test1234", 301, 4.5);
-insert into review (subject, content, userid, roomno, rating)
-values ("308호 추천합니다.", "308호 강력추천, 308호 강력추천, 308호 강력추천", "test1234", 308, 5);
-insert into review (subject, content, userid, roomno, rating)
-values ("405호 추천합니다.", "405호 강력추천, 405호 강력추천, 405호 강력추천", "test1234", 405, 3.8);
-insert into review (subject, content, userid, roomno, rating)
-values ("504호 추천합니다.", "504호 강력추천, 504호 강력추천, 504호 강력추천", "test1234", 504, 2.1);
-insert into review (subject, content, userid, roomno, rating)
-values ("607호 추천합니다.", "607호 강력추천, 607호 강력추천, 607호 강력추천", "test1234", 607, 2.1);
-insert into review (subject, content, userid, roomno, rating)
-values ("501호 추천합니다.", "501호 강력추천, 501호 강력추천, 501호 강력추천", "test1234", 504, 4.8);
-insert into review (subject, content, userid, roomno, rating)
-values ("602호 추천합니다.", "602호 강력추천, 602호 강력추천, 602호 강력추천", "test1234", 602, 3.2);
-
 alter table room modify column roominfo varchar(1000);
 
 UPDATE room SET 
@@ -359,13 +344,5 @@ WHERE roomno IN (605, 606, 607, 608);
 ALTER TABLE reviewimg MODIFY imgno INT NOT NULL AUTO_INCREMENT;
 ALTER TABLE reviewimg DROP COLUMN image;
 alter table reviewimg add filename varchar(45);
-insert into reviewimg(reviewno,filename) values(1,'1.jpg');
-insert into reviewimg(reviewno,filename) values(1,'2.jpg');
-insert into reviewimg(reviewno,filename) values(2,'1.jpg');
-insert into reviewimg(reviewno,filename) values(2,'2.jpg');
-insert into reviewimg(reviewno,filename) values(2,'3.jpg');
-insert into reviewimg(reviewno,filename) values(3,'4.jpg');
-insert into reviewimg(reviewno,filename) values(4,'5.jpg');
-insert into reviewimg(reviewno,filename) values(5,'6.jpg');
 
 commit;
