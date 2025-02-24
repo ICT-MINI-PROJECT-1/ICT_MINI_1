@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sc.main.service.ReservService;
 import com.sc.main.service.ReviewService;
 import com.sc.main.service.RoomService;
 import com.sc.main.vo.ModalReviewVO;
@@ -31,6 +32,9 @@ public class ReviewController {
 	
 	@Inject
 	ReviewService service;
+	
+	@Inject
+	ReservService reserv_service;
 	
 	//모달팝업(비동기)
 	@PostMapping("/modalReview")
@@ -53,8 +57,12 @@ public class ReviewController {
 	
 	//리뷰 작성폼
 	@GetMapping("/write")
-	public String reviewWrite(HttpServletRequest request) {
-		return "page/review/review_write";
+	public ModelAndView reviewWrite(HttpServletRequest request, HttpSession session) {
+		String userid=(String) session.getAttribute("loginId");
+		mav=new ModelAndView();
+		mav.setViewName("page/review/review_write");
+		mav.addObject("rVO", reserv_service.selectLastReservation(userid));
+		return mav;
 	}
 
 	//리뷰 작성(DB), 파일 업로드
