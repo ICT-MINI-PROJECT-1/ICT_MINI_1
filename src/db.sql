@@ -80,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `artpart`.`review` (
   `writedate` DATETIME NULL DEFAULT now(),
   `content` VARCHAR(500) NOT NULL,
   `userid` VARCHAR(20) NOT NULL,
+  `hit` int default 0,
   `roomno` INT NOT NULL,
   `rating` FLOAT NULL,
   PRIMARY KEY (`reviewno`),
@@ -93,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `artpart`.`review` (
   CONSTRAINT `fk_review_room1`
     FOREIGN KEY (`roomno`)
     REFERENCES `artpart`.`room` (`roomno`)
-    ON DELETE NO ACTION
+    ON DELETE cascade
     ON UPDATE NO ACTION);
 
 
@@ -106,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `artpart`.`reviewimg` (
   CONSTRAINT `fk_reviewimg_review1`
     FOREIGN KEY (`reviewno`)
     REFERENCES `artpart`.`review` (`reviewno`)
-    ON DELETE NO ACTION
+    ON DELETE cascade
     ON UPDATE NO ACTION);
 
 DELIMITER $$

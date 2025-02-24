@@ -6,11 +6,22 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/super-build/ckeditor.js"></script>
 <script src="${pageContext.request.contextPath }/ckeditor/ckeditor.js"></script>
 <script>
-	/*
-	window.onload = function(){
-		CKEDITOR.ClassicEditor.create(document.getElementById('content'), option);
-	}
-	*/
+	const dataTransfer = new DataTransfer();
+	
+     document.addEventListener('DOMContentLoaded', () => {
+    	 document.getElementById("fie").addEventListener("change", (e) => {
+   		  let fileArr = document.getElementById("fie").files;
+
+   	        if(fileArr != null && fileArr.length>0){
+
+   	          // =====DataTransfer 파일 관리========
+   	            for(var i=0; i<fileArr.length; i++){
+   	                dataTransfer.items.add(fileArr[i])
+   	            }
+   	            document.getElementById("fie").files = dataTransfer.files;
+   	        }
+   		});
+     });
 </script>
 <div id="fade">
 <div class="container">
@@ -35,7 +46,10 @@
 				</div>
 				<textarea name="content" id="content">${vo.content }</textarea>
 				<div id="upload-review-img">
-					<input type="file" name="mf" id="filename">${imgVO.get(0).filename }
+					<input type="file" name="mf" id="fie" multiple>
+					<c:forEach var="vo" items="${imgVO}">
+					<div>${vo.filename }</div>
+					</c:forEach>
 				</div>
 				<input type="submit" value="수정하기">
 			</form>
