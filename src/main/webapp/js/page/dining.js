@@ -54,6 +54,22 @@ function moveToRest(foodType) {
     f.submit();
 }
 
+function moveToRestNav(foodType) {	
+	
+	let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/page/dining/list');
+	document.body.appendChild(f);
+	
+	let obj;
+    obj = document.createElement('input');
+    obj.setAttribute('type', 'hidden');
+    obj.setAttribute('name', 'foodType');
+    obj.setAttribute('value', foodType);
+	f.appendChild(obj);
+    f.submit();
+}
+
 //모달값 세팅
 let currentIndex;
 

@@ -228,7 +228,7 @@
 
 #menu-info {
 	width: 90%;
-	margin-left: 30px;
+	display: flex;
 	/* overflow: hidden;
     text-overflow: ellipsis;
 	white-space: nowrap; */
@@ -428,10 +428,9 @@
 @media(max-width:1670px) {
 	#dining-page-nav {
 		right: 0%;
-		top: 20%;
-		writing-mode: vertical-lr;
+		/* writing-mode: vertical-lr;
 		text-orientation: upright;
-		letter-spacing: -0.5em;
+		letter-spacing: -0.5em; */
 		z-index: 0;
 	}
 }
