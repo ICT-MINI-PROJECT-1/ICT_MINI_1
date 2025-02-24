@@ -44,7 +44,7 @@
 		limit ${onePageRecord} offset ${offset}
 	</select>
 	<select id="reviewDetail" resultType="com.sc.main.vo.ReviewVO">
-		select reviewno, subject, content, userid, roomno, rating, date_format(writedate, '%Y-%m-%d') writedate from review where reviewno=#{param1}
+		select reviewno, subject, content, userid, roomno, rating, hit, date_format(writedate, '%Y-%m-%d') writedate from review where reviewno=#{param1}
 	</select>
 	<insert id="reviewInsert">
 		insert into review (userid, roomno, rating, subject, content) 
@@ -88,4 +88,7 @@
 	<delete id="reviewImageDelete">
 		delete from reviewimg where imgno=${imgno}
 	</delete>
+	<update id="reviewHitCount">
+		update review set hit = hit+1 where reviewno=${param1}
+	</update>
 </mapper>

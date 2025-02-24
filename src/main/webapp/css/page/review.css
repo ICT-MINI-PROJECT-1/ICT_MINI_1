@@ -297,6 +297,24 @@
 	height: 15vw;
     min-height: 100px;
     margin-top: 3%;
+    white-space: pre-line
+}
+/* 스크롤바 디자인 */
+#modal-content::-webkit-scrollbar {
+    width: 7px; /* 스크롤바 너비 */
+}
+#modal-content::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* 스크롤 핸들 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
+}
+
+#modal-content::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* 마우스 오버 시 색상 변경 */
+}
+
+#modal-content::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1); /* 스크롤 트랙 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
 }
 #btn{
 	text-align: right;
