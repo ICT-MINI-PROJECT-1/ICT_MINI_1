@@ -32,6 +32,23 @@
 			<c:if test="${loginStatus=='Y' }">
 				<a href="${pageContext.request.contextPath}/page/review/write" id="review-write">리뷰작성</a>
 			</c:if>
+		</div>
+		<div id="review-sort-search">
+			<ul id="review-select-sort">
+				<li id="sort">정렬</li>
+				<c:if test="${pVO.searchHR=='hit'}">
+					<li style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')" class="selected-sort">조회순</a></li>
+					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')" class="selected-sort">평점순</a></li>
+				</c:if>
+				<c:if test="${pVO.searchHR=='rating'}">
+					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')" class="selected-sort">조회순</a></li>
+					<li style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')" class="selected-sort">평점순</a></li>
+				</c:if>
+				<c:if test="${pVO.searchHR==null || pVO.searchHR==''}">
+					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')" class="selected-sort">조회순</a></li>
+					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')" class="selected-sort">평점순</a></li>
+				</c:if>
+			</ul>
 			<!-- 검색창 -->
 			<div class="review-search">
 				<form id="write-srch">
@@ -53,11 +70,6 @@
 				</form>
 			</div>
 		</div>
-		<ul id="review-select-sort">
-			<li id="sort">정렬</li>
-			<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
-			<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
-		</ul>
 		<div class="review-list-grid-box">
 			<c:if test="${fn:length(list) > 0 }">
 			<c:forEach var="i" begin="0" end="${fn:length(list)-1}">

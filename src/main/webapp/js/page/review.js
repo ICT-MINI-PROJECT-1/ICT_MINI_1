@@ -267,3 +267,7 @@ function moveModalPage(page,reviewno,roomno){
 	});
 	console.log(page);
 }
+
+
+
+
