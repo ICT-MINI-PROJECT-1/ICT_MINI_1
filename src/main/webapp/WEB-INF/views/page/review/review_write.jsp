@@ -6,32 +6,51 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/super-build/ckeditor.js"></script>
 <script src="${pageContext.request.contextPath }/ckeditor/ckeditor.js"></script>
 <script>
+	/*
+	let editor;
 	window.onload = function(){
-		CKEDITOR.ClassicEditor.create(document.getElementById('content'), option);
+		CKEDITOR.ClassicEditor.create(document.getElementById('write-content'), option)
+		.then(ed => {
+			editor = ed;
+		}).catch(error => {
+			console.log(error);
+		});
 	}
+	*/
 </script>
 <div id="fade">
 <div class="container">
 	<div class="review-write-wrap">
 		<div id="write-box">
-			<form method="post" action="${pageContext.request.contextPath }/page/review/writeOk" id="review-write-form">
+			<form method="post" action="${pageContext.request.contextPath }/page/review/writeOk" id="review-write-form" onsubmit="writeFormCheck(event)" enctype="multipart/form-data">
 				<div id="write-title">Review Write</div>
 				<div id="write-username">
-					<div>username</div>
+					<div>작성자 : ${loginName }</div>
 				</div>
 				<div id="write-writedate-hit">
-					<div id="form-writedate">2025-02-20</div>
+					<div id="form-writedate">
+						<script>
+							let date = new Date();
+							let year = date.getFullYear();
+							let month = date.getMonth()+1;
+							let day = date.getDate();
+						
+							document.getElementById("form-writedate").innerHTML = year+"-"+month+"-"+day;
+						</script>
+					</div>
 				</div>
 				<div id="write-roomno-rating">
 					<div id="form-roomno">호수<input type="text" name="roomno" id="roomno"></div>
 					<div id="form-rating">평점<input type="text" name="rating" id="rating"></div>
 				</div>
 				<div id="form-subject">
-					<div id="form-subject-div">제목</div>
-					<input type="text" name="subject" id="subject">
+					<input type="text" name="subject" id="write-subject" placeholder="제목을 입력해 주세요">
 				</div>
-				<textarea name="content" id="content"></textarea>
-				<input type="submit" value="작성완료">
+				<textarea name="content" id="write-content" placeholder="내용을 입력해 주세요"></textarea>
+				<div id="upload-review-img">
+					<input type="file" name="mf" id="filename">
+				</div>
+				<input type="submit" value="작성완료" id="write-submit">
 			</form>
 		</div>
 	</div>

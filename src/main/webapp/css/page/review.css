@@ -64,7 +64,9 @@
 	font-family:'Gowun Batang';
 	color: #6A3D17;
 }
-
+#review-write:hover{
+	font-weight: bold;
+}
 #review-write-search{
 	display: flex;
 	align-items: center;
@@ -91,12 +93,17 @@
 .review-search>input[type=text]{
 	width: 30%;
 }
+#review-search-result{
+	text-align: center;
+}
 .review-list-grid-box{
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
+	/*
 	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 
 				1px 1px 1px 0px rgba(186, 179, 172, .6), 
 				1px 1px 1px 0px rgba(186, 179, 172, .6);
+	*/
 	padding-top: 40px;
     padding-bottom: 40px;
     border-radius: 10px;
@@ -105,30 +112,49 @@
 }
 .review-list-grid-item{
 	width: 95%;
-	border-bottom: 1px solid #E0E0E0;
+	/*
+	border-bottom: 1px solid #6a3d175c;
+	*/
 	margin: 10px auto;
 	font-size: 1.5vw;
+	/*
 	background: #fff;
+	*/
+	/*
+	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5),  
+				1px 1px 1px 0px rgba(0, 0, 0, .6);
+	*/
 	padding-top: 24px;
+	/*
 	border-radius: 5px;
+	*/
 }
 .review-list-img{
 	margin: 0 auto;
-	width: 78%;
-	height: 14.5vw;
+	width: 88%;
+    height: 16.3vw;
 	background: #fff;
 	border-radius: 5px;
 	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 
 				1px 1px 1px 0px rgba(0, 0, 0, .6), 
-				1px 1px 2px 0px rgba(0, 0, 0, .6);
+				0.5px 0.5px 0.5px 0px rgba(0, 0, 0, .6);
 	transition: all 0.7s;
 	margin-bottom: 0.8vw;
+	
+	background:url("../../img/page/review/305-1.jpg") no-repeat;
+	background-size:cover;
+	background-position:center;
 }
 .review-list-img:hover{
 	transform: scale(1.07);
 	cursor: pointer;
 }
-
+.review-list-title{
+	border-bottom: 1px solid #6a3d175c;
+	width: 90%;
+    margin: 0 auto;
+    overflow: auto;
+}
 .review-list-title>li:nth-child(1){
 	width: 70%;
 	float: left;
@@ -136,7 +162,19 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.review-list-title>li:nth-child(2){
+	width: 30%;
+	float: left;
+}
+/*
 .review-list-title>li:nth-child(1):hover{
+	transform: scale(1.07);
+	font-weight: bold;
+	cursor: pointer;
+	background: red;
+}
+*/
+.review-list-title:hover{
 	font-weight: bold;
 	cursor: pointer;
 }
@@ -160,7 +198,7 @@
 	padding-bottom: 40%;
 	background: transparent;
 	backdrop-filter: blur(6px);
-	z-index: 10;
+	/*z-index: 10;*/
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -169,6 +207,10 @@
 	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 
 				2px 2px 7px 0px rgba(106, 61, 23, .6), 
 				1px 1px 3px 0px rgba(106, 61, 23, .6);
+	
+	opacity:0;
+	z-index:-5;
+	transition: opacity 0.7s;
 }
 #modal-exit{
 	text-align: right;
@@ -321,7 +363,10 @@ input[type=button]{
 	width: 10%;
 }
 #form-subject>input[type=text]{
-	width: 90%;
+	width: 100%;
+	height: 2vw;
+	border-radius: 5px;
+    margin: 0.5vw 0;
 }
 #form-rating{
  	margin-left: auto;
@@ -335,12 +380,46 @@ textarea{
 	height: 35vw;
 	box-sizing: border-box;
 }
+#write-submit{
+	color: white;
+	background: #6a3d17e0;
+    border-radius: 4px;
+    width: 17%;
+    height: 2.2vw;
+    margin-top: 1.5vw;
+    cursor: pointer;
+}
+#write-submit:hover{
+	background: #6A3D17;
+}
 
+@media(max-width:1024px){
+	.review-write-wrap{
+		width: 819.2px;
+	}
+	#review-write-form{
+		font-size: 17.408px;
+	}
+	#form-subject>input[type=text]{
+		height: 20.48px;
+	    margin: 5.12px 0;
+	}
+	#write-submit{
+		height: 22.528px;
+	}
+}
 @media (min-width:1400px){
 	.review-write-wrap{
 		width: 1300px;
 	}
 	#review-write-form{
 		font-size: 23.8px;
+	}
+	#form-subject>input[type=text]{
+		height: 28px;
+	    margin: 7px 0;
+	}
+	#write-submit{
+		height: 30.8px;
 	}
 }

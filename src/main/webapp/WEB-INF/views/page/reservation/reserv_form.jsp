@@ -81,6 +81,11 @@
 					<button class="buttons" style="width:20%;" type="button" onclick="openCalendar()">Find</button>
 				<div id="alert-date">Invalid DATE</div>
 				</div>
+				<div id="reserv-left"><div id="idpw">END-DATE</div><div id="hidden-height">I</div></div><div id="reserv-right">
+					<input type="text" style="padding:0;width:40%;text-align:center;" id="reservenddate" name="reservenddate" value="" readonly/>
+					<button class="buttons" style="width:20%;" type="button" onclick="openEndCalendar()">Find</button>
+				<div id="alert-enddate">Invalid ENDDATE</div>
+				</div>
 			</div>
 			<input class="reserv-submit" type="button" onclick="reservChk()" value="예약하기"/>
 		</form>

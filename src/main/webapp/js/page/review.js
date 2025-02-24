@@ -41,23 +41,44 @@ window.addEventListener("wheel", (e) => {
 
 where="review";
 
-
+//review_main.jsp에 있는 함수
 window.onload = function(){
 	closeModal();
 }
-function openModal(reviewno,userid,sessionid){
+
+
+
+
+/////////////////////////////////////////////////////////////
+var selected_roomno;
+
+function openModal(reviewno,userid,sessionid,roomno){
 	selected_reviewno = reviewno;
+	selected_roomno =  roomno;
 	
 	document.getElementById("btn").style.display='none';
-	document.getElementById("review-list-modal").style.display = "block";
+	
+	let review_modal = document.getElementById("review-list-modal");
+	review_modal.style.opacity=1;
+	review_modal.style.zIndex=10;
 	
 	fetch("/page/review/modalReview",{
 		method: "POST",
 		headers: {
-			"Content-Type":"text/plain"
+			//"Content-Type":"text/plain"
+			"Content-Type":"application/json"
 		},
-		body: reviewno
+		//body: reviewno
+		body: JSON.stringify({
+            reviewno: reviewno, 
+            roomno: roomno
+        })
 	}).then(response => {
+		if (!response.ok) {
+	        return response.text().then(text => {
+	            throw new Error('Network response was not ok: ' + text);
+	        });
+	    }
 		return response.json()
 	}).then(data => {
 		console.log(data);
@@ -67,6 +88,16 @@ function openModal(reviewno,userid,sessionid){
 		document.getElementById("modal-writedate").innerHTML = data.writedate;
 		document.getElementById("modal-userid").innerHTML = data.userid;
 		document.getElementById("modal-content").innerHTML = data.content;
+		
+		var roomconcept = "";
+		var roomconceptKor = Math.trunc(data.roomno/100);
+		
+		if(roomconceptKor==3) roomconcept="현대풍";
+		if(roomconceptKor==4) roomconcept="아르누보풍";
+		if(roomconceptKor==5) roomconcept="아르데코풍";
+		if(roomconceptKor==6) roomconcept="아시안";
+		
+		document.getElementById("modal-concept").innerHTML = roomconcept;
 	}).catch(error => {
 		console.log(error);
 	});
@@ -74,9 +105,10 @@ function openModal(reviewno,userid,sessionid){
 }
 function closeModal(){
 	if(document.getElementById("review-list-modal")!=null)
-		document.getElementById("review-list-modal").style.display = "none";
+		document.getElementById("review-list-modal").style.opacity = 0;
+		document.getElementById("review-list-modal").style.zIndex = -5;
 }
-
+//리뷰수정 버튼
 function reviewEdit(){
 	let f = document.createElement('form');
 	f.setAttribute('method','post');
@@ -91,7 +123,7 @@ function reviewEdit(){
 	f.appendChild(obj);
 	f.submit();
 }
-
+//리뷰삭제 버튼
 function reviewDelete(){
 	let f = document.createElement('form');
 	f.setAttribute('method','post');
@@ -105,6 +137,20 @@ function reviewDelete(){
 	obj.setAttribute('value',selected_reviewno);
 	f.appendChild(obj);
 	f.submit();
+}
+
+//review_write.jsp에 있는 함수
+function writeFormCheck(event){
+	if(document.getElementById('write-subject').value==''){
+		alert("제목 없음");
+		event.preventDefault();
+	}
+	
+	const content = editor.getData();	//ckeditor에 작성한 글 가져오기
+	if(content.trim() == ''){
+		alert("내용 없음");
+		event.preventDefault();
+	}
 }
 
 //function reviewPrevPage(pageNum){
