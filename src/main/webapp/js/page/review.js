@@ -119,6 +119,7 @@ function closeModal(){
 		document.getElementById("review-list-modal").style.opacity = 0;
 		document.getElementById("review-list-modal").style.zIndex = -5;
 }
+
 //리뷰수정 버튼
 function reviewEdit(){
 	let f = document.createElement('form');
