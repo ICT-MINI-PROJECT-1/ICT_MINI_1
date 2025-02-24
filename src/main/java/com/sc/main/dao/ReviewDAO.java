@@ -1,8 +1,10 @@
 package com.sc.main.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.sc.main.vo.PagingVO;
+import com.sc.main.vo.ReviewImgVO;
 import com.sc.main.vo.ReviewVO;
 
 public interface ReviewDAO {
@@ -13,4 +15,8 @@ public interface ReviewDAO {
 	public int reviewDelete(int reviewno);
 	
 	public int reviewTotalRecord(PagingVO pVO);
+	public int imgInsert(ReviewImgVO imgVO);
+	public int reviewImage(String userid);
+	
+	public ArrayList<ReviewImgVO> reviewImageSelect(int reviewno);
 }

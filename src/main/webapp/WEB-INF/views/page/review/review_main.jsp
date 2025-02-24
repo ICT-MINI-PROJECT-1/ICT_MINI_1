@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <link href="${pageContext.request.contextPath }/css/page/review.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/page/review.js"></script>
 <div id="fade">
@@ -11,21 +11,23 @@
 	<div class="review-wrap">
 		<div id="review-write-search">
 			<c:if test="${loginStatus=='Y' }">
-			
 				<a href="${pageContext.request.contextPath}/page/review/write" id="review-write">리뷰작성</a>
 			</c:if>
 			<!-- 검색창 -->
 			<div class="review-search" action="${pageContext.request.contextPath }/page/review">
 				<form>
+					<select name="searchConcept">
+						<option value="0">전체 컨셉</option>
+						<option value="309">Contemporary Art</option>
+						<option value="409">Art Nouveau</option>
+						<option value="509">Art Déco</option>
+						<option value="609">Asian</option>
+					</select>
 					<select name="searchKey">
-						<option value="total">전체</option>
+						<option value="total">전체 검색</option>
 						<option value="subject">제목</option>
 						<option value="content">내용</option>
 						<option value="roomno">호수</option>
-						<option value="contemp">Contemporary Art</option>
-						<option value="artnou">Art Nouveau</option>
-						<option value="artdec">Art Déco</option>
-						<option value="asian">Asian</option>
 					</select>
 					<input type="text" name="searchWord">
 					<input type="submit" value="검색">
@@ -33,21 +35,39 @@
 			</div>
 		</div>
 		<div class="review-list-grid-box">
+			<c:forEach var="i" begin="0" end="${fn:length(list)-1}">
+				<div class="review-list-grid-item">
+					<c:if test="${fn:length(imgList.get(i)) > 0}">
+						<div style="background:url('${pageContext.request.contextPath}/uploadfile/${imgList.get(i).get(0).filename}'); background-size:cover;background-position:center;" class="review-list-img" onclick="openModal('${list.get(i).reviewno}','${list.get(i).userid }','${loginId }', '${list.get(i).roomno }')"></div>
+					</c:if>
+					<ul class="review-list-title">
+						<li onclick="openModal('${list.get(i).reviewno}','${list.get(i).userid }','${loginId }', '${list.get(i).roomno }')">${list.get(i).subject }</li>
+						<li>${list.get(i).rating }</li>
+					</ul>
+				</div>
+			</c:forEach>
+			<!-- 
 			<c:forEach var="vo" items="${list}">
 				<div class="review-list-grid-item">
-					<div class="review-list-img" onclick="openModal('${vo.reviewno}','${vo.userid }','${loginId }')">이미지</div>
+					<div style="background:url('${pageContext.request.contextPath}/uploadfile/1.jpg'); background-size:cover;background-position:center;" class="review-list-img" onclick="openModal('${vo.reviewno}','${vo.userid }','${loginId }', '${vo.roomno }')"></div>
 					<ul class="review-list-title">
-						<li onclick="openModal('${vo.reviewno}','${vo.userid }','${loginId }')">${vo.subject }</li>
+						<li onclick="openModal('${vo.reviewno}','${vo.userid }','${loginId }', '${vo.roomno }')">${vo.subject }</li>
 						<li>${vo.rating }</li>
 					</ul>
 				</div>
-			</c:forEach>	 
+			</c:forEach>-->
 		</div>
+		
+		<c:if test="${fn:length(list)==0 }">
+			<span id="review-search-result">검색 결과가 없습니다.</span>
+		</c:if>
 		<!-- 페이징 -->
 		<ul id="paging">
 			<!-- 이전페이지 -->
-			<c:if test="${pVO.nowPage==1 }">
-				<li><a href="#">◀</a></li>
+			<c:if test="${fn:length(list)!=0}">
+				<c:if test="${pVO.nowPage==1}">
+					<li><a href="#">◀</a></li>
+				</c:if>
 			</c:if>
 			<c:if test="${pVO.nowPage>1 }">
 	    		<!-- Post방식으로 바꾸는 중
@@ -86,7 +106,7 @@
 		<p id="modal-exit" onclick="closeModal()">X</p>
 		<div id="modal-grid">
 			<div id="modal-img">
-				<div id="modal-img-main">사진</div>
+				<div id="modal-img-main"></div>
 				<div id="modal-img-list">
 					<ul>
 						<li class="modal-img-mini">1</li>
@@ -100,6 +120,10 @@
 			<div id="modal-contents">
 				<p id="modal-subject"></p>
 				<ul>
+					<li>컨셉</li>
+					<li id="modal-concept"></li>
+				</ul>
+				<ul>
 					<li>호수</li>
 					<li id="modal-roomno"></li>
 					<li>평점</li>
@@ -112,7 +136,7 @@
 					<li id="modal-userid"></li>
 				</ul>
 				<div id="modal-content"></div>
-				<div id="btn" style="display:none;">
+				<div id="btn">
 					<input type="button" value="수정" onclick="reviewEdit()">
 					<input type="button" value="삭제" onclick="reviewDelete()">
 				</div>

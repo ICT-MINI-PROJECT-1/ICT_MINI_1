@@ -10,7 +10,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<!-- 파일업로드를 위한 클래스 객체 생성 -->
-
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 	
 	<!--  Interceptor는 클라이언트가 접속하면 DispacherServlet이 접속받아 
 		접속한 메인주소를 알아낸 후 매핑주소를 이동하기전, 이동후, 뷰페이지이동전에 Interceptor를 수행한다.
@@ -23,6 +23,7 @@
 			<mvc:mapping path="/page/reservation"/>
 			<mvc:mapping path="/page/reservation/form"/>
 			<mvc:mapping path="/user/mypage"/>
+			<mvc:mapping path="/page/review/write"/>
 			<bean class="com.sc.main.LoginInterceptor"></bean>
 	 	</mvc:interceptor>
 	 	<mvc:interceptor>

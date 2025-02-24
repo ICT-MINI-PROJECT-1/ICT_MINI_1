@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `artpart`.`room` (
 CREATE TABLE IF NOT EXISTS `artpart`.`reservation` (
   `reservno` INT NOT NULL AUTO_INCREMENT,
   `reservdate` DATETIME NOT NULL DEFAULT now(),
+  `reservenddate` DATETIME NOT NULL DEFAULT now(),
   `usercnt` INT NOT NULL,
   `request` VARCHAR(500) NULL,
   `userid` VARCHAR(20) NOT NULL,
@@ -174,15 +175,11 @@ insert into user values('test6222','test6222!!','팔건모','010-6385-4676','rjs
 insert into user values('test7222','test7222!!','구건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
 insert into user values('admin','admin','관리자','0','0',0,'0','0','0');
 
-insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-03-01',2,'냠냠','test1111',301);
-insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-03-02',2,'냠냠','test2222',301);
-insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-03-03',2,'냠냠','test3222',301);
-insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-02-23',2,'냠냠','test4222',301);
-insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-02-24',2,'냠냠','test5222',301);
-insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-02-25',2,'냠냠','test6222',301);
-insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-02-26',2,'냠냠','test7222',301);
-insert into reservation(reservdate,usercnt,request,userid,roomno) values('2025-02-28',2,'냠냠','user1234',301);
-
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-01','2025-03-03',2,'냠냠','test1111',301);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-07','2025-03-09',2,'냠냠','test2222',301);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-11','2025-03-11',2,'냠냠','test3222',301);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-31','2025-03-31',2,'냠냠','test4222',301);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-22','2025-02-24',2,'냠냠','test1234',301);
 
 insert into wishlist values('test1234',301);
 
@@ -202,12 +199,6 @@ insert into review (subject, content, userid, roomno, rating)
 values ("501호 추천합니다.", "501호 강력추천, 501호 강력추천, 501호 강력추천", "test1234", 504, 4.8);
 insert into review (subject, content, userid, roomno, rating)
 values ("602호 추천합니다.", "602호 강력추천, 602호 강력추천, 602호 강력추천", "test1234", 602, 3.2);
-
-insert into reservation(reservdate,usercnt,request,userid,roomno)
-values('2025-01-05',4,'ㅎㅎ','test1234',301);
-
-insert into reservation(reservdate,usercnt,request,userid,roomno)
-values('2025-02-20',4,'ㅎㅎ','test1234',403);
 
 alter table room modify column roominfo varchar(1000);
 
@@ -364,5 +355,17 @@ SET
     area = 75
 WHERE roomno IN (605, 606, 607, 608);
 
+
+ALTER TABLE reviewimg MODIFY imgno INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE reviewimg DROP COLUMN image;
+alter table reviewimg add filename varchar(45);
+insert into reviewimg(reviewno,filename) values(1,'1.jpg');
+insert into reviewimg(reviewno,filename) values(1,'2.jpg');
+insert into reviewimg(reviewno,filename) values(2,'1.jpg');
+insert into reviewimg(reviewno,filename) values(2,'2.jpg');
+insert into reviewimg(reviewno,filename) values(2,'3.jpg');
+insert into reviewimg(reviewno,filename) values(3,'4.jpg');
+insert into reviewimg(reviewno,filename) values(4,'5.jpg');
+insert into reviewimg(reviewno,filename) values(5,'6.jpg');
 
 commit;

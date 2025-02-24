@@ -1,5 +1,6 @@
 package com.sc.main.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.sc.main.dao.ReviewDAO;
 import com.sc.main.vo.PagingVO;
+import com.sc.main.vo.ReviewImgVO;
 import com.sc.main.vo.ReviewVO;
 
 @Service
@@ -43,5 +45,20 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public int reviewTotalRecord(PagingVO pVO) {
 		return dao.reviewTotalRecord(pVO);
+	}
+
+	@Override
+	public int imgInsert(ReviewImgVO imgVO) {
+		return dao.imgInsert(imgVO);
+	}
+
+	@Override
+	public int reviewImage(String userid) {
+		return dao.reviewImage(userid);
+	}
+
+	@Override
+	public ArrayList<ReviewImgVO> reviewImageSelect(int reviewno) {
+		return dao.reviewImageSelect(reviewno);
 	}
 }

@@ -106,6 +106,11 @@ var year_arr = new Array();
 var month_arr = new Array();
 var day_arr = new Array();
 
+var dateEndArr = new Array();
+var yearEnd_arr = new Array();
+var monthEnd_arr = new Array();
+var dayEnd_arr = new Array();
+
 
 function selectRoom(roomno){
 	let room_no = document.getElementById("roomno");
@@ -157,6 +162,10 @@ function selectRoom(roomno){
 				year_arr.push(new Date(data[i].reservdate).getFullYear());
 				month_arr.push(new Date(data[i].reservdate).getMonth());
 				day_arr.push(new Date(data[i].reservdate).getDate());
+				dateEndArr.push(new Date(data[i].reservenddate));
+				yearEnd_arr.push(new Date(data[i].reservenddate).getFullYear());
+				monthEnd_arr.push(new Date(data[i].reservenddate).getMonth());
+				dayEnd_arr.push(new Date(data[i].reservenddate).getDate());
 			}
 		}).catch(err=> {
 		console.log(err);
@@ -186,9 +195,15 @@ var currentDate;
 var printDate;
 
 function printMonth() {
-    currentDate = new Date();
-	printDate = new Date();
-	
+	if(what_cal==0) {
+	    currentDate = new Date();
+		printDate = new Date();
+	}
+	else {
+		currentDate = reservdate;
+		printDate = new Date(currentDate);
+		printDate.setDate(1);
+	}
 	printDate.setMonth(currentDate.getMonth()+mov_cal);
     var printYear = printDate.getFullYear();
     var printMonth = printDate.getMonth();
@@ -203,10 +218,9 @@ function printMonth() {
     month.innerHTML = "<h2>" + printYear +"&nbsp&nbsp&nbsp"+ currentMonthName + "</h2>";
 }
 
+var reservdate;
 
-let calendar_box;
-
-function printCalendar(y, m) {    
+function printEndCalendar(y, m){
     var date = new Date();
     var nowY = printDate.getFullYear();
     var nowM = printDate.getMonth();
@@ -214,7 +228,94 @@ function printCalendar(y, m) {
     
     var curY = currentDate.getFullYear();
     var curM = currentDate.getMonth();
-    var curD = printDate.getDate();
+    var curD = currentDate.getDate();
+    
+    y = (y != undefined) ? y : nowY;
+    m = (m != undefined) ? m-1 : nowM;
+
+    var theDate = new Date(y, m, 1); 
+    var theDay = theDate.getDay();
+
+
+    var last = [31,28,31,30,31,30,31,31,30,31,30,31];
+
+    if (y % 4 == 0 && y % 100 !=0 || y % 400 == 0) lastDate=last[1]=29;
+
+    var lastDate = last[m];
+
+    var row = Math.ceil((theDay+lastDate)/7);
+
+    calendar_box.innerHTML = "<h2>" + y + "." + (m+1) + "</h2>";
+
+    var calendar = "<table border='1'>";
+    calendar += "<tr>";
+    calendar += "<th>MON</th>";
+    calendar += "<th>TUE</th>";
+    calendar += "<th>WED</th>";
+    calendar += "<th>THU</th>";
+    calendar += "<th>FRI</th>";
+    calendar += "<th>SAT</th>";
+    calendar += "<th>SUN</th>";
+    calendar += "</tr>";
+    
+    var dNum = 1;
+    
+    let x_t=new Date(curY+"-"+("00"+(curM+1)).slice(-2)+"-"+("00"+curD).slice(-2));
+    let x_l=new Date(curY+"-"+("00"+(curM+1)).slice(-2)+"-"+("00"+curD).slice(-2));
+    x_l.setDate(x_l.getDate() + 2);
+    for (var i = 1; i <= row; i++) {
+        calendar += "<tr>";
+        for (var k = 1; k <= 7; k++) {    
+            if (i == 1 && k < theDay || dNum > lastDate) {
+                calendar += "<td> &nbsp; </td>";
+            }
+            else {
+            	let x=new Date(printDate.getFullYear()+"-"+("00"+(printDate.getMonth()+1)).slice(-2)+"-"+("00"+dNum).slice(-2));      	
+                if (reservdate.getFullYear()==nowY && reservdate.getMonth()==nowM && dNum == reservdate.getDate()) {
+                	calendar += "<td id='today' style='color:blue; cursor:pointer;' onclick='setReservEndDate("+dNum+")'>" + dNum + "</td>";
+                } else {
+                	let calOk=0;
+                	let calNk=0;
+                	for(var t=0;t<red_date.length;t++) {
+                		if(reservdate.getFullYear()==red_date[t].getFullYear() &&reservdate.getMonth()==red_date[t].getMonth()&& reservdate.getDate()+1==red_date[t].getDate()){
+                			calNk=1;
+                		}
+                		if(nowY == red_date[t].getFullYear() && nowM==red_date[t].getMonth() && dNum == red_date[t].getDate()) {
+                			calOk=1;
+							break;
+                		}
+                	}
+					if(calOk==1) {
+						calendar += "<td style='color:red;'>" + dNum + "</td>";
+					}
+					else {
+						if(x >= x_t && x<=x_l && calNk==0) {
+							calendar += "<td style='color:blue;' id='can-reserv' onclick='setReservEndDate("+dNum+")'>" + dNum + "</td>";
+						}
+						else calendar += "<td>" + dNum + "</td>";
+                	}
+                }
+                dNum++;
+            }
+        }
+    calendar += "<tr>";
+    }    
+    calendar_box.innerHTML = calendar;
+}
+
+let calendar_box;
+
+var red_date = new Array();
+
+function printCalendar(y, m) {
+    var date = new Date();
+    var nowY = printDate.getFullYear();
+    var nowM = printDate.getMonth();
+    var nowD = printDate.getDate();
+    
+    var curY = currentDate.getFullYear();
+    var curM = currentDate.getMonth();
+    var curD = currentDate.getDate();
     
     y = (y != undefined) ? y : nowY;
     m = (m != undefined) ? m-1 : nowM;
@@ -257,13 +358,15 @@ function printCalendar(y, m) {
                 } else {
                 	let calOk=0;
 					for(var t=0;t<dateArr.length;t++) {
-						if(nowY==year_arr[t] && nowM == month_arr[t] && dNum==day_arr[t]) {
+						if(nowY<= yearEnd_arr[t]&&nowY>=year_arr[t] &&nowM<= monthEnd_arr[t]&& nowM >= month_arr[t]&& dNum<= dayEnd_arr[t] && dNum>=day_arr[t]) {
 							calOk=1;
 							break;
 						}
 					}
 					if(calOk==1) {
 						calendar += "<td style='color:red;'>" + dNum + "</td>";
+						var df = nowY+"-"+("00"+(nowM+1)).slice(-2)+"-"+("00"+dNum).slice(-2);
+						red_date.push(new Date(df));
 					}
 					else {
 	                	if(nowY==curY && nowM==curM && dNum > nowD)calendar += "<td id='can-reserv' onclick='setReservDate("+dNum+")'>" + dNum + "</td>";
@@ -283,19 +386,58 @@ function printCalendar(y, m) {
 function setReservDate(a){
 	var df = printDate.getFullYear()+"-"+("00"+(printDate.getMonth()+1)).slice(-2)+"-"+("00"+a).slice(-2);
 	let rd = document.getElementById("reservdate");
+	reservdate = new Date(df);
+	rd.value=df;
+	currentDate=reservdate;
+	closeCalendar();
+}
+
+function setReservEndDate(a){
+	var df = printDate.getFullYear()+"-"+("00"+(printDate.getMonth()+1)).slice(-2)+"-"+("00"+a).slice(-2);
+	let rd = document.getElementById("reservenddate");
 	rd.value=df;
 	closeCalendar();
 }
 
+var what_cal=0;
+
 function openCalendar() {
-	findRoom(-1,0);
-	mov_cal=0;
-	printMonth();
-	printCalendar();
-	let room_no = document.getElementById("roomno");
-	if(room_no.value != "") {
-		document.getElementsByClassName("calendarBox")[0].style.opacity=1;
-		document.getElementsByClassName("calendarBox")[0].style.zIndex=5;
+	if(document.getElementById("roomno").value != "") {
+		document.getElementById("reservenddate").value = "";
+		what_cal=0;
+		document.getElementById("alert-date").style.opacity = 0;
+		findRoom(-1,0);
+		mov_cal=0;
+		printMonth();
+		printCalendar();
+		let room_no = document.getElementById("roomno");
+		if(room_no.value != "") {
+			document.getElementsByClassName("calendarBox")[0].style.opacity=1;
+			document.getElementsByClassName("calendarBox")[0].style.zIndex=5;
+		}
+	} else {
+		document.getElementById("alert-date").innerHTML = "방을 먼저 선택해주세요.";
+		document.getElementById("alert-date").style.opacity = 1;
+	}
+}
+
+function openEndCalendar() {
+	if(document.getElementById("reservdate").value != "") {
+		what_cal=1;
+		document.getElementById("alert-enddate").opacity = 0;
+		findRoom(-1,0);
+		mov_cal=0;
+		printMonth();
+		printEndCalendar();
+		let room_no = document.getElementById("roomno");
+		if(room_no.value != "") {
+			document.getElementsByClassName("calendarBox")[0].style.opacity=1;
+			document.getElementsByClassName("calendarBox")[0].style.zIndex=5;
+		}
+	}
+	else {
+		document.getElementById("alert-enddate").innerHTML = "예약 시작 날짜를 먼저 선택해주세요.";
+		document.getElementById("alert-enddate").style.opacity = 1;
 	}
 }
 
@@ -307,7 +449,8 @@ function closeCalendar() {
 function moveCalendar(wh) {
 	mov_cal += wh;
 	printMonth();
-	printCalendar();
+	if(what_cal==0) printCalendar();
+	else printEndCalendar();
 }
 
 function reservChk(){

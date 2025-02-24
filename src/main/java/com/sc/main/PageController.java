@@ -1,5 +1,6 @@
 package com.sc.main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sc.main.service.ReviewService;
 import com.sc.main.vo.PagingVO;
+import com.sc.main.vo.ReviewImgVO;
 import com.sc.main.vo.ReviewVO;
 
 @Controller
@@ -65,15 +67,19 @@ public class PageController {
 	
 	@GetMapping("/review")
 	public ModelAndView review(PagingVO pVO){
-		System.out.println(pVO.toString());
+		System.out.println(pVO.getSearchConcept());
 		pVO.setTotalRecord(review_service.reviewTotalRecord(pVO));
 		
-		
 		List<ReviewVO> list = review_service.reviewSelect(pVO);
-
+		ArrayList<ArrayList<ReviewImgVO>> img_list = new ArrayList<ArrayList<ReviewImgVO>>();
+		for(int i=0;i<list.size();i++) {
+			img_list.add(review_service.reviewImageSelect(list.get(i).getReviewno()));
+		}
+		System.out.println(img_list);
 		mav = new ModelAndView();
 		mav.addObject("pVO", pVO);
 		mav.addObject("list", list);
+		mav.addObject("imgList", img_list);
 		mav.setViewName("page/review/review_main");
 		return mav;
 	}
