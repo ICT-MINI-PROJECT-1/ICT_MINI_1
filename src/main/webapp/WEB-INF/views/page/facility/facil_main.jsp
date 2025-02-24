@@ -129,23 +129,76 @@
     transform: scale(1.1);
 }
 
+@media (max-width:1100px){
+	#Gym > #gymText, #Restaurant > #RestaurantText {
+		line-height:33px;
+		font-size:16px;
+	}
+	#Gym, #Restaurant {
+			height:600px;
+		}
+	#Laundry, #Bar, #PoolSize{
+		height:400px;
+	}
+}
+@media (max-width:900px){
+	#PoolSize > img, #Gym > img, #food > img, #Restaurant > img {
+		width:600px;
+	}
+}
+
 @media (max-width:900px){
 	#Sauna > #linkSauna, #Pool > img{
 		width:200px;
 	}
 	#Sauna > #SaunaText {
 		width:400px;
+		line-height:22px;
 		font-size:14px;
 		flex-shrink: 0;
   		flex-grow: 0; 
 	}
 	#Pool > #PoolText {
 		width:550px;
+		line-height:22px;
 		font-size:14px;
 		flex-shrink: 0;
    		flex-grow: 0; 
 	}
+	#Gym > #gymText, #Restaurant > #RestaurantText {
+		line-height:27px;
+		font-size:14px;
+	}
+	@media (max-width:900px){
+		#Gym, #Restaurant {
+			height:500px;
+		}
+	}
 }
+@media (max-width:660px){
+	#PoolSize > img, #Gym > img, #food > img, #Restaurant > img {
+		width:450px;
+		
+	}
+@media (max-width:580px){
+	#PoolSize > img, #Gym > img, #food > img, #Restaurant > img {
+		width:400px;
+		
+	}
+}
+
+
+@media (max-width:955px){
+	#Bar, #Laundry {
+		height:200px;
+	}
+	#Bar > img, #Laundry > img{
+		width:250px;
+	}
+}
+
+
+
 </style>
 
 <link href="${pageContext.request.contextPath }/css/page/facility.css" rel="stylesheet" type="text/css"/>
@@ -211,7 +264,7 @@
 		<br/>
 		<div id='Gym'>
 			<img src='../img/page/facility/gym11.png' id="linkGym"/>
-			<div>
+			<div id='gymText'>
 			<strong Class="text">Gym</strong><br/>
 			여행 중에도 건강한 라이프스타일을 유지하고 싶은 고객님을 위해 준비되었습니다.<br/>
 			최첨단 운동 기구와 넉넉한 공간에서 다양한 운동을 즐길 수 있습니다. 근력 운동부터 유산소 운동까지 모든 피트니스 요구를 충족시켜 드리며,<br/>
@@ -233,25 +286,26 @@
 		<div id="Restaurant">
 			<div id="line3">
 			</div>
-			<div>
+			<div id='RestaurantText'>
 				<strong Class="text">Restaurant</strong><br/>
 				우리 호텔의 식당은 맛과 분위기, 서비스가 어우러진 특별한 공간으로,<br/>
 			    고객님에게 진정한 미식의 경험을 제공합니다. 고급스러운 인테리어와 아늑한 분위기 속에서,<br/>
 			    다양한 메뉴와 정성스러운 요리로 고객님의 미각을 만족시킬 준비가 되어 있습니다.     <br/>	
+			    <br/>
 			</div>
 			<img src="../img/page/facility/Restaurant.jpg"/>
 
 		</div>
 		<div id="Bar">
 		    <img src="../img/page/facility/BarMain.jpg"/>
-		    <div>
+		    <div id="BarText">
 		        <strong Class="text">Lounge & Bar</strong>
 		    </div>
 		</div>
 
 		<div id="Laundry">
 			<img src="../img/page/facility/Laundry.jpg"/>
-			<div>
+			<div id="LaundryText">
 				<strong Class="text">Laundry</strong>
 			</div>
 		</div>
