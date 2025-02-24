@@ -113,6 +113,8 @@ var dayEnd_arr = new Array();
 
 
 function selectRoom(roomno){
+	document.getElementById("reservdate").value="";
+	document.getElementById("reservenddate").value="";
 	let room_no = document.getElementById("roomno");
 	let capacity = document.getElementById("capacity");
 	let bedtype = document.getElementById("bedtype");
@@ -138,6 +140,7 @@ function selectRoom(roomno){
 			checkin.value=data.checkin;
 			checkout.value=data.checkout;
 			price.value=data.price;
+			sel_price=data.price;
 			for(var idx=0;idx<3;idx++) {
 				imgs[idx].style.background="url('../../img/page/room/list/"+data.roomno+"/"+data.roomno+"-"+(idx+1)+".jpg') no-repeat";
 				imgs[idx].style.backgroundSize="cover";
@@ -307,6 +310,8 @@ let calendar_box;
 
 var red_date = new Array();
 
+var sel_price;
+
 function printCalendar(y, m) {
     var date = new Date();
     var nowY = printDate.getFullYear();
@@ -394,8 +399,16 @@ function setReservDate(a){
 
 function setReservEndDate(a){
 	var df = printDate.getFullYear()+"-"+("00"+(printDate.getMonth()+1)).slice(-2)+"-"+("00"+a).slice(-2);
+	let rs = document.getElementById("reservdate");
 	let rd = document.getElementById("reservenddate");
+	let price = document.getElementById("price");
 	rd.value=df;
+	let x = new Date(rd.value).getDate() - new Date(rs.value).getDate();
+	switch(x){
+		case 1: price.value=sel_price*1.8; break;
+		case 2: price.value=sel_price*2.5; break;
+		default: price.value=sel_price; break;
+	}
 	closeCalendar();
 }
 

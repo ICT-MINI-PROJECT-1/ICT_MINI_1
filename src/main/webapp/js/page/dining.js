@@ -54,6 +54,22 @@ function moveToRest(foodType) {
     f.submit();
 }
 
+function moveToRestNav(foodType) {	
+	
+	let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/page/dining/list');
+	document.body.appendChild(f);
+	
+	let obj;
+    obj = document.createElement('input');
+    obj.setAttribute('type', 'hidden');
+    obj.setAttribute('name', 'foodType');
+    obj.setAttribute('value', foodType);
+	f.appendChild(obj);
+    f.submit();
+}
+
 //모달값 세팅
 let currentIndex;
 
@@ -162,7 +178,7 @@ function openModal(index) {
 }
 
 //모달 이동 버튼
-function moveBack() {
+/*function moveBack() {
 	if(currentIndex > 0) {
 		currentIndex--;
 	}
@@ -177,8 +193,37 @@ function moveNext() {
 	document.getElementById("tInfo").textContent = thisInfo[currentIndex];
 	document.getElementById("tImg").src = thisImg[currentIndex];
 	thisImg.classList.add("transition") = 'all 0.3s';
+}*/
+
+//모달이동버튼 조건추가
+function moveBack() {
+	if(currentIndex > 0 && (currentIndex % 6 !==0)) {
+		currentIndex--;
+	} else if(currentIndex == 0) {
+		currentIndex = 5;
+	} else if(currentIndex == 6) {
+		currentIndex = 11;
+	} else if(currentIndex == 12) {
+		currentIndex = 17;
+	} 
+	document.getElementById("tInfo").textContent = thisInfo[currentIndex];
+	document.getElementById("tImg").src = thisImg[currentIndex];
 }
 
+function moveNext() {
+	if(currentIndex < thisInfo.length - 1 && (currentIndex+1) % 6 !== 0) {
+		currentIndex++;
+	} else if(currentIndex == 5) {
+		currentIndex = 0;
+	} else if(currentIndex == 11) {
+		currentIndex = 6;
+	} else if(currentIndex == 17) {
+		currentIndex = 12;
+	} 
+	document.getElementById("tInfo").textContent = thisInfo[currentIndex];
+	document.getElementById("tImg").src = thisImg[currentIndex];
+}
+	
 //모달닫기
 function closeModal() {
 	

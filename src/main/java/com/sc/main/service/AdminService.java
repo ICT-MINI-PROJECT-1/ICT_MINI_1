@@ -8,7 +8,7 @@ import com.sc.main.vo.UserVO;
 
 public interface AdminService {
 	public List<UserVO> renderUserList(PagingVO pVO);
-	public int userTotalRecord();
+	public int userTotalRecord(PagingVO pVO);
 	public List<ReservationVO> renderReservList(PagingVO pVO);
-	public int reservTotalRecord();
+	public int reservTotalRecord(PagingVO pVO);
 }

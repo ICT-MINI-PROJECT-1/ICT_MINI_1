@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService{
 	public List<RoomVO> selectWishList(String userid) {
 		return dao.selectWishList(userid);
 	}
+
+	@Override
+	public int userDelete(String userid) {
+		return dao.userDelete(userid);
+	}
 }

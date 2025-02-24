@@ -3,6 +3,10 @@ create database artpart;
 
 use artpart;
 
+CREATE TABLE IF NOT EXISTS `artpart`.`dining` (
+  `titleno` INT NOT NULL,
+  `content` VARCHAR(1000),
+  PRIMARY KEY (`titleno`));
 
 CREATE TABLE IF NOT EXISTS `artpart`.`user` (
   `userid` VARCHAR(20) NOT NULL,
@@ -76,6 +80,7 @@ CREATE TABLE IF NOT EXISTS `artpart`.`review` (
   `writedate` DATETIME NULL DEFAULT now(),
   `content` VARCHAR(500) NOT NULL,
   `userid` VARCHAR(20) NOT NULL,
+  `hit` int default 0,
   `roomno` INT NOT NULL,
   `rating` FLOAT NULL,
   PRIMARY KEY (`reviewno`),
@@ -89,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `artpart`.`review` (
   CONSTRAINT `fk_review_room1`
     FOREIGN KEY (`roomno`)
     REFERENCES `artpart`.`room` (`roomno`)
-    ON DELETE NO ACTION
+    ON DELETE cascade
     ON UPDATE NO ACTION);
 
 
@@ -102,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `artpart`.`reviewimg` (
   CONSTRAINT `fk_reviewimg_review1`
     FOREIGN KEY (`reviewno`)
     REFERENCES `artpart`.`review` (`reviewno`)
-    ON DELETE NO ACTION
+    ON DELETE cascade
     ON UPDATE NO ACTION);
 
 DELIMITER $$
@@ -179,26 +184,32 @@ insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) 
 insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-07','2025-03-09',2,'냠냠','test2222',301);
 insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-11','2025-03-11',2,'냠냠','test3222',301);
 insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-31','2025-03-31',2,'냠냠','test4222',301);
-insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-22','2025-02-24',2,'냠냠','test1234',301);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-22','2025-02-23',2,'냠냠','test1234',301);
 
 insert into wishlist values('test1234',301);
 
 insert into wishlist values('test1234',304);
 
-insert into review (subject, content, userid, roomno, rating)
-values ("301호 추천합니다.", "301호 강력추천, 301호 강력추천, 301호 강력추천", "test1234", 301, 4.5);
-insert into review (subject, content, userid, roomno, rating)
-values ("308호 추천합니다.", "308호 강력추천, 308호 강력추천, 308호 강력추천", "test1234", 308, 5);
-insert into review (subject, content, userid, roomno, rating)
-values ("405호 추천합니다.", "405호 강력추천, 405호 강력추천, 405호 강력추천", "test1234", 405, 3.8);
-insert into review (subject, content, userid, roomno, rating)
-values ("504호 추천합니다.", "504호 강력추천, 504호 강력추천, 504호 강력추천", "test1234", 504, 2.1);
-insert into review (subject, content, userid, roomno, rating)
-values ("607호 추천합니다.", "607호 강력추천, 607호 강력추천, 607호 강력추천", "test1234", 607, 2.1);
-insert into review (subject, content, userid, roomno, rating)
-values ("501호 추천합니다.", "501호 강력추천, 501호 강력추천, 501호 강력추천", "test1234", 504, 4.8);
-insert into review (subject, content, userid, roomno, rating)
-values ("602호 추천합니다.", "602호 강력추천, 602호 강력추천, 602호 강력추천", "test1234", 602, 3.2);
+insert into dining(titleno, content) values(1, '자연에서 직접 재배한 신선한 재료를 맘껏 즐길 수 있습니다.');
+insert into dining(titleno, content) values(2, '수제로 만든 양념, 장들의 조화를 느껴보세요.');
+insert into dining(titleno, content) values(3, '넓고 쾌적한 환경에서 편안한 시간을 보내세요.');
+insert into dining(titleno, content) values(4, '퀴노아로 속을 채운 샬롯, 완두콩, 간장소스를 곁들인 양갈비');
+insert into dining(titleno, content) values(5, '상큼한 소스에 마리네이드하여 숯불에 구운 미니양파, 구운 수제 떡갈비');
+insert into dining(titleno, content) values(6, '흑임자가루를 뿌린 다쿠아즈와 요거트 아이스크림');
+
+insert into dining(titleno, content) values(7, '공해없는 뒷마당에서 직접기른 수확물의 맛을 보세요.');
+insert into dining(titleno, content) values(8, '클래식과 컨템포러리의 조합을 눈과 입으로 즐길 수 있습니다.');
+insert into dining(titleno, content) values(9, '특별한 날을 위한 프라이빗한 공간을 제공해드립니다.');
+insert into dining(titleno, content) values(10, '비스크폼을 곁들인 랍스터테일');
+insert into dining(titleno, content) values(11, '무화과 컴포트와 덕주를 곁들인 오리가슴살');
+insert into dining(titleno, content) values(12, '딸기크럼블과 레몬소르베');
+
+insert into dining(titleno, content) values(13, '고객에게 나가기 전 바로 준비한 신선함을 자부합니다.');
+insert into dining(titleno, content) values(14, '다양하고 푸짐한 음식을 준비합니다.');
+insert into dining(titleno, content) values(15, '전통을 이어온 문화적 특색을 함께하세요.');
+insert into dining(titleno, content) values(16, '숙성 훈연하여 향을 입힌 미소시루');
+insert into dining(titleno, content) values(17, '특제 양념 간장을 발라주며 구워낸 갈치');
+insert into dining(titleno, content) values(18, '특급 기키자케시가 엄선하여 페어링해주는 사케');
 
 alter table room modify column roominfo varchar(1000);
 
@@ -353,13 +364,5 @@ WHERE roomno IN (605, 606, 607, 608);
 ALTER TABLE reviewimg MODIFY imgno INT NOT NULL AUTO_INCREMENT;
 ALTER TABLE reviewimg DROP COLUMN image;
 alter table reviewimg add filename varchar(45);
-insert into reviewimg(reviewno,filename) values(1,'1.jpg');
-insert into reviewimg(reviewno,filename) values(1,'2.jpg');
-insert into reviewimg(reviewno,filename) values(2,'1.jpg');
-insert into reviewimg(reviewno,filename) values(2,'2.jpg');
-insert into reviewimg(reviewno,filename) values(2,'3.jpg');
-insert into reviewimg(reviewno,filename) values(3,'4.jpg');
-insert into reviewimg(reviewno,filename) values(4,'5.jpg');
-insert into reviewimg(reviewno,filename) values(5,'6.jpg');
 
 commit;

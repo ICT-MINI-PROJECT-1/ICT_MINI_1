@@ -6,10 +6,18 @@
   
 <mapper namespace="com.sc.main.dao.AdminDAO">
 	<select id="renderUserList" resultType="com.sc.main.vo.UserVO">
-		select * from user limit ${onePageRecord} offset ${offset}
+		select * from user 
+		<if test="searchWord!=null and searchWord!=''">
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+		limit ${onePageRecord} offset ${offset}
 	</select>
 	<select id="renderReservList" resultType="com.sc.main.vo.ReservationVO">
-		select * from reservation limit ${onePageRecord} offset ${offset}
+		select * from reservation 
+		<if test="searchWord!=null and searchWord!=''">
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+		limit ${onePageRecord} offset ${offset}
 	</select>
 	<!--
 	<select id="reviewDetail" resultType="com.sc.main.vo.ReviewVO">
@@ -29,8 +37,14 @@
 	-->
 	<select id="userTotalRecord" resultType="int">
 		select count(userid) cnt from user
+		<if test="searchWord!=null and searchWord!=''">
+			where ${searchKey} like '%${searchWord}%'
+		</if>
 	</select>
 	<select id="reservTotalRecord" resultType="int">
 		select count(userid) cnt from reservation
+		<if test="searchWord!=null and searchWord!=''">
+			where ${searchKey} like '%${searchWord}%'
+		</if>
 	</select>
 </mapper>
