@@ -1,6 +1,7 @@
 package com.sc.main.page;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -60,16 +61,12 @@ public class ReviewController {
 
 		int result = service.reviewInsert(vo);
 		int reviewno = service.reviewImage(userid);
-		
-		System.out.println(reviewno+"!");
-		/////////////////////////////////////////////////////////
+
 		//파일업로드
 		//파일 업로드할 폴더의 절대경로
 		String path = session.getServletContext().getRealPath("/uploadfile/"+Integer.toString(reviewno));
-		System.out.println("path: "+path);
 		//업로드한 실제 파일명 구하기
 		String orgFilename = mf.getOriginalFilename();
-		System.out.println("원래파일명 : "+orgFilename);
 		
 		//새로 업로드 할 파일이 서버에 있는지 확인 후 
 		File file = new File(path, orgFilename);
@@ -89,7 +86,6 @@ public class ReviewController {
 		
 		try {
 			imgVO.setReviewno(reviewno);
-			System.out.println(imgVO.toString());
 			//레코드 추가
 			//vo.setUserid(null);	//오류테스트 : 일부러 오류내려고 not null 항목을 null로 셋팅함.
 			imgResult = service.imgInsert(imgVO);	
@@ -99,9 +95,6 @@ public class ReviewController {
 			File f = new File(path, orgFilename);
 			f.delete();
 		}
-		
-		////////////////////////////////////////////////////////////////////////
-		
 		
 		if(result==1) {
 			mav.setViewName("redirect:/page/review");
@@ -133,18 +126,13 @@ public class ReviewController {
 		}
 		return orgFilename;
 	}
-	
-	
-	
-	
-	
 
 	//리뷰 수정폼
 	@PostMapping("/edit")
 	public ModelAndView reviewEdit(String reviewno) {
 		mav = new ModelAndView();
-		System.out.println(reviewno);
 		mav.addObject("vo", service.reviewDetail(Integer.parseInt(reviewno)));	
+		mav.addObject("imgVO", service.reviewImageSelect(Integer.parseInt(reviewno)));
 		mav.setViewName("page/review/review_edit");
 		
 		return mav;
@@ -153,38 +141,95 @@ public class ReviewController {
 	//리뷰 수정(DB)
 	@PostMapping("/editOk")
 	public ModelAndView reviewEdit(ReviewVO vo, ReviewImgVO imgVO, MultipartFile mf, HttpSession session) {
-		//업로드한 사진 파일명 불러와야함
-		String path = session.getServletContext().getRealPath("/uploadfile");
-		
-		//ReviewImgVO orgVO = service.reviewImageSelect(imgVO.getImgno()); //업데이트전 레코드 - 파일 삭제시 DB에 저장된 파일명이 필요함
-		
-		
-		
-		
-		
-		
-		
-		
-		int result = service.reviewUpdate(vo);
-		System.out.println(vo.toString());
-		
 		mav = new ModelAndView();
-		if(result>0) {
-			mav.setViewName("redirect:/page/review");
-		}else {
+		int reviewno = service.reviewImage((String)session.getAttribute("loginId"));
+		//업로드한 사진 파일명 불러와야함
+		String path = session.getServletContext().getRealPath("/uploadfile/"+Integer.toString(reviewno));
+
+		ArrayList<ReviewImgVO> orgVO = service.reviewImageSelect(vo.getReviewno()); //업데이트전 레코드 - 파일 삭제시 DB에 저장된 파일명이 필요함
+		
+		//첨부된 파일이 있을 때 - 제목, 글내용, 파일명 수정
+		//파일업로드 해야함.
+		//기존 파일 삭제 해야함.
+		String orgFilename="";
+		if(mf!=null) {
+			try {
+				orgFilename = mf.getOriginalFilename();
+			} catch(Exception e) {
+				orgFilename="";
+			}
+			if(orgFilename!="") {
+				File file = new File(path, orgFilename);
+				orgFilename = fileRename(file, path, orgFilename);
+				//업로드
+				try {
+					file = new File(path, orgFilename);
+					mf.transferTo(file);
+				}catch(Exception e) {
+					System.out.println("파일 업로드시 에러 ->"+e);
+				}
+				imgVO.setFilename(orgFilename);
+			}
+		}
+		int result = service.reviewUpdate(vo);	//review 글 업데이트
+
+		int imgResult = 0;
+	
+		try {
+			//리뷰이미지 db업데이트
+			if(orgFilename!="") {
+				imgResult = service.reviewImageUpdate(imgVO);	//review 이미지 업데이트
+	
+				//기존 업로드한 파일 삭제 - 업데이트 성공시
+				for(int i=0;i<orgVO.size();i++) {
+					if(orgVO.get(i).getFilename()!=null) {
+						File f = new File(path, orgVO.get(i).getFilename());
+						f.delete();
+					}
+				}
+			}
+			mav.setViewName("redirect:/page/review");	//db업데이트 성공했을 때 review_main.jsp로 이동
+		}catch(Exception e) {
+			//새로 업로드한 파일 삭제 - 업데이트 실패시
+			System.out.println("새로 업로드한 파일 삭제 실패->"+e);
+			if(imgVO.getFilename()!=null) {
+				File f = new File(path, imgVO.getFilename());
+				f.delete();
+			}
 			mav.setViewName("page/review/review_result");
 		}
-		
 		return mav;
 	}
 
 	//리뷰 삭제
 	@PostMapping("/delete")
-	public ModelAndView reviewDelete(String reviewno) {
-		int result = service.reviewDelete(Integer.parseInt(reviewno));
+	public ModelAndView reviewDelete(String reviewno, HttpServletRequest request) {
+		
 		
 		mav = new ModelAndView();
 		
+		
+		/////////////////////////////////////////////////////
+		
+		//해당레코드 먼저 선택
+		ArrayList<ReviewImgVO> imgVO = service.reviewImageSelect(Integer.parseInt(reviewno));
+		System.out.println("reviewno="+reviewno);
+		System.out.println(imgVO.toString());
+		//해당레코드 지우기
+		try {
+			service.reviewImageDelete(Integer.parseInt(reviewno));
+			//파일삭제
+			String path = request.getSession().getServletContext().getRealPath("/uploadfile/"+reviewno);
+			System.out.println(imgVO.get(0).getFilename());
+			File file = new File(path, imgVO.get(0).getFilename());
+			file.delete();
+			//글목록
+			mav.setViewName("redirect:/page/review");
+		}catch(Exception e) {
+			System.out.println("리뷰이미지 삭제시 에러->"+e);
+			mav.setViewName("page/review/review_result");
+		}
+		int result = service.reviewDelete(Integer.parseInt(reviewno));
 		if(result>0) {
 			mav.setViewName("redirect:/page/review");
 		}else {
@@ -192,8 +237,19 @@ public class ReviewController {
 		}
 		
 		return mav;
-	}
+		
 
-	//리뷰 검색
-	
+		
+		/////////////////////////////////////////////////////
+		
+		/*
+		if(result>0) {
+			mav.setViewName("redirect:/page/review");
+		}else {
+			mav.setViewName("page/review/review_result");
+		}
+		
+		return mav;
+		*/
+	}
 }

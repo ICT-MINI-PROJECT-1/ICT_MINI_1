@@ -61,4 +61,14 @@ public class ReviewServiceImpl implements ReviewService {
 	public ArrayList<ReviewImgVO> reviewImageSelect(int reviewno) {
 		return dao.reviewImageSelect(reviewno);
 	}
+
+	@Override
+	public int reviewImageUpdate(ReviewImgVO imgVO) {
+		return dao.reviewImageUpdate(imgVO);
+	}
+
+	@Override
+	public void reviewImageDelete(int reveiwno) {
+		dao.reviewImageDelete(reveiwno);
+	}
 }

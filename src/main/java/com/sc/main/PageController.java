@@ -67,7 +67,6 @@ public class PageController {
 	
 	@GetMapping("/review")
 	public ModelAndView review(PagingVO pVO){
-		System.out.println(pVO.getSearchConcept());
 		pVO.setTotalRecord(review_service.reviewTotalRecord(pVO));
 		
 		List<ReviewVO> list = review_service.reviewSelect(pVO);
@@ -75,7 +74,6 @@ public class PageController {
 		for(int i=0;i<list.size();i++) {
 			img_list.add(review_service.reviewImageSelect(list.get(i).getReviewno()));
 		}
-		System.out.println(img_list);
 		mav = new ModelAndView();
 		mav.addObject("pVO", pVO);
 		mav.addObject("list", list);
