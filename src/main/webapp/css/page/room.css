@@ -132,12 +132,12 @@
 }
 
 #titlecomment p {
-    font-family: 'Gowun Batang'; /* 폰트 */
-    font-size: 1.3vw; /* 글자 크기 */
+    font-family: 'Gowun Batang'; 
+    font-size: 1.3vw; 
     text-align:center;
-    color: #6A3D17; /* 글자 색상 */
-    line-height: 1.6; /* 줄 간격 */
-    margin-bottom: 20px; /* 아래 여백 */
+    color: #6A3D17; 
+    line-height: 1.6; 
+    margin-bottom: 20px; 
 }
 
 .room-list-grid-box {
@@ -313,7 +313,7 @@ pre {
 }
     
 #modal-contents>ul:nth-child(1){
-	height: auto; 
+	height: 8vw; 
     margin-top: 0;
 }
 #modal-contents>ul:nth-child(5){
@@ -353,10 +353,29 @@ pre {
 }
 
 #contents-roominfo {
-    overflow-y: auto; 
+    overflow: auto;
+    text-align: left; 
     max-height: 100%; 
     padding-right: 15px; 
     flex-grow: 1; 
+}
+
+#contents-roominfo::-webkit-scrollbar {
+    width: 5px; /* 스크롤바 너비 */
+}
+
+#contents-roominfo::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* 스크롤 핸들 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
+}
+
+#contents-roominfo::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.5); /* 마우스 오버 시 색상 변경 */
+}
+
+#contents-roominfo::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1); /* 스크롤 트랙 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
 }
 
 #contents-roominfo pre {

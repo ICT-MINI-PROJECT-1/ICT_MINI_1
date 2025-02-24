@@ -22,8 +22,8 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public int userTotalRecord() {
-		return dao.userTotalRecord();
+	public int userTotalRecord(PagingVO pVO) {
+		return dao.userTotalRecord(pVO);
 	}
 
 	@Override
@@ -32,7 +32,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public int reservTotalRecord() {
-		return dao.reservTotalRecord();
+	public int reservTotalRecord(PagingVO pVO) {
+		return dao.reservTotalRecord(pVO);
 	}
 }

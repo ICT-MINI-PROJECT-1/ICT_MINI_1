@@ -26,6 +26,21 @@
 			</otherwise>
 			</choose>	
 		</if>
+
+		<choose>
+			<when test="searchHR=='hit'">
+				order by hit desc
+			</when>
+			<when test="searchHR=='rating'">
+				order by rating desc
+			</when>
+		</choose>
+
+		 <!-- 
+		<if test="searchHR=rating">
+			order by rating desc
+		</if>
+		order by rating desc -->
 		limit ${onePageRecord} offset ${offset}
 	</select>
 	<select id="reviewDetail" resultType="com.sc.main.vo.ReviewVO">
@@ -67,4 +82,10 @@
 	<select id="reviewImageSelect" resultType="com.sc.main.vo.ReviewImgVO">
 		select * from reviewimg where reviewno=${reviewno}
 	</select>
+	<update id="reviewImageUpdate">
+		update reviewimg set filename=#{filename} where imgno=${imgno}
+	</update>
+	<delete id="reviewImageDelete">
+		delete from reviewimg where imgno=${imgno}
+	</delete>
 </mapper>
