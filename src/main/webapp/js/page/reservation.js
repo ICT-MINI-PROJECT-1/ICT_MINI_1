@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	speed = 100;
 	t=0;
 	
-	text = "예술적인 경험을 할 준비가 되셨나요?";
+	text = "예술과 휴식의 향연으로 당신에게 최고의 경험을 선사합니다.";
 	
 	month= document.getElementById("month");
 	calendar_box = document.getElementById("calendar");
