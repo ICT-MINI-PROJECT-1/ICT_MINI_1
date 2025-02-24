@@ -17,21 +17,25 @@ public class PagingVO {
 	private String searchWord;
 	private int searchConcept;
 	
-	public int getSearchConcept() {
-		return searchConcept;
+	//정렬기준
+	//private String hit;
+	//private String rating;
+	private String searchHR;
+	
+	public String getSearchHR() {
+		return searchHR;
 	}
-
-	public void setSearchConcept(int searchConcept) {
-		this.searchConcept = searchConcept;
-	}
-
-	@Override
-	public String toString() {
-		return "ReviewPagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord="
-				+ totalRecord + ", totalPage=" + totalPage + ", offset=" + offset + ", onePageCount=" + onePageCount
-				+ ", startPageNum=" + startPageNum + ", searchKey=" + searchKey + ", searchWord=" + searchWord + "]";
+	public void setSearchHR(String searchHR) {
+		this.searchHR = searchHR;
 	}
 	
+	@Override
+	public String toString() {
+		return "PagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord=" + totalRecord
+				+ ", totalPage=" + totalPage + ", offset=" + offset + ", onePageCount=" + onePageCount
+				+ ", startPageNum=" + startPageNum + ", searchKey=" + searchKey + ", searchWord=" + searchWord
+				+ ", searchConcept=" + searchConcept + ", searchHR=" + searchHR + "]";
+	}
 	public int getNowPage() {
 		return nowPage;
 	}
@@ -94,4 +98,24 @@ public class PagingVO {
 	public void setSearchWord(String searchWord) {
 		this.searchWord = searchWord;
 	}
+	public int getSearchConcept() {
+		return searchConcept;
+	}
+	public void setSearchConcept(int searchConcept) {
+		this.searchConcept = searchConcept;
+	
+//	public String getHit() {
+//		return hit;
+//	}
+//	public void setHit(String hit) {
+//		this.hit = hit;
+//	}
+//	public String getRating() {
+//		return rating;
+//	}
+//	public void setRating(String rating) {
+//		this.rating = rating;
+//	}
+		
+	}	
 }
