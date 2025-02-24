@@ -21,6 +21,20 @@
    	            document.getElementById("fie").files = dataTransfer.files;
    	        }
    		});
+    	 let sr=document.getElementsByClassName("star-rating")[0];
+ 		sr.addEventListener("click", (e) => {
+ 		let t=e.clientX - sr.getBoundingClientRect().left;
+ 		let tt=(100*(t/88));
+ 		for(var i=1;i<=10;i++){
+ 			if(tt>=10*(i-1) && tt<=10*i) {
+ 				tt=10*i;
+ 				break;
+ 			}
+ 		}
+ 		document.getElementById("star-do").style.width=tt+"%";
+ 		document.getElementById("star-rt").innerHTML = (5*tt)/100;
+ 		document.getElementById("rating").value=(5*tt)/100;
+ 	 });
      });
 </script>
 <div id="fade">
@@ -38,7 +52,14 @@
 				</div>
 				<div id="write-roomno-rating">
 					<div id="form-roomno">호수<input type="text" name="roomno" id="roomno" value="${vo.roomno }" readonly></div>
-					<div id="form-rating">평점<input type="text" name="rating" id="rating" value="${vo.rating }"></div>
+					<div id="form-rating">평점&nbsp;&nbsp;
+					<input type="hidden" name="rating" id="rating" value="${vo.rating }"></div>
+					<p style="padding:0; margin:0;">
+            <span class='star-rating' style="cursor:pointer;">
+            <span id="star-do" style="width:${vo.rating*20}%;"></span>
+            </span>
+            <span id="star-rt" style="display:inline-block;text-align:center;width:30px;">${vo.rating}</span>
+          </p>
 				</div>
 				<div id="form-subject">
 					<div id="form-subject-div">제목</div>
