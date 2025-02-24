@@ -215,7 +215,7 @@ alter table room modify column roominfo varchar(1000);
 
 UPDATE room SET 
     roomconcept = 'contemp',
-    roominfo ='정원: 4명(최대 6인)\n베드: 킹 베드 2개 또는 킹 베드 1개와 더블 베드 2개\n 엑스트라 베드 제공 가능\n\n특별한 공간:\n별도의 현관, 팬트리 공간, 별도의 업무 공간,\n 호텔 서비스 접속을 위한 iPad Mini\n\n객실 하이라이트:\n85인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
+    roominfo = '<b>정원:</b> 4명(최대 6인)\n\n<b>베드타입:</b> K 베드 2개 또는 K 베드 1개와 SS 베드 2개\n 엑스트라 베드 제공 가능\n\n<b>특별한 공간:</b>\n별도의 현관, 팬트리 공간, 별도의 업무 공간,\n 호텔 서비스 접속을 위한 iPad Mini\n\n<b>객실 하이라이트:</b>\n85인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
     price = 1350000,
     bedtype = '스위트',
     viewtype = '시티뷰',
@@ -224,11 +224,10 @@ UPDATE room SET
 WHERE roomno = 301;
 
 
-
 UPDATE room
 SET 
     roomconcept = 'contemp',
-    roominfo = '정원: 2명(최대 4인)\n베드: Q 베드 2개 또는 Q 베드 1개와 SS 베드 2개\n\n특별한 공간:\n별도의 현관, 팬트리 공간, 4인용 다이닝 테이블,\n 호텔 서비스 접속을 위한 iPad Mini\n\n객실 하이라이트:\n75인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
+    roominfo = '<b>정원:</b> 2명(최대 4인)\n\n<b>베드타입:</b> Q 베드 2개 또는 Q 베드 1개와 SS 베드 2개\n\n<b>특별한 공간:</b>\n별도의 현관, 팬트리 공간, 4인용 다이닝 테이블,\n 호텔 서비스 접속을 위한 iPad Mini\n\n<b>객실 하이라이트:</b>\n75인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
     price = 480000,
     bedtype = '프리미어',
     viewtype = '시티뷰',
@@ -241,8 +240,7 @@ WHERE roomno IN (302, 303, 304);
 UPDATE room
 SET 
     roomconcept = 'contemp',
-    roominfo = '정원: 2명(최대 2인)\n베드: Q 베드 개 또는 D 베드 2개\n\n특별한 공간:\n
-별도의 현관, 팬트리 공간, 4인용 다이닝 테이블,\n 호텔 서비스 접속을 위한 iPad Mini\n\n객실 하이라이트:\n65인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
+    roominfo = '<b>정원:</b> 2명(최대 2인)\n\n<b>베드타입:</b> Q 베드 1개 또는 SS 베드 2개\n\n<b>특별한 공간:</b>\n 호텔 서비스 접속을 위한 iPad Mini\n\n<b>객실 하이라이트:</b>\n65인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
     price = 330000,
     bedtype = '디럭스',
     viewtype = '마운틴뷰',
@@ -254,7 +252,7 @@ WHERE roomno IN (305, 306, 307,308);
 
 UPDATE room SET 
     roomconcept = 'artnou',
-    roominfo = '정원: 4명(최대 6인)\n베드: 킹 베드 2개 또는 킹 베드 1개와 더블 베드 2개\n 엑스트라 베드 제공 가능\n\n특별한 공간:\n별도의 현관, 팬트리 공간, 별도의 업무 공간,\n 호텔 서비스 접속을 위한 iPad Mini\n\n객실 하이라이트:\n85인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
+    roominfo = '<b>정원:</b> 4명(최대 6인)\n\n<b>베드타입:</b> K 베드 2개 또는 K 베드 1개와 SS 베드 2개\n 엑스트라 베드 제공 가능\n\n<b>특별한 공간:</b>\n별도의 현관, 팬트리 공간, 별도의 업무 공간,\n 호텔 서비스 접속을 위한 iPad Mini\n\n<b>객실 하이라이트:</b>\n85인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
     price = 1350000,
     bedtype = '스위트',
     viewtype = '시티뷰',
@@ -267,7 +265,7 @@ WHERE roomno = 401;
 UPDATE room
 SET 
     roomconcept = 'artnou',
-    roominfo = '정원: 2명(최대 4인)\n베드: Q 베드 2개 또는 Q 베드 1개와 SS 베드 2개\n\n특별한 공간:\n별도의 현관, 팬트리 공간, 4인용 다이닝 테이블,\n 호텔 서비스 접속을 위한 iPad Mini\n\n객실 하이라이트:\n75인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
+    roominfo = '<b>정원:</b> 2명(최대 4인)\n\n<b>베드타입:</b> Q 베드 2개 또는 Q 베드 1개와 SS 베드 2개\n\n<b>특별한 공간:</b>\n별도의 현관, 팬트리 공간, 4인용 다이닝 테이블,\n 호텔 서비스 접속을 위한 iPad Mini\n\n<b>객실 하이라이트:</b>\n75인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
     price = 480000,
     bedtype = '프리미어',
     viewtype = '시티뷰',
@@ -280,8 +278,7 @@ WHERE roomno IN (402, 403, 404);
 UPDATE room
 SET 
     roomconcept = 'artnou',
-    roominfo = '정원: 2명(최대 2인)\n베드: Q 베드 개 또는 D 베드 2개\n\n특별한 공간:\n
-별도의 현관, 팬트리 공간, 4인용 다이닝 테이블,\n 호텔 서비스 접속을 위한 iPad Mini\n\n객실 하이라이트:\n65인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
+    roominfo = '<b>정원:</b> 2명(최대 2인)\n\n<b>베드타입:</b> Q 베드 1개 또는 SS 베드 2개\n\n<b>특별한 공간:</b>\n 호텔 서비스 접속을 위한 iPad Mini\n\n<b>객실 하이라이트:</b>\n65인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
     price = 330000,
     bedtype = '디럭스',
     viewtype = '마운틴뷰',
@@ -292,7 +289,7 @@ WHERE roomno IN (405, 406, 407, 408);
 
 UPDATE room SET 
     roomconcept = 'artdec',
-    roominfo ='정원: 4명(최대 6인)\n베드: 킹 베드 2개 또는 킹 베드 1개와 더블 베드 2개\n 엑스트라 베드 제공 가능\n\n특별한 공간:\n별도의 현관, 팬트리 공간, 별도의 업무 공간,\n 호텔 서비스 접속을 위한 iPad Mini\n\n객실 하이라이트:\n85인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
+    roominfo = '<b>정원:</b> 4명(최대 6인)\n\n<b>베드타입:</b> K 베드 2개 또는 K 베드 1개와 SS 베드 2개\n 엑스트라 베드 제공 가능\n\n<b>특별한 공간:</b>\n별도의 현관, 팬트리 공간, 별도의 업무 공간,\n 호텔 서비스 접속을 위한 iPad Mini\n\n<b>객실 하이라이트:</b>\n85인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
     price = 1350000,
     bedtype = '스위트',
     viewtype = '시티뷰',
@@ -305,7 +302,7 @@ WHERE roomno = 501;
 UPDATE room
 SET 
     roomconcept = 'artdec',
-    roominfo = '정원: 2명(최대 4인)\n베드: Q 베드 2개 또는 Q 베드 1개와 SS 베드 2개\n\n특별한 공간:\n별도의 현관, 팬트리 공간, 4인용 다이닝 테이블,\n 호텔 서비스 접속을 위한 iPad Mini\n\n객실 하이라이트:\n75인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
+    roominfo = '<b>정원:</b> 2명(최대 4인)\n\n<b>베드타입:</b> Q 베드 2개 또는 Q 베드 1개와 SS 베드 2개\n\n<b>특별한 공간:</b>\n별도의 현관, 팬트리 공간, 4인용 다이닝 테이블,\n 호텔 서비스 접속을 위한 iPad Mini\n\n<b>객실 하이라이트:</b>\n75인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
     price = 480000,
     bedtype = '프리미어',
     viewtype = '시티뷰',
@@ -318,8 +315,7 @@ WHERE roomno IN (502, 503, 504);
 UPDATE room
 SET 
     roomconcept = 'artdec',
-    roominfo = '정원: 2명(최대 2인)\n베드: Q 베드 개 또는 D 베드 2개\n\n특별한 공간:\n
-별도의 현관, 팬트리 공간, 4인용 다이닝 테이블,\n 호텔 서비스 접속을 위한 iPad Mini\n\n객실 하이라이트:\n65인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
+    roominfo = '<b>정원:</b> 2명(최대 2인)\n\n<b>베드타입:</b> Q 베드 1개 또는 SS 베드 2개\n\n<b>특별한 공간:</b>\n 호텔 서비스 접속을 위한 iPad Mini\n\n<b>객실 하이라이트:</b>\n65인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
     price = 330000,
     bedtype = '디럭스',
     viewtype = '마운틴뷰',
@@ -331,7 +327,7 @@ WHERE roomno IN (505, 506, 507, 508);
 
 UPDATE room SET 
     roomconcept = 'asian',
-    roominfo ='정원: 4명(최대 6인)\n베드: 킹 베드 2개 또는 킹 베드 1개와 더블 베드 2개\n 엑스트라 베드 제공 가능\n\n특별한 공간:\n별도의 현관, 팬트리 공간, 별도의 업무 공간,\n 호텔 서비스 접속을 위한 iPad Mini\n\n객실 하이라이트:\n85인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
+    roominfo = '<b>정원:</b> 4명(최대 6인)\n\n<b>베드타입:</b> K 베드 2개 또는 K 베드 1개와 SS 베드 2개\n 엑스트라 베드 제공 가능\n\n<b>특별한 공간:</b>\n별도의 현관, 팬트리 공간, 별도의 업무 공간,\n 호텔 서비스 접속을 위한 iPad Mini\n\n<b>객실 하이라이트:</b>\n85인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
     price = 1350000,
     bedtype = '스위트',
     viewtype = '시티뷰',
@@ -344,7 +340,7 @@ WHERE roomno = 601;
 UPDATE room
 SET 
     roomconcept = 'asian',
-    roominfo = '정원: 2명(최대 4인)\n베드: Q 베드 2개 또는 Q 베드 1개와 SS 베드 2개\n\n특별한 공간:\n별도의 현관, 팬트리 공간, 4인용 다이닝 테이블,\n 호텔 서비스 접속을 위한 iPad Mini\n\n객실 하이라이트:\n75인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
+    roominfo = '<b>정원:</b> 2명(최대 4인)\n\n<b>베드타입:</b> Q 베드 2개 또는 Q 베드 1개와 SS 베드 2개\n\n<b>특별한 공간:</b>\n별도의 현관, 팬트리 공간, 4인용 다이닝 테이블,\n 호텔 서비스 접속을 위한 iPad Mini\n\n<b>객실 하이라이트:</b>\n75인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
     price = 480000,
     bedtype = '프리미어',
     viewtype = '시티뷰',
@@ -357,15 +353,13 @@ WHERE roomno IN (602, 603, 604);
 UPDATE room
 SET 
     roomconcept = 'asian',
-    roominfo ='정원: 2명(최대 2인)\n베드: Q 베드 개 또는 D 베드 2개\n\n특별한 공간:\n
-별도의 현관, 팬트리 공간, 4인용 다이닝 테이블,\n 호텔 서비스 접속을 위한 iPad Mini\n\n객실 하이라이트:\n65인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
+    roominfo = '<b>정원:</b> 2명(최대 2인)\n\n<b>베드타입:</b> Q 베드 1개 또는 SS 베드 2개\n\n<b>특별한 공간:</b>\n 호텔 서비스 접속을 위한 iPad Mini\n\n<b>객실 하이라이트:</b>\n65인치 스마트 TV(위성 TV 48개 채널)\n맞춤형 침대-Hard, Midium, Soft 3가지 토퍼 제공\n거위털 이불 및 베개\n',
     price = 330000,
     bedtype = '디럭스',
     viewtype = '마운틴뷰',
     capacity = 2,
     area = 75
 WHERE roomno IN (605, 606, 607, 608);
-
 
 ALTER TABLE reviewimg MODIFY imgno INT NOT NULL AUTO_INCREMENT;
 ALTER TABLE reviewimg DROP COLUMN image;
