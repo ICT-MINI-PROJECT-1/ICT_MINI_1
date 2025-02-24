@@ -93,6 +93,15 @@
 .review-search>input[type=text]{
 	width: 30%;
 }
+#review-select-sort{
+	display: flex;
+}
+#review-select-sort>#sort{
+	text-weight: bold;
+}
+#review-select-sort a{
+	
+}
 #review-search-result{
 	text-align: center;
 }
