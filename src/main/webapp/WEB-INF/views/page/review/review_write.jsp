@@ -41,7 +41,7 @@
 <div class="container">
 	<div class="review-write-wrap">
 		<div id="write-box">
-			<form method="post" action="${pageContext.request.contextPath }/page/review/writeOk" id="review-write-form" onsubmit="return writeFormCheck(event)" enctype="multipart/form-data">
+			<form method="post" action="${pageContext.request.contextPath }/page/review/writeOk" name="writeForm" id="review-write-form" enctype="multipart/form-data">
 				<div id="write-title">Review Write</div>
 				<div id="write-username">
 					<div>작성자 : ${loginName }</div>
@@ -82,7 +82,7 @@
 				<div id="upload-review-img">
 					<input type="file" name="mf" id="filename" multiple><div id="alert-file"></div>
 				</div>
-				<input type="submit" value="작성완료" id="write-submit">
+				<input type="button" value="작성완료" id="write-submit" onclick="writeChk()">
 			</form>
 		</div>
 	</div>

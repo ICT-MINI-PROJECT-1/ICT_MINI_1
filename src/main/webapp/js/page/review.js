@@ -10,12 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	var alert_content = document.getElementById("alert-content");
 	var alert_file = document.getElementById("alert-file");
 	
-	/*
-	var subjectOk = 0;
-	var contentOk = 0;
-	var fileOk = 0;
-	*/
-	
 	write_subject.addEventListener("input", ()=>{
 		if(write_subject.value.length<5){
 			alert_subject.innerHTML = "제목을 5자 이상 입력해주세요.";
@@ -70,15 +64,13 @@ var subjectOk = 0;
 var contentOk = 0;
 var fileOk = 0;
 
-////////////////////제목, 내용, 파일업로드 조건에 맞을 때만 submit 가능하게 하기
+//제목, 내용, 파일업로드 조건에 맞을 때만 submit 가능하게 하기
 function writeChk(){
 	review_result = subjectOk + contentOk + fileOk;
-	alert();
+	alert("review_result="+review_result+", subjectOk="+subjectOk+", contentOk="+contentOk+", fileOk="+fileOk);
+	
+	if(review_result==3) document.writeForm.submit();
 }
-
-
-
-
 
 var review_wrap;
 var review_title;
@@ -228,9 +220,9 @@ function reviewDelete(){
 }
 
 //review_write.jsp에 있는 함수
-
+/*
 function writeFormCheck(event){
-	/*
+	
 	if(document.getElementById('write-subject').value==''){
 		alert("제목 없음");
 		event.preventDefault();
@@ -241,7 +233,7 @@ function writeFormCheck(event){
 		alert("내용 없음");
 		event.preventDefault();
 	}
-	*/
+	
 	
 	////////////////
 	if(review_result==3){
@@ -253,6 +245,7 @@ function writeFormCheck(event){
 	}
 	
 }
+*/
 
 
 
