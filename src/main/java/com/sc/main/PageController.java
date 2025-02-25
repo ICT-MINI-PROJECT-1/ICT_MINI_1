@@ -70,6 +70,7 @@ public class PageController {
 	public ModelAndView review(){
 		mav = new ModelAndView();
 		mav.addObject("pVO", null);
+		mav.addObject("page","review");
 		mav.setViewName("page/review/review_main");
 		return mav;
 	}
@@ -84,6 +85,7 @@ public class PageController {
 			img_list.add(review_service.reviewImageSelect(list.get(i).getReviewno()));
 		}
 		mav = new ModelAndView();
+		mav.addObject("page","review");
 		mav.addObject("pVO", pVO);
 		mav.addObject("list", list);
 		mav.addObject("imgList", img_list);
