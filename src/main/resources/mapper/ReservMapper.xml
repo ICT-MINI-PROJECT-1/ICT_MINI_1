@@ -19,4 +19,7 @@
 	<select id="selectLastReservation" resultType="com.sc.main.vo.ReservationVO">
 		select * from reservation where userid=#{param1} and now() > DATE_ADD(reservenddate, INTERVAL 1 DAY)
 	</select>
+	<select id="selectRoomnoByReservNo" resultType="int">
+		select roomno from reservation where reservno=#{param1}
+	</select>
 </mapper>

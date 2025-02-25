@@ -44,11 +44,11 @@
 		limit ${onePageRecord} offset ${offset}
 	</select>
 	<select id="reviewDetail" resultType="com.sc.main.vo.ReviewVO">
-		select reviewno, subject, content, userid, roomno, rating, hit, date_format(writedate, '%Y-%m-%d') writedate from review where reviewno=#{param1}
+		select reviewno, subject, content, userid, reservno,roomno,rating, hit, date_format(writedate, '%Y-%m-%d') writedate from review where reviewno=#{param1}
 	</select>
 	<insert id="reviewInsert">
-		insert into review (userid, roomno, rating, subject, content) 
-		values (#{userid}, #{roomno}, #{rating}, #{subject}, #{content})
+		insert into review (userid, reservno, rating, subject, content, roomno) 
+		values (#{userid}, #{reservno}, #{rating}, #{subject}, #{content}, #{roomno})
 	</insert>
 	<insert id="imgInsert">
 		insert into reviewimg (reviewno, filename)
@@ -91,4 +91,8 @@
 	<update id="reviewHitCount">
 		update review set hit = hit+1 where reviewno=${param1}
 	</update>
+	<select id="reviewHistory" resultType="com.sc.main.vo.ReservationVO">
+		select roomno,reservdate,reservno from reservation where userid=#{param1} and now() > DATE_ADD(reservenddate, INTERVAL 1 DAY)
+		and not reservno = any(select reservno from review where userid=#{param1}) order by reservdate desc;
+	</select>
 </mapper>

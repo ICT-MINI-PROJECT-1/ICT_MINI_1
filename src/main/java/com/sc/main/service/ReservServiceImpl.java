@@ -40,4 +40,9 @@ public class ReservServiceImpl implements ReservService {
 		return dao.selectLastReservation(userid);
 	}
 
+	@Override
+	public int selectRoomnoByReservNo(int reservno) {
+		return dao.selectRoomnoByReservNo(reservno);
+	}
+
 }
