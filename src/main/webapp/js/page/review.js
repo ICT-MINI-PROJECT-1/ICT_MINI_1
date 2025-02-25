@@ -98,7 +98,7 @@ window.addEventListener("wheel", (e) => {
 				review_wrap.style.opacity= 0;
 				setTimeout(function() {
 				  	review_moving=0;
-				}, 1000);
+				}, 700);
 				review_state=0;
 			}
 		} else { //scroll down
@@ -112,7 +112,7 @@ window.addEventListener("wheel", (e) => {
 					f.setAttribute('action','review');
 					document.body.appendChild(f);
 					f.submit();
-				}, 1000);
+				}, 700);
 				review_state=1;
 			}
 		}
