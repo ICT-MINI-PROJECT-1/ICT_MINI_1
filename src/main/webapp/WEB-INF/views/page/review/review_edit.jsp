@@ -64,10 +64,20 @@
             <span id="star-rt" style="display:inline-block;text-align:center;width:30px;">${vo.rating}</span>
           </p>
 				</div>
+				<!-- 
 				<div id="form-subject">
 					<div id="form-subject-div">제목</div>
-					<input type="text" name="subject" id="write-subject" value="${vo.subject }"><div id="alert-subject"></div>
+					<input type="text" name="subject" id="write-subject" value="${vo.subject }">
 				</div>
+				<div id="form-subject">
+					<div id="form-subject-div"></div>
+					<div id="alert-subject"></div>
+				</div>
+				-->
+				<div id="form-subject">
+					<input type="text" name="subject" id="write-subject" value="test" placeholder="제목을 입력해 주세요">
+				</div>
+				<div id="alert-subject"></div>
 				<textarea name="content" id="write-content">${vo.content }</textarea><div id="alert-content"></div>
 				<div id="upload-review-img">
 					<div>
