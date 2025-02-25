@@ -41,7 +41,7 @@
 <div class="container">
 	<div class="review-write-wrap">
 		<div id="write-box">
-			<form method="post" action="${pageContext.request.contextPath }/page/review/editOk" id="review-write-form" enctype="multipart/form-data">
+			<form method="post" action="${pageContext.request.contextPath }/page/review/editOk" id="review-write-form" name="writeForm" enctype="multipart/form-data">
 				<input type="hidden" name="reviewno" value="${vo.reviewno }"/>
 				<div id="write-title">Review Edit</div>
 				<div id="write-username">
@@ -63,16 +63,17 @@
 				</div>
 				<div id="form-subject">
 					<div id="form-subject-div">제목</div>
-					<input type="text" name="subject" id="subject" value="${vo.subject }">
+					<input type="text" name="subject" id="write-subject" value="${vo.subject }"><div id="alert-subject"></div>
 				</div>
-				<textarea name="content" id="content">${vo.content }</textarea>
+				<textarea name="content" id="write-content">${vo.content }</textarea><div id="alert-content"></div>
 				<div id="upload-review-img">
-					<input type="file" name="mf" id="fie" multiple>
+					<input type="file" name="mf" id="fie" onchange="addFile(this)" multiple>
 					<c:forEach var="vo" items="${imgVO}">
 					<div>${vo.filename }</div>
 					</c:forEach>
+					<div id="alert-file"></div>
 				</div>
-				<input type="submit" value="수정하기">
+				<input type="button" value="수정하기" id="write-submit" onclick="writeChk()">
 			</form>
 		</div>
 	</div>

@@ -9,8 +9,8 @@
 	const dataTransfer = new DataTransfer();
 	
      document.addEventListener('DOMContentLoaded', () => {
-    	 document.getElementById("filename").addEventListener("change", (e) => {
-   		  let fileArr = document.getElementById("filename").files;
+    	 document.getElementById("fie").addEventListener("change", (e) => {
+   		  let fileArr = document.getElementById("fie").files;
 
    	        if(fileArr != null && fileArr.length>0){
 
@@ -18,7 +18,7 @@
    	            for(var i=0; i<fileArr.length; i++){
    	                dataTransfer.items.add(fileArr[i])
    	            }
-   	            document.getElementById("filename").files = dataTransfer.files;
+   	            document.getElementById("fie").files = dataTransfer.files;
    	        }
    		});
     	 let sr=document.getElementsByClassName("star-rating")[0];
@@ -80,7 +80,7 @@
 				</div>
 				<textarea name="content" id="write-content" placeholder="내용을 입력해 주세요">test</textarea><div id="alert-content"></div>
 				<div id="upload-review-img">
-					<input type="file" name="mf" id="filename" multiple><div id="alert-file"></div>
+					<input type="file" name="mf" id="fie" onchange="addFile(this)" multiple><div id="alert-file"></div>
 				</div>
 				<input type="button" value="작성완료" id="write-submit" onclick="writeChk()">
 			</form>
