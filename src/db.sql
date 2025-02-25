@@ -135,6 +135,17 @@ DELIMITER $$
     END $$
 DELIMITER ;
 
+DELIMITER $$
+	create trigger delete_review
+	after delete
+	on review
+	for each row
+	begin
+		UPDATE room SET rating = 
+		(select sum(rating)/count(rating) from review where roomno=(select roomno from reservation where reservno=old.reservno)) where roomno=(select roomno from reservation where reservno=old.reservno);
+    END $$
+DELIMITER ;
+
 insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area) values(301,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',200000,'double','view',4,20);
 insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(302,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',205000,'double','view',4,21);
 insert into room(roomno,roomconcept,roominfo,price,bedtype,viewtype,capacity,area)  values(303,'contemp','안녕하세요\n반갑습니다\n설명입니다\n',150000,'single','view',2,14);
@@ -188,7 +199,9 @@ insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) 
 insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-11','2025-03-11',2,'냠냠','test3222',301);
 insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-31','2025-03-31',2,'냠냠','test4222',301);
 insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-22','2025-02-23',2,'냠냠','test1234',301);
-
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-05','2025-02-08',2,'냠냠','test1234',305);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-01','2025-02-03',2,'냠냠','test1234',308);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-04','2025-02-05',2,'냠냠','test1234',301);
 insert into wishlist values('test1234',301);
 
 insert into wishlist values('test1234',304);

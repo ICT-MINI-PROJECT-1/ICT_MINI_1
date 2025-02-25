@@ -41,18 +41,33 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 var review_result = 0;
-var subjectOk = 1;
-var contentOk = 1;
+var subjectOk = 0;
+var contentOk = 0;
 var fileOk = 0;
 
 //제목, 내용, 파일업로드 조건에 맞을 때만 submit 가능하게 하기
 function writeChk(){
+	var alert_subject = document.getElementById("alert-subject");
+	var alert_content = document.getElementById("alert-content");
 	review_result = subjectOk + contentOk + fileOk;
-	if(fileOk==0){
-		let alert_file = document.getElementById("alert-file");
-		alert_file.innerHTML = "파일을 1-5개 넣어주세요.";
-		alert_file.style.opacity = 1;
-	} 
+	if(subjectOk==0){
+		alert_subject.innerHTML = "제목을 입력해주세요.";
+		alert_subject.style.opacity = 1;
+	}
+	if(contentOk==0){
+		alert_content.innerHTML = "내용을 입력해주세요.";
+		alert_content.style.opacity = 1;
+	}
+	if(where=="review_edit") {
+	
+	}
+	else {
+		if(fileOk==0){
+			let alert_file = document.getElementById("alert-file");
+			alert_file.innerHTML = "파일을 1-5개 넣어주세요.";
+			alert_file.style.opacity = 1;
+		}
+	}
 	if(review_result==3) document.writeForm.submit();
 }
 
@@ -67,7 +82,6 @@ function addFile(obj){
 	//var remainFileCnt = maxFileCnt - attFileCnt; //추가로 첨부가능한 개수
 	var curFileCnt = obj.files.length; //현재 선택된 첨부파일 개수
 	//alert("attFileCnt="+attFileCnt);
-	
 	if(curFileCnt<minFileCnt || curFileCnt>maxFileCnt){
 		alert_file.innerHTML = "파일을 1-5개 넣어주세요.";
 		alert_file.style.opacity = 1;
