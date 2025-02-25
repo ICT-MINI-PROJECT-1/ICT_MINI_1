@@ -10,4 +10,5 @@ public interface ReservService {
 	public List<ReservationVO> selectReservationByRoom(int roomno);
 	public int deleteReservation(int reservno);
 	public List<ReservationVO> selectLastReservation(String userid);
+	public int selectRoomnoByReservNo(int reservno);
 }
