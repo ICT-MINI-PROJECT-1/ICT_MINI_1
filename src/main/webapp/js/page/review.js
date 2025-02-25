@@ -59,7 +59,7 @@ function writeChk(){
 		alert_content.style.opacity = 1;
 	}
 	if(where=="review_edit") {
-	
+
 	}
 	else {
 		if(fileOk==0){
@@ -72,16 +72,14 @@ function writeChk(){
 }
 
 //첨부파일 갯수 5개로 제한
-function addFile(obj){
+function addFile(){
+/*
 	let alert_file = document.getElementById("alert-file");
-	//alert(obj);
-	const minFileCnt = 1;
-	const maxFileCnt = 5;	//첨부파일 최대 개수
+	const minFileCnt = 0;
+	const maxFileCnt = 4;	//첨부파일 최대 개수
 	
-	//var attFileCnt = document.getElementById("filename").files.length; //기존에 추가된 첨부파일 개수
-	//var remainFileCnt = maxFileCnt - attFileCnt; //추가로 첨부가능한 개수
-	var curFileCnt = obj.files.length; //현재 선택된 첨부파일 개수
-	//alert("attFileCnt="+attFileCnt);
+	var curFileCnt = dataTransfer.files.length; //현재 선택된 첨부파일 개수
+	console.log(curFileCnt+"!!");
 	if(curFileCnt<minFileCnt || curFileCnt>maxFileCnt){
 		alert_file.innerHTML = "파일을 1-5개 넣어주세요.";
 		alert_file.style.opacity = 1;
@@ -89,7 +87,7 @@ function addFile(obj){
 	}else{
 		alert_file.style.opacity = 0;
 		fileOk = 1;
-	}
+	}*/
 
 }
 

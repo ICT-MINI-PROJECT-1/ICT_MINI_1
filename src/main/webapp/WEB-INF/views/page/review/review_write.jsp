@@ -7,8 +7,76 @@
 <script src="${pageContext.request.contextPath }/ckeditor/ckeditor.js"></script>
 <script>
 	const dataTransfer = new DataTransfer();
-	
+	const minFileCnt = 1;
+	const maxFileCnt = 5;	//첨부파일 최대 개수
+	const handler = {
+            init() {
+                const fileInput = document.querySelector('#fie');
+                const preview = document.querySelector('#preview');
+                fileInput.addEventListener('change', () => { 
+                    const files = Array.from(fileInput.files);
+                    files.forEach(file => {
+                        preview.innerHTML += `
+                        <p id="`+file.lastModified+`">
+                            `+file.name+`
+                            <button type='button' data-index="`+file.lastModified+`" class='file-remove'>X</button>
+                        </p>`;
+                        dataTransfer.items.add(file);
+                    });
+                    fileInput.files = dataTransfer.files;
+                	let alert_file = document.getElementById("alert-file");
+                	
+                	var curFileCnt = dataTransfer.files.length; //현재 선택된 첨부파일 개수
+                	console.log(curFileCnt+"!!");
+                	if(curFileCnt<minFileCnt || curFileCnt>maxFileCnt){
+                		alert_file.innerHTML = "파일을 1-5개 넣어주세요.";
+                		alert_file.style.opacity = 1;
+                		fileOk = 0;
+                	}else{
+                		alert_file.style.opacity = 0;
+                		fileOk = 1;
+                	}
+                });
+            },
+            
+            removeFile: () => {
+                document.addEventListener('click', (e) => {
+                addFile();
+                if(e.target.className !== 'file-remove') return;
+                const removeTargetId = e.target.dataset.index;
+                const removeTarget = document.getElementById(removeTargetId);
+                const files = document.querySelector('#fie').files;
+                const dataTranster = new DataTransfer();
+            
+                Array.from(files)
+                    .forEach(file => {
+                    if(file.lastModified == removeTargetId) dataTransfer.items.remove(file);
+                    else dataTranster.items.add(file);
+                 });
+    
+                document.querySelector('#fie').files = dataTranster.files;
+				
+                removeTarget.remove();
+                
+                let alert_file = document.getElementById("alert-file");
+            	
+            	var curFileCnt = dataTransfer.files.length; //현재 선택된 첨부파일 개수
+            	console.log(curFileCnt+"!!");
+            	if(curFileCnt<minFileCnt || curFileCnt>maxFileCnt){
+            		alert_file.innerHTML = "파일을 1-5개 넣어주세요.";
+            		alert_file.style.opacity = 1;
+            		fileOk = 0;
+            	}else{
+            		alert_file.style.opacity = 0;
+            		fileOk = 1;
+            	}
+            })
+            }
+        }
+
      document.addEventListener('DOMContentLoaded', () => {
+    	 
+    	 /*
     	 document.getElementById("fie").addEventListener("change", (e) => {
    		  let fileArr = document.getElementById("fie").files;
 
@@ -20,7 +88,9 @@
    	            }
    	            document.getElementById("fie").files = dataTransfer.files;
    	        }
-   		});
+   		});*/
+   		handler.init();
+        handler.removeFile();
     	 let sr=document.getElementsByClassName("star-rating")[0];
     		sr.addEventListener("click", (e) => {
     		let t=e.clientX - sr.getBoundingClientRect().left;
@@ -80,8 +150,12 @@
 				</div>
 				<textarea name="content" id="write-content" placeholder="내용을 입력해 주세요">test</textarea><div id="alert-content"></div>
 				<div id="upload-review-img">
-					<input type="file" name="mf" id="fie" onchange="addFile(this)" multiple><div id="alert-file"></div>
+				<label class="input-file-button" for="fie">
+				    사진 첨부
+				</label>
+					<input style="display:none;"type="file" name="mf" id="fie" onchange="addFile()" multiple><div id="alert-file"></div>
 				</div>
+				<div id="preview"></div>
 				<input type="button" value="작성완료" id="write-submit" onclick="writeChk()">
 			</form>
 		</div>
