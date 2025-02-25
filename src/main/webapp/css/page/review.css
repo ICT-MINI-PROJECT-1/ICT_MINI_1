@@ -402,6 +402,33 @@ input[type=button]{
 #form-rating>input[type=text]{
 	width: 20%;
 }
+#alert-subject{
+	padding-left:10px;
+	font-family: "Gowun Batang", serif;
+	color:#ED494C;
+	line-height:30px;
+	transition: all 1.0s;
+	opacity:0;
+	font-size:13px;
+}
+#alert-content{
+	padding-left:10px;
+	font-family: "Gowun Batang", serif;
+	color:#ED494C;
+	line-height:30px;
+	transition: all 1.0s;
+	opacity:0;
+	font-size:13px;
+}
+#alert-file{
+	padding-left:10px;
+	font-family: "Gowun Batang", serif;
+	color:#ED494C;
+	line-height:30px;
+	transition: all 1.0s;
+	opacity:0;
+	font-size:13px;
+}
 textarea{
 	width: 99%;
 	height: 35vw;

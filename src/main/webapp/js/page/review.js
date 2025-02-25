@@ -1,8 +1,84 @@
 document.addEventListener('DOMContentLoaded', () => {
 	review_wrap=document.getElementsByClassName("review-wrap")[0];
-	
 	review_title=document.getElementsByClassName("review-title")[0];
+	
+	var write_subject = document.getElementById("write-subject");
+	var write_content = document.getElementById("write-content");
+	var input_file = document.getElementById("filename");
+	
+	var alert_subject = document.getElementById("alert-subject");
+	var alert_content = document.getElementById("alert-content");
+	var alert_file = document.getElementById("alert-file");
+	
+	/*
+	var subjectOk = 0;
+	var contentOk = 0;
+	var fileOk = 0;
+	*/
+	
+	write_subject.addEventListener("input", ()=>{
+		if(write_subject.value.length<5){
+			alert_subject.innerHTML = "제목을 5자 이상 입력해주세요.";
+			alert_subject.style.opacity = 1;
+			subjectOk = 0;
+		}else if(write_subject.value.length>45){
+			alert_subject.innerHTML = "제목을 45자 이하로 입력해주세요.";
+			alert_subject.style.opacity = 1;
+			subjectOk = 0;
+		}else{
+			alert_subject.style.opacity = 0;
+			subjectOk = 1;
+		}
+	});
+	write_content.addEventListener("input",()=>{
+		if(write_content.value.length<10){
+			alert_content.innerHTML = "내용을 10자 이상 입력해주세요.";
+			alert_content.style.opacity = 1;
+			contentOk = 0;
+		}else if(write_content.value.length>500){
+			alert_content.innerHTML = "내용을 500자 이하로 입력해주세요.";
+			alert_content.style.opacity = 1;
+			contentOk = 0;
+		}else{
+			alert_content.style.opacity = 0;
+			contentOk = 1;
+		}
+	});
+	input_file.addEventListener("input",()=>{
+		if(input_file.files.length==0){
+			alert_file.innerHTML = "파일을 1-5개 넣으세요.";
+			alert_file.style.opacity = 1;
+			fileOk = 0;
+		}else if(input_file.files.length>5){
+			////////////////////////////////
+			////////파일첨부 5개 초과 막기
+			
+			
+			
+			alert_file.innerHTML = "첨부할 수 있는 파일은 최대 5개입니다.";
+			alert_file.style.opacity = 1;
+			fileOk = 0;
+		}else{
+			alert_file.style.opacity = 0;
+			fileOk = 1;
+		}
+	});
 });
+
+var review_result = 0;
+var subjectOk = 0;
+var contentOk = 0;
+var fileOk = 0;
+
+////////////////////제목, 내용, 파일업로드 조건에 맞을 때만 submit 가능하게 하기
+function writeChk(){
+	review_result = subjectOk + contentOk + fileOk;
+	alert();
+}
+
+
+
+
 
 var review_wrap;
 var review_title;
@@ -152,7 +228,9 @@ function reviewDelete(){
 }
 
 //review_write.jsp에 있는 함수
+
 function writeFormCheck(event){
+	/*
 	if(document.getElementById('write-subject').value==''){
 		alert("제목 없음");
 		event.preventDefault();
@@ -163,7 +241,20 @@ function writeFormCheck(event){
 		alert("내용 없음");
 		event.preventDefault();
 	}
+	*/
+	
+	////////////////
+	if(review_result==3){
+		alert("제출가능"+review_result);
+		return true;
+	}else{
+		alert("제출 못한다"+review_result);
+		return false;
+	}
+	
 }
+
+
 
 //function reviewPrevPage(pageNum){
 	//let f = document.createElement('form');
@@ -267,7 +358,3 @@ function moveModalPage(page,reviewno,roomno){
 	});
 	console.log(page);
 }
-
-
-
-
