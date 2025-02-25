@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sc.main.service.ReservService;
 import com.sc.main.service.ReviewService;
 import com.sc.main.service.RoomService;
+import com.sc.main.vo.ModalReviewVO;
 import com.sc.main.vo.ReviewImgVO;
 import com.sc.main.vo.ReviewVO;
 
@@ -31,24 +33,37 @@ public class ReviewController {
 	@Inject
 	ReviewService service;
 	
+	@Inject
+	ReservService reserv_service;
+	
 	//모달팝업(비동기)
 	@PostMapping("/modalReview")
 	@ResponseBody
 	//public ReviewVO modalReview(@RequestBody String reviewno, String roomno) {
-	public ReviewVO modalReview(@RequestBody Map<String, Object> requestData) {
+	public ModalReviewVO modalReview(@RequestBody Map<String, Object> requestData) {
 		//System.out.println("reviewno->"+requestData.get("reviewno"));
 		//System.out.println("roomno->"+requestData.get("roomno"));
 		
 		int reviewno = Integer.parseInt(requestData.get("reviewno").toString());
 		int roomno = Integer.parseInt(requestData.get("roomno").toString());
 		
-		return service.reviewDetail(reviewno);
+		//조회수 증가
+		service.reviewHitCount(reviewno);
+		ModalReviewVO mrvo= new ModalReviewVO();
+		mrvo.setVo(service.reviewDetail(reviewno));
+		mrvo.setRivo(service.reviewImageSelect(reviewno));
+		return mrvo;
 	}
 	
 	//리뷰 작성폼
 	@GetMapping("/write")
-	public String reviewWrite(HttpServletRequest request) {
-		return "page/review/review_write";
+	public ModelAndView reviewWrite(HttpServletRequest request, HttpSession session) {
+		String userid=(String) session.getAttribute("loginId");
+		mav=new ModelAndView();
+		mav.setViewName("page/review/review_write");
+		System.out.println(service.reviewHistory(userid));
+		mav.addObject("rVO", service.reviewHistory(userid));
+		return mav;
 	}
 
 	//리뷰 작성(DB), 파일 업로드
@@ -58,6 +73,7 @@ public class ReviewController {
 		mav = new ModelAndView();
 		String userid = (String)session.getAttribute("loginId");
 		vo.setUserid(userid);
+		vo.setRoomno(reserv_service.selectRoomnoByReservNo(vo.getReservno()));
 		
 		int result = service.reviewInsert(vo);
 		int reviewno = service.reviewImage(userid);
@@ -65,10 +81,10 @@ public class ReviewController {
 		for(MultipartFile f: mf) {
 			String path = session.getServletContext().getRealPath("/uploadfile/"+Integer.toString(reviewno));
 			String orgFilename = f.getOriginalFilename();
-			
+			System.out.println(orgFilename+"!!!");
 			File file = new File(path, orgFilename);
 			orgFilename = fileRename(file, path, orgFilename);
-			
+			System.out.println(orgFilename+"???");
 			try {
 				file = new File(path, orgFilename);
 				f.transferTo(file);
@@ -95,56 +111,6 @@ public class ReviewController {
 				mav.setViewName("page/review/review_write");
 			}
 		}
-		
-		/*
-		HttpSession session = request.getSession();
-		mav = new ModelAndView();
-		String userid = (String)session.getAttribute("loginId");
-		vo.setUserid(userid);
-
-		int result = service.reviewInsert(vo);
-		int reviewno = service.reviewImage(userid);
-
-		//파일업로드
-		//파일 업로드할 폴더의 절대경로
-		String path = session.getServletContext().getRealPath("/uploadfile/"+Integer.toString(reviewno));
-		//업로드한 실제 파일명 구하기
-		String orgFilename = mf.getOriginalFilename();
-		
-		//새로 업로드 할 파일이 서버에 있는지 확인 후 
-		File file = new File(path, orgFilename);
-		
-		orgFilename = fileRename(file, path, orgFilename);
-		
-		//업로드시작	//없으면 업로드 수행
-		try {
-			file = new File(path, orgFilename);
-			mf.transferTo(file);
-		}catch(Exception e) {e.printStackTrace();}							
-		
-		//orgFilename : 업로드한 실제 파일명 -> vo객체에 셋팅
-		imgVO.setFilename(orgFilename); //제목, 글내용, 글쓴이, 파일명
-		
-		int imgResult = 0;
-		
-		try {
-			imgVO.setReviewno(reviewno);
-			//레코드 추가
-			//vo.setUserid(null);	//오류테스트 : 일부러 오류내려고 not null 항목을 null로 셋팅함.
-			imgResult = service.imgInsert(imgVO);	
-		}catch(Exception e) { //insert하다가 실패하면 파일을 삭제해야함
-			e.printStackTrace();
-			//레코드가 생성되지 않아 이미 업로드 되어있는 파일을 삭제해야한다.
-			File f = new File(path, orgFilename);
-			f.delete();
-		}
-		
-		if(result==1) {
-			mav.setViewName("redirect:/page/review");
-		}else {
-			mav.setViewName("page/review/review_write");
-		}
-		*/
 
 		return mav;
 	}
@@ -214,11 +180,17 @@ public class ReviewController {
 		System.out.println(isOk);
 		if(isOk && (p!=null && !p.equals(""))) {
 				for(int i=0;i<orgVO.size();i++) {
-					if(orgVO.get(i).getFilename()!=null) {
-						File fi = new File(path, orgVO.get(i).getFilename());
-						int x = orgVO.get(i).getImgno();
-						orgVO.get(i).setImgno(x);
-						fi.delete();
+					try {
+						if(orgVO.get(i).getFilename()!=null) {
+							File fi = new File(path, orgVO.get(i).getFilename());
+							int x = orgVO.get(i).getImgno();
+							orgVO.get(i).setImgno(x);
+							fi.delete();
+							File folder = new File(path,"");
+							folder.delete();
+						}
+					} catch(Exception ee) {
+						ee.printStackTrace();
 					}
 				}
 			int idx=-1;
@@ -243,11 +215,10 @@ public class ReviewController {
 						}
 						orgVO.get(idx).setFilename(orgFilename);
 					}
-					int imgResult = 0;
 					try {
 						//리뷰이미지 db업데이트
 						System.out.println(orgVO.get(idx).toString());
-						imgResult = service.reviewImageUpdate(orgVO.get(idx));	//review 이미지 업데이트
+						service.reviewImageUpdate(orgVO.get(idx));	//review 이미지 업데이트
 	
 						mav.setViewName("redirect:/page/review");	//db업데이트 성공했을 때 review_main.jsp로 이동
 					}catch(Exception e) {
@@ -262,11 +233,13 @@ public class ReviewController {
 				}
 			}
 			if(flag == 1) {
+				System.out.println("flag"+flag);
 				for(int i=mf.length;i<orgVO.size();i++) {
 					service.reviewImageDelete(orgVO.get(i).getImgno());
 				}
 			}
 			if(flag == 2) {
+				System.out.println("flag"+flag);
 				for(int i=idx;i<mf.length;i++) {
 					orgFilename = mf[i].getOriginalFilename();
 					
