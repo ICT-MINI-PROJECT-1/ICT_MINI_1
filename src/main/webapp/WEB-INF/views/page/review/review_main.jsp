@@ -155,8 +155,8 @@
 				</ul>
 				<div id="modal-content"></div>
 				<div id="btn">
-					<input type="button" value="수정" onclick="reviewEdit()">
-					<input type="button" value="삭제" onclick="reviewDelete()">
+					<input type="button" id="editBtn" value="수정" onclick="reviewEdit()">
+					<input type="button" id="delBtn" value="삭제" onclick="reviewDelete()">
 				</div>
 			</div>
 		</div>

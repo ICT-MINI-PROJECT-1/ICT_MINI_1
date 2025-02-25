@@ -146,8 +146,9 @@
           </p>
 				</div>
 				<div id="form-subject">
-					<input type="text" name="subject" id="write-subject" value="test" placeholder="제목을 입력해 주세요"><div id="alert-subject"></div>
+					<input type="text" name="subject" id="write-subject" value="test" placeholder="제목을 입력해 주세요">
 				</div>
+				<div id="alert-subject"></div>
 				<textarea name="content" id="write-content" placeholder="내용을 입력해 주세요">test</textarea><div id="alert-content"></div>
 				<div id="upload-review-img">
 				<label class="input-file-button" for="fie">
