@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
         //document.body.classList.remove('fade');
         document.getElementById("fade").style.opacity=1;
         footer = document.getElementsByClassName("footer")[0];
-        footer.style.opacity=0;
+        if(where=="review") footer.style.opacity=1;
+        else footer.style.opacity=0;
         settingMenu();
     });
 });
@@ -32,7 +33,7 @@ window.addEventListener("scroll", (e) => {
 			header.style.top='0px';
 			nav.style.top='80px';
 			nav.style.opacity=1;
-			if(where!="login" && where!="signup")
+			if(where!="login" && where!="signup" && where!="review")
 				footer.style.opacity=0;
 		}
 	}
