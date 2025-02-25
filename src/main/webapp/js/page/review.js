@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	var write_subject = document.getElementById("write-subject");
 	var write_content = document.getElementById("write-content");
-	var input_file = document.getElementById("filename");
+	var input_file = document.getElementById("fie");
 	
 	var alert_subject = document.getElementById("alert-subject");
 	var alert_content = document.getElementById("alert-content");
@@ -38,39 +38,47 @@ document.addEventListener('DOMContentLoaded', () => {
 			contentOk = 1;
 		}
 	});
-	input_file.addEventListener("input",()=>{
-		if(input_file.files.length==0){
-			alert_file.innerHTML = "파일을 1-5개 넣으세요.";
-			alert_file.style.opacity = 1;
-			fileOk = 0;
-		}else if(input_file.files.length>5){
-			////////////////////////////////
-			////////파일첨부 5개 초과 막기
-			
-			
-			
-			alert_file.innerHTML = "첨부할 수 있는 파일은 최대 5개입니다.";
-			alert_file.style.opacity = 1;
-			fileOk = 0;
-		}else{
-			alert_file.style.opacity = 0;
-			fileOk = 1;
-		}
-	});
 });
 
 var review_result = 0;
-var subjectOk = 0;
-var contentOk = 0;
+var subjectOk = 1;
+var contentOk = 1;
 var fileOk = 0;
 
 //제목, 내용, 파일업로드 조건에 맞을 때만 submit 가능하게 하기
 function writeChk(){
 	review_result = subjectOk + contentOk + fileOk;
-	alert("review_result="+review_result+", subjectOk="+subjectOk+", contentOk="+contentOk+", fileOk="+fileOk);
-	
+	if(fileOk==0){
+		let alert_file = document.getElementById("alert-file");
+		alert_file.innerHTML = "파일을 1-5개 넣어주세요.";
+		alert_file.style.opacity = 1;
+	} 
 	if(review_result==3) document.writeForm.submit();
 }
+
+//첨부파일 갯수 5개로 제한
+function addFile(obj){
+	let alert_file = document.getElementById("alert-file");
+	//alert(obj);
+	const minFileCnt = 1;
+	const maxFileCnt = 5;	//첨부파일 최대 개수
+	
+	//var attFileCnt = document.getElementById("filename").files.length; //기존에 추가된 첨부파일 개수
+	//var remainFileCnt = maxFileCnt - attFileCnt; //추가로 첨부가능한 개수
+	var curFileCnt = obj.files.length; //현재 선택된 첨부파일 개수
+	//alert("attFileCnt="+attFileCnt);
+	
+	if(curFileCnt<minFileCnt || curFileCnt>maxFileCnt){
+		alert_file.innerHTML = "파일을 1-5개 넣어주세요.";
+		alert_file.style.opacity = 1;
+		fileOk = 0;
+	}else{
+		alert_file.style.opacity = 0;
+		fileOk = 1;
+	}
+
+}
+
 
 var review_wrap;
 var review_title;
