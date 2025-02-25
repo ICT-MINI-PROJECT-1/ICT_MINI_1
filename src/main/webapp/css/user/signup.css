@@ -15,17 +15,62 @@
 
 .mypage-wrap{
 	width:60%;
-	margin:auto;
+	margin:100px auto 0;
+	margin-top: 200px;
 	display:flex;
 	flex-direction:column;
 	position:relative;
 }
 
+.mypage-nav {
+	width: 100%;
+    background-color: #6A3D17;
+    font-family: "Bona Nova SC", serif;
+    border-radius: 10px;
+    margin-bottom: 50px;
+    position: relative;
+    
+}
+
+.mypage-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row; /* 세로 배열로 변경 */
+    align-items: center; /* 가운데 정렬 */
+}
+
+.mypage-nav ul li {
+    margin: 10px 0; /* 위아래 간격 조정 */
+    width: 100%; /* li 요소의 너비를 100%로 설정 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+
+.mypage-nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    display: block; /* a 요소를 블록 요소로 변경 */
+    padding: 10px; /* 패딩 추가 */
+    box-sizing: border-box; /* 패딩을 포함한 너비 계산 */
+}
+
+.mypage-nav ul li a:hover {
+    color: #ddd;
+}
+
+/* 각 div에 id 추가 */
+#wishlist, #review, #myinfo {
+    scroll-margin-top: 10px; /* 스크롤 시 메뉴바 높이만큼 여백 추가 */
+}
+
 .mypage-container-info, .mypage-container-reserv, .mypage-container-review{
-	margin:0 auto;
-	margin-bottom:50px;
+	margin-bottom:200px;
 	width:100%;
 	height:auto;
+	padding-bottom:50px;
 	transition:all 0.5s;
 	background-color:transparent;
 	border-radius:15px;
@@ -33,10 +78,6 @@
 	box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
     2px 2px 2px 0px rgba(106,61,23,.6),
     1px 1px 1px 0px rgba(106,61,23,.6);
-}
-
-.mypage-container-reserv, .mypage-container-review{
-	padding-bottom:50px;
 }
 
 
@@ -176,7 +217,7 @@
 	font-size:13px;
 }
 
-.mypage-container-reserv ul{
+.mypage-container-reserv ul, .mypage-container-review ul{
 	font-family:'Gowun Batang';
 	display:flex;
 	width:80%;
@@ -191,7 +232,7 @@
 	border-bottom: 1px solid #ddd;
 }
 
-.mypage-container-reserv ul>li{
+.mypage-container-reserv ul>li, .mypage-container-review ul>li{
 	padding:0.5%;
 	padding-bottom:1%;
 }
@@ -264,13 +305,13 @@
 	width:12%;
 }
 .review-ul>li:nth-child(5n+3) {
-	width:40%;
+	width:50%;
 }
 .review-ul>li:nth-child(5n+4) {
-	width:10%;
+	width:20%;
 }
 .review-ul>li:nth-child(5n+5) {
-	width:40%;
+	width:20%;
 	white-space:nowrap;
 	overflow:hidden;
 	text-overflow:ellipsis;
