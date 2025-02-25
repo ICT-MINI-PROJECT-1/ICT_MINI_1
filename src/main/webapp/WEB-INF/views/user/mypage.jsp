@@ -66,7 +66,7 @@
 					방 번호
 				</li>
 				<li>
-					화풍
+					컨셉
 				</li>
 				<li>
 					체크인
@@ -88,25 +88,25 @@
 						<a href="#" onclick="moveToRoom('contemp')">${data.roomno}</a>
 					</li>
 					<li>
-						현대풍
+						모던현대
 					</c:if>
 					<c:if test="${data.roomconcept=='artnou'}">
 						<a href="#" onclick="moveToRoom('artnou')">${data.roomno}</a>
 					</li>
 					<li>
-						아르누보풍
+						아르누보
 					</c:if>
 					<c:if test="${data.roomconcept=='artdec'}">
 						<a href="#" onclick="moveToRoom('artdec')">${data.roomno}</a>
 					</li>
 					<li>
-						아르데코풍
+						아르데코
 					</c:if>
 					<c:if test="${data.roomconcept=='asian'}">
 						<a href="#" onclick="moveToRoom('asain')">${data.roomno}</a>
 					</li>
 					<li>
-						동양풍
+						동양
 					</c:if>
 				</li>
 				<li>
@@ -123,6 +123,8 @@
 				</li>
 			</ul>
 			</c:forEach>
+			
+			
 			<div id="signup-title">Reservation</div>
 			<ul class="reserv-ul" id="mr-title">
 				<li>
@@ -141,7 +143,7 @@
 					요청사항
 				</li>
 			</ul>
-			<div class="reserv-lm">현재 예약</div>
+			<div class="reserv-lm"><b>현재 예약</b></div>
 			<c:if test="${reserv !=null}">
 			<ul class="reserv-ul">
 				<li>
@@ -164,7 +166,8 @@
 			<c:if test="${reserv==null }">
 				<div class="no-reserv">예약 내역이 없습니다.</div>
 			</c:if>
-			<div class="reserv-lm">지난 예약 목록</div>
+			<br>
+			<div class="reserv-lm"><b>지난 예약 목록</b></div>
 			<c:if test="${reserv_list !=null}">
 			<c:forEach var="data" items="${reserv_list}">
 			<ul class="reserv-ul">
@@ -189,7 +192,32 @@
 			<c:if test="${reserv_list==null }">
 				<div class="no-reserv">예약 내역이 없습니다.</div>
 			</c:if>
-		</div>
+			
+			<div class="mypage-container-review">
+			<div id="signup-title">Review</div>
+			<ul class="review-ul" id="mr-title">
+				<li>리뷰 번호</li>
+				<li>방 번호</li>				
+				<li>제목</li>
+				<li>작성일</li>
+                <li>평점</li>
+			</ul>
+			<div class="review-lm"><b>나의 리뷰</b></div>
+			<c:if test="${review !=null}">
+				<c:forEach var="review" items="${reviewList}">
+				<ul class="review-ul">
+					<li><a href="#" onclick="moveReview('')">${review.reviewno}</a></li>
+					<li>${review.roomno}</li>
+					<li>${review.subject}</li>
+					<li>${review.writedate}</li>
+					<li>${review.rating}/></li>
+				</ul>
+				</c:forEach>
+			</c:if>
+			<c:if test="${review==null}">
+				<div class="no-review">리뷰 내역이 없습니다.</div>
+			</c:if>
+		
 		<div class="mypage-container-info">
 			<div id="signup-title">My Info</div>
 			<form name="signupEditForm" method="post" action="signUpEditChk">
