@@ -41,7 +41,7 @@
 <div class="container">
 	<div class="review-write-wrap">
 		<div id="write-box">
-			<form method="post" action="${pageContext.request.contextPath }/page/review/writeOk" id="review-write-form" onsubmit="writeFormCheck(event)" enctype="multipart/form-data">
+			<form method="post" action="${pageContext.request.contextPath }/page/review/writeOk" id="review-write-form" onsubmit="return writeFormCheck(event)" enctype="multipart/form-data">
 				<div id="write-title">Review Write</div>
 				<div id="write-username">
 					<div>작성자 : ${loginName }</div>
@@ -76,11 +76,11 @@
           </p>
 				</div>
 				<div id="form-subject">
-					<input type="text" name="subject" id="write-subject" value="test" placeholder="제목을 입력해 주세요">
+					<input type="text" name="subject" id="write-subject" value="test" placeholder="제목을 입력해 주세요"><div id="alert-subject"></div>
 				</div>
-				<textarea name="content" id="write-content" placeholder="내용을 입력해 주세요">test</textarea>
+				<textarea name="content" id="write-content" placeholder="내용을 입력해 주세요">test</textarea><div id="alert-content"></div>
 				<div id="upload-review-img">
-					<input type="file" name="mf" id="filename" multiple>
+					<input type="file" name="mf" id="filename" multiple><div id="alert-file"></div>
 				</div>
 				<input type="submit" value="작성완료" id="write-submit">
 			</form>

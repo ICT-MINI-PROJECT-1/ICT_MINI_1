@@ -37,16 +37,16 @@
 			<ul id="review-select-sort">
 				<li id="sort">정렬</li>
 				<c:if test="${pVO.searchHR=='hit'}">
-					<li style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')" class="selected-sort">조회순</a></li>
-					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')" class="selected-sort">평점순</a></li>
+					<li style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
+					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
 				</c:if>
 				<c:if test="${pVO.searchHR=='rating'}">
-					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')" class="selected-sort">조회순</a></li>
-					<li style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')" class="selected-sort">평점순</a></li>
+					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
+					<li style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
 				</c:if>
 				<c:if test="${pVO.searchHR==null || pVO.searchHR==''}">
-					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')" class="selected-sort">조회순</a></li>
-					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')" class="selected-sort">평점순</a></li>
+					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
+					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
 				</c:if>
 			</ul>
 			<!-- 검색창 -->
