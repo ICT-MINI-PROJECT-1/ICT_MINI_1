@@ -65,9 +65,6 @@
 	font-family:'Gowun Batang';
 	color: #6A3D17;
 }
-#review-write:hover{
-	font-weight: bold;
-}
 #review-write-search{
 	display: flex;
 	align-items: center;
@@ -77,12 +74,24 @@
 	overflow: auto;
 	display: flex;
 	align-items: center;
+    margin-top: 30px;
 }
 #review-write{
 	font-size: 1.6vw;
-	width: 30%;
-	text-align: left;
-	color: #6A3D17;
+	width: 8%;
+	height: 3.0vw;
+    cursor: pointer;
+	text-align: center;
+	line-height: 3vw;
+	color: #fff;
+	border-radius: 4px;
+	position: absolute;
+    right: 10%;
+    background: #6a3d17e0;
+}
+#review-write:hover{
+	font-weight: bold;
+	background: #6A3D17;
 }
 .review-search{
 	text-align: right;
@@ -96,6 +105,7 @@
 	border-radius: 5px;
 	font-size: 1.6vw;
 	vertical-align: middle;
+	border: 1px solid #ddd;
 }
 .review-search #searchWord{
     width: 23%;
@@ -193,12 +203,11 @@
 #paging{
 	display: flex;
 	width: 30%;
-	margin: 0 auto;
-	margin-bottom: 30px;
+	margin: 30px auto;
 }
 #paging>li{
 	width: 20%;
-	/*background: red;*/
+    margin: auto;
 }
 
 /* 모달 반응형 */
@@ -219,7 +228,6 @@
 	box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 
 				2px 2px 7px 0px rgba(106, 61, 23, .6), 
 				1px 1px 3px 0px rgba(106, 61, 23, .6);
-	
 	opacity:0;
 	z-index:-5;
 	transition: opacity 0.7s;
@@ -227,6 +235,8 @@
 #modal-exit{
 	text-align: right;
 	padding-right: 20px;
+	cursor: pointer;
+	font-size: 2vw;
 }
 #modal-grid{
 	display: grid;
@@ -269,7 +279,7 @@
 #modal-contents{
 	box-sizing: border-box;
 	width: 100%;
-	height: 27.5vw;
+	height: 32vw;
 	background: #fff;
 	padding: 10px;
 	border-radius: 15px;
@@ -298,7 +308,8 @@
 	height: 15vw;
     min-height: 100px;
     margin-top: 3%;
-    white-space: pre-line
+    white-space: pre-line;
+    margin-bottom: 1.3vw;
 }
 /* 스크롤바 디자인 */
 #modal-content::-webkit-scrollbar {
@@ -317,43 +328,26 @@
     background-color: rgba(0, 0, 0, 0.1); /* 스크롤 트랙 색상 */
     border-radius: 10px; /* 둥근 모서리 */
 }
-#btn{
-	text-align: right;
+#btn>input[type=button]{
+	color: white;
+    background: #6a3d17e0;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 7%;
+    height: 2.3vw;
+    font-size: 1.3vw;
+}
+#editBtn{
+	position: absolute;
+	right: 11%;
+}
+#delBtn{
+	position: absolute;
+	right: 2%;
 }
 input[type=button]{
 	width: 20%;
 }
-
-@media(max-width:1024px){
-	.review-list-grid-box{
-		grid-template-columns:repeat(2, 1fr);
-	}
-	.review-list-img{
-		height: 28.4vw;
-	}
-}
-@media(min-width:1400px){
-	#review-list-modal{
-		width: 1120px;
-		padding-bottom: 560px;
-	}
-	#review-list-modal{
-		font-size: 18.2px;
-	}
-	#modal-img-main{
-		height: 378px;
-	}
-	#modal-img-list>ul li{
-		height: 46.62px;
-	}
-	#modal-contents{
-		height: 385px;
-	}
-	#modal-content{
-		height: 252px;
-	}
-}
-
 
 /* 리뷰 작성 페이지 */
 #write-box{
@@ -387,14 +381,26 @@ input[type=button]{
 #form-subject>div, #write-username>div, #write-writedate-hit>div, #write-roomno-rating>div{
 	width: 30%;
 }
+#form-roomno{
+	align-items: center;
+}
+#reservno{
+	height: 28px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
 #form-subject>#form-subject-div{
 	width: 10%;
 }
 #form-subject>input[type=text]{
-	width: 100%;
+	width: 98%;
 	height: 2vw;
 	border-radius: 5px;
-    margin: 0.5vw 0;
+    border: 1px solid #ddd;
+    /*margin: 0.5vw 0;*/
+    margin: 0 auto;
+    margin-top: 0.5vw;
+    
 }
 #form-rating{
  	margin-left: auto;
@@ -407,19 +413,23 @@ input[type=button]{
 	padding-left:10px;
 	font-family: "Gowun Batang", serif;
 	color:#ED494C;
-	line-height:30px;
+	line-height:27px;
 	transition: all 1.0s;
 	opacity:0;
 	font-size:13px;
+	text-align: left;
+	height: 27px;
 }
 #alert-content{
 	padding-left:10px;
 	font-family: "Gowun Batang", serif;
 	color:#ED494C;
-	line-height:30px;
+	line-height: 27px;
 	transition: all 1.0s;
 	opacity:0;
 	font-size:13px;
+    text-align: left;
+    height: 27px;
 }
 #alert-file{
 	padding-left:10px;
@@ -432,8 +442,11 @@ input[type=button]{
 }
 textarea{
 	width: 99%;
-	height: 35vw;
+	height: 20vw;
 	box-sizing: border-box;
+	border-radius: 5px;
+    border: 1px solid #ddd;
+    resize: none;
 }
 #upload-review-img{
 	display: flex;
@@ -493,6 +506,43 @@ textarea{
 	background: #6A3D17;
 }
 
+
+//review_main.jsp
+@media(max-width:1024px){
+	.review-list-grid-box{
+		grid-template-columns:repeat(2, 1fr);
+	}
+	.review-list-img{
+		height: 28.4vw;
+	}
+}
+@media(min-width:1400px){
+	#review-list-modal{
+		width: 1120px;
+		padding-bottom: 560px;
+	}
+	#review-list-modal{
+		font-size: 18.2px;
+	}
+	#modal-img-main{
+		height: 378px;
+	}
+	#modal-img-list>ul li{
+		height: 46.62px;
+	}
+	#modal-contents{
+		height: 448px;
+	}
+	#modal-content{
+		height: 210px;
+	}
+	#btn>input[type=button]{
+	    height: 32.2px;
+	    font-size: 17.2px;
+	}
+}
+
+//review_write.jsp
 @media(max-width:1024px){
 	.review-write-wrap{
 		width: 819.2px;
@@ -508,7 +558,7 @@ textarea{
 		height: 22.528px;
 	}
 }
-@media (min-width:1400px){
+@media (min-width:1400px){	
 	.review-write-wrap{
 		width: 1300px;
 	}

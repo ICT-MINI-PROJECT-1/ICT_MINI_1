@@ -19,6 +19,13 @@
 		</if>
 		limit ${onePageRecord} offset ${offset}
 	</select>
+	<select id="renderReviewList" resultType="com.sc.main.vo.ReviewVO">
+		select * from review
+		<if test="searchWord!=null and searchWord!=''">
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+		limit ${onePageRecord} offset ${offset}
+	</select>
 	<!--
 	<select id="reviewDetail" resultType="com.sc.main.vo.ReviewVO">
 		select reviewno, subject, content, userid, roomno, rating, date_format(writedate, '%Y-%m-%d') writedate from review where reviewno=#{param1}
@@ -43,6 +50,12 @@
 	</select>
 	<select id="reservTotalRecord" resultType="int">
 		select count(userid) cnt from reservation
+		<if test="searchWord!=null and searchWord!=''">
+			where ${searchKey} like '%${searchWord}%'
+		</if>
+	</select>
+	<select id="reviewTotalRecord" resultType="int">
+		select count(reviewno) from review
 		<if test="searchWord!=null and searchWord!=''">
 			where ${searchKey} like '%${searchWord}%'
 		</if>
