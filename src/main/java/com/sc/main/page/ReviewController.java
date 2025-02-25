@@ -61,7 +61,8 @@ public class ReviewController {
 		String userid=(String) session.getAttribute("loginId");
 		mav=new ModelAndView();
 		mav.setViewName("page/review/review_write");
-		mav.addObject("rVO", reserv_service.selectLastReservation(userid));
+		System.out.println(service.reviewHistory(userid));
+		mav.addObject("rVO", service.reviewHistory(userid));
 		return mav;
 	}
 
@@ -72,6 +73,7 @@ public class ReviewController {
 		mav = new ModelAndView();
 		String userid = (String)session.getAttribute("loginId");
 		vo.setUserid(userid);
+		vo.setRoomno(reserv_service.selectRoomnoByReservNo(vo.getReservno()));
 		
 		int result = service.reviewInsert(vo);
 		int reviewno = service.reviewImage(userid);

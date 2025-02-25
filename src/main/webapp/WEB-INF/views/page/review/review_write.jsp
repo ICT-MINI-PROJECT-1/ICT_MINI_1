@@ -60,9 +60,9 @@
 				</div>
 				<div id="write-roomno-rating">
 					<div id="form-roomno">호수
-					<select id="roomno" name="roomno">
+					<select id="reservno" name="reservno">
 					<c:forEach var="rVO"  items="${rVO}">
-						<option value="${rVO.roomno }">${rVO.roomno}</option>
+						<option value="${rVO.reservno }"> ${rVO.reservdate.substring(0,10)}: ${rVO.roomno}호</option>
 					</c:forEach>
 					</select>
 					</div>

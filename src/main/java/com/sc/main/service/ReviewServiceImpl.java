@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.sc.main.dao.ReviewDAO;
 import com.sc.main.vo.PagingVO;
+import com.sc.main.vo.ReservationVO;
 import com.sc.main.vo.ReviewImgVO;
 import com.sc.main.vo.ReviewVO;
 
@@ -75,6 +76,11 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public void reviewHitCount(int reviewno) {
 		dao.reviewHitCount(reviewno);
+	}
+
+	@Override
+	public List<ReservationVO> reviewHistory(String userid) {
+		return dao.reviewHistory(userid);
 	}
 
 }
