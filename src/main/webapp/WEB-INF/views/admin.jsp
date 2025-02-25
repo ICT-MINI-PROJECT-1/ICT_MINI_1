@@ -206,6 +206,86 @@
 				  event.preventDefault();
 			});
 		});
+		
+		function adminReviewList(page) {
+			tag="review";
+			document.getElementById("page-box").innerHTML="";
+			let users = document.getElementById("users");
+			users.innerHTML = `<ul id='review-box'><li>
+				reviewno
+				</li>
+				<li>
+					subject
+				</li>
+				<li>
+					content
+				</li>
+				<li>
+					roomno
+				</li>
+				<li>
+					rating
+				</li>
+				<li>
+					userid
+				</li>
+				<li>
+					writedate
+				</li>
+				<li>
+					삭제
+				</li></ul>`;
+				
+				document.getElementById("page-box").innerHTML = "";
+				var params;
+				if(searchKey!="" && searchWord!="") {
+					params ={
+							nowPage:page,
+							searchKey:searchKey,
+							searchWord:searchWord
+					};
+				} else {
+					params ={
+						nowPage:page
+					};
+				}
+				fetch("/admin/review",{
+					method:"POST",
+					headers:{
+						"Content-Type":"application/json",
+					},
+					body:JSON.stringify(params)
+				})
+				.then(response => {
+					if(!response.ok){
+						throw new Error('Network response was not ok');
+					}
+					return response.json();
+				})
+				.then((data) => {
+					let reviewBox = document.getElementById("review-box");
+					for(var i=0;i<data.rv.length;i++) {
+						reviewBox.innerHTML += `<ul><li>${data.rv.reviewno}</li><li>${data.rv[i].subject}</li><li>${data.rv[i].content.substring(0,10)}</li><li>${data.rv[i].roomno}</li><li>${data.rv[i].rating}</li><li>${data.rv[i].userid.substring(0,10)}</li><li>${data.rv[i].writedate}</li><li><a href='#' onclick="deleteReview(${data.rv[i].reviewno})">삭제</a></li></ul>`;
+					}
+					for(var i=data.pvo.startPageNum; i<data.pvo.startPageNum+data.pvo.onePageCount;i++) {
+						if(i==data.pvo.startPageNum) {
+							if(data.pvo.nowPage == 1) document.getElementById("page-box").innerHTML += `<li>◀</li>`;
+							else document.getElementById("page-box").innerHTML += `<li onclick="adminReviewList(`+(data.pvo.nowPage-1)+`)">◀</li>`;
+						}
+						if(i<=data.pvo.totalPage) {
+							if(i==data.pvo.nowPage)document.getElementById("page-box").innerHTML+=`<li style='color:blue' onclick="adminReviewList(${i})">${i}</li>`;
+							else document.getElementById("page-box").innerHTML+=`<li onclick="adminReviewList(`+i+`)">`+i+`</li>`;
+						}
+					}
+					if(data.pvo.nowPage == data.pvo.totalPage) document.getElementById("page-box").innerHTML += `<li>▶</li>`;
+					else document.getElementById("page-box").innerHTML += `<li onclick="adminReviewList(${data.pvo.nowPage+1})">▶</li>`;
+				}).catch(err=> {
+					console.log('Fetch err:',err);
+			});
+		}
+		function deleteReview(reviewno) {
+			console.log("삭제할 리뷰 번호:", reviewno);
+		}
 	</script>
 </head>
 <body>
@@ -228,6 +308,9 @@
 				</li>
 				<li>
 					<a onclick="adminReservList(1)" href="#">예약 조회</a>
+				</li>
+				<li>
+					<a onclick="adminReviewList(1)" href="#">리뷰 조회</a>
 				</li>
 			</ul>
 		</div>

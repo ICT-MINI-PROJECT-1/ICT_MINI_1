@@ -19,3 +19,6 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 		return true;
 	}
 }
+
+
+

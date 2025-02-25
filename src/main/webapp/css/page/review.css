@@ -435,10 +435,10 @@ input[type=button]{
 	padding-left:10px;
 	font-family: "Gowun Batang", serif;
 	color:#ED494C;
-	line-height:30px;
+	line-height:25px;
 	transition: all 1.0s;
 	opacity:0;
-	font-size:13px;
+	font-size:65%;
 }
 textarea{
 	width: 99%;
@@ -455,10 +455,43 @@ textarea{
 	width: 50%;
 	text-align: left;
 }
-#upload-filename{
+#upload-filename {
 	width: 50%;
-	text-align: right;
-	font-size: 0.8vw;
+    text-align: right;
+    font-size: 70%;
+    position: relative;
+    left: 49%;
+    top: -30px;}
+#preview{
+	position: absolute;
+	font-size:70%;
+    margin-left: 0.5%;
+    text-align: left;
+}
+#preview>p{
+	padding:0;
+	margin: 2px;
+}
+#preview>p>button {
+	background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    color:#6a3d17e0;
+}
+.input-file-button{
+  margin-left:0.5%;
+  padding: 0.5% 1.5%;
+  height:25px;
+  line-height:25px;
+  background-color:#6a3d17e0;
+  border-radius: 4px;
+  color: white;
+  font-size:65%;
+  cursor: pointer;
+  transition:all 0.5s;
+}
+.input-file-button:hover{
+	background: #6A3D17;
 }
 #write-submit{
 	color: white;
