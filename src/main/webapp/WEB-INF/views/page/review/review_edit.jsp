@@ -70,11 +70,15 @@
 				</div>
 				<textarea name="content" id="write-content">${vo.content }</textarea><div id="alert-content"></div>
 				<div id="upload-review-img">
-					<input type="file" name="mf" id="fie" onchange="addFile(this)" multiple>
-					<c:forEach var="vo" items="${imgVO}">
-					<div>${vo.filename }</div>
-					</c:forEach>
-					<div id="alert-file"></div>
+					<div>
+						<input type="file" name="mf" id="fie" onchange="addFile(this)" multiple>
+					</div>
+					<div id="upload-filename">
+						<c:forEach var="vo" items="${imgVO}">
+							<div>${vo.filename }</div>
+						</c:forEach>
+						<div id="alert-file"></div>
+					</div>
 				</div>
 				<input type="button" value="수정하기" id="write-submit" onclick="writeChk()">
 			</form>

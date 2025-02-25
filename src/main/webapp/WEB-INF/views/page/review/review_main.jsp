@@ -28,11 +28,6 @@
 				review_wrap.style.opacity= 1;
 			});
 		</script>
-		<div id="review-write-search">
-			<c:if test="${loginStatus=='Y' }">
-				<a href="${pageContext.request.contextPath}/page/review/write" id="review-write">리뷰작성</a>
-			</c:if>
-		</div>
 		<div id="review-sort-search">
 			<ul id="review-select-sort">
 				<li id="sort">정렬</li>
@@ -88,6 +83,11 @@
 		<c:if test="${fn:length(list)==0 }">
 			<span id="review-search-result">검색 결과가 없습니다.</span>
 		</c:if>
+		<div id="review-write-search">
+			<c:if test="${loginStatus=='Y' }">
+				<a href="${pageContext.request.contextPath}/page/review/write" id="review-write">리뷰작성</a>
+			</c:if>
+		</div>
 		<!-- 페이징 -->
 		<ul id="paging">
 			<!-- 이전페이지 -->

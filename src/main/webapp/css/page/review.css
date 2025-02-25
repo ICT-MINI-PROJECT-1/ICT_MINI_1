@@ -435,6 +435,18 @@ textarea{
 	height: 35vw;
 	box-sizing: border-box;
 }
+#upload-review-img{
+	display: flex;
+}
+#upload-review-img>div:nth-child(1){
+	width: 50%;
+	text-align: left;
+}
+#upload-filename{
+	width: 50%;
+	text-align: right;
+	font-size: 0.8vw;
+}
 #write-submit{
 	color: white;
 	background: #6a3d17e0;
