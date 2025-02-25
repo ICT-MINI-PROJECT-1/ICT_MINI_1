@@ -14,7 +14,7 @@
         margin:15px;     
     }
     
-    #text,#text2{
+    #text{
     	position:absolute;
     	top:180px;
     	left:10%;
@@ -22,6 +22,7 @@
    		height:5vh;
    		margin:3%;
    		color:gray;
+   		text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
     }
 
     .SliderBox {
@@ -83,9 +84,9 @@
     	background-color:gray;
     }
    
-     @media (max-width: 1150px) {
+     @media (max-width: 1250px) {
         #container {
-            width: 60%;
+            width: 800px;
         }
 
         .SliderBox {
@@ -108,6 +109,31 @@
          	font-size : 20px;
          }
   	  }	
+    	@media (max-width:1050px){
+    		#container {
+    		width:600px;
+    	}
+
+        .SliderBox {
+            width: 100%;
+        }
+
+        #slider {
+            width: auto;
+        }
+
+        #slider img {
+            width: 50%;
+          
+        }
+
+        .prev, .next {
+            padding: 10px;
+        }
+         #text,#text2{
+         	font-size : 20px;
+         }
+    }
     
     	@media (max-width:950px) {
         #content ul {
@@ -201,7 +227,7 @@
             <h2 id="titleName">부대시설 개요</h2>
             <div id="content">
             	<ul>
-            		<li><div id="type1">타입</div><div>피트니스</div></li>
+            		<li><div id="type1">타입</div><div>스파&사우나</div></li>
             		<li><div id="type1">위치</div><div>7F</div></li>
             		<li><div id="type1">이용시간</div><div>06:30~22:00</div></li>
             		<li><div id="type1">문의안내</div><div>02-0000-0000</div></li>
@@ -273,7 +299,7 @@
             // 슬라이드가 완료된 후에 버튼을 다시 활성화
             setTimeout(function() {
                 isSliding = false;
-            }, 10);  // 슬라이드 완료 예상 시간 (500ms)
+            }, 10);
         }
 
        

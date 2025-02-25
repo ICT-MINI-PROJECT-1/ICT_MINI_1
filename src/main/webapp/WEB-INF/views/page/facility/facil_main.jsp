@@ -34,6 +34,9 @@
     min-height: 400px; 
     border-bottom:1px solid gray;
 }
+#Laundry{
+	border-bottom:none;
+}
 
 #Gym, #Restaurant {
 	line-height: 10vh; 
@@ -293,22 +296,37 @@
 			    다양한 메뉴와 정성스러운 요리로 고객님의 미각을 만족시킬 준비가 되어 있습니다.     <br/>	
 			    <br/>
 			</div>
-			<img src="../img/page/facility/Restaurant.jpg"/>
-
+			<img src="../img/page/facility/Restaurant.jpg"/ id="linkRestaurant">
 		</div>
+		<script>
+		document.getElementById('linkRestaurant').onclick = function(){
+			window.location.href = "facility/facil-restaurant-picture";
+		};
+		</script>
 		<div id="Bar">
-		    <img src="../img/page/facility/BarMain.jpg"/>
+		    <img src="../img/page/facility/BarMain.jpg"/ id="linkBar">
 		    <div id="BarText">
 		        <strong Class="text">Lounge & Bar</strong>
 		    </div>
 		</div>
+		
+		<script>
+		document.getElementById('linkBar').onclick = function(){
+			window.location.href = "facility/facil-bar-picture";
+		};
+		</script>
 
 		<div id="Laundry">
-			<img src="../img/page/facility/Laundry.jpg"/>
+			<img src="../img/page/facility/Laundry.jpg"/ id="linkLaundry">
 			<div id="LaundryText">
 				<strong Class="text">Laundry</strong>
 			</div>
 		</div>
+		<script>
+		document.getElementById('linkLaundry').onclick = function(){
+			window.location.href = "facility/facil-laundry-picture";
+		};
+		</script>
 	</div>
 </div>
 </div>
