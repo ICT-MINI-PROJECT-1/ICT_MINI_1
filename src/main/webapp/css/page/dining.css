@@ -58,6 +58,21 @@
 	text-align:center;
 }
 
+#event {
+	position: relative;
+	width: 100%;
+	height: 780px;
+	padding-bottom: 50px;
+}
+
+#event::-webkit-scrollbar {
+	display: none;
+}
+
+#dining-category {
+	visibility: hidden;
+}
+
 .dining-pic {
 	float: left;
 	height: 400px;

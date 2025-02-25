@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("fade").style.opacity=1;
         footer = document.getElementsByClassName("footer")[0];
         if(where=="review") footer.style.opacity=1;
+        else if(where=="dining") footer.style.display='none';
         else footer.style.opacity=0;
         settingMenu();
     });
@@ -170,6 +171,12 @@ function settingMenu() {
 	if(where=="dining") {
 		contents.innerHTML=`
 			<div id="contents-title">Dining</div>
+			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
+				<li><b style="line-height:30px;">최상의 재료와 위생으로 대접합니다.</b></li>
+    			<li>Korean: 한국의 맛과 향을 지닌 한정식</li>
+    			<li>Western: 모던프렌치 파인다이닝</li>
+    			<li>Japanese: 전통을 살린 스시야</li>
+    		</ul>
 		`;
 	}
 	if(where=="facility") {
@@ -242,10 +249,6 @@ function settingMenu() {
     });
 }
 
-//dining_main.jsp에서만 footer 제거
-const Footer = () => {
-	if(window.location.pathname === '/page/dining/dining_main') return null;
-}
 
 
 
