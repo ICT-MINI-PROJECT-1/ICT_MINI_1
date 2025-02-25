@@ -34,6 +34,9 @@
     min-height: 400px; 
     border-bottom:1px solid gray;
 }
+#Laundry{
+	border-bottom:none;
+}
 
 #Gym, #Restaurant {
 	line-height: 10vh; 
@@ -76,6 +79,8 @@
     width: 50%;
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
 }
+
+
 
 #Restaurant > img {
     width: 100%;
@@ -127,64 +132,75 @@
     transform: scale(1.1);
 }
 
-@media (max-width: 2100px){
-	#Bar > img, #Laundry > img{
-		width:60%;
+@media (max-width:1100px){
+	#Gym > #gymText, #Restaurant > #RestaurantText {
+		line-height:33px;
+		font-size:16px;
+	}
+	#Gym, #Restaurant {
+			height:600px;
+		}
+	#Laundry, #Bar, #PoolSize{
+		height:400px;
+	}
+}
+@media (max-width:900px){
+	#PoolSize > img, #Gym > img, #food > img, #Restaurant > img {
+		width:600px;
 	}
 }
 
-@media (max-width: 1600px) {
-    #Bar > img, #Laundry > img {
-        font-size: 16px; /* 작은 화면에서 폰트 크기 줄임 */
-        width:40%;
-    }
+@media (max-width:900px){
+	#Sauna > #linkSauna, #Pool > img{
+		width:200px;
+	}
+	#Sauna > #SaunaText {
+		width:400px;
+		line-height:22px;
+		font-size:14px;
+		flex-shrink: 0;
+  		flex-grow: 0; 
+	}
+	#Pool > #PoolText {
+		width:550px;
+		line-height:22px;
+		font-size:14px;
+		flex-shrink: 0;
+   		flex-grow: 0; 
+	}
+	#Gym > #gymText, #Restaurant > #RestaurantText {
+		line-height:27px;
+		font-size:14px;
+	}
+	@media (max-width:900px){
+		#Gym, #Restaurant {
+			height:500px;
+		}
+	}
+}
+@media (max-width:660px){
+	#PoolSize > img, #Gym > img, #food > img, #Restaurant > img {
+		width:450px;
+		
+	}
+@media (max-width:580px){
+	#PoolSize > img, #Gym > img, #food > img, #Restaurant > img {
+		width:400px;
+		
+	}
 }
 
-/* 화면 크기가 1600px 이하일 때 */
-@media (max-width: 1600px) {
-    #Sauna, #Pool, #PoolSize,#Gym,#Restaurant,, #food, #line,#Bar, #Laundry {
-        font-size: 14px; /* 작은 화면에서 폰트 크기 줄임 */
-        width: 100%; 
-    }
+
+@media (max-width:955px){
+	#Bar, #Laundry {
+		height:200px;
+	}
+	#Bar > img, #Laundry > img{
+		width:250px;
+	}
 }
 
-/* 화면 크기가 1315px 이하일 때 */
-@media (max-width: 1315px{
-    #Sauna, #Pool, #PoolSize, #Gym,#Restaurant, #food, #line,#Bar, #Laundry {
-        font-size: 14px; /* 화면 크기에 맞춰 폰트 크기 줄이기 */
-        width: 1100px; 
-        height: auto;
-        min-width: 300px;
-        min-height: 400px;
-    }
-}
 
-@media (max-width: 1117px) {
-    #Sauna, #Pool, #PoolSize, #Gym,#Restaurant, #food, #line,#Bar, #Laundry {
-        font-size: 13px; /* 화면 크기에 맞춰 폰트 크기 줄이기 */
-        width: 700px; 
-        height: auto;
-        min-width: 300px;
-        min-height: 400px;
-    }
-}
-
-/* 화면 크기가 768px 이하일 때 */
-@media (max-width: 768px) {
-    #Sauna, #Pool, #PoolSize,#Gym,#Restaurant, #food, #line,#Bar, #Laundry  {
-        font-size: 12px; /* 폰트 크기 추가로 줄이기 */
-        width: 768px; 
-        height: auto; 
-    }
-}
-
-@media (max-width: 600px) {
-    #Sauna, #Pool, #PoolSize,#Gym,#Restaurant, #food, #line,#Bar, #Laundry  {
-        font-size: 11px; /* 폰트 크기 추가로 줄이기 */
-        width: 400px; 
-        height: auto; 
-    }
-}
 
 </style>
 
@@ -211,7 +227,7 @@
 
 		<div id='Sauna'>
 			<img src="../img/page/facility/main.jpg" id="linkSauna"/>
-			<div>
+			<div id="SaunaText">
 				<strong Class="text">Spa & Sauna</strong><br/>
 				<br/>
 				마음과 몸을 재충전하는 특별한 경험을 제공하는 고급스러운 시설과 세심한 서비스로 고객님께 최상의 휴식을 선사합니다.<br/>
@@ -227,7 +243,7 @@
 		
 
 		<div id=Pool>
-			<div>
+			<div id="PoolText">
 			<strong Class="text">Pool</strong><br/>
 			실내와 실외 수영장 모두 준비되어 있어 날씨와 관계없이 언제든지 즐길 수 있습니다.<br/>
 			실내 수영장에서는 탁월한 온도 조절 시스템 덕분에 사계절 내내 편안한 수영이 가능하며,<br/>
@@ -251,7 +267,7 @@
 		<br/>
 		<div id='Gym'>
 			<img src='../img/page/facility/gym11.png' id="linkGym"/>
-			<div>
+			<div id='gymText'>
 			<strong Class="text">Gym</strong><br/>
 			여행 중에도 건강한 라이프스타일을 유지하고 싶은 고객님을 위해 준비되었습니다.<br/>
 			최첨단 운동 기구와 넉넉한 공간에서 다양한 운동을 즐길 수 있습니다. 근력 운동부터 유산소 운동까지 모든 피트니스 요구를 충족시켜 드리며,<br/>
@@ -273,28 +289,44 @@
 		<div id="Restaurant">
 			<div id="line3">
 			</div>
-			<div>
+			<div id='RestaurantText'>
 				<strong Class="text">Restaurant</strong><br/>
 				우리 호텔의 식당은 맛과 분위기, 서비스가 어우러진 특별한 공간으로,<br/>
 			    고객님에게 진정한 미식의 경험을 제공합니다. 고급스러운 인테리어와 아늑한 분위기 속에서,<br/>
 			    다양한 메뉴와 정성스러운 요리로 고객님의 미각을 만족시킬 준비가 되어 있습니다.     <br/>	
+			    <br/>
 			</div>
-			<img src="../img/page/facility/Restaurant.jpg"/>
-
+			<img src="../img/page/facility/Restaurant.jpg"/ id="linkRestaurant">
 		</div>
+		<script>
+		document.getElementById('linkRestaurant').onclick = function(){
+			window.location.href = "facility/facil-restaurant-picture";
+		};
+		</script>
 		<div id="Bar">
-		    <img src="../img/page/facility/BarMain.jpg"/>
-		    <div>
+		    <img src="../img/page/facility/BarMain.jpg"/ id="linkBar">
+		    <div id="BarText">
 		        <strong Class="text">Lounge & Bar</strong>
 		    </div>
 		</div>
+		
+		<script>
+		document.getElementById('linkBar').onclick = function(){
+			window.location.href = "facility/facil-bar-picture";
+		};
+		</script>
 
 		<div id="Laundry">
-			<img src="../img/page/facility/Laundry.jpg"/>
-			<div>
+			<img src="../img/page/facility/Laundry.jpg"/ id="linkLaundry">
+			<div id="LaundryText">
 				<strong Class="text">Laundry</strong>
 			</div>
 		</div>
+		<script>
+		document.getElementById('linkLaundry').onclick = function(){
+			window.location.href = "facility/facil-laundry-picture";
+		};
+		</script>
 	</div>
 </div>
 </div>

@@ -203,23 +203,20 @@
 		font-family: 'Gowun Batang';
 	}
 	
-	#type1Text{
-		
-	}
 
 </style>
 
 <div id="fade">
-<h1 id="text">Pool</h1>
+<h1 id="text">Restaurant</h1>
     <div id="container">
         <div class="SliderBox" id="sliderContainer">
             <div id="slider">
-                <img src="${pageContext.request.contextPath}/img/page/facility/PoolMainSize.png" />
-                <img src="${pageContext.request.contextPath}/img/page/facility/Pool2.jpg""/>
-                <img src="${pageContext.request.contextPath}/img/page/facility/Pool4.jpg"/>
-                <img src="${pageContext.request.contextPath}/img/page/facility/Pool5.jpg"/>
-                <img src="${pageContext.request.contextPath}/img/page/facility/Pool3.jpg"/>
-                <img src="${pageContext.request.contextPath}/img/page/facility/Pool6.jpg"/>
+            	 <img src="${pageContext.request.contextPath}/img/page/facility/Restaurant1.jpg" />
+           		 <img src="${pageContext.request.contextPath}/img/page/facility/Restaurant2.jpg" />
+           		 <img src="${pageContext.request.contextPath}/img/page/facility/Restaurant3.jpg"/>
+                 <img src="${pageContext.request.contextPath}/img/page/facility/Restaurant4.jpg"/>
+                 <img src="${pageContext.request.contextPath}/img/page/facility/Restaurant5.jpg"/>
+                 <img src="${pageContext.request.contextPath}/img/page/facility/Restaurant6.jpg"/>
             </div>
           	  <button class="prev" onclick="moveSlide(-1)">❮</button>
       		  <button class="next" onclick="moveSlide(1)">❯</button>
@@ -230,10 +227,10 @@
             <h2 id="titleName">부대시설 개요</h2>
             <div id="content">
             	<ul>
-            		<li><div id="type1">타입</div><div>실내수영장</div></li>
+            		<li><div id="type1">타입</div><div>다이닝</div></li>
             		<li><div id="type1">위치</div><div>8F</div></li>
-            		<li><div id="type1">이용시간</div><div>06:30~20:00</div></li>
-            		<li><div id="type1">문의안내</div><div>02-1111-1111</div></li><br/>
+            		<li><div id="type1">이용시간</div><div>07:00~21:00</div></li>
+            		<li><div id="type1">문의안내</div><div>02-2222-2222</div></li>
             	</ul>
             </div>
          </div>
@@ -302,7 +299,7 @@
             // 슬라이드가 완료된 후에 버튼을 다시 활성화
             setTimeout(function() {
                 isSliding = false;
-            }, 10);
+            }, 10); 
         }
 
        
