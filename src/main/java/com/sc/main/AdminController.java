@@ -48,6 +48,7 @@ public class AdminController {
 		upv.setUv(list);
 		return upv;
 	}
+	
 	@PostMapping("/reserv")
 	@ResponseBody
 	public ReservPagingVO reserv(@RequestBody PagingVO pVO) {
@@ -60,12 +61,14 @@ public class AdminController {
 		rpv.setRv(list);
 		return rpv;
 	}
+	
 	@PostMapping("/delete/user")
 	@ResponseBody
 	public String deleteUser(@RequestBody String userid) {
 		user_service.userDelete(userid);
 		return "deleteOk";
 	}
+	
 	@PostMapping("/delete/reserv")
 	@ResponseBody
 	public String deleteReserv(@RequestBody String reservno) {
@@ -75,7 +78,14 @@ public class AdminController {
 	
 	@PostMapping("/review")
 	@ResponseBody
-	public List<ReviewVO> review(@RequestBody PagingVO pVO) {
-		
+	public List<ReviewVO> showReview(@RequestBody PagingVO pVO) {
+		pVO.setOnePageRecord(10);
+		pVO.setNowPage(pVO.getNowPage());
+		pVO.setTotalRecord(service.reviewTotalRecord(pVO));
+		List<ReviewVO> list = service.renderReviewList(pVO);
+		ReviewVO rv = new ReviewVO();
+		return list;
 	}
 }
+
+

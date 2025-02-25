@@ -41,4 +41,9 @@ public class AdminServiceImpl implements AdminService{
 	public List<ReviewVO> renderReviewList(PagingVO pVO) {
 		return dao.renderReviewList(pVO);
 	}
+
+	@Override
+	public int reviewTotalRecord(PagingVO pVO) {
+		return dao.reviewTotalRecord(pVO);
+	}
 }

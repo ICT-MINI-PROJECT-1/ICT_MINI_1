@@ -13,4 +13,5 @@ public interface AdminService {
 	public List<ReservationVO> renderReservList(PagingVO pVO);
 	public int reservTotalRecord(PagingVO pVO);
 	public List<ReviewVO> renderReviewList(PagingVO pVO);
+	public int reviewTotalRecord(PagingVO pVO);
 }
