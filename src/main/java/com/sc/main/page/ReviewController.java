@@ -22,6 +22,7 @@ import com.sc.main.service.ReservService;
 import com.sc.main.service.ReviewService;
 import com.sc.main.service.RoomService;
 import com.sc.main.vo.ModalReviewVO;
+import com.sc.main.vo.PagingVO;
 import com.sc.main.vo.ReviewImgVO;
 import com.sc.main.vo.ReviewVO;
 
@@ -111,6 +112,8 @@ public class ReviewController {
 				mav.setViewName("page/review/review_write");
 			}
 		}
+		
+		
 		
 		/*
 		HttpSession session = request.getSession();
@@ -372,4 +375,18 @@ public class ReviewController {
 		return mav;
 		*/
 	}
+
+
+	//마이페이지 리뷰 목록 조회
+	@GetMapping("/mypageReview")
+    @ResponseBody
+    public List<ReviewVO> mypageReview(HttpSession session) {
+        String userid = (String) session.getAttribute("loginId");
+        if (userid != null) {
+            PagingVO pVO = new PagingVO();
+            pVO.setUserid(userid); // 사용자 ID 설정
+            return service.reviewSelectByUserid(pVO);
+        }
+        return null;
+    }
 }

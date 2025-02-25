@@ -203,20 +203,39 @@
                 <li>평점</li>
 			</ul>
 			<div class="review-lm"><b>나의 리뷰</b></div>
-			<c:if test="${review !=null}">
-				<c:forEach var="review" items="${reviewList}">
-				<ul class="review-ul">
-					<li><a href="#" onclick="moveReview('')">${review.reviewno}</a></li>
-					<li>${review.roomno}</li>
-					<li>${review.subject}</li>
-					<li>${review.writedate}</li>
-					<li>${review.rating}/></li>
-				</ul>
-				</c:forEach>
-			</c:if>
-			<c:if test="${review==null}">
-				<div class="no-review">리뷰 내역이 없습니다.</div>
-			</c:if>
+			<div id="mypage-review-list">
+        </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: "${pageContext.request.contextPath}/page/review/mypageReview",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                if (data && data.length > 0) {
+                    let html = "";
+                    $.each(data, function(index, review) {
+                        html += "<ul class='review-ul'>";
+                        html += "<li><a href='${pageContext.request.contextPath}/page/review'>" + review.reviewno + "</a></li>";
+                        html += "<li>" + review.roomno + "</li>";
+                        html += "<li>" + review.subject + "</li>";
+                        html += "<li>" + review.writedate + "</li>";
+                        html += "<li>" + review.rating + "</li>";
+                        html += "</ul>";
+                    });
+                    $("#mypage-review-list").html(html);
+                } else {
+                    $("#mypage-review-list").html("<div class='no-review'>리뷰 내역이 없습니다.</div>");
+                }
+            },
+            error: function() {
+                console.error("리뷰 목록을 불러오는 데 실패했습니다.");
+            }
+        });
+    });
+</script>
 		
 		<div class="mypage-container-info">
 			<div id="signup-title">My Info</div>
