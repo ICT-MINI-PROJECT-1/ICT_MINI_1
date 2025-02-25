@@ -9,6 +9,9 @@
 	const dataTransfer = new DataTransfer();
 	
      document.addEventListener('DOMContentLoaded', () => {
+    	 fileOk=1;
+    	 subjectOk = 1;
+    	 contentOk = 1;
     	 document.getElementById("fie").addEventListener("change", (e) => {
    		  let fileArr = document.getElementById("fie").files;
 
