@@ -81,19 +81,20 @@ CREATE TABLE IF NOT EXISTS `artpart`.`review` (
   `content` VARCHAR(500) NOT NULL,
   `userid` VARCHAR(20) NOT NULL,
   `hit` int default 0,
-  `roomno` INT NOT NULL,
+  `reservno` INT NOT NULL,
   `rating` FLOAT NULL,
+  `roomno` INT,
   PRIMARY KEY (`reviewno`),
   INDEX `fk_review_user1_idx` (`userid` ASC) VISIBLE,
-  INDEX `fk_review_room1_idx` (`roomno` ASC) VISIBLE,
+  INDEX `fk_review_room1_idx` (`reservno` ASC) VISIBLE,
   CONSTRAINT `fk_review_user1`
     FOREIGN KEY (`userid`)
     REFERENCES `artpart`.`user` (`userid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_review_room1`
-    FOREIGN KEY (`roomno`)
-    REFERENCES `artpart`.`room` (`roomno`)
+  CONSTRAINT `fk_review_reserv1`
+    FOREIGN KEY (`reservno`)
+    REFERENCES `artpart`.`reservation` (`reservno`)
     ON DELETE cascade
     ON UPDATE NO ACTION);
 
@@ -117,9 +118,11 @@ DELIMITER $$
 	for each row
 	begin
 		UPDATE room SET rating = 
-		(select sum(rating)/count(rating) from review where roomno=new.roomno) where roomno=new.roomno;
+		(select sum(rating)/count(rating) from review where roomno=(select roomno from reservation where reservno=new.reservno)) where roomno=(select roomno from reservation where reservno=new.reservno);
     END $$
 DELIMITER ;
+
+
 
 DELIMITER $$
 	create trigger update_review
@@ -128,7 +131,18 @@ DELIMITER $$
 	for each row
 	begin
 		UPDATE room SET rating = 
-		(select sum(rating)/count(rating) from review where roomno=new.roomno) where roomno=new.roomno;
+		(select sum(rating)/count(rating) from review where roomno=(select roomno from reservation where reservno=new.reservno)) where roomno=(select roomno from reservation where reservno=new.reservno);
+    END $$
+DELIMITER ;
+
+DELIMITER $$
+	create trigger delete_review
+	after delete
+	on review
+	for each row
+	begin
+		UPDATE room SET rating = 
+		(select sum(rating)/count(rating) from review where roomno=(select roomno from reservation where reservno=old.reservno)) where roomno=(select roomno from reservation where reservno=old.reservno);
     END $$
 DELIMITER ;
 
@@ -185,7 +199,9 @@ insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) 
 insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-11','2025-03-11',2,'냠냠','test3222',301);
 insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-31','2025-03-31',2,'냠냠','test4222',301);
 insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-22','2025-02-23',2,'냠냠','test1234',301);
-
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-05','2025-02-08',2,'냠냠','test1234',305);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-01','2025-02-03',2,'냠냠','test1234',308);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-04','2025-02-05',2,'냠냠','test1234',301);
 insert into wishlist values('test1234',301);
 
 insert into wishlist values('test1234',304);

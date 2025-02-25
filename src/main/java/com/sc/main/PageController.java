@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -66,18 +67,30 @@ public class PageController {
 	}
 	
 	@GetMapping("/review")
-	public ModelAndView review(PagingVO pVO){
+	public ModelAndView review(){
+		mav = new ModelAndView();
+		mav.addObject("pVO", null);
+		mav.addObject("page","review");
+		mav.setViewName("page/review/review_main");
+		return mav;
+	}
+	
+	@PostMapping("/review")
+	public ModelAndView reviewTest(PagingVO pVO){
+		System.out.println(pVO.toString());
 		pVO.setTotalRecord(review_service.reviewTotalRecord(pVO));
-		
 		List<ReviewVO> list = review_service.reviewSelect(pVO);
 		ArrayList<ArrayList<ReviewImgVO>> img_list = new ArrayList<ArrayList<ReviewImgVO>>();
 		for(int i=0;i<list.size();i++) {
 			img_list.add(review_service.reviewImageSelect(list.get(i).getReviewno()));
 		}
 		mav = new ModelAndView();
+		mav.addObject("page","review");
 		mav.addObject("pVO", pVO);
 		mav.addObject("list", list);
 		mav.addObject("imgList", img_list);
+		
+		mav.setViewName("page/review/review_main");
 		mav.setViewName("page/review/review_main");
 		return mav;
 	}

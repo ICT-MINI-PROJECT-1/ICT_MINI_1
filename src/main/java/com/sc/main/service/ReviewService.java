@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.sc.main.vo.PagingVO;
+import com.sc.main.vo.ReservationVO;
 import com.sc.main.vo.ReviewImgVO;
 import com.sc.main.vo.ReviewVO;
 
@@ -21,4 +22,6 @@ public interface ReviewService {
 	public ArrayList<ReviewImgVO> reviewImageSelect(int reviewno);
 	public int reviewImageUpdate(ReviewImgVO imgVO);
 	public void reviewImageDelete(int reveiwno);
+	public void reviewHitCount(int reviewno);	
+	public List<ReservationVO> reviewHistory(String userid);
 }
