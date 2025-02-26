@@ -44,11 +44,10 @@
 	left:10%;
 	transition: all 1.1s;
 	margin:0 auto;
-	margin-top: 130px;
+	margin-top: 200px;
 	margin-bottom:400px;
 	font-size:30px;
 	text-align:center;
-	overflow: auto;
 	font-family:'Gowun Batang';
 	color: #6A3D17;
 }
@@ -223,6 +222,10 @@
 #paging>li{
 	width: 20%;
     margin: auto;
+}
+
+#paging a:hover{
+	font-weight:bold;
 }
 
 /* modal */
