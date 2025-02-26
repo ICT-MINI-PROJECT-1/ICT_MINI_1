@@ -75,7 +75,9 @@
 					</c:if>
 					<ul class="review-list-title">
 						<li onclick="openModal('${list.get(i).reviewno}','${list.get(i).userid }','${loginId }', '${list.get(i).roomno }')">${list.get(i).subject }</li>
-						<li>${list.get(i).rating }</li>
+						<li><div class="review-star-box">
+					<div class="review-star-fill" style="width:90%"></div>
+				</div></li>
 					</ul>
 				</div>
 			</c:forEach>

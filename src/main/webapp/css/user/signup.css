@@ -11,6 +11,9 @@
 	box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
     2px 2px 2px 0px rgba(106,61,23,.6),
     1px 1px 1px 0px rgba(106,61,23,.6);
+    max-width:960px;
+    min-width:740px;
+    margin-bottom:200px;
 }
 
 .mypage-wrap{
@@ -20,6 +23,8 @@
 	display:flex;
 	flex-direction:column;
 	position:relative;
+	max-width:960px;
+    min-width:740px;
 }
 
 .mypage-nav {
