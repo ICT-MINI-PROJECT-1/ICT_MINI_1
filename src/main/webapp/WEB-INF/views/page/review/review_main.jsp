@@ -54,19 +54,69 @@
 			<div class="review-search">
 				<form id="write-srch">
 					<select id="searchConcept" name="searchConcept">
-						<option value="0">전체 컨셉</option>
-						<option value="309">Contemporary Art</option>
-						<option value="409">Art Nouveau</option>
-						<option value="509">Art Déco</option>
-						<option value="609">Asian</option>
+						<c:if test="${pVO.searchConcept == 0}">
+							<option value="0" selected>전체 컨셉</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept != 0}">
+							<option value="0">전체 컨셉</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept != 309}">
+							<option value="309">Contemporary Art</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept == 309}">
+							<option value="309" selected>Contemporary Art</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept == 409}">
+							<option value="409" selected>Art Nouveau</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept != 409}">
+							<option value="409">Art Nouveau</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept != 509}">
+							<option value="509">Art Déco</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept == 509}">
+							<option value="509" selected>Art Déco</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept == 609}">
+							<option value="609" selected>Asian</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept != 609}">
+							<option value="609">Asian</option>
+						</c:if>
 					</select>
 					<select id="searchKey" name="searchKey">
-						<option value="total">전체 검색</option>
-						<option value="subject">제목</option>
-						<option value="content">내용</option>
-						<option value="roomno">호수</option>
+						<c:if test="${pVO.searchKey == 'total'}">
+							<option value="total" selected>전체 검색</option>
+						</c:if>
+						<c:if test="${pVO.searchKey != 'total'}">
+							<option value="total">전체 검색</option>
+						</c:if>
+						<c:if test="${pVO.searchKey != 'subject'}">
+							<option value="subject">제목</option>
+						</c:if>
+						<c:if test="${pVO.searchKey == 'subject'}">
+							<option value="subject" selected>제목</option>
+						</c:if>
+						<c:if test="${pVO.searchKey != 'content'}">
+							<option value="content">내용</option>
+						</c:if>
+						<c:if test="${pVO.searchKey == 'content'}">
+							<option value="content" selected>내용</option>
+						</c:if>
+						<c:if test="${pVO.searchKey != 'roomno'}">
+							<option value="roomno">호수</option>
+						</c:if>
+						<c:if test="${pVO.searchKey == 'roomno'}">
+							<option value="roomno" selected>호수</option>
+						</c:if>
 					</select>
-					<input type="text" id="searchWord" name="searchWord">
+					<c:if test="${pVO.searchWord!=null}">
+						<input type="text" id="searchWord" name="searchWord" value="${pVO.searchWord }">
+					</c:if>
+					<c:if test="${pVO.searchWord==null}">
+						<input type="text" id="searchWord" name="searchWord" value="">
+					</c:if>
 					<input type="button" onclick="postSearching()" value="검색" id="review-search-btn">
 				</form>
 			</div>
