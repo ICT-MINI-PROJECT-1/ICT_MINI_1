@@ -21,12 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	let c_y=0;
 	
 	let cnt=0;
-	
+	if(modal)
 	modal.addEventListener("mousedown", (e) =>{
-		if(cnt<2) {
+		if(clicked==0) {
 			c_x=getNumberFromPixel(modal.style.left);
 			c_y=getNumberFromPixel(modal.style.top);
 			modal.style.cursor="grabbing";
+			clicked=1;
 		}
 		setTimeout(function moveModal(){
 			modal.style.left=c_x+m_x-f_x+'px';
@@ -35,21 +36,23 @@ document.addEventListener('DOMContentLoaded', () => {
 			c_y=getNumberFromPixel(modal.style.top);
 			f_x=m_x;
 			f_y=m_y;
-			if(clicked==1)setTimeout(moveModal,10);
+			setTimeout(moveModal,10);
 			cnt++;
 		},10);
-		clicked=1;
 		window.addEventListener("mouseup", (e) =>{
 			cnt=0;
 			clicked=0;
 			modal.style.cursor="grab";
 		});
 		let mml = window.addEventListener("mousemove",(e)=>{
-			m_x=e.clientX;
-			m_y=e.clientY;
-			if(cnt<5) {
-				f_x=e.clientX;
-				f_y=e.clientY;
+			if(clicked==1) {
+				m_x=e.clientX;
+				m_y=e.clientY;
+				if(cnt<1000000) {
+					cnt=1000000;
+					f_x=e.clientX;
+					f_y=e.clientY;
+				}
 			}
 		});
 	});
