@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <link href="${pageContext.request.contextPath }/css/page/review.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/page/review.js"></script>
@@ -75,20 +76,6 @@
         }
 
      document.addEventListener('DOMContentLoaded', () => {
-    	 
-    	 /*
-    	 document.getElementById("fie").addEventListener("change", (e) => {
-   		  let fileArr = document.getElementById("fie").files;
-
-   	        if(fileArr != null && fileArr.length>0){
-
-   	          // =====DataTransfer 파일 관리========
-   	            for(var i=0; i<fileArr.length; i++){
-   	                dataTransfer.items.add(fileArr[i])
-   	            }
-   	            document.getElementById("fie").files = dataTransfer.files;
-   	        }
-   		});*/
    		handler.init();
         handler.removeFile();
     	 let sr=document.getElementsByClassName("star-rating")[0];
@@ -131,6 +118,9 @@
 				<div id="write-roomno-rating">
 					<div id="form-roomno">호수
 					<select id="reservno" name="reservno">
+					<c:if test="${fn:length(rVO)==0 }">
+						<option value="-1">예약 내역이 없습니다.</option>
+					</c:if> 
 					<c:forEach var="rVO"  items="${rVO}">
 						<option value="${rVO.reservno }"> ${rVO.reservdate.substring(0,10)}: ${rVO.roomno}호</option>
 					</c:forEach>
@@ -146,10 +136,10 @@
           </p>
 				</div>
 				<div id="form-subject">
-					<input type="text" name="subject" id="write-subject" value="test" placeholder="제목을 입력해 주세요">
+					<input type="text" name="subject" id="write-subject" placeholder="제목을 입력해 주세요">
 				</div>
 				<div id="alert-subject"></div>
-				<textarea name="content" id="write-content" placeholder="내용을 입력해 주세요">test</textarea><div id="alert-content"></div>
+				<textarea name="content" id="write-content" placeholder="내용을 입력해 주세요"></textarea><div id="alert-content"></div>
 				<div id="upload-review-img">
 				<label class="input-file-button" for="fie">
 				    사진 첨부

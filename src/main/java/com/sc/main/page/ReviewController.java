@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sc.main.service.ReservService;
 import com.sc.main.service.ReviewService;
@@ -37,7 +38,7 @@ public class ReviewController {
 	@Inject
 	ReservService reserv_service;
 	
-	//모달팝업(비동기)
+	//紐⑤떖�뙘�뾽(鍮꾨룞湲�)
 	@PostMapping("/modalReview")
 	@ResponseBody
 	//public ReviewVO modalReview(@RequestBody String reviewno, String roomno) {
@@ -48,7 +49,7 @@ public class ReviewController {
 		int reviewno = Integer.parseInt(requestData.get("reviewno").toString());
 		int roomno = Integer.parseInt(requestData.get("roomno").toString());
 		
-		//조회수 증가
+		//議고쉶�닔 利앷�
 		service.reviewHitCount(reviewno);
 		ModalReviewVO mrvo= new ModalReviewVO();
 		mrvo.setVo(service.reviewDetail(reviewno));
@@ -56,7 +57,7 @@ public class ReviewController {
 		return mrvo;
 	}
 	
-	//리뷰 작성폼
+	//由щ럭 �옉�꽦�뤌
 	@GetMapping("/write")
 	public ModelAndView reviewWrite(HttpServletRequest request, HttpSession session) {
 		String userid=(String) session.getAttribute("loginId");
@@ -67,15 +68,19 @@ public class ReviewController {
 		return mav;
 	}
 
-	//리뷰 작성(DB), 파일 업로드
+	//由щ럭 �옉�꽦(DB), �뙆�씪 �뾽濡쒕뱶
 	@PostMapping("/writeOk")
-	public ModelAndView reviewWriteOk(ReviewVO vo, HttpServletRequest request, ReviewImgVO imgVO, MultipartFile[] mf) {
+	public ModelAndView reviewWriteOk(ReviewVO vo, HttpServletRequest request, ReviewImgVO imgVO, MultipartFile[] mf, RedirectAttributes redirect) {
 		HttpSession session = request.getSession();
 		mav = new ModelAndView();
 		String userid = (String)session.getAttribute("loginId");
+		if(vo.getReservno()==-1) {
+			redirect.addAttribute("msg","rir");
+			mav.setViewName("redirect:/notice");
+			return mav;
+		}
 		vo.setUserid(userid);
 		vo.setRoomno(reserv_service.selectRoomnoByReservNo(vo.getReservno()));
-		
 		int result = service.reviewInsert(vo);
 		int reviewno = service.reviewImage(userid);
 		
@@ -91,18 +96,18 @@ public class ReviewController {
 				f.transferTo(file);
 			}catch(Exception e) {e.printStackTrace();}
 			
-			imgVO.setFilename(orgFilename); //제목, 글내용, 글쓴이, 파일명
+			imgVO.setFilename(orgFilename); //�젣紐�, 湲��궡�슜, 湲��벖�씠, �뙆�씪紐�
 			
 			int imgResult = 0;
 			
 			try {
 				imgVO.setReviewno(reviewno);
-				//레코드 추가
-				//vo.setUserid(null);	//오류테스트 : 일부러 오류내려고 not null 항목을 null로 셋팅함.
+				//�젅肄붾뱶 異붽�
+				//vo.setUserid(null);	//�삤瑜섑뀒�뒪�듃 : �씪遺��윭 �삤瑜섎궡�젮怨� not null �빆紐⑹쓣 null濡� �뀑�똿�븿.
 				imgResult = service.imgInsert(imgVO);	
-			}catch(Exception e) { //insert하다가 실패하면 파일을 삭제해야함
+			}catch(Exception e) { //insert�븯�떎媛� �떎�뙣�븯硫� �뙆�씪�쓣 �궘�젣�빐�빞�븿
 				e.printStackTrace();
-				//레코드가 생성되지 않아 이미 업로드 되어있는 파일을 삭제해야한다.
+				//�젅肄붾뱶媛� �깮�꽦�릺吏� �븡�븘 �씠誘� �뾽濡쒕뱶 �릺�뼱�엳�뒗 �뙆�씪�쓣 �궘�젣�빐�빞�븳�떎.
 				File fi = new File(path, orgFilename);
 				fi.delete();
 			}
@@ -116,20 +121,20 @@ public class ReviewController {
 		return mav;
 	}
 	
-	//파일명 변경
+	//�뙆�씪紐� 蹂�寃�
 	public String fileRename(File file, String path, String orgFilename) {
-		//file.exists() : 파일이 존재하면 true, 존재하지 않으면 false
-		if(file.exists()) {//있으면 새로운 파일명을 만들고
+		//file.exists() : �뙆�씪�씠 議댁옱�븯硫� true, 議댁옱�븯吏� �븡�쑝硫� false
+		if(file.exists()) {//�엳�쑝硫� �깉濡쒖슫 �뙆�씪紐낆쓣 留뚮뱾怨�
 			for(int i=1; ;i++) {
-				//파일명과 확장자 구분
+				//�뙆�씪紐낃낵 �솗�옣�옄 援щ텇
 				int point = orgFilename.lastIndexOf(".");
-				String f = orgFilename.substring(0, point);	//포인트 앞까지 구해짐
-				String ext = orgFilename.substring(point+1);	//포인트 뒤부터 끝까지 구해짐
+				String f = orgFilename.substring(0, point);	//�룷�씤�듃 �븵源뚯� 援ы빐吏�
+				String ext = orgFilename.substring(point+1);	//�룷�씤�듃 �뮘遺��꽣 �걹源뚯� 援ы빐吏�
 				
-				//새로운 파일명
+				//�깉濡쒖슫 �뙆�씪紐�
 				String newFilename = f + " ("+i+")."+ext;//01(1).jpeg
 				file = new File(path, newFilename);
-				if(!file.exists()) {//존재하지 않는 파일이면
+				if(!file.exists()) {//議댁옱�븯吏� �븡�뒗 �뙆�씪�씠硫�
 					orgFilename = newFilename;
 					break;
 				}
@@ -138,7 +143,7 @@ public class ReviewController {
 		return orgFilename;
 	}
 
-	//리뷰 수정폼
+	//由щ럭 �닔�젙�뤌
 	@PostMapping("/edit")
 	public ModelAndView reviewEdit(String reviewno) {
 		mav = new ModelAndView();
@@ -149,18 +154,18 @@ public class ReviewController {
 		return mav;
 	}
 	
-	//리뷰 수정(DB)
+	//由щ럭 �닔�젙(DB)
 	@PostMapping("/editOk")
 	public ModelAndView reviewEdit(ReviewVO vo, ReviewImgVO imgVO, MultipartFile[] mf, HttpSession session) {
 		mav = new ModelAndView();
 		int reviewno = service.reviewImage((String)session.getAttribute("loginId"));
-		//업로드한 사진 파일명 불러와야함
+		//�뾽濡쒕뱶�븳 �궗吏� �뙆�씪紐� 遺덈윭���빞�븿
 		String path = session.getServletContext().getRealPath("/uploadfile/"+Integer.toString(reviewno));
 
-		ArrayList<ReviewImgVO> orgVO = service.reviewImageSelect(vo.getReviewno()); //업데이트전 레코드 - 파일 삭제시 DB에 저장된 파일명이 필요함
-		//첨부된 파일이 있을 때 - 제목, 글내용, 파일명 수정
-		//파일업로드 해야함.
-		//기존 파일 삭제 해야함.
+		ArrayList<ReviewImgVO> orgVO = service.reviewImageSelect(vo.getReviewno()); //�뾽�뜲�씠�듃�쟾 �젅肄붾뱶 - �뙆�씪 �궘�젣�떆 DB�뿉 ���옣�맂 �뙆�씪紐낆씠 �븘�슂�븿
+		//泥⑤��맂 �뙆�씪�씠 �엳�쓣 �븣 - �젣紐�, 湲��궡�슜, �뙆�씪紐� �닔�젙
+		//�뙆�씪�뾽濡쒕뱶 �빐�빞�븿.
+		//湲곗〈 �뙆�씪 �궘�젣 �빐�빞�븿.
 		String orgFilename="";
 		int flag=0;
 		int over;
@@ -207,24 +212,24 @@ public class ReviewController {
 					if(orgFilename!="") {
 						File file = new File(path, orgFilename);
 						orgFilename = fileRename(file, path, orgFilename);
-						//업로드
+						//�뾽濡쒕뱶
 						try {
 							file = new File(path, orgFilename);
 							f.transferTo(file);
 						}catch(Exception e) {
-							System.out.println("파일 업로드시 에러 ->"+e);
+							System.out.println("�뙆�씪 �뾽濡쒕뱶�떆 �뿉�윭 ->"+e);
 						}
 						orgVO.get(idx).setFilename(orgFilename);
 					}
 					try {
-						//리뷰이미지 db업데이트
+						//由щ럭�씠誘몄� db�뾽�뜲�씠�듃
 						System.out.println(orgVO.get(idx).toString());
-						service.reviewImageUpdate(orgVO.get(idx));	//review 이미지 업데이트
+						service.reviewImageUpdate(orgVO.get(idx));	//review �씠誘몄� �뾽�뜲�씠�듃
 	
-						mav.setViewName("redirect:/page/review");	//db업데이트 성공했을 때 review_main.jsp로 이동
+						mav.setViewName("redirect:/page/review");	//db�뾽�뜲�씠�듃 �꽦怨듯뻽�쓣 �븣 review_main.jsp濡� �씠�룞
 					}catch(Exception e) {
-						//새로 업로드한 파일 삭제 - 업데이트 실패시
-						System.out.println("새로 업로드한 파일 삭제 실패->"+e);
+						//�깉濡� �뾽濡쒕뱶�븳 �뙆�씪 �궘�젣 - �뾽�뜲�씠�듃 �떎�뙣�떆
+						System.out.println("�깉濡� �뾽濡쒕뱶�븳 �뙆�씪 �궘�젣 �떎�뙣->"+e);
 						if(imgVO.getFilename()!=null) {
 							File fi = new File(path, imgVO.getFilename());
 							fi.delete();
@@ -252,18 +257,18 @@ public class ReviewController {
 						mf[i].transferTo(file);
 					}catch(Exception e) {e.printStackTrace();}
 					
-					imgVO.setFilename(orgFilename); //제목, 글내용, 글쓴이, 파일명
+					imgVO.setFilename(orgFilename); //�젣紐�, 湲��궡�슜, 湲��벖�씠, �뙆�씪紐�
 					
 					int imgResult = 0;
 					
 					try {
 						imgVO.setReviewno(reviewno);
-						//레코드 추가
-						//vo.setUserid(null);	//오류테스트 : 일부러 오류내려고 not null 항목을 null로 셋팅함.
+						//�젅肄붾뱶 異붽�
+						//vo.setUserid(null);	//�삤瑜섑뀒�뒪�듃 : �씪遺��윭 �삤瑜섎궡�젮怨� not null �빆紐⑹쓣 null濡� �뀑�똿�븿.
 						imgResult = service.imgInsert(imgVO);	
-					}catch(Exception e) { //insert하다가 실패하면 파일을 삭제해야함
+					}catch(Exception e) { //insert�븯�떎媛� �떎�뙣�븯硫� �뙆�씪�쓣 �궘�젣�빐�빞�븿
 						e.printStackTrace();
-						//레코드가 생성되지 않아 이미 업로드 되어있는 파일을 삭제해야한다.
+						//�젅肄붾뱶媛� �깮�꽦�릺吏� �븡�븘 �씠誘� �뾽濡쒕뱶 �릺�뼱�엳�뒗 �뙆�씪�쓣 �궘�젣�빐�빞�븳�떎.
 						File fi = new File(path, orgFilename);
 						fi.delete();
 					}
@@ -272,12 +277,12 @@ public class ReviewController {
 		} else {
 			mav.setViewName("redirect:/page/review");
 		}
-		int result = service.reviewUpdate(vo);	//review 글 업데이트
+		int result = service.reviewUpdate(vo);	//review 湲� �뾽�뜲�씠�듃
 	
 		return mav;
 	}
 
-	//리뷰 삭제
+	//由щ럭 �궘�젣
 	@PostMapping("/delete")
 	public ModelAndView reviewDelete(String reviewno, HttpServletRequest request) {
 		
@@ -287,23 +292,19 @@ public class ReviewController {
 		
 		/////////////////////////////////////////////////////
 		
-		//해당레코드 먼저 선택
+		//�빐�떦�젅肄붾뱶 癒쇱� �꽑�깮
 		ArrayList<ReviewImgVO> imgVO = service.reviewImageSelect(Integer.parseInt(reviewno));
 		System.out.println("reviewno="+reviewno);
 		System.out.println(imgVO.toString());
-		//해당레코드 지우기
 		for(int t=0;t<imgVO.size();t++) {
 			try {
-				//파일삭제
 				String path = request.getSession().getServletContext().getRealPath("/uploadfile/"+reviewno);
 				File file = new File(path, imgVO.get(t).getFilename());
 				file.delete();
 				File folder = new File(path,"");
 				folder.delete();
-				//글목록
 				mav.setViewName("redirect:/page/review");
 			}catch(Exception e) {
-				System.out.println("리뷰이미지 삭제시 에러->"+e);
 				mav.setViewName("page/review/review_result");
 			}
 		}
@@ -315,31 +316,15 @@ public class ReviewController {
 		}
 		
 		return mav;
-		
-
-		
-		/////////////////////////////////////////////////////
-		
-		/*
-		if(result>0) {
-			mav.setViewName("redirect:/page/review");
-		}else {
-			mav.setViewName("page/review/review_result");
-		}
-		
-		return mav;
-		*/
 	}
 
-
-	//마이페이지 리뷰 목록 조회
 	@GetMapping("/mypageReview")
     @ResponseBody
     public List<ReviewVO> mypageReview(HttpSession session) {
         String userid = (String) session.getAttribute("loginId");
         if (userid != null) {
             PagingVO pVO = new PagingVO();
-            pVO.setUserid(userid); // 사용자 ID 설정
+            pVO.setUserid(userid);
             return service.reviewSelectByUserid(pVO);
         }
         return null;

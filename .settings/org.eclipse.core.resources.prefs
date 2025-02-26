@@ -1,6 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/db.sql=UTF-8
 encoding//src/main/java/com/sc/main/PolicyController.java=UTF-8
+encoding//src/main/java/com/sc/main/page/ReviewController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/page/facility/facil-sauna-picture.jsp=UTF-8
 encoding//src/main/webapp/css/page/review.css=UTF-8
 encoding//src/main/webapp/resources/cookie.txt=UTF-8
