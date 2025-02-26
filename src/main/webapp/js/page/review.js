@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+	document.addEventListener('keydown', function(event) {
+	  if (event.keyCode === 13 && event.target.id != "write-content") {
+	    event.preventDefault();
+	  };
+	}, true);
 	review_wrap=document.getElementsByClassName("review-wrap")[0];
 	review_title=document.getElementsByClassName("review-title")[0];
 	
@@ -40,6 +45,54 @@ document.addEventListener('DOMContentLoaded', () => {
 				contentOk = 1;
 			}
 		});
+		
+	let modal=document.getElementById("review-list-modal");
+	let clicked=0;
+	let f_x=0;
+	let f_y=0;
+	
+	let m_x=0;
+	let m_y=0;
+	
+	let c_x=0;
+	let c_y=0;
+	
+	let cnt=0;
+	if(modal)
+	modal.addEventListener("mousedown", (e) =>{
+		if(clicked==0) {
+			c_x=getNumberFromPixel(modal.style.left);
+			c_y=getNumberFromPixel(modal.style.top);
+			modal.style.cursor="grabbing";
+			clicked=1;
+		}
+		setTimeout(function moveModal(){
+			modal.style.left=c_x+m_x-f_x+'px';
+			modal.style.top=c_y+m_y-f_y+'px';
+			c_x=getNumberFromPixel(modal.style.left);
+			c_y=getNumberFromPixel(modal.style.top);
+			f_x=m_x;
+			f_y=m_y;
+			setTimeout(moveModal,10);
+			cnt++;
+		},10);
+		window.addEventListener("mouseup", (e) =>{
+			cnt=0;
+			clicked=0;
+			modal.style.cursor="grab";
+		});
+		let mml = window.addEventListener("mousemove",(e)=>{
+			if(clicked==1) {
+				m_x=e.clientX;
+				m_y=e.clientY;
+				if(cnt<1000000) {
+					cnt=1000000;
+					f_x=e.clientX;
+					f_y=e.clientY;
+				}
+			}
+		});
+	});
 });
 
 var review_result = 0;
@@ -155,7 +208,8 @@ function openModal(reviewno,userid,sessionid,roomno){
 	let review_modal = document.getElementById("review-list-modal");
 	review_modal.style.opacity=1;
 	review_modal.style.zIndex=10;
-	
+	review_modal.style.left=(window.innerWidth-review_modal.offsetWidth)/2 + 'px';
+	review_modal.style.top=window.innerHeight/4+'px';
 	fetch("/page/review/modalReview",{
 		method: "POST",
 		headers: {
@@ -212,6 +266,7 @@ function closeModal(){
 	if(document.getElementById("review-list-modal")!=null){
 		document.getElementById("review-list-modal").style.opacity = 0;
 		document.getElementById("review-list-modal").style.zIndex = -5;
+		reviewDelete(2);
 	}
 }
 
@@ -231,7 +286,20 @@ function reviewEdit(){
 	f.submit();
 }
 //리뷰삭제 버튼
-function reviewDelete(){
+function reviewDelete(wh){
+	let dm = document.getElementById("review-edit-modal");
+	if(wh==0){ //open modal
+		dm.style.opacity=1;
+		dm.style.zIndex=20;
+	} else if(wh==1) {
+		reviewDeleteSubmit();
+	} else {
+		dm.style.opacity=0;
+		dm.style.zIndex=-1;
+	}
+}
+
+function reviewDeleteSubmit(){
 	let f = document.createElement('form');
 	f.setAttribute('method','post');
 	f.setAttribute('action','review/delete');

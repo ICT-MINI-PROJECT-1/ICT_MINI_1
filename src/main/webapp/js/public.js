@@ -156,6 +156,11 @@ function settingMenu() {
 	if(where=="login") {
 		contents.innerHTML=`
 			<div id="contents-title">Login</div>
+			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
+    			<li>ID: 7~15자 입력</li>
+    			<li>PW: 8~15자 문자, 특수문자, 숫자 조합입력</li>
+    			<li>로그인 후 예약/리뷰 작성 등이 가능합니다.</li>
+    		</ul>
 		`;
 	}
 	if(where=="signup") {
@@ -182,6 +187,15 @@ function settingMenu() {
 	if(where=="facility") {
 		contents.innerHTML=`
 			<div id="contents-title">Facility</div>
+			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
+				<li><b style="line-height:30px;">호텔 내 부대시설을 확인 가능합니다.</b></li>
+    			<li>Spa & Sauna</li>
+    			<li>Pool</li>
+    			<li>Gym</li>
+    			<li>Restaurent</li>
+    			<li>Bar</li>
+    			<li>Laundry</li>
+    		</ul>
 		`;
 	}
 	if(where=="reservation") {
@@ -215,6 +229,17 @@ function settingMenu() {
     			<li>Art Nouveau: 아르누보 풍 객실</li>
     			<li>Art Déco: 아르데코 풍 객실</li>
     			<li>Asia: 동양 풍 객실</li>
+    		</ul>
+		`;
+	}
+	if(where=="mypage") {
+		contents.innerHTML=`
+			<div id="contents-title">My Page</div>
+			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
+				<li><b style="line-height:30px;">사용자의 정보를 확인할 수 있습니다.</b></li>
+    			<li>WishList: 찜한 객실들을 확인할 수 있습니다.</li>
+    			<li>Reservation: 예약 내역들을 확인할 수 있습니다.</li>
+    			<li>Review: 작성한 후기 글들을 확인할 수 있습니다.</li>
     		</ul>
 		`;
 	}
