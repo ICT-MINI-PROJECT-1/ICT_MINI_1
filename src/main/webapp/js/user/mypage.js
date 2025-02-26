@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mypageNav = document.querySelector('.mypage-nav');
 
     if (mypageNav) {
-        mypageNav.style.transition = 'all 0.3s ease';
+        mypageNav.style.transition = 'none';
         mypageNav.style.zIndex = '1000';
 
         let lastScrollY = 0;
