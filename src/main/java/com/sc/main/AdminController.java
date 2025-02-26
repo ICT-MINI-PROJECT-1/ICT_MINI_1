@@ -17,6 +17,7 @@ import com.sc.main.service.UserService;
 import com.sc.main.vo.PagingVO;
 import com.sc.main.vo.ReservPagingVO;
 import com.sc.main.vo.ReservationVO;
+import com.sc.main.vo.ReviewPagingVO;
 import com.sc.main.vo.ReviewVO;
 import com.sc.main.vo.UserPagingVO;
 import com.sc.main.vo.UserVO;
@@ -78,13 +79,15 @@ public class AdminController {
 	
 	@PostMapping("/review")
 	@ResponseBody
-	public List<ReviewVO> showReview(@RequestBody PagingVO pVO) {
+	public ReviewPagingVO showReview(@RequestBody PagingVO pVO) {
 		pVO.setOnePageRecord(10);
 		pVO.setNowPage(pVO.getNowPage());
 		pVO.setTotalRecord(service.reviewTotalRecord(pVO));
 		List<ReviewVO> list = service.renderReviewList(pVO);
-		ReviewVO rv = new ReviewVO();
-		return list;
+		ReviewPagingVO rpv = new ReviewPagingVO();
+		rpv.setPvo(pVO);
+		rpv.setRv(list);
+		return rpv;
 	}
 }
 

@@ -59,29 +59,18 @@
 }
 
 #event {
-	position: relative;
+	position: fixed;
 	width: 100%;
-	height: 780px;
-	padding-bottom: 30px;
-}
-
-#event::-webkit-scrollbar {
-	display: none;
-}
-
-#dining-category {
-	visibility: hidden;
-	margin-top: -50px;
-	padding-bottom: 80px;
+	height: 100%;
 }
 
 .dining-pic {
 	float: left;
-	height: 400px;
-	padding-bottom:20%;  
 	box-shadow: 0 19px 38px rgba(0, 0, 0, 0.65), 0 15px 12px rgba(0, 0, 0, 0.4);
 	border-collapse: collapse;
 	transition: all 0.35s;
+	height: 50vmax;
+	max-height: 780px;
 }
 
 #kor-pic {
