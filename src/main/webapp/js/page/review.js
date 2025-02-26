@@ -10,34 +10,36 @@ document.addEventListener('DOMContentLoaded', () => {
 	var alert_content = document.getElementById("alert-content");
 	var alert_file = document.getElementById("alert-file");
 	
-	write_subject.addEventListener("input", ()=>{
-		if(write_subject.value.length<5){
-			alert_subject.innerHTML = "제목을 5자 이상 입력해주세요.";
-			alert_subject.style.opacity = 1;
-			subjectOk = 0;
-		}else if(write_subject.value.length>45){
-			alert_subject.innerHTML = "제목을 45자 이하로 입력해주세요.";
-			alert_subject.style.opacity = 1;
-			subjectOk = 0;
-		}else{
-			alert_subject.style.opacity = 0;
-			subjectOk = 1;
-		}
-	});
-	write_content.addEventListener("input",()=>{
-		if(write_content.value.length<10){
-			alert_content.innerHTML = "내용을 10자 이상 입력해주세요.";
-			alert_content.style.opacity = 1;
-			contentOk = 0;
-		}else if(write_content.value.length>500){
-			alert_content.innerHTML = "내용을 500자 이하로 입력해주세요.";
-			alert_content.style.opacity = 1;
-			contentOk = 0;
-		}else{
-			alert_content.style.opacity = 0;
-			contentOk = 1;
-		}
-	});
+	if(write_subject!=null)
+		write_subject.addEventListener("input", ()=>{
+			if(write_subject.value.length<5){
+				alert_subject.innerHTML = "제목을 5자 이상 입력해주세요.";
+				alert_subject.style.opacity = 1;
+				subjectOk = 0;
+			}else if(write_subject.value.length>45){
+				alert_subject.innerHTML = "제목을 45자 이하로 입력해주세요.";
+				alert_subject.style.opacity = 1;
+				subjectOk = 0;
+			}else{
+				alert_subject.style.opacity = 0;
+				subjectOk = 1;
+			}
+		});
+	if(write_content!=null)	
+		write_content.addEventListener("input",()=>{
+			if(write_content.value.length<10){
+				alert_content.innerHTML = "내용을 10자 이상 입력해주세요.";
+				alert_content.style.opacity = 1;
+				contentOk = 0;
+			}else if(write_content.value.length>500){
+				alert_content.innerHTML = "내용을 500자 이하로 입력해주세요.";
+				alert_content.style.opacity = 1;
+				contentOk = 0;
+			}else{
+				alert_content.style.opacity = 0;
+				contentOk = 1;
+			}
+		});
 });
 
 var review_result = 0;
@@ -182,7 +184,11 @@ function openModal(reviewno,userid,sessionid,roomno){
 		}
 		document.getElementById("modal-subject").innerHTML = data.vo.subject;
 		document.getElementById("modal-roomno").innerHTML = data.vo.roomno;
-		document.getElementById("modal-rating").innerHTML = data.vo.rating;
+		document.getElementById("modal-rating").innerHTML = `
+				<div class="modal-star-box">
+					<div class="modal-star-fill" style="width:`+data.vo.rating*20+`%"></div>
+				</div>
+			`;
 		document.getElementById("modal-writedate").innerHTML = data.vo.writedate;
 		document.getElementById("modal-userid").innerHTML = data.vo.userid;
 		document.getElementById("modal-content").innerHTML = data.vo.content;
@@ -203,9 +209,10 @@ function openModal(reviewno,userid,sessionid,roomno){
 	if(userid == sessionid) document.getElementById("btn").style.display='block';
 }
 function closeModal(){
-	if(document.getElementById("review-list-modal")!=null)
+	if(document.getElementById("review-list-modal")!=null){
 		document.getElementById("review-list-modal").style.opacity = 0;
 		document.getElementById("review-list-modal").style.zIndex = -5;
+	}
 }
 
 //리뷰수정 버튼

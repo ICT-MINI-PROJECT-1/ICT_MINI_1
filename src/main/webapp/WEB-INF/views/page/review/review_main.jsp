@@ -5,10 +5,11 @@
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		const search_form = document.getElementById("write-srch");
-		search_form.addEventListener("submit", (event) => {
-			  event.preventDefault();
-			  postSearching();
-		});
+		if(search_form)
+			search_form.addEventListener("submit", (event) => {
+				  event.preventDefault();
+				  postSearching();
+			});
 	});
 </script>
 <div id="fade">
@@ -142,9 +143,9 @@
 					<li id="modal-hit"></li>
 				</ul>
 				<ul>
-					<li>호수</li>
+					<li id="modal-rating-style">호수</li>
 					<li id="modal-roomno"></li>
-					<li>평점</li>
+					<li id="modal-rating-style">평점</li>
 					<li id="modal-rating"></li>
 				</ul>
 				<ul>
