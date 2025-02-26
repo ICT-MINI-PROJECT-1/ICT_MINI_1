@@ -53,7 +53,8 @@
                     document.getElementById("addrdetail").focus();
                 }
             }).open();
-  		} 	
+  		}
+    	where="mypage";
 </script>
 
 
@@ -212,7 +213,6 @@
 						<li>작성일</li>
 		                <li>평점</li>
 					</ul>
-				<div class="review-lm"><b>나의 리뷰</b></div>
 			<div id="mypage-review-list"> 
 			</div>
 
