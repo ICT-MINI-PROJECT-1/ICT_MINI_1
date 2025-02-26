@@ -218,6 +218,17 @@ function settingMenu() {
     		</ul>
 		`;
 	}
+	if(where=="mypage") {
+		contents.innerHTML=`
+			<div id="contents-title">My Page</div>
+			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
+				<li><b style="line-height:30px;">사용자의 정보를 확인할 수 있습니다.</b></li>
+    			<li>WishList: 찜한 객실들을 확인할 수 있습니다.</li>
+    			<li>Reservation: 예약 내역들을 확인할 수 있습니다.</li>
+    			<li>Review: 작성한 후기 글들을 확인할 수 있습니다.</li>
+    		</ul>
+		`;
+	}
     homeButton.addEventListener('click', () => {
         window.location.href = '/';
     });

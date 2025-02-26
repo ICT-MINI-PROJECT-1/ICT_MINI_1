@@ -31,10 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         window.addEventListener('scroll', (e) => {
             let curScrollY = window.scrollY;
-            console.log('scroll event');
-            console.log('curScrollY:', curScrollY);
-            console.log('mypageNav:', mypageNav);
-
             if (lastScrollY < curScrollY) {
                 if (curScrollY >= 15) {
                 	document.querySelector(".mypage-nav ul").style.flexDirection = "column";
@@ -43,8 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			        mypageNav.style.top = '37%';
 			        mypageNav.style.width = '150px'; // 너비 조정
 			        mypageNav.style.height = 'auto'; // 높이 자동 조정
-                    console.log('mypageNav fixed');
-                    console.log('mypageNav.style.position:', mypageNav.style.position);
                 }
             } else {
                 if (curScrollY <= 80) {
@@ -54,8 +48,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     mypageNav.style.top = '0';
                     mypageNav.style.width = '100%';
                     mypageNav.style.height = 'auto';
-                    console.log('mypageNav relative');
-                    console.log('mypageNav.style.position:', mypageNav.style.position);
                 }
             }
 
@@ -64,6 +56,4 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('mypage-nav element not found');
     }
-
-    console.log('scroll listener attached');
 });
