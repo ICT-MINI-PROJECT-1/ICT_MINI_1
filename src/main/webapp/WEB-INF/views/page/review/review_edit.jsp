@@ -66,7 +66,7 @@ const handler = {
         	
         	var curFileCnt = dataTransfer.files.length; //현재 선택된 첨부파일 개수
         	console.log(curFileCnt+"!!");
-        	if(curFileCnt<minFileCnt || curFileCnt>maxFileCnt){
+        	if((curFileCnt<minFileCnt || curFileCnt>maxFileCnt) && curFileCnt!=0){
         		alert_file.innerHTML = "파일을 1-5개 넣어주세요.";
         		alert_file.style.opacity = 1;
         		fileOk = 0;
@@ -78,7 +78,8 @@ const handler = {
         }
     }
 	document.addEventListener('DOMContentLoaded', () => {
-	 
+	 subjectOk=1;
+	 contentOk=1;
 	 /*
 	 document.getElementById("fie").addEventListener("change", (e) => {
 		  let fileArr = document.getElementById("fie").files;

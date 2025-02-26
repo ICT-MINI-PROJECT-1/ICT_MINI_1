@@ -188,9 +188,15 @@ function settingMenu() {
     		</ul>
 		`;
 	}
-	if(where=="review") {
+	if(where=="review" || where=="review_edit") {
 		contents.innerHTML=`
 			<div id="contents-title">Review</div>
+			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
+				<li><b style="line-height:30px;">다녀 왔던 객실에 대한 후기를 작성할 수 있습니다.</b></li>
+    			<li>한 예약에는 하나의 글이 작성이 가능합니다.</li>
+    			<li>사진은 1개이상 5개 이하로 첨부 가능합니다.</li>
+    			<li>로그인 후 글 작성이 가능합니다.</li>
+    		</ul>
 		`;
 	}
 	if(where=="room") {
