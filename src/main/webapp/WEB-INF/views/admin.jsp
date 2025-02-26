@@ -195,6 +195,11 @@
 				searchWord=document.getElementById("searchWord").value;
 				adminReservList(1);
 			}
+			else if(tag=="review"){
+				searchKey=document.getElementById("searchKey").value;
+				searchWord=document.getElementById("searchWord").value;
+				adminReservList(1);
+			}
 			else {
 				alert("목록을 선택하세요");
 			}
