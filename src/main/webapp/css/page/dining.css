@@ -62,7 +62,7 @@
 	position: relative;
 	width: 100%;
 	height: 780px;
-	padding-bottom: 50px;
+	padding-bottom: 30px;
 }
 
 #event::-webkit-scrollbar {
@@ -71,6 +71,8 @@
 
 #dining-category {
 	visibility: hidden;
+	margin-top: -50px;
+	padding-bottom: 80px;
 }
 
 .dining-pic {
