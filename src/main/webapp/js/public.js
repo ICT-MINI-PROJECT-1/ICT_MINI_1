@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
         //document.body.classList.remove('fade');
         document.getElementById("fade").style.opacity=1;
         footer = document.getElementsByClassName("footer")[0];
-        footer.style.opacity=0;
+        if(where=="review") footer.style.opacity=1;
+        else footer.style.opacity=0;
         settingMenu();
     });
 });
@@ -32,7 +33,7 @@ window.addEventListener("scroll", (e) => {
 			header.style.top='0px';
 			nav.style.top='80px';
 			nav.style.opacity=1;
-			if(where!="login" && where!="signup")
+			if(where!="login" && where!="signup" && where!="review")
 				footer.style.opacity=0;
 		}
 	}
@@ -187,9 +188,15 @@ function settingMenu() {
     		</ul>
 		`;
 	}
-	if(where=="review") {
+	if(where=="review" || where=="review_edit") {
 		contents.innerHTML=`
 			<div id="contents-title">Review</div>
+			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
+				<li><b style="line-height:30px;">다녀 왔던 객실에 대한 후기를 작성할 수 있습니다.</b></li>
+    			<li>한 예약에는 하나의 글이 작성이 가능합니다.</li>
+    			<li>사진은 1개이상 5개 이하로 첨부 가능합니다.</li>
+    			<li>로그인 후 글 작성이 가능합니다.</li>
+    		</ul>
 		`;
 	}
 	if(where=="room") {
@@ -240,3 +247,13 @@ function settingMenu() {
         clicked = !clicked;
     });
 }
+
+//dining_main.jsp에서만 footer 제거
+const Footer = () => {
+	if(window.location.pathname === '/page/dining/dining_main') return null;
+}
+
+
+
+
+

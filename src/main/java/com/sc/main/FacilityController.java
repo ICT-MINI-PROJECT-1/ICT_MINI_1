@@ -30,4 +30,27 @@ public class FacilityController {
 		mav.setViewName("page/facility/facil-gym-picture");
 		return mav;
 	}
+	@GetMapping("/facil-restaurant-picture")
+	public ModelAndView restaurant(){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("page","facility");
+		mav.setViewName("page/facility/facil-restaurant-picture");
+		return mav;
+	}
+	@GetMapping("/facil-bar-picture")
+	public ModelAndView bar(){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("page","facility");
+		mav.setViewName("page/facility/facil-bar-picture");
+		return mav;
+	}
+	@GetMapping("/facil-laundry-picture")
+	public ModelAndView laundry(){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("page","facility");
+		mav.setViewName("page/facility/facil-laundry-picture");
+		return mav;
+	}
 }
+
+

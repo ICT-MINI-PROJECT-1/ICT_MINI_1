@@ -5,10 +5,11 @@
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		const search_form = document.getElementById("write-srch");
-		search_form.addEventListener("submit", (event) => {
-			  event.preventDefault();
-			  postSearching();
-		});
+		if(search_form)
+			search_form.addEventListener("submit", (event) => {
+				  event.preventDefault();
+				  postSearching();
+			});
 	});
 </script>
 <div id="fade">
@@ -28,25 +29,20 @@
 				review_wrap.style.opacity= 1;
 			});
 		</script>
-		<div id="review-write-search">
-			<c:if test="${loginStatus=='Y' }">
-				<a href="${pageContext.request.contextPath}/page/review/write" id="review-write">리뷰작성</a>
-			</c:if>
-		</div>
 		<div id="review-sort-search">
 			<ul id="review-select-sort">
 				<li id="sort">정렬</li>
 				<c:if test="${pVO.searchHR=='hit'}">
-					<li style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
-					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
+					<li id="sort-hit" style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
+					<li id="sort-rating"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
 				</c:if>
 				<c:if test="${pVO.searchHR=='rating'}">
-					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
-					<li style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
+					<li id="sort-hit"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
+					<li id="sort-rating" style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
 				</c:if>
 				<c:if test="${pVO.searchHR==null || pVO.searchHR==''}">
-					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
-					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
+					<li id="sort-hit"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
+					<li id="sort-rating"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
 				</c:if>
 			</ul>
 			<!-- 검색창 -->
@@ -88,6 +84,11 @@
 		<c:if test="${fn:length(list)==0 }">
 			<span id="review-search-result">검색 결과가 없습니다.</span>
 		</c:if>
+		<div id="review-write-search">
+			<c:if test="${loginStatus=='Y' }">
+				<a href="${pageContext.request.contextPath}/page/review/write" id="review-write">리뷰작성</a>
+			</c:if>
+		</div>
 		<!-- 페이징 -->
 		<ul id="paging">
 			<!-- 이전페이지 -->
@@ -142,9 +143,9 @@
 					<li id="modal-hit"></li>
 				</ul>
 				<ul>
-					<li>호수</li>
+					<li id="modal-rating-style">호수</li>
 					<li id="modal-roomno"></li>
-					<li>평점</li>
+					<li id="modal-rating-style">평점</li>
 					<li id="modal-rating"></li>
 				</ul>
 				<ul>
@@ -155,8 +156,8 @@
 				</ul>
 				<div id="modal-content"></div>
 				<div id="btn">
-					<input type="button" value="수정" onclick="reviewEdit()">
-					<input type="button" value="삭제" onclick="reviewDelete()">
+					<input type="button" id="editBtn" value="수정" onclick="reviewEdit()">
+					<input type="button" id="delBtn" value="삭제" onclick="reviewDelete()">
 				</div>
 			</div>
 		</div>

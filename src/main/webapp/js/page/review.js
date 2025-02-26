@@ -4,65 +4,42 @@ document.addEventListener('DOMContentLoaded', () => {
 	
 	var write_subject = document.getElementById("write-subject");
 	var write_content = document.getElementById("write-content");
-	var input_file = document.getElementById("filename");
+	var input_file = document.getElementById("fie");
 	
 	var alert_subject = document.getElementById("alert-subject");
 	var alert_content = document.getElementById("alert-content");
 	var alert_file = document.getElementById("alert-file");
 	
-	/*
-	var subjectOk = 0;
-	var contentOk = 0;
-	var fileOk = 0;
-	*/
-	
-	write_subject.addEventListener("input", ()=>{
-		if(write_subject.value.length<5){
-			alert_subject.innerHTML = "제목을 5자 이상 입력해주세요.";
-			alert_subject.style.opacity = 1;
-			subjectOk = 0;
-		}else if(write_subject.value.length>45){
-			alert_subject.innerHTML = "제목을 45자 이하로 입력해주세요.";
-			alert_subject.style.opacity = 1;
-			subjectOk = 0;
-		}else{
-			alert_subject.style.opacity = 0;
-			subjectOk = 1;
-		}
-	});
-	write_content.addEventListener("input",()=>{
-		if(write_content.value.length<10){
-			alert_content.innerHTML = "내용을 10자 이상 입력해주세요.";
-			alert_content.style.opacity = 1;
-			contentOk = 0;
-		}else if(write_content.value.length>500){
-			alert_content.innerHTML = "내용을 500자 이하로 입력해주세요.";
-			alert_content.style.opacity = 1;
-			contentOk = 0;
-		}else{
-			alert_content.style.opacity = 0;
-			contentOk = 1;
-		}
-	});
-	input_file.addEventListener("input",()=>{
-		if(input_file.files.length==0){
-			alert_file.innerHTML = "파일을 1-5개 넣으세요.";
-			alert_file.style.opacity = 1;
-			fileOk = 0;
-		}else if(input_file.files.length>5){
-			////////////////////////////////
-			////////파일첨부 5개 초과 막기
-			
-			
-			
-			alert_file.innerHTML = "첨부할 수 있는 파일은 최대 5개입니다.";
-			alert_file.style.opacity = 1;
-			fileOk = 0;
-		}else{
-			alert_file.style.opacity = 0;
-			fileOk = 1;
-		}
-	});
+	if(write_subject!=null)
+		write_subject.addEventListener("input", ()=>{
+			if(write_subject.value.length<5){
+				alert_subject.innerHTML = "제목을 5자 이상 입력해주세요.";
+				alert_subject.style.opacity = 1;
+				subjectOk = 0;
+			}else if(write_subject.value.length>45){
+				alert_subject.innerHTML = "제목을 45자 이하로 입력해주세요.";
+				alert_subject.style.opacity = 1;
+				subjectOk = 0;
+			}else{
+				alert_subject.style.opacity = 0;
+				subjectOk = 1;
+			}
+		});
+	if(write_content!=null)	
+		write_content.addEventListener("input",()=>{
+			if(write_content.value.length<10){
+				alert_content.innerHTML = "내용을 10자 이상 입력해주세요.";
+				alert_content.style.opacity = 1;
+				contentOk = 0;
+			}else if(write_content.value.length>500){
+				alert_content.innerHTML = "내용을 500자 이하로 입력해주세요.";
+				alert_content.style.opacity = 1;
+				contentOk = 0;
+			}else{
+				alert_content.style.opacity = 0;
+				contentOk = 1;
+			}
+		});
 });
 
 var review_result = 0;
@@ -70,14 +47,51 @@ var subjectOk = 0;
 var contentOk = 0;
 var fileOk = 0;
 
-////////////////////제목, 내용, 파일업로드 조건에 맞을 때만 submit 가능하게 하기
+//제목, 내용, 파일업로드 조건에 맞을 때만 submit 가능하게 하기
 function writeChk(){
+	var alert_subject = document.getElementById("alert-subject");
+	var alert_content = document.getElementById("alert-content");
 	review_result = subjectOk + contentOk + fileOk;
-	alert();
+	if(subjectOk==0){
+		alert_subject.innerHTML = "제목을 입력해주세요.";
+		alert_subject.style.opacity = 1;
+	}
+	if(contentOk==0){
+		alert_content.innerHTML = "내용을 입력해주세요.";
+		alert_content.style.opacity = 1;
+	}
+	if(where=="review_edit") {
+
+	}
+	else {
+		if(fileOk==0){
+			let alert_file = document.getElementById("alert-file");
+			alert_file.innerHTML = "파일을 1-5개 넣어주세요.";
+			alert_file.style.opacity = 1;
+		}
+	}
+	if(review_result==3) document.writeForm.submit();
 }
 
+//첨부파일 갯수 5개로 제한
+function addFile(){
+/*
+	let alert_file = document.getElementById("alert-file");
+	const minFileCnt = 0;
+	const maxFileCnt = 4;	//첨부파일 최대 개수
+	
+	var curFileCnt = dataTransfer.files.length; //현재 선택된 첨부파일 개수
+	console.log(curFileCnt+"!!");
+	if(curFileCnt<minFileCnt || curFileCnt>maxFileCnt){
+		alert_file.innerHTML = "파일을 1-5개 넣어주세요.";
+		alert_file.style.opacity = 1;
+		fileOk = 0;
+	}else{
+		alert_file.style.opacity = 0;
+		fileOk = 1;
+	}*/
 
-
+}
 
 
 var review_wrap;
@@ -98,7 +112,7 @@ window.addEventListener("wheel", (e) => {
 				review_wrap.style.opacity= 0;
 				setTimeout(function() {
 				  	review_moving=0;
-				}, 1000);
+				}, 700);
 				review_state=0;
 			}
 		} else { //scroll down
@@ -112,7 +126,7 @@ window.addEventListener("wheel", (e) => {
 					f.setAttribute('action','review');
 					document.body.appendChild(f);
 					f.submit();
-				}, 1000);
+				}, 700);
 				review_state=1;
 			}
 		}
@@ -170,7 +184,11 @@ function openModal(reviewno,userid,sessionid,roomno){
 		}
 		document.getElementById("modal-subject").innerHTML = data.vo.subject;
 		document.getElementById("modal-roomno").innerHTML = data.vo.roomno;
-		document.getElementById("modal-rating").innerHTML = data.vo.rating;
+		document.getElementById("modal-rating").innerHTML = `
+				<div class="modal-star-box">
+					<div class="modal-star-fill" style="width:`+data.vo.rating*20+`%"></div>
+				</div>
+			`;
 		document.getElementById("modal-writedate").innerHTML = data.vo.writedate;
 		document.getElementById("modal-userid").innerHTML = data.vo.userid;
 		document.getElementById("modal-content").innerHTML = data.vo.content;
@@ -191,9 +209,10 @@ function openModal(reviewno,userid,sessionid,roomno){
 	if(userid == sessionid) document.getElementById("btn").style.display='block';
 }
 function closeModal(){
-	if(document.getElementById("review-list-modal")!=null)
+	if(document.getElementById("review-list-modal")!=null){
 		document.getElementById("review-list-modal").style.opacity = 0;
 		document.getElementById("review-list-modal").style.zIndex = -5;
+	}
 }
 
 //리뷰수정 버튼
@@ -228,9 +247,9 @@ function reviewDelete(){
 }
 
 //review_write.jsp에 있는 함수
-
+/*
 function writeFormCheck(event){
-	/*
+	
 	if(document.getElementById('write-subject').value==''){
 		alert("제목 없음");
 		event.preventDefault();
@@ -241,7 +260,7 @@ function writeFormCheck(event){
 		alert("내용 없음");
 		event.preventDefault();
 	}
-	*/
+	
 	
 	////////////////
 	if(review_result==3){
@@ -253,6 +272,7 @@ function writeFormCheck(event){
 	}
 	
 }
+*/
 
 
 

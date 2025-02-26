@@ -7,5 +7,12 @@ function adminUserList(){
 	}).catch(err=> {
 		console.log(err);
 	});
-}
-*/
+}*/
+
+/*function adminReviewList(page) {
+	
+}*/
+
+
+
+
