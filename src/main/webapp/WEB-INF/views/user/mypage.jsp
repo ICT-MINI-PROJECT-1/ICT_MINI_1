@@ -114,7 +114,7 @@
 						아르데코
 					</c:if>
 					<c:if test="${data.roomconcept=='asian'}">
-						<a href="#" onclick="moveToRoom('asain')">${data.roomno}</a>
+						<a href="#" onclick="moveToRoom('asian')">${data.roomno}</a>
 					</li>
 					<li>
 						동양
