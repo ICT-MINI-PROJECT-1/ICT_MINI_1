@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("fade").style.opacity=1;
         footer = document.getElementsByClassName("footer")[0];
         if(where=="review") footer.style.opacity=1;
-        else if(where=="dining") footer.style.display='none';
+        else if(where=="dining_main") footer.style.display='none';
         else footer.style.opacity=0;
         settingMenu();
     });

@@ -2,7 +2,9 @@
 
 <link href="${pageContext.request.contextPath }/css/page/dining.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/page/dining.js"></script>
-
+<script>
+	where="dining_main";
+</script>
 <div id="fade">
 	<div class="container">
 		<div class="dining-title">
