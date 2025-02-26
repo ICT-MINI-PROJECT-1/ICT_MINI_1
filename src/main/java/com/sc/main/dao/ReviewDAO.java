@@ -26,4 +26,5 @@ public interface ReviewDAO {
 	public void reviewHitCount(int reviewno);
 	
 	public List<ReservationVO> reviewHistory(String userid);
+	public List<ReviewVO> reviewSelectByUserid(PagingVO pVO);
 }

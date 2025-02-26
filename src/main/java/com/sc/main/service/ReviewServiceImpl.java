@@ -82,5 +82,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public List<ReservationVO> reviewHistory(String userid) {
 		return dao.reviewHistory(userid);
 	}
+	
+	@Override
+    public List<ReviewVO> reviewSelectByUserid(PagingVO pVO) {
+        return dao.reviewSelectByUserid(pVO);
+    }
 
 }
