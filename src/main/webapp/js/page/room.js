@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	grid_3=document.getElementById("room-artdec");
 	grid_4=document.getElementById("room-asian");
 	
-	/*
+	
 	let modal=document.getElementById("room-list-modal");
 	let clicked=0;
 	let f_x=0;
@@ -17,22 +17,18 @@ document.addEventListener('DOMContentLoaded', () => {
 	let m_x=0;
 	let m_y=0;
 	
-	let c_x=window.innerWidth/2;
-	let c_y=window.innerHeight/4;
+	let c_x=0;
+	let c_y=0;
 	
 	let cnt=0;
-	let rect = modal.getBoundingClientRect();
 	
 	modal.addEventListener("mousedown", (e) =>{
-		modal.style.transform="none";
-		if(cnt==0) {
-			modal.style.left = rect.left+rect.width/2+"px";
-			modal.style.top = rect.top+rect.height/2+"px";
-			console.log(modal.style.left);
-			console.log(modal.style.top);
+		if(cnt<2) {
+			c_x=getNumberFromPixel(modal.style.left);
+			c_y=getNumberFromPixel(modal.style.top);
+			modal.style.cursor="grabbing";
 		}
 		setTimeout(function moveModal(){
-			let cRect = modal.getBoundingClientRect();
 			modal.style.left=c_x+m_x-f_x+'px';
 			modal.style.top=c_y+m_y-f_y+'px';
 			c_x=getNumberFromPixel(modal.style.left);
@@ -44,19 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
 		},10);
 		clicked=1;
 		window.addEventListener("mouseup", (e) =>{
-			console.log("!");
 			cnt=0;
 			clicked=0;
+			modal.style.cursor="grab";
 		});
 		let mml = window.addEventListener("mousemove",(e)=>{
 			m_x=e.clientX;
 			m_y=e.clientY;
-			if(cnt==0) {
+			if(cnt<5) {
 				f_x=e.clientX;
 				f_y=e.clientY;
 			}
 		});
-	});*/
+	});
+
 });
 
 var room_wrap;
@@ -141,6 +138,8 @@ function openModal(data){
 	let modal_img=document.getElementById("modal-img");
 	modal.style.opacity=1;
 	modal.style.zIndex=10;
+	modal.style.left=(window.innerWidth-modal.offsetWidth)/2 + 'px';
+	modal.style.top=window.innerHeight/4+'px';
 	modal_img.style.background="url('../../img/page/room/"+path+"/"+data+".jpg') no-repeat";
 	modal_img.style.backgroundSize="cover";
 	modal_img.style.backgroundPosition="center";
@@ -213,7 +212,7 @@ function renderWish(roomno){
 			}
 		}
 	}).catch(err=> {
-	console.log(err);
+		//console.log(err);
 	});
 }
 
