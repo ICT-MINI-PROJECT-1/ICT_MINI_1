@@ -24,4 +24,5 @@ public interface ReviewService {
 	public void reviewImageDelete(int reveiwno);
 	public void reviewHitCount(int reviewno);	
 	public List<ReservationVO> reviewHistory(String userid);
+	public List<ReviewVO> reviewSelectByUserid(PagingVO pVO);
 }

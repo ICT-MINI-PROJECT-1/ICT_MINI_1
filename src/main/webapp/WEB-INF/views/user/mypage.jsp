@@ -56,10 +56,20 @@
   		} 	
 </script>
 
+
+
 <div id="fade">
-<div class="container">
+<div class="container">	
 	<div class="mypage-wrap">
-		<div class="mypage-container-reserv">
+		<nav class="mypage-nav">
+                <ul>
+                    <li><a href="#wishlist">Wishlist & Reservation</a></li>
+                    <li><a href="#review">Review</a></li>
+                    <li><a href="#myinfo">My Info</a></li>
+                </ul>
+            </nav> 
+                
+		<div id="wishlist" class="mypage-container-reserv">
 			<div id="signup-title">WishList</div>
 			<ul class="wish_list" id="mr-title">
 				<li>
@@ -192,33 +202,52 @@
 			<c:if test="${reserv_list==null }">
 				<div class="no-reserv">예약 내역이 없습니다.</div>
 			</c:if>
-			
-			<div class="mypage-container-review">
-			<div id="signup-title">Review</div>
-			<ul class="review-ul" id="mr-title">
-				<li>리뷰 번호</li>
-				<li>방 번호</li>				
-				<li>제목</li>
-				<li>작성일</li>
-                <li>평점</li>
-			</ul>
-			<div class="review-lm"><b>나의 리뷰</b></div>
-			<c:if test="${review !=null}">
-				<c:forEach var="review" items="${reviewList}">
-				<ul class="review-ul">
-					<li><a href="#" onclick="moveReview('')">${review.reviewno}</a></li>
-					<li>${review.roomno}</li>
-					<li>${review.subject}</li>
-					<li>${review.writedate}</li>
-					<li>${review.rating}/></li>
-				</ul>
-				</c:forEach>
-			</c:if>
-			<c:if test="${review==null}">
-				<div class="no-review">리뷰 내역이 없습니다.</div>
-			</c:if>
+			</div>
+			<div id="review" class="mypage-container-review">
+				<div id="signup-title">Review</div>
+					<ul class="review-ul" id="mr-title">
+						<li>리뷰 번호</li>
+						<li>방 번호</li>				
+						<li>제목</li>
+						<li>작성일</li>
+		                <li>평점</li>
+					</ul>
+				<div class="review-lm"><b>나의 리뷰</b></div>
+			<div id="mypage-review-list"> 
+			</div>
+
+			<script>
+			    $(document).ready(function() {
+			        $.ajax({
+			            url: "${pageContext.request.contextPath}/page/review/mypageReview",
+			            type: "GET",
+			            dataType: "json",
+			            success: function(data) {
+			                if (data && data.length > 0) {
+			                    let html = "";
+			                    $.each(data, function(index, review) {
+			                        html += "<ul class='review-ul'>";
+			                        html += "<li><a href='${pageContext.request.contextPath}/page/review'>" + review.reviewno + "</a></li>";
+			                        html += "<li>" + review.roomno + "</li>";
+			                        html += "<li>" + review.subject + "</li>";
+			                        html += "<li>" + review.writedate.substring(0, 10) + "</li>";
+			                        html += "<li>" + review.rating + "</li>";
+			                        html += "</ul>";
+			                    });
+			                    $("#mypage-review-list").html(html);
+			                } else {
+			                    $("#mypage-review-list").html("<div class='no-review'>리뷰 내역이 없습니다.</div>");
+			                }
+			            },
+			            error: function() {
+			                console.error("리뷰 목록을 불러오는 데 실패했습니다.");
+			            }
+			        });
+			    });
+			</script>
+			</div>
 		
-		<div class="mypage-container-info">
+		<div id="myinfo" class="mypage-container-info">
 			<div id="signup-title">My Info</div>
 			<form name="signupEditForm" method="post" action="signUpEditChk">
 				<div id="signup-box">
@@ -240,3 +269,26 @@
 	</div>
 </div>
 </div>
+
+<script>
+        document.querySelectorAll('.mypage-nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+
+                if (targetElement) {
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const elementHeight = targetElement.offsetHeight;
+                    const windowHeight = window.innerHeight;
+                    const scrollPosition = elementPosition - (windowHeight / 2) + (elementHeight / 2);
+
+                    window.scrollTo({
+                        top: scrollPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+    
