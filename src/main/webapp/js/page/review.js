@@ -10,34 +10,36 @@ document.addEventListener('DOMContentLoaded', () => {
 	var alert_content = document.getElementById("alert-content");
 	var alert_file = document.getElementById("alert-file");
 	
-	write_subject.addEventListener("input", ()=>{
-		if(write_subject.value.length<5){
-			alert_subject.innerHTML = "제목을 5자 이상 입력해주세요.";
-			alert_subject.style.opacity = 1;
-			subjectOk = 0;
-		}else if(write_subject.value.length>45){
-			alert_subject.innerHTML = "제목을 45자 이하로 입력해주세요.";
-			alert_subject.style.opacity = 1;
-			subjectOk = 0;
-		}else{
-			alert_subject.style.opacity = 0;
-			subjectOk = 1;
-		}
-	});
-	write_content.addEventListener("input",()=>{
-		if(write_content.value.length<10){
-			alert_content.innerHTML = "내용을 10자 이상 입력해주세요.";
-			alert_content.style.opacity = 1;
-			contentOk = 0;
-		}else if(write_content.value.length>500){
-			alert_content.innerHTML = "내용을 500자 이하로 입력해주세요.";
-			alert_content.style.opacity = 1;
-			contentOk = 0;
-		}else{
-			alert_content.style.opacity = 0;
-			contentOk = 1;
-		}
-	});
+	if(write_subject!=null)
+		write_subject.addEventListener("input", ()=>{
+			if(write_subject.value.length<5){
+				alert_subject.innerHTML = "제목을 5자 이상 입력해주세요.";
+				alert_subject.style.opacity = 1;
+				subjectOk = 0;
+			}else if(write_subject.value.length>45){
+				alert_subject.innerHTML = "제목을 45자 이하로 입력해주세요.";
+				alert_subject.style.opacity = 1;
+				subjectOk = 0;
+			}else{
+				alert_subject.style.opacity = 0;
+				subjectOk = 1;
+			}
+		});
+	if(write_content!=null)	
+		write_content.addEventListener("input",()=>{
+			if(write_content.value.length<10){
+				alert_content.innerHTML = "내용을 10자 이상 입력해주세요.";
+				alert_content.style.opacity = 1;
+				contentOk = 0;
+			}else if(write_content.value.length>500){
+				alert_content.innerHTML = "내용을 500자 이하로 입력해주세요.";
+				alert_content.style.opacity = 1;
+				contentOk = 0;
+			}else{
+				alert_content.style.opacity = 0;
+				contentOk = 1;
+			}
+		});
 });
 
 var review_result = 0;
@@ -59,7 +61,7 @@ function writeChk(){
 		alert_content.style.opacity = 1;
 	}
 	if(where=="review_edit") {
-	
+
 	}
 	else {
 		if(fileOk==0){
@@ -72,16 +74,14 @@ function writeChk(){
 }
 
 //첨부파일 갯수 5개로 제한
-function addFile(obj){
+function addFile(){
+/*
 	let alert_file = document.getElementById("alert-file");
-	//alert(obj);
-	const minFileCnt = 1;
-	const maxFileCnt = 5;	//첨부파일 최대 개수
+	const minFileCnt = 0;
+	const maxFileCnt = 4;	//첨부파일 최대 개수
 	
-	//var attFileCnt = document.getElementById("filename").files.length; //기존에 추가된 첨부파일 개수
-	//var remainFileCnt = maxFileCnt - attFileCnt; //추가로 첨부가능한 개수
-	var curFileCnt = obj.files.length; //현재 선택된 첨부파일 개수
-	//alert("attFileCnt="+attFileCnt);
+	var curFileCnt = dataTransfer.files.length; //현재 선택된 첨부파일 개수
+	console.log(curFileCnt+"!!");
 	if(curFileCnt<minFileCnt || curFileCnt>maxFileCnt){
 		alert_file.innerHTML = "파일을 1-5개 넣어주세요.";
 		alert_file.style.opacity = 1;
@@ -89,7 +89,7 @@ function addFile(obj){
 	}else{
 		alert_file.style.opacity = 0;
 		fileOk = 1;
-	}
+	}*/
 
 }
 
@@ -184,7 +184,11 @@ function openModal(reviewno,userid,sessionid,roomno){
 		}
 		document.getElementById("modal-subject").innerHTML = data.vo.subject;
 		document.getElementById("modal-roomno").innerHTML = data.vo.roomno;
-		document.getElementById("modal-rating").innerHTML = data.vo.rating;
+		document.getElementById("modal-rating").innerHTML = `
+				<div class="modal-star-box">
+					<div class="modal-star-fill" style="width:`+data.vo.rating*20+`%"></div>
+				</div>
+			`;
 		document.getElementById("modal-writedate").innerHTML = data.vo.writedate;
 		document.getElementById("modal-userid").innerHTML = data.vo.userid;
 		document.getElementById("modal-content").innerHTML = data.vo.content;
@@ -205,9 +209,10 @@ function openModal(reviewno,userid,sessionid,roomno){
 	if(userid == sessionid) document.getElementById("btn").style.display='block';
 }
 function closeModal(){
-	if(document.getElementById("review-list-modal")!=null)
+	if(document.getElementById("review-list-modal")!=null){
 		document.getElementById("review-list-modal").style.opacity = 0;
 		document.getElementById("review-list-modal").style.zIndex = -5;
+	}
 }
 
 //리뷰수정 버튼

@@ -29,6 +29,8 @@ public class PagingVO {
 		this.searchHR = searchHR;
 	}
 	
+	private String userid;
+	
 	@Override
 	public String toString() {
 		return "PagingVO [nowPage=" + nowPage + ", onePageRecord=" + onePageRecord + ", totalRecord=" + totalRecord
@@ -103,7 +105,14 @@ public class PagingVO {
 	}
 	public void setSearchConcept(int searchConcept) {
 		this.searchConcept = searchConcept;
-	
+	}
+	public String getUserid() {
+        return userid;
+    }
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+		
 //	public String getHit() {
 //		return hit;
 //	}
@@ -116,6 +125,5 @@ public class PagingVO {
 //	public void setRating(String rating) {
 //		this.rating = rating;
 //	}
-		
-	}	
+			
 }

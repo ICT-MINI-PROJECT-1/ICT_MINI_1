@@ -10,8 +10,7 @@
 
 .menu {
   z-index:15;
-  width: 70px;
-  height: 70px;
+
   color:white;
 }
 
@@ -20,8 +19,8 @@
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 70px;
-  height: 70px;
+  width: 5vw;
+  height: 5vw;
   background-color: white;
   cursor: pointer;
   text-align: center;
@@ -79,6 +78,7 @@ i {
 #up {
     background-image:url(../img/float/up.png);
     background-position: center;
+    background-size:cover;
     box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
     7px 7px 20px 0px rgba(0,0,0,.3),
     4px 4px 5px 0px rgba(0,0,0,.3);
@@ -155,4 +155,9 @@ i {
 	height:30px;
 	line-height:30px;
 }
-
+@media(min-width:1200px) {
+	.item {
+	  width: 60px;
+	  height: 60px;
+	}
+}

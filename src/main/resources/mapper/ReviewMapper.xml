@@ -95,4 +95,7 @@
 		select roomno,reservdate,reservno from reservation where userid=#{param1} and now() > DATE_ADD(reservenddate, INTERVAL 1 DAY)
 		and not reservno = any(select reservno from review where userid=#{param1}) order by reservdate desc;
 	</select>
+	<select id="reviewSelectByUserid" resultType="com.sc.main.vo.ReviewVO">
+        SELECT * FROM review WHERE userid = #{userid}
+    </select>
 </mapper>
