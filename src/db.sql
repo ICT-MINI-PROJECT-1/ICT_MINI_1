@@ -111,6 +111,10 @@ CREATE TABLE IF NOT EXISTS `artpart`.`reviewimg` (
     ON DELETE cascade
     ON UPDATE NO ACTION);
 
+ALTER TABLE reviewimg MODIFY imgno INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE reviewimg DROP COLUMN image;
+alter table reviewimg add filename varchar(45);
+
 DELIMITER $$
 	create trigger insert_review
 	after insert
@@ -194,17 +198,101 @@ insert into user values('test6222','test6222!!','팔건모','010-6385-4676','rjs
 insert into user values('test7222','test7222!!','구건모','010-6385-4676','rjsah5676@naver.com',13473,'경기 성남시','어딘가','1233-1233-1212-1212');
 insert into user values('admin','admin','관리자','0','0',0,'0','0','0');
 
-insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-01','2025-03-03',2,'냠냠','test1111',301);
-insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-07','2025-03-09',2,'냠냠','test2222',301);
-insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-11','2025-03-11',2,'냠냠','test3222',301);
-insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-31','2025-03-31',2,'냠냠','test4222',301);
-insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-22','2025-02-23',2,'냠냠','test1234',301);
-insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-05','2025-02-08',2,'냠냠','test1234',305);
-insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-01','2025-02-03',2,'냠냠','test1234',308);
-insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-04','2025-02-05',2,'냠냠','test1234',301);
-insert into wishlist values('test1234',301);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-01','2025-03-03',2,'','test1111',301);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-07','2025-03-09',2,'','test2222',301);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-11','2025-03-11',2,'','test3222',301);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-03-31','2025-03-31',2,'','test4222',301);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-22','2025-02-23',2,'','test1234',301);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-05','2025-02-08',2,'','test1234',305);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-01','2025-02-03',2,'','test1234',308);
+insert into reservation(reservdate,reservenddate,usercnt,request,userid,roomno) values('2025-02-04','2025-02-05',2,'','test1234',301);
 
-insert into wishlist values('test1234',304);
+-- 회원등록
+select * from user;
+insert into user values('apple','123qwe!!','김사과','010-1111-2222','applekim@naver.com',04779,'서울시 성동구 성수일로','1층','1233-1233-1212-1212');
+insert into user values('banana','123qwe!!','박나나','010-2222-2222','baknana@nate.com',04779,'서울시 성동구 성수일로 10','10층','2233-1233-1212-1212');
+insert into user values('carrot','123qwe!!','홍당근','010-1222-2122','carrot@nate.com',04779,'서울시 성동구 성수일로 13','18층','2233-2233-1212-1212');
+insert into user values('onion','123qwe!!','백양파','010-3222-3222','onion@naver.com',04779,'서울시 성동구 성수일로 21','11층','2233-4233-1212-1212');
+insert into user values('orange','123qwe!!','이생귤','010-4222-4222','orange@nate.com',04779,'서울시 성동구 성수일로 5','7층','2233-1233-1212-3212');
+insert into user values('tomato','123qwe!!','멋쟁이','010-5222-5222','tomato@naver.com',16508,'경기 수원시 영통구 ','1층','2233-1233-1212-1212');
+insert into user values('apple1','123qwe!!','박사과','010-2221-2222','applekim@naver.com',04779,'서울시 성동구 성수일로','1층','1233-1233-1212-1212');
+insert into user values('banana1','123qwe!!','김나나','010-2222-3332','baknana@nate.com',04779,'서울시 성동구 성수일로 10','10층','2233-1233-1212-1212');
+insert into user values('carrot1','123qwe!!','이당근','010-1222-2122','carrot@nate.com',04779,'서울시 성동구 성수일로 13','18층','2233-2233-1212-1212');
+insert into user values('onion1','123qwe!!','홍양파','010-3244-3222','onion@naver.com',04779,'서울시 성동구 성수일로 21','11층','2233-4233-1212-1212');
+insert into user values('orange1','123qwe!!','조생귤','010-4255-4222','orange@nate.com',04779,'서울시 성동구 성수일로 5','7층','2233-1233-1212-3212');
+insert into user values('tomato1','123qwe!!','토마토','010-5892-5222','tomato@naver.com',16508,'경기 수원시 영통구 ','1층','2233-1233-1212-1212');
+insert into user values('apple2','123qwe!!','이사과','010-1195-2222','applekim@naver.com',04779,'서울시 성동구 성수일로','1층','1233-1233-1212-1212');
+insert into user values('banana2','123qwe!!','최나나','010-2232-2422','baknana@nate.com',04779,'서울시 성동구 성수일로 10','10층','2233-1233-1212-1212');
+insert into user values('carrot2','123qwe!!','황당근','010-1822-2122','carrot@nate.com',04779,'서울시 성동구 성수일로 13','18층','2233-2233-1212-1212');
+insert into user values('onion2','123qwe!!','조양파','010-3222-3252','onion@naver.com',04779,'서울시 성동구 성수일로 21','11층','2233-4233-1212-1212');
+insert into user values('orange2','123qwe!!','강생귤','010-4272-4292','orange@nate.com',04779,'서울시 성동구 성수일로 5','7층','2233-1233-1212-3212');
+insert into user values('tomato2','123qwe!!','케찹','010-5262-2222','tomato@naver.com',16508,'경기 수원시 영통구 ','1층','2233-1233-1212-1212');
+
+
+-- 예약등록
+select * from reservation;
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-01-15','2025-01-16', 2,'디카페인 커피 주세요','apple',305);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-15','2025-02-16', 2,'비건 식단','apple',405);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-05','2025-02-06', 2,'비건 식단+스파예약','apple',505);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-01-05','2025-01-06', 4,'갑각류 알러지','banana',501);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-11','2025-02-13', 2,'두꺼운 이불','banana',605);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-16','2025-02-17', 2,'생일 기념 레터링요청','banana',307);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-15','2025-02-16', 2,'기념일 꽃다발 준비(추가결제)','banana',606);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-01','2025-02-03', 6,'엑스트라베드 설치','carrot',601);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-19','2025-02-20', 4,'스페셜 디너 요청','carrot',501);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-21','2025-02-23', 2,'하우스키핑 생략','carrot',607);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-01','2025-02-03', 2,'선풍기 주세요','onion',602);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-19','2025-02-20', 2,'다리미 요청','orange',502);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-21','2025-02-23', 4,'스페셜 와인 주문','tomato',402);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-01','2025-02-03', 4,'얼리 체크인 되나요?','orange',503);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-19','2025-02-20', 2,'체크인 전 짐보관 요청','onion',506);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-21','2025-02-23', 2,'토마토 알러지','tomato',302);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-01','2025-02-03', 2,'밤 11시 도착','orange',406);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-19','2025-02-20', 2,'추가 침구 요청','tomato',508);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-21','2025-02-23', 4,'','onion',604);
+
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-01','2025-02-02', 2,'추가 베개 요청','tomato1',403);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-01','2025-02-02', 2,'추가 베개 요청','onion1',404);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-01','2025-02-02', 2,'추가 베개 요청','apple1',405);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-01','2025-02-02', 2,'추가 베개 요청','banana1',406);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-01','2025-02-02', 2,'추가 베개 요청','carrot1',407);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-01','2025-02-02', 2,'추가 베개 요청','orange1',408);
+
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-03','2025-02-04', 2,'요청','tomato1',603);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-03','2025-02-04', 2,'요청','apple1',604);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-03','2025-02-04', 2,'요청','onion1',605);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-03','2025-02-04', 2,'요청','banana1',606);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-03','2025-02-04', 2,'요청','orange1',607);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-03','2025-02-04', 2,'요청','carrot1',608);
+
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-07','2025-02-09', 2,'난방기 요청','tomato1',503);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-07','2025-02-09', 2,'난방기 요청','apple1',504);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-07','2025-02-09', 2,'난방기 요청','onion1',505);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-07','2025-02-09', 2,'난방기 요청','banana1',506);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-07','2025-02-09', 2,'난방기 요청','orange1',507);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-07','2025-02-09', 2,'난방기 요청','carrot1',508);
+
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-19','2025-02-20', 2,'선풍기 요청','tomato2',603);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-19','2025-02-20', 2,'선풍기 요청','apple2',604);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-19','2025-02-20', 2,'선풍기 요청','onion2',605);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-19','2025-02-20', 2,'선풍기 요청','banana2',606);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-19','2025-02-20', 2,'선풍기 요청','orange2',607);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-19','2025-02-20', 2,'선풍기 요청','carrot2',608);
+
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-09','2025-02-10', 2,'가습기 요청','tomato2',503);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-09','2025-02-10', 2,'가습기 요청','apple2',504);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-09','2025-02-10', 2,'가습기 요청','onion2',505);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-09','2025-02-10', 2,'가습기 요청','banana2',506);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-09','2025-02-10', 2,'가습기 요청','orange2',507);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-09','2025-02-10', 2,'가습기 요청','carrot2',508);
+
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-23','2025-02-24', 2,'추가 침구 요청','tomato2',303);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-23','2025-02-24', 2,'추가 침구 요청','apple2',304);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-23','2025-02-24', 2,'추가 침구 요청','onion2',305);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-23','2025-02-24', 2,'추가 침구 요청','banana2',306);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-23','2025-02-24', 2,'추가 침구 요청','orange2',307);
+insert into reservation (reservdate, reservenddate, usercnt, request, userid, roomno) values('2025-02-23','2025-02-24', 2,'추가 침구 요청','carrot2',308);
+
 
 insert into dining(titleno, content) values(1, '자연에서 직접 재배한 신선한 재료를 맘껏 즐길 수 있습니다.');
 insert into dining(titleno, content) values(2, '수제로 만든 양념, 장들의 조화를 느껴보세요.');
@@ -376,9 +464,5 @@ SET
     capacity = 2,
     area = 75
 WHERE roomno IN (605, 606, 607, 608);
-
-ALTER TABLE reviewimg MODIFY imgno INT NOT NULL AUTO_INCREMENT;
-ALTER TABLE reviewimg DROP COLUMN image;
-alter table reviewimg add filename varchar(45);
 
 commit;

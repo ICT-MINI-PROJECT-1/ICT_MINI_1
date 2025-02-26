@@ -562,10 +562,10 @@ textarea{
 	top:0.8vw;
 	margin:auto;
 	width:4.928vw;
-
+	left:0.8vw;
 	height:0.896vw;
-
 }
+
 
 .review-star-fill{
 	position:absolute;
@@ -831,9 +831,9 @@ textarea{
 		position:relative;
 		top:0.6vw;
 		margin:auto;
-		width:7.884vw;
-		height:1.433vw;
-	
+		width:80.73px;
+		height:14.67px;
+		left:12px;
 	}
 }
 @media (min-width:1400px){	
