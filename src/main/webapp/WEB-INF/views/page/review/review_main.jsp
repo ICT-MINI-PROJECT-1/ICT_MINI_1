@@ -132,7 +132,7 @@
 	</div>
 	<!-- 모달팝업 -->
 	<div id="review-list-modal">
-		<p id="modal-exit" onclick="closeModal()">X</p>
+		<span id="modal-exit" onclick="closeModal()">X</span>
 		<div id="modal-grid">
 			<div id="modal-img">
 				<div id="modal-img-main"></div>

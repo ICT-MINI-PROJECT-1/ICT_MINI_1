@@ -65,29 +65,28 @@
 	font-family:'Gowun Batang';
 	color: #6A3D17;
 }
-#review-write-search{
-	display: flex;
-	align-items: center;
-	padding: 1vw 1vw;
-}
 #review-sort-search{
 	overflow: auto;
 	display: flex;
 	align-items: center;
-    margin-top: 30px;
+    margin-top: 50px;
+}
+
+#review-write-search{
+	text-align: right;
 }
 #review-write{
-	font-size: 1.6vw;
-	width: 8%;
-	height: 3.0vw;
+	font-size: 1.2vw;
+	width: 7.5%;
+	height: 2.8vw;
     cursor: pointer;
 	text-align: center;
-	line-height: 3vw;
+	line-height: 2.8vw;
 	color: #fff;
 	border-radius: 4px;
-	position: absolute;
-    right: 10%;
     background: #6a3d17e0;
+    transition: all 0.7s;
+    padding: 5px;
 }
 #review-write:hover{
 	font-weight: bold;
@@ -101,9 +100,9 @@
 }
 .review-search select, .review-search input{
 	box-sizing: border-box;
-	height: 3.0vw;
+	height: 2.5vw;
 	border-radius: 5px;
-	font-size: 1.6vw;
+	font-size: 1.2vw;
 	vertical-align: middle;
 	border: 1px solid #ddd;
 }
@@ -115,8 +114,13 @@
     background: #6a3d17e0;
     border-radius: 4px;
     width: 10%;
-    height: 3.0vw;
+    height: 2.5vw;
     cursor: pointer;
+    transition: all 0.7s;
+}
+#review-search-btn:hover{
+	font-weight: bold;
+	background: #6A3D17;
 }
 .review-search>input[type=text]{
 	width: 30%;
@@ -149,8 +153,10 @@
 	padding-top: 40px;
     padding-bottom: 40px;
     border-radius: 10px;
-   	margin-bottom: 60px;
+   	/*margin-bottom: 60px;*/
    	width: 99%;
+   	/*
+   	positon: relative;*/
 }
 .review-list-grid-item{
 	width: 95%;
@@ -242,10 +248,11 @@
 	cursor:grab;
 }
 #modal-exit{
-	text-align: right;
-	padding-right: 20px;
 	cursor: pointer;
 	font-size: 2vw;
+	position: absolute;
+    right: 13px;
+    top: 7px;
 }
 #modal-grid{
 	display: grid;
@@ -297,7 +304,7 @@
 	height: 32vw;
 	background: #fff;
 	padding: 10px;
-	border-radius: 15px;
+	border-radius: 6px;
 }
 #modal-subject{
 	text-align: center;
@@ -638,6 +645,13 @@ textarea{
 
 /*review_main.jsp*/
 @media(max-width:1024px){
+	.review-wrap {
+        width: 800px;
+    }
+    .review-list-img{
+        width: 331px;
+        height: 331px;
+    }
 	#review-list-modal{
 		width: 819.2px;
 		padding-bottom: 409.6px;
@@ -653,14 +667,26 @@ textarea{
     #modal-contents {
        height: 327.68px;
     }
-
+	#modal-exit{
+		font-size: 20.48x;
+	}
 	#review-select-sort{
 		font-size: 16.384px;
        	width: 200px;
 	}
-	
 	#sort, #sort-hit, #sort-rating{
 	    width: 50px;
+	}
+	.review-search select, .review-search input{
+		height: 25.6px;
+		font-size: 12.288px;
+	}
+	.review-search #searchWord{
+	    width: 129px;
+	}
+	#review-search-btn{
+	    width: 56px;
+	    height: 25.6px;
 	}
 	
 	.review-list-grid-box{
@@ -669,9 +695,6 @@ textarea{
 	.review-list-grid-item{
 		/*width: 95%;*/
 		font-size: 15.36px;
-	}
-	.review-list-img{
-        height: 32.554vw;
 	}
 	.review-list-title>li{
 	/*
@@ -684,10 +707,7 @@ textarea{
 		width: 296.96px;
 	}
 	#review-write{
-		font-size: 16.384px; 
-		width: 78px;
-		height: 30.72px;
-		line-height: 30.72px;
+		font-size: 12.288px; 
 	}
 	.review-write-wrap{
 		width: 819.2px;
@@ -707,7 +727,6 @@ textarea{
 		font-size: 13.312px;
 	}
 }
-
 @media(min-width:1400px){
 	.review-list-img{
 		/*
@@ -737,26 +756,25 @@ textarea{
 		margin-bottom: 18.2px;
 		width: 406px;
 	}
+	#modal-exit{
+		font-size: 28px;
+	}
 	
-	#searchConcept, #searchKey{
-		height: 42px;
-		font-size: 22.4px;
+	.review-search select, .review-search input{
+		height: 35px;
+		font-size: 16.8px;
 	}
-	#searchWord{
-		height: 41px;
-	}
+
 	#review-search-btn{
-	    height: 39.2px;
-	    font-size: 18.2px;
+	    /*width: px;*/
+	    height: 35px;
 	}
+
 	.review-list-title>li{
 		font-size: 19.6px;
 	}
 	#review-write{
-		font-size: 22.4px; 
-		width: 100px;
-		height: 42px;
-		line-height: 42px;
+		font-size: 16.8px; 
 	}
 	#btn>input[type=button]{
 		height: 32.2px;
