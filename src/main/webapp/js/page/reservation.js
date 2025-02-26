@@ -113,8 +113,10 @@ var dayEnd_arr = new Array();
 
 
 function selectRoom(roomno){
-	document.getElementById("reservdate").value="";
-	document.getElementById("reservenddate").value="";
+	if(document.getElementById("reservdate"))
+		document.getElementById("reservdate").value="";
+	if(document.getElementById("reservenddate"))
+		document.getElementById("reservenddate").value="";
 	let room_no = document.getElementById("roomno");
 	let capacity = document.getElementById("capacity");
 	let bedtype = document.getElementById("bedtype");

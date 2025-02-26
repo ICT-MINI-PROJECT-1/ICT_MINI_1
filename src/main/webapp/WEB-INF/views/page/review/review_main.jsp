@@ -20,6 +20,11 @@
 		<span>REVIEW</span>
 	</div>
 	</c:if>
+	<div id="review-edit-modal">
+		<div id="review-edit-exit" onclick="reviewDelete(2)">X</div>
+		<p>정말 글을 삭제하실건가요?</p>
+		<button class="review-submit" id="review-edit-button" onclick="reviewDelete(1)">삭제하기</button>
+	</div>
 	<div class="review-wrap">
 		<c:if test="${pVO != null}">
 		<script>
@@ -76,7 +81,7 @@
 					<ul class="review-list-title">
 						<li onclick="openModal('${list.get(i).reviewno}','${list.get(i).userid }','${loginId }', '${list.get(i).roomno }')">${list.get(i).subject }</li>
 						<li><div class="review-star-box">
-					<div class="review-star-fill" style="width:90%"></div>
+					<div class="review-star-fill" style="width:${list.get(i).rating*20}%"></div>
 				</div></li>
 					</ul>
 				</div>
@@ -159,7 +164,7 @@
 				<div id="modal-content"></div>
 				<div id="btn">
 					<input type="button" id="editBtn" value="수정" onclick="reviewEdit()">
-					<input type="button" id="delBtn" value="삭제" onclick="reviewDelete()">
+					<input type="button" id="delBtn" value="삭제" onclick="reviewDelete(0)">
 				</div>
 			</div>
 		</div>

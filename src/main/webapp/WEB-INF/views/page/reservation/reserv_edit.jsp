@@ -50,7 +50,10 @@
 				<div id="reserv-left"><div id="idpw">PEOPLE</div></div> <div id="reserv-right"><input readonly type="text" style="padding:0;width:40%;text-align:center;" id="usercnt" name="usercnt" value="${reservVO.usercnt}"/></div>
 				<div id="reserv-left"><div id="idpw">REQUEST</div></div> <div id="reserv-right"><textarea readonly id="request" name="request">${reservVO.request}</textarea></div>
 				<div id="reserv-left"><div id="idpw">DATE</div></div><div id="reserv-right">
-					<input type="text" style="padding:0;width:40%;text-align:center;" id="reservdate" name="reservdate" value="${reservVO.reservdate.substring(0,10)}" readonly/>
+					<input type="text" style="padding:0;width:40%;text-align:center;" id="reservdate-edit" name="reservdate" value="${reservVO.reservdate.substring(0,10)}" readonly/>
+				</div>
+				<div id="reserv-left"><div id="idpw">END-DATE</div></div><div id="reserv-right">
+					<input type="text" style="padding:0;width:40%;text-align:center;" id="reservenddate-edit" name="reservenddate" value="${reservVO.reservenddate.substring(0,10)}" readonly/>
 				</div>
 			</div>
 			<input class="reserv-submit" type="button" onclick="reservDelete(0)" value="예약취소"/>
