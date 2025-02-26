@@ -18,6 +18,4 @@ public class ReviewPagingVO {
 	public void setPvo(PagingVO pvo) {
 		this.pvo = pvo;
 	}
-	
-	
 }

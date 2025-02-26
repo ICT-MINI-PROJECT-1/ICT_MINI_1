@@ -81,59 +81,39 @@ window.addEventListener("wheel", (e) => {
 	}
 });*/
 
-let previousScrollPosition = 0;
 window.addEventListener("wheel", (e) => {
-    if (dining_title != null && dining_wrap != null) {
-        const currentScrollY = window.scrollY;
-        console.log("scrollY:", currentScrollY);
-
-        if (e.wheelDelta > 0 || e.detail < 0) { // 스크롤 업
-            if (dining_state == 1 && dining_moving == 0) {
-                dining_title.style.top = '100px';
-                dining_category.style.visibility = 'hidden';
-                dining_wrap.style.position = 'static';
-                dining_wrap.style.opacity = 0;
-                dining_moving = 1;
-                setTimeout(function () {
-                    dining_moving = 0;
-                }, 1000);
-                dining_state = 0;
-                previousScrollPosition = currentScrollY;
-            }
-        } else if (currentScrollY > previousScrollPosition) { // 스크롤 다운
-            if (dining_state == 0 && dining_moving == 0) {
-                dining_title.style.top = '-1000px';
-                dining_category.style.visibility = 'visible';
-                dining_wrap.style.position = 'static';
-                dining_wrap.style.opacity = 1;
-                dining_moving = 1;
-                setTimeout(function () {
-                    dining_moving = 0;
-                }, 1000);
-                dining_state = 1;
-                previousScrollPosition = currentScrollY;
-            }
-        } else if (currentScrollY < previousScrollPosition) { // 스크롤 업 (추가)
-            if (dining_state == 1 && dining_moving == 0) {
-                dining_title.style.top = '100px';
-                dining_wrap.style.position = 'static';
-                dining_category.style.visibility = 'hidden';
-                dining_wrap.style.opacity = 0;
-                dining_moving = 1;
-                setTimeout(function () {
-                    dining_moving = 0;
-                }, 1000);
-                dining_state = 0;
-            }
-        }
-        previousScrollPosition = currentScrollY; // 스크롤 위치 업데이트
-    }
+	if(dining_title!=null && dining_wrap!=null && window.scrollY==0) {
+		if (e.wheelDelta > 0 || e.detail < 0){
+			if(dining_state==1&&dining_moving++==0) {
+				dining_title.style.top = '100px';
+				dining_wrap.style.position = 'static';
+				dining_wrap.style.opacity= 0;
+				document.getElementById("event").style.width="100%";	
+				document.getElementById("event").style.height="100%";
+				setTimeout(function() {
+				  	dining_moving=0;
+				}, 1000);
+				dining_state=0;
+			}
+		} else { //scroll down
+			if(dining_state==0&&dining_moving++==0) {
+				dining_title.style.top = '-1000px';
+				dining_wrap.style.position = 'static';
+				dining_wrap.style.opacity= 1;
+				document.getElementById("event").style.width="0%";	
+				document.getElementById("event").style.height="0%";
+				setTimeout(function() {
+				  	dining_moving=0;
+				}, 1000);
+				dining_state=1;
+			}
+		}
+	}
 });
 
 where="dining";
 
 function moveToRest(foodType) {	
-	
 	let f = document.createElement('form');
     f.setAttribute('method', 'post');
     f.setAttribute('action', 'dining/list');
