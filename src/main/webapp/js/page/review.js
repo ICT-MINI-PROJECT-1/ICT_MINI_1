@@ -95,6 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 });
 
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode == 27) {
+        closeModal();
+    }
+});
+
 var review_result = 0;
 var subjectOk = 0;
 var contentOk = 0;
