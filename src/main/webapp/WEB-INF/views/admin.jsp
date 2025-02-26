@@ -149,7 +149,7 @@
 				body:JSON.stringify(params)
 			})
 			.then(response => response.json())
-			.then(data=>{
+			.then(data => {
 				for(var i=0;i<data.rv.length;i++) {
 					users.innerHTML += "<ul id='reserv-box'><li>"+data.rv[i].reservno+"</li><li>"+data.rv[i].userid+"</li><li>"+data.rv[i].roomno+"</li><li>"+data.rv[i].reservdate.substring(0,10)+"</li><li>"+data.rv[i].reservenddate.substring(0,10)+"</li><li>"+data.rv[i].usercnt+"</li><li>"+data.rv[i].request+"</li><li><a href='#' onclick="+`deleteReserv("`+data.rv[i].reservno+`")`+">삭제</a></li></ul>";
 				}
@@ -210,7 +210,7 @@
 		function adminReviewList(page) {
 			tag="review";
 			document.getElementById("page-box").innerHTML="";
-			let users = document.getElementById("users");
+			/* let users = document.getElementById("users"); */
 			users.innerHTML = `<ul id='review-box'><li>
 				reviewno
 				</li>
@@ -262,10 +262,10 @@
 					}
 					return response.json();
 				})
-				.then((data) => {
-					let reviewBox = document.getElementById("review-box");
+				.then(data => {
+					//console.log(data);
 					for(var i=0;i<data.rv.length;i++) {
-						reviewBox.innerHTML += `<ul><li>${data.rv.reviewno}</li><li>${data.rv[i].subject}</li><li>${data.rv[i].content.substring(0,10)}</li><li>${data.rv[i].roomno}</li><li>${data.rv[i].rating}</li><li>${data.rv[i].userid.substring(0,10)}</li><li>${data.rv[i].writedate}</li><li><a href='#' onclick="deleteReview(${data.rv[i].reviewno})">삭제</a></li></ul>`;
+						users.innerHTML += "<ul id='review-box'><li>" + data.rv[i].reviewno + "</li><li>" + data.rv[i].subject + "</li><li>" + data.rv[i].content.substring(0,10) + "</li><li>" + data.rv[i].roomno + "</li><li>" + data.rv[i].rating + "</li><li>" + data.rv[i].userid.substring(0,10) + "</li><li>" + data.rv[i].writedate} + "</li><li><a href='#' onclick='deleteReview(" + data.rv[i].reviewno + ")'>삭제</a></li></ul>";
 					}
 					for(var i=data.pvo.startPageNum; i<data.pvo.startPageNum+data.pvo.onePageCount;i++) {
 						if(i==data.pvo.startPageNum) {
@@ -273,18 +273,30 @@
 							else document.getElementById("page-box").innerHTML += `<li onclick="adminReviewList(`+(data.pvo.nowPage-1)+`)">◀</li>`;
 						}
 						if(i<=data.pvo.totalPage) {
-							if(i==data.pvo.nowPage)document.getElementById("page-box").innerHTML+=`<li style='color:blue' onclick="adminReviewList(${i})">${i}</li>`;
+							if(i==data.pvo.nowPage)document.getElementById("page-box").innerHTML+=`<li style='color:blue' onclick="adminReviewList(`+i+`)">`+i+`</li>`;
 							else document.getElementById("page-box").innerHTML+=`<li onclick="adminReviewList(`+i+`)">`+i+`</li>`;
 						}
 					}
 					if(data.pvo.nowPage == data.pvo.totalPage) document.getElementById("page-box").innerHTML += `<li>▶</li>`;
-					else document.getElementById("page-box").innerHTML += `<li onclick="adminReviewList(${data.pvo.nowPage+1})">▶</li>`;
+					else document.getElementById("page-box").innerHTML += `<li onclick="adminReviewList(`+(data.pvo.nowPage+1)+`)">▶</li>`;
 				}).catch(err=> {
-					console.log('Fetch err:',err);
-			});
+					console.log(err);
+				});
 		}
 		function deleteReview(reviewno) {
-			console.log("삭제할 리뷰 번호:", reviewno);
+			fetch("/admin/delete/review", {
+				method: "POST",
+				headers: {
+					"Content-Type": "text/plain",
+				},
+				body:reviewno
+			})
+			.then(response => response)
+			.then(data => {
+				
+			}).catch(err => {
+				console.log(err);
+			});
 		}
 	</script>
 </head>
