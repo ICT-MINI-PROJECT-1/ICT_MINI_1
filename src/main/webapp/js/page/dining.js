@@ -193,8 +193,7 @@ let thisImg = [
 	"/img/page/dining/content/jFood3-1.jpg"
 ];
 
-thisInfo = data.thisInfo;
-thisImg = data.thisImg;
+
 
 //모달열기
 function openModal(index) {

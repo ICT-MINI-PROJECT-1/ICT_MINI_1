@@ -198,7 +198,7 @@
 	font-size: 1.4vw;
 }
 .review-list-title>li:nth-child(1){
-	width: 65%;
+	width: 10vw;
 	float: left;
 	white-space: nowrap;
 	overflow: hidden;
@@ -222,6 +222,10 @@
 #paging>li{
 	width: 20%;
     margin: auto;
+}
+
+#paging>li>a{
+	color:#6a3d17e0;
 }
 
 #paging a:hover{
@@ -793,6 +797,9 @@ textarea{
        	height: 17vw;
         */
 	}
+	.review-list-title>li:nth-child(1){
+		width:180px;
+	}
 	.review-wrap{
 		width: 1400px;
 	}
@@ -819,6 +826,9 @@ textarea{
 @media(max-width:1024px){
 	.review-write-wrap{
 		width: 819.2px;
+	}
+	.review-list-title>li:nth-child(1){
+		width:215px;
 	}
 	#review-write-form{
 		font-size: 17.408px;

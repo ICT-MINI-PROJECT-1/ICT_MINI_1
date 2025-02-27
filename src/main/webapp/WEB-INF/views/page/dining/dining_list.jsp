@@ -2,9 +2,9 @@
     
 <link href="${pageContext.request.contextPath}/css/page/dining.css" rel="stylesheet" type="text/css"/>
 <script src="${pageContext.request.contextPath}/js/page/dining.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.0.js" 
-	integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" 
-	crossorigin="anonymous"></script>
+<script>
+	where="dining-list";
+</script>
 <div id="fade">
 	<div class="container">
 		<div class="dining-menu">

@@ -1,63 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<c:choose>
-	<c:when test="${loginStatus !='A'}">
-		<ul class="footer">
-			<li id="footer-logo">
-	        <ul>
-	            <li><a href="${pageContext.request.contextPath}/page/policies/privacy-policy">Privacy Policy</a></li>
-	            <li><a href="${pageContext.request.contextPath}/page/policies/terms-of-use">Site Terms of Use</a></li>
-	            <li><a href="${pageContext.request.contextPath}/page/policies/cookie-preferences">Cookie Preferences</a></li>
-	        </ul>
-		    </li>
-				<li id="footer-contact">
-					<p>e-mail.<a href="mailto:artpartkor@gmail.com">artpartkor@gmail.com</a><br><br><br><br>
-					   Tel. <a href="tel:010-0000-0000">010-0000-0000</a></p>
-					   <a href="https://www.kakao.com" target="_blank">
-					   <img src="${pageContext.request.contextPath }/img/footer/footer_kakao.png" width=45 height=45/></a>
-					   <a href="https://www.instagram.com" target="_blank">
-					   <img src="${pageContext.request.contextPath }/img/footer/footer_insta.png" width=45 height=45/></a>
-					   <a href="https://www.facebook.com" target="_blank">
-					   <img src="${pageContext.request.contextPath }/img/footer/footer_facebook.png" width=45 height=45/></a>
-				</li>
-			
-				<li id="footer-copyright">
-					ⓒ 2025 ArtPart Inc.
-				</li>
-			</ul>
-		</body>
-		</html>
-	</c:when>
+<ul class="footer">
+	<li id="footer-logo">
+       <ul>
+           <li><a href="${pageContext.request.contextPath}/page/policies/privacy-policy">Privacy Policy</a></li>
+           <li><a href="${pageContext.request.contextPath}/page/policies/terms-of-use">Site Terms of Use</a></li>
+           <li><a href="${pageContext.request.contextPath}/page/policies/cookie-preferences">Cookie Preferences</a></li>
+       </ul>
+    </li>
+		<li id="footer-contact">
+			<p>e-mail.<a href="mailto:artpartkor@gmail.com">artpartkor@gmail.com</a><br><br><br><br>
+			   Tel. <a href="tel:010-0000-0000">010-0000-0000</a></p>
+			   <a href="https://www.kakao.com" target="_blank">
+			   <img src="${pageContext.request.contextPath }/img/footer/footer_kakao.png" width=45 height=45/></a>
+			   <a href="https://www.instagram.com" target="_blank">
+			   <img src="${pageContext.request.contextPath }/img/footer/footer_insta.png" width=45 height=45/></a>
+			   <a href="https://www.facebook.com" target="_blank">
+			   <img src="${pageContext.request.contextPath }/img/footer/footer_facebook.png" width=45 height=45/></a>
+		</li>
 	
-	<c:when test="${page == pageContext.request.contextPath}/page/dining/dining_main">
-		<ul class="footer" style="display:none;">
-			<li id="footer-logo">
-	        <ul>
-	            <li><a href="${pageContext.request.contextPath}/page/policies/privacy-policy">Privacy Policy</a></li>
-	            <li><a href="${pageContext.request.contextPath}/page/policies/terms-of-use">Site Terms of Use</a></li>
-	            <li><a href="${pageContext.request.contextPath}/page/policies/cookie-preferences">Cookie Preferences</a></li>
-	        </ul>
-		    </li>
-				<li id="footer-contact">
-					<p>e-mail.<a href="mailto:artpartkor@gmail.com">artpartkor@gmail.com</a><br><br><br><br>
-					   Tel. <a href="tel:010-0000-0000">010-0000-0000</a></p>
-					   <a href="https://www.kakao.com" target="_blank">
-					   <img src="${pageContext.request.contextPath }/img/footer/footer_kakao.png" width=45 height=45/></a>
-					   <a href="https://www.instagram.com" target="_blank">
-					   <img src="${pageContext.request.contextPath }/img/footer/footer_insta.png" width=45 height=45/></a>
-					   <a href="https://www.facebook.com" target="_blank">
-					   <img src="${pageContext.request.contextPath }/img/footer/footer_facebook.png" width=45 height=45/></a>
-				</li>
-			
-				<li id="footer-copyright">
-					ⓒ 2025 ArtPart Inc.
-				</li>
-			</ul>
-		</body>
-		</html>
-	</c:when>
-</c:choose>
-
-
-
+		<li id="footer-copyright">
+			ⓒ 2025 ArtPart Inc.
+		</li>
+	</ul>
+</body>
+</html>
+<ul class="footer" style="display:none;">
+	<li id="footer-logo">
+       <ul>
+           <li><a href="${pageContext.request.contextPath}/page/policies/privacy-policy">Privacy Policy</a></li>
+           <li><a href="${pageContext.request.contextPath}/page/policies/terms-of-use">Site Terms of Use</a></li>
+           <li><a href="${pageContext.request.contextPath}/page/policies/cookie-preferences">Cookie Preferences</a></li>
+       </ul>
+    </li>
+		<li id="footer-contact">
+			<p>e-mail.<a href="mailto:artpartkor@gmail.com">artpartkor@gmail.com</a><br><br><br><br>
+			   Tel. <a href="tel:010-0000-0000">010-0000-0000</a></p>
+			   <a href="https://www.kakao.com" target="_blank">
+			   <img src="${pageContext.request.contextPath }/img/footer/footer_kakao.png" width=45 height=45/></a>
+			   <a href="https://www.instagram.com" target="_blank">
+			   <img src="${pageContext.request.contextPath }/img/footer/footer_insta.png" width=45 height=45/></a>
+			   <a href="https://www.facebook.com" target="_blank">
+			   <img src="${pageContext.request.contextPath }/img/footer/footer_facebook.png" width=45 height=45/></a>
+		</li>
+	
+		<li id="footer-copyright">
+			ⓒ 2025 ArtPart Inc.
+		</li>
+	</ul>
+</body>
+</html>

@@ -45,8 +45,8 @@
 					<li id="contents-rating">
 					</li>
 				</ul>
-				<ul>
-					<li onclick="moveReserv()">예약하러가기</li>
+				<ul onclick="moveReserv('')">
+					<li>예약하러가기</li>
 				</ul>
 			</div>
 		</div>
