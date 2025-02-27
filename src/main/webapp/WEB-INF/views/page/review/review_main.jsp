@@ -110,6 +110,12 @@
 						<c:if test="${pVO.searchKey == 'roomno'}">
 							<option value="roomno" selected>호수</option>
 						</c:if>
+						<c:if test="${pVO.searchKey != 'userid'}">
+							<option value="userid">작성자</option>
+						</c:if>
+						<c:if test="${pVO.searchKey == 'userid'}">
+							<option value="userid" selected>작성자</option>
+						</c:if>
 					</select>
 					<c:if test="${pVO.searchWord!=null}">
 						<input type="text" id="searchWord" name="searchWord" value="${pVO.searchWord }">

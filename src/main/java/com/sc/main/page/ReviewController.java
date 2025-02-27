@@ -96,18 +96,15 @@ public class ReviewController {
 				f.transferTo(file);
 			}catch(Exception e) {e.printStackTrace();}
 			
-			imgVO.setFilename(orgFilename); //�젣紐�, 湲��궡�슜, 湲��벖�씠, �뙆�씪紐�
+			imgVO.setFilename(orgFilename);
 			
 			int imgResult = 0;
 			
 			try {
 				imgVO.setReviewno(reviewno);
-				//�젅肄붾뱶 異붽�
-				//vo.setUserid(null);	//�삤瑜섑뀒�뒪�듃 : �씪遺��윭 �삤瑜섎궡�젮怨� not null �빆紐⑹쓣 null濡� �뀑�똿�븿.
 				imgResult = service.imgInsert(imgVO);	
-			}catch(Exception e) { //insert�븯�떎媛� �떎�뙣�븯硫� �뙆�씪�쓣 �궘�젣�빐�빞�븿
+			}catch(Exception e) {
 				e.printStackTrace();
-				//�젅肄붾뱶媛� �깮�꽦�릺吏� �븡�븘 �씠誘� �뾽濡쒕뱶 �릺�뼱�엳�뒗 �뙆�씪�쓣 �궘�젣�빐�빞�븳�떎.
 				File fi = new File(path, orgFilename);
 				fi.delete();
 			}
@@ -121,20 +118,16 @@ public class ReviewController {
 		return mav;
 	}
 	
-	//�뙆�씪紐� 蹂�寃�
 	public String fileRename(File file, String path, String orgFilename) {
-		//file.exists() : �뙆�씪�씠 議댁옱�븯硫� true, 議댁옱�븯吏� �븡�쑝硫� false
-		if(file.exists()) {//�엳�쑝硫� �깉濡쒖슫 �뙆�씪紐낆쓣 留뚮뱾怨�
+		if(file.exists()) {
 			for(int i=1; ;i++) {
-				//�뙆�씪紐낃낵 �솗�옣�옄 援щ텇
 				int point = orgFilename.lastIndexOf(".");
-				String f = orgFilename.substring(0, point);	//�룷�씤�듃 �븵源뚯� 援ы빐吏�
-				String ext = orgFilename.substring(point+1);	//�룷�씤�듃 �뮘遺��꽣 �걹源뚯� 援ы빐吏�
+				String f = orgFilename.substring(0, point);
+				String ext = orgFilename.substring(point+1);
 				
-				//�깉濡쒖슫 �뙆�씪紐�
 				String newFilename = f + " ("+i+")."+ext;//01(1).jpeg
 				file = new File(path, newFilename);
-				if(!file.exists()) {//議댁옱�븯吏� �븡�뒗 �뙆�씪�씠硫�
+				if(!file.exists()) {
 					orgFilename = newFilename;
 					break;
 				}
@@ -143,7 +136,6 @@ public class ReviewController {
 		return orgFilename;
 	}
 
-	//由щ럭 �닔�젙�뤌
 	@PostMapping("/edit")
 	public ModelAndView reviewEdit(String reviewno) {
 		mav = new ModelAndView();
@@ -154,14 +146,13 @@ public class ReviewController {
 		return mav;
 	}
 	
-	//由щ럭 �닔�젙(DB)
 	@PostMapping("/editOk")
 	public ModelAndView reviewEdit(ReviewVO vo, ReviewImgVO imgVO, MultipartFile[] mf, HttpSession session) {
 		mav = new ModelAndView();
 		int reviewno = service.reviewImage((String)session.getAttribute("loginId"));
 		String path = session.getServletContext().getRealPath("/uploadfile/"+Integer.toString(reviewno));
 
-		ArrayList<ReviewImgVO> orgVO = service.reviewImageSelect(vo.getReviewno()); //�뾽�뜲�씠�듃�쟾 �젅肄붾뱶 - �뙆�씪 �궘�젣�떆 DB�뿉 ���옣�맂 �뙆�씪紐낆씠 �븘�슂�븿.
+		ArrayList<ReviewImgVO> orgVO = service.reviewImageSelect(vo.getReviewno());
 		String orgFilename="";
 		int flag=0;
 		int over;
@@ -218,14 +209,11 @@ public class ReviewController {
 						orgVO.get(idx).setFilename(orgFilename);
 					}
 					try {
-						//由щ럭�씠誘몄� db�뾽�뜲�씠�듃
 						System.out.println(orgVO.get(idx).toString());
-						service.reviewImageUpdate(orgVO.get(idx));	//review �씠誘몄� �뾽�뜲�씠�듃
+						service.reviewImageUpdate(orgVO.get(idx));
 	
-						mav.setViewName("redirect:/page/review");	//db�뾽�뜲�씠�듃 �꽦怨듯뻽�쓣 �븣 review_main.jsp濡� �씠�룞
+						mav.setViewName("redirect:/page/review");
 					}catch(Exception e) {
-						//�깉濡� �뾽濡쒕뱶�븳 �뙆�씪 �궘�젣 - �뾽�뜲�씠�듃 �떎�뙣�떆
-						System.out.println("�깉濡� �뾽濡쒕뱶�븳 �뙆�씪 �궘�젣 �떎�뙣->"+e);
 						if(imgVO.getFilename()!=null) {
 							File fi = new File(path, imgVO.getFilename());
 							fi.delete();
@@ -253,14 +241,12 @@ public class ReviewController {
 						mf[i].transferTo(file);
 					}catch(Exception e) {e.printStackTrace();}
 					
-					imgVO.setFilename(orgFilename); //�젣紐�, 湲��궡�슜, 湲��벖�씠, �뙆�씪紐�
+					imgVO.setFilename(orgFilename);
 					
 					int imgResult = 0;
 					
 					try {
 						imgVO.setReviewno(reviewno);
-						//�젅肄붾뱶 異붽�
-						//vo.setUserid(null);	//�삤瑜섑뀒�뒪�듃 : �씪遺��윭 �삤瑜섎궡�젮怨� not null �빆紐⑹쓣 null濡� �뀑�똿�븿.
 						imgResult = service.imgInsert(imgVO);	
 					}catch(Exception e) { //insert�븯�떎媛� �떎�뙣�븯硫� �뙆�씪�쓣 �궘�젣�빐�빞�븿
 						e.printStackTrace();
