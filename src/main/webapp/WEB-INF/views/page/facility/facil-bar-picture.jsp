@@ -7,7 +7,7 @@
 
     #container {
     	position:absolute;
-    	left:26%;
+    	left:32%;
     	top:140px;
         width:900px;
         height:60vh;
