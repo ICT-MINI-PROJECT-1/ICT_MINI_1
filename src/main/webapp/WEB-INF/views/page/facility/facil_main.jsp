@@ -299,9 +299,6 @@
 		<div id="PoolSize">
 			<img src="../img/page/facility/Pool.jpg"/>
 		</div>
-		
-		<div id="line2"/>
-		</div>
 
 		<br/>
 		<div id='Gym'>
@@ -319,8 +316,6 @@
 			window.location.href = "facility/facil-gym-picture";
 		};
 		</script>
-		<div id="line">
-		</div>
 		<div id="food">
 			<img src="../img/page/facility/food.jpg">
 		</div>

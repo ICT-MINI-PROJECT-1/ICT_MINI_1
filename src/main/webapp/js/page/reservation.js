@@ -483,7 +483,7 @@ function reservChk(){
 		alert_roomno.style.opacity = 0;
 		ok++;
 	}
-	if(usercnt.value=="") {
+	if(usercnt.value=="" || usercnt.value<=0) {
 		alert_people.innerHTML = "인원을 입력해주세요.";
     	alert_people.style.opacity = 1;
 	} else if(isNaN(usercnt.value)) {
