@@ -30,8 +30,6 @@
     flex-shrink: 0;
     flex-grow: 0; 
     flex-basis: auto;
-    min-width: 300px; 
-    min-height: 400px; 
     border-bottom:1px solid gray;
 }
 #Laundry{
@@ -145,8 +143,9 @@
 	#Gym, #Restaurant {
 			height:600px;
 		}
-	#Laundry, #Bar, #PoolSize{
+	 #PoolSize{
 		height:400px;
+		
 	}
 }
 @media (max-width:900px){
@@ -188,6 +187,7 @@
 		width:450px;
 		
 	}
+}
 @media (max-width:580px){
 	#PoolSize > img, #Gym > img, #food > img, #Restaurant > img {
 		width:400px;
@@ -195,15 +195,49 @@
 	}
 }
 
-
-@media (max-width:955px){
+@media (max-width:950px){
 	#Bar, #Laundry {
-		height:200px;
+		height:400px;
+		width:700px;
+		
+	}
+	#Bar > img, #Laundry > img{
+		width:300px;
+	}
+	#Bar > #BarText, #Laundry > #LaundryText{
+		line-height:30px;
+		font-size:14px;
+		height:350px;
+		width:400px;
+		margin-top: 200px;
+	}
+	#Bar > #linkBar, #Laundry > #linkLaundry {	
+		margin :  0 auto;
+	} 
+}
+
+@media (max-width:600px){
+	#Bar, #Laundry {
+		height:300px;
+		width:450px;
+		
 	}
 	#Bar > img, #Laundry > img{
 		width:250px;
 	}
+	#Bar > #BarText, #Laundry > #LaundryText{
+		line-height:20px;
+		font-size:12px;
+		height:150px;
+		width:300px;
+		margin : 20px;
+	}
+	#Bar > #linkBar, #Laundry > #linkLaundry {	
+		margin :  0 auto;
+	} 
 }
+
+
 
 
 
