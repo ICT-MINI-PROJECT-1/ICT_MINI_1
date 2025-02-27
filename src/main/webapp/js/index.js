@@ -196,6 +196,7 @@ window.addEventListener("scroll", (e) => {
 			main_content_three.style.opacity=1;
 			main_content_three.style.left='50%';
 			main_content_three.style.transition='all 1.5s';
+			main_content_three.style.zIndex=10;
 			where=6;
 		}
 	}

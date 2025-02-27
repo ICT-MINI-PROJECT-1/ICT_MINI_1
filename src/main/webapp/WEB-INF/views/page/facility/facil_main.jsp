@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <style>
-#Sauna, #Pool, #PoolSize{
+#Sauna, #Pool, #PoolSize {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,8 +30,6 @@
     flex-shrink: 0;
     flex-grow: 0; 
     flex-basis: auto;
-    min-width: 300px; 
-    min-height: 400px; 
     border-bottom:1px solid gray;
 }
 #Laundry{
@@ -40,7 +38,7 @@
 
 #Gym, #Restaurant {
 	line-height: 10vh; 
-    height: 130vh;
+    height: 150vh;
     align-items: center;
     justify-content: center;
     font-size: 16px;
@@ -132,6 +130,11 @@
     transform: scale(1.1);
 }
 
+#LaundryText, #BarText {
+	font-family: 'Gowun Batang';
+	font-size: 16px;
+}
+
 @media (max-width:1100px){
 	#Gym > #gymText, #Restaurant > #RestaurantText {
 		line-height:33px;
@@ -140,8 +143,9 @@
 	#Gym, #Restaurant {
 			height:600px;
 		}
-	#Laundry, #Bar, #PoolSize{
+	 #PoolSize{
 		height:400px;
+		
 	}
 }
 @media (max-width:900px){
@@ -183,6 +187,7 @@
 		width:450px;
 		
 	}
+}
 @media (max-width:580px){
 	#PoolSize > img, #Gym > img, #food > img, #Restaurant > img {
 		width:400px;
@@ -190,15 +195,49 @@
 	}
 }
 
-
-@media (max-width:955px){
+@media (max-width:950px){
 	#Bar, #Laundry {
-		height:200px;
+		height:400px;
+		width:700px;
+		
+	}
+	#Bar > img, #Laundry > img{
+		width:300px;
+	}
+	#Bar > #BarText, #Laundry > #LaundryText{
+		line-height:30px;
+		font-size:14px;
+		height:350px;
+		width:400px;
+		margin-top: 200px;
+	}
+	#Bar > #linkBar, #Laundry > #linkLaundry {	
+		margin :  0 auto;
+	} 
+}
+
+@media (max-width:600px){
+	#Bar, #Laundry {
+		height:300px;
+		width:450px;
+		
 	}
 	#Bar > img, #Laundry > img{
 		width:250px;
 	}
+	#Bar > #BarText, #Laundry > #LaundryText{
+		line-height:20px;
+		font-size:12px;
+		height:150px;
+		width:300px;
+		margin : 20px;
+	}
+	#Bar > #linkBar, #Laundry > #linkLaundry {	
+		margin :  0 auto;
+	} 
 }
+
+
 
 
 
@@ -260,9 +299,6 @@
 		<div id="PoolSize">
 			<img src="../img/page/facility/Pool.jpg"/>
 		</div>
-		
-		<div id="line2"/>
-		</div>
 
 		<br/>
 		<div id='Gym'>
@@ -280,8 +316,6 @@
 			window.location.href = "facility/facil-gym-picture";
 		};
 		</script>
-		<div id="line">
-		</div>
 		<div id="food">
 			<img src="../img/page/facility/food.jpg">
 		</div>
@@ -306,7 +340,10 @@
 		<div id="Bar">
 		    <img src="../img/page/facility/BarMain.jpg"/ id="linkBar">
 		    <div id="BarText">
-		        <strong Class="text">Lounge & Bar</strong>
+		        <strong Class="text">Lounge & Bar</strong><br/><br/>
+		        도시의 번잡함 속에서도 한껏 여유를 즐길 수 있는 곳,<br/>
+				이곳은 우아함과 편안함이 공존하는 럭셔리한 라운지바로<br/>
+				일상 속의 피로를 씻어낼 수 있는 완벽한 장소입니다.<br/>
 		    </div>
 		</div>
 		
@@ -319,7 +356,10 @@
 		<div id="Laundry">
 			<img src="../img/page/facility/Laundry.jpg"/ id="linkLaundry">
 			<div id="LaundryText">
-				<strong Class="text">Laundry</strong>
+				<strong Class="text">Laundry</strong><br/><br/>
+				고객 여러분의 편안하고 위생적인 숙박 경험을 위해,<br/>
+				저희는 최상의 세탁 서비스를 제공하고 있습니다.<br/>
+				고품질 세제를 사용하여, 모든 의류를 정성스럽게 관리합니다.<br/>
 			</div>
 		</div>
 		<script>

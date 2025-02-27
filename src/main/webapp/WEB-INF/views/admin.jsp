@@ -195,6 +195,11 @@
 				searchWord=document.getElementById("searchWord").value;
 				adminReservList(1);
 			}
+			else if(tag=="review"){
+				searchKey=document.getElementById("searchKey").value;
+				searchWord=document.getElementById("searchWord").value;
+				adminReservList(1);
+			}
 			else {
 				alert("목록을 선택하세요");
 			}
@@ -210,8 +215,8 @@
 		function adminReviewList(page) {
 			tag="review";
 			document.getElementById("page-box").innerHTML="";
-			/* let users = document.getElementById("users"); */
-			users.innerHTML = `<ul id='review-box'><li>
+			let review_box = document.getElementById("users");
+			review_box.innerHTML = `<ul id='review-box'><li>
 				reviewno
 				</li>
 				<li>
@@ -256,29 +261,33 @@
 					},
 					body:JSON.stringify(params)
 				})
-				.then(response => {
-					if(!response.ok){
-						throw new Error('Network response was not ok');
-					}
-					return response.json();
-				})
+				.then(response => response.json())
 				.then(data => {
-					//console.log(data);
+					console.log(data);
 					for(var i=0;i<data.rv.length;i++) {
-						users.innerHTML += "<ul id='review-box'><li>" + data.rv[i].reviewno + "</li><li>" + data.rv[i].subject + "</li><li>" + data.rv[i].content.substring(0,10) + "</li><li>" + data.rv[i].roomno + "</li><li>" + data.rv[i].rating + "</li><li>" + data.rv[i].userid.substring(0,10) + "</li><li>" + data.rv[i].writedate} + "</li><li><a href='#' onclick='deleteReview(" + data.rv[i].reviewno + ")'>삭제</a></li></ul>";
+						users.innerHTML += "<ul id='review-box'><li>" + data.rv[i].reviewno + "</li><li>" + data.rv[i].subject + "</li><li>" + data.rv[i].content.substring(0,10) + "</li><li>" + data.rv[i].roomno + "</li><li>" + data.rv[i].rating + "</li><li>" + data.rv[i].userid.substring(0,10) + "</li><li>" + data.rv[i].writedate + "</li><li><a href='#' onclick="+`deleteReview("` + data.rv[i].reviewno + `")` + ">삭제</a></li></ul>";
 					}
-					for(var i=data.pvo.startPageNum; i<data.pvo.startPageNum+data.pvo.onePageCount;i++) {
+					for(var i=data.pvo.startPageNum; i<data.pvo.startPageNum+data.pvo.onePageCount; i++) {
 						if(i==data.pvo.startPageNum) {
-							if(data.pvo.nowPage == 1) document.getElementById("page-box").innerHTML += `<li>◀</li>`;
-							else document.getElementById("page-box").innerHTML += `<li onclick="adminReviewList(`+(data.pvo.nowPage-1)+`)">◀</li>`;
+							if(data.pvo.nowPage == 1) {
+								document.getElementById("page-box").innerHTML += `<li>◀</li>`;
+							} else {
+							document.getElementById("page-box").innerHTML += `<li onclick="adminReviewList(`+(data.pvo.nowPage-1)+`)">◀</li>`;
+							}
 						}
 						if(i<=data.pvo.totalPage) {
-							if(i==data.pvo.nowPage)document.getElementById("page-box").innerHTML+=`<li style='color:blue' onclick="adminReviewList(`+i+`)">`+i+`</li>`;
-							else document.getElementById("page-box").innerHTML+=`<li onclick="adminReviewList(`+i+`)">`+i+`</li>`;
+							if(i==data.pvo.nowPage) {
+								document.getElementById("page-box").innerHTML+=`<li style='color:blue' onclick="adminReviewList(`+i+`)">`+i+`</li>`;
+							} else {
+								document.getElementById("page-box").innerHTML+=`<li onclick="adminReviewList(`+i+`)">`+i+`</li>`;
+							}	
 						}
 					}
-					if(data.pvo.nowPage == data.pvo.totalPage) document.getElementById("page-box").innerHTML += `<li>▶</li>`;
-					else document.getElementById("page-box").innerHTML += `<li onclick="adminReviewList(`+(data.pvo.nowPage+1)+`)">▶</li>`;
+					if(data.pvo.nowPage == data.pvo.totalPage) {
+						document.getElementById("page-box").innerHTML += `<li>▶</li>`;
+					} else {
+						document.getElementById("page-box").innerHTML += `<li onclick="adminReviewList(`+(data.pvo.nowPage+1)+`)">▶</li>`;
+					}
 				}).catch(err=> {
 					console.log(err);
 				});

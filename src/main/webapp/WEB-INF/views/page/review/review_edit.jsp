@@ -119,13 +119,13 @@ const handler = {
 				<input type="hidden" name="reviewno" value="${vo.reviewno }"/>
 				<div id="write-title">Review Edit</div>
 				<div id="write-username">
-					<div>${vo.userid }</div>
+					<div>작성자: ${vo.userid }</div>
 				</div>
 				<div id="write-writedate-hit">
-					<div id="form-writedate">${vo.writedate }</div>
+					<div id="form-writedate">작성일: ${vo.writedate }</div>
 				</div>
 				<div id="write-roomno-rating">
-					<div id="form-roomno">호수<input type="text" name="roomno" id="roomno" value="${vo.roomno }" readonly></div>
+					<div id="form-roomno">호수: ${vo.roomno }</div>
 					<div id="form-rating">평점&nbsp;&nbsp;
 					<input type="hidden" name="rating" id="rating" value="${vo.rating }"></div>
 					<p style="padding:0; margin:0;">
@@ -146,7 +146,7 @@ const handler = {
 				</div>
 				-->
 				<div id="form-subject">
-					<input type="text" name="subject" id="write-subject" value="test" placeholder="제목을 입력해 주세요">
+					<input type="text" name="subject" id="write-subject" value="${vo.subject }" placeholder="제목을 입력해 주세요">
 				</div>
 				<div id="alert-subject"></div>
 				<textarea name="content" id="write-content">${vo.content }</textarea><div id="alert-content"></div>

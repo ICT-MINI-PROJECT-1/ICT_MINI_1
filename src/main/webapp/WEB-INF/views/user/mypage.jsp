@@ -114,7 +114,7 @@
 						아르데코
 					</c:if>
 					<c:if test="${data.roomconcept=='asian'}">
-						<a href="#" onclick="moveToRoom('asain')">${data.roomno}</a>
+						<a href="#" onclick="moveToRoom('asian')">${data.roomno}</a>
 					</li>
 					<li>
 						동양
@@ -227,7 +227,7 @@
 			                    let html = "";
 			                    $.each(data, function(index, review) {
 			                        html += "<ul class='review-ul'>";
-			                        html += "<li><a href='${pageContext.request.contextPath}/page/review'>" + review.reviewno + "</a></li>";
+			                        html += `<li><a href='#' onclick="goReview('`+review.subject+`')">`+review.reviewno+`</a></li>`;
 			                        html += "<li>" + review.roomno + "</li>";
 			                        html += "<li>" + review.subject + "</li>";
 			                        html += "<li>" + review.writedate.substring(0, 10) + "</li>";

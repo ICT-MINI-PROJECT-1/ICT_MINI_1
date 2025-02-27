@@ -17,6 +17,7 @@ import com.sc.main.service.UserService;
 import com.sc.main.vo.PagingVO;
 import com.sc.main.vo.ReservPagingVO;
 import com.sc.main.vo.ReservationVO;
+import com.sc.main.vo.ReviewPagingVO;
 import com.sc.main.vo.ReviewVO;
 import com.sc.main.vo.UserPagingVO;
 import com.sc.main.vo.UserVO;
@@ -62,6 +63,19 @@ public class AdminController {
 		return rpv;
 	}
 	
+	@PostMapping("/review")
+	@ResponseBody
+	public ReviewPagingVO showReview(@RequestBody PagingVO pVO) {
+		pVO.setOnePageRecord(10);
+		pVO.setNowPage(pVO.getNowPage());
+		pVO.setTotalRecord(service.reviewTotalRecord(pVO));
+		List<ReviewVO> list = service.renderReviewList(pVO);
+		ReviewPagingVO rpv = new ReviewPagingVO();
+		rpv.setPvo(pVO);
+		rpv.setRv(list);
+		return rpv;
+	}
+	
 	@PostMapping("/delete/user")
 	@ResponseBody
 	public String deleteUser(@RequestBody String userid) {
@@ -76,15 +90,11 @@ public class AdminController {
 		return "deleteOk";
 	}
 	
-	@PostMapping("/review")
+	@PostMapping("/delete/review")
 	@ResponseBody
-	public List<ReviewVO> showReview(@RequestBody PagingVO pVO) {
-		pVO.setOnePageRecord(10);
-		pVO.setNowPage(pVO.getNowPage());
-		pVO.setTotalRecord(service.reviewTotalRecord(pVO));
-		List<ReviewVO> list = service.renderReviewList(pVO);
-		ReviewVO rv = new ReviewVO();
-		return list;
+	public String deleteReview(@RequestBody String reviewno) {
+		review_service.reviewDelete(Integer.parseInt(reviewno));
+		return "deleteOk";
 	}
 }
 

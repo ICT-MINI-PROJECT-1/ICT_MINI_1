@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("fade").style.opacity=1;
         footer = document.getElementsByClassName("footer")[0];
         if(where=="review") footer.style.opacity=1;
-        else if(where=="dining") footer.style.display='none';
+        else if(where=="dining_main") footer.style.display='none';
         else footer.style.opacity=0;
         settingMenu();
     });
@@ -156,6 +156,11 @@ function settingMenu() {
 	if(where=="login") {
 		contents.innerHTML=`
 			<div id="contents-title">Login</div>
+			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
+    			<li>ID: 7~15자 입력</li>
+    			<li>PW: 8~15자 문자, 특수문자, 숫자 조합입력</li>
+    			<li>로그인 후 예약/리뷰 작성 등이 가능합니다.</li>
+    		</ul>
 		`;
 	}
 	if(where=="signup") {
@@ -168,7 +173,7 @@ function settingMenu() {
     		</ul>
 		`;
 	}
-	if(where=="dining") {
+	if(where=="dining-main" || where=="dining-list") {
 		contents.innerHTML=`
 			<div id="contents-title">Dining</div>
 			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
@@ -182,6 +187,15 @@ function settingMenu() {
 	if(where=="facility") {
 		contents.innerHTML=`
 			<div id="contents-title">Facility</div>
+			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
+				<li><b style="line-height:30px;">호텔 내 부대시설을 확인 가능합니다.</b></li>
+    			<li>Spa & Sauna</li>
+    			<li>Pool</li>
+    			<li>Gym</li>
+    			<li>Restaurent</li>
+    			<li>Bar</li>
+    			<li>Laundry</li>
+    		</ul>
 		`;
 	}
 	if(where=="reservation") {

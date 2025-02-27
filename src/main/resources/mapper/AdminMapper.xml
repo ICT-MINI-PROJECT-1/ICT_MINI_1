@@ -17,14 +17,14 @@
 		<if test="searchWord!=null and searchWord!=''">
 			where ${searchKey} like '%${searchWord}%'
 		</if>
-		limit ${onePageRecord} offset ${offset}
+		order by reservno desc limit ${onePageRecord} offset ${offset}
 	</select>
 	<select id="renderReviewList" resultType="com.sc.main.vo.ReviewVO">
 		select * from review
 		<if test="searchWord!=null and searchWord!=''">
 			where ${searchKey} like '%${searchWord}%'
 		</if>
-		limit ${onePageRecord} offset ${offset}
+		order by reviewno desc limit ${onePageRecord} offset ${offset}
 	</select>
 	<!--
 	<select id="reviewDetail" resultType="com.sc.main.vo.ReviewVO">
@@ -61,3 +61,4 @@
 		</if>
 	</select>
 </mapper>
+

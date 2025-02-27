@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 	document.addEventListener('keydown', function(event) {
-	  if (event.keyCode === 13) {
+	  if (event.keyCode === 13 && event.target.id != "write-content" && event.target.id != "searchWord") {
 	    event.preventDefault();
 	  };
 	}, true);
@@ -95,6 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 });
 
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode == 27) {
+        closeModal();
+    }
+});
+
 var review_result = 0;
 var subjectOk = 0;
 var contentOk = 0;
@@ -165,7 +171,7 @@ window.addEventListener("wheel", (e) => {
 				review_wrap.style.opacity= 0;
 				setTimeout(function() {
 				  	review_moving=0;
-				}, 700);
+				}, 500);
 				review_state=0;
 			}
 		} else { //scroll down
@@ -177,9 +183,14 @@ window.addEventListener("wheel", (e) => {
 				  	let f = document.createElement('form');
 					f.setAttribute('method','post');
 					f.setAttribute('action','review');
+						obj = document.createElement('input');
+						obj.setAttribute('type','hidden');
+						obj.setAttribute('name','test');
+						obj.setAttribute('value','test');
+						f.appendChild(obj);
 					document.body.appendChild(f);
 					f.submit();
-				}, 700);
+				}, 500);
 				review_state=1;
 			}
 		}
@@ -391,6 +402,11 @@ function postPaging(now_page,search_word,search_key,search_hr, search_concept){
 		obj.setAttribute('value',search_concept);
 		f.appendChild(obj);
 	}
+	obj = document.createElement('input');
+	obj.setAttribute('type','hidden');
+	obj.setAttribute('name','test');
+	obj.setAttribute('value','post');
+	f.appendChild(obj);
 	f.submit();
 }
 
