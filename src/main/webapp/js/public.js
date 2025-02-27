@@ -173,7 +173,7 @@ function settingMenu() {
     		</ul>
 		`;
 	}
-	if(where=="dining") {
+	if(where=="dining_main" && where=="dining_list") {
 		contents.innerHTML=`
 			<div id="contents-title">Dining</div>
 			<ul id="contents-list" style="font-family: 'Gowun Batang', serif;">
