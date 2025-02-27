@@ -38,6 +38,9 @@
 			</otherwise>
 		</choose>
 		<choose>
+			<when test="searchHR==null or searchHR==''">
+				order by reviewno desc
+			</when>
 			<when test="searchHR=='hit'">
 				order by hit desc
 			</when>

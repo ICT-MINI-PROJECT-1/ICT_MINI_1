@@ -91,7 +91,6 @@ public class PageController {
 		mav.addObject("imgList", img_list);
 		
 		mav.setViewName("page/review/review_main");
-		mav.setViewName("page/review/review_main");
 		return mav;
 	}
 }	
