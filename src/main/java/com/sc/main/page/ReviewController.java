@@ -159,13 +159,9 @@ public class ReviewController {
 	public ModelAndView reviewEdit(ReviewVO vo, ReviewImgVO imgVO, MultipartFile[] mf, HttpSession session) {
 		mav = new ModelAndView();
 		int reviewno = service.reviewImage((String)session.getAttribute("loginId"));
-		//�뾽濡쒕뱶�븳 �궗吏� �뙆�씪紐� 遺덈윭���빞�븿
 		String path = session.getServletContext().getRealPath("/uploadfile/"+Integer.toString(reviewno));
 
-		ArrayList<ReviewImgVO> orgVO = service.reviewImageSelect(vo.getReviewno()); //�뾽�뜲�씠�듃�쟾 �젅肄붾뱶 - �뙆�씪 �궘�젣�떆 DB�뿉 ���옣�맂 �뙆�씪紐낆씠 �븘�슂�븿
-		//泥⑤��맂 �뙆�씪�씠 �엳�쓣 �븣 - �젣紐�, 湲��궡�슜, �뙆�씪紐� �닔�젙
-		//�뙆�씪�뾽濡쒕뱶 �빐�빞�븿.
-		//湲곗〈 �뙆�씪 �궘�젣 �빐�빞�븿.
+		ArrayList<ReviewImgVO> orgVO = service.reviewImageSelect(vo.getReviewno()); //�뾽�뜲�씠�듃�쟾 �젅肄붾뱶 - �뙆�씪 �궘�젣�떆 DB�뿉 ���옣�맂 �뙆�씪紐낆씠 �븘�슂�븿.
 		String orgFilename="";
 		int flag=0;
 		int over;

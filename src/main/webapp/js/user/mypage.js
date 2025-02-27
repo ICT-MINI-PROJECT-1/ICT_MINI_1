@@ -57,3 +57,24 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('mypage-nav element not found');
     }
 });
+
+function goReview(reviewno){
+	let f = document.createElement('form');
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', '/page/review');
+    document.body.appendChild(f);
+	
+	let obj;
+    obj = document.createElement('input');
+    obj.setAttribute('type', 'hidden');
+    obj.setAttribute('name', 'searchWord');
+    obj.setAttribute('value', reviewno);
+	f.appendChild(obj);
+	
+	obj = document.createElement('input');
+	obj.setAttribute('type', 'hidden');
+    obj.setAttribute('name', 'searchKey');
+    obj.setAttribute('value', 'subject');
+	f.appendChild(obj);
+    f.submit();
+}
