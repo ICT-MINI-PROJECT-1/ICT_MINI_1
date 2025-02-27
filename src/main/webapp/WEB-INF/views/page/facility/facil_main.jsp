@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <style>
-#Sauna, #Pool, #PoolSize{
+#Sauna, #Pool, #PoolSize {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -130,6 +130,11 @@
     width: 100%;
     transition: transform 0.3s ease;
     transform: scale(1.1);
+}
+
+#LaundryText, #BarText {
+	font-family: 'Gowun Batang';
+	font-size: 16px;
 }
 
 @media (max-width:1100px){
@@ -306,7 +311,10 @@
 		<div id="Bar">
 		    <img src="../img/page/facility/BarMain.jpg"/ id="linkBar">
 		    <div id="BarText">
-		        <strong Class="text">Lounge & Bar</strong>
+		        <strong Class="text">Lounge & Bar</strong><br/><br/>
+		        도시의 번잡함 속에서도 한껏 여유를 즐길 수 있는 곳,<br/>
+				이곳은 우아함과 편안함이 공존하는 럭셔리한 라운지바로<br/>
+				일상 속의 피로를 씻어낼 수 있는 완벽한 장소입니다.<br/>
 		    </div>
 		</div>
 		
@@ -319,7 +327,10 @@
 		<div id="Laundry">
 			<img src="../img/page/facility/Laundry.jpg"/ id="linkLaundry">
 			<div id="LaundryText">
-				<strong Class="text">Laundry</strong>
+				<strong Class="text">Laundry</strong><br/><br/>
+				고객 여러분의 편안하고 위생적인 숙박 경험을 위해,<br/>
+				저희는 최상의 세탁 서비스를 제공하고 있습니다.<br/>
+				고품질 세제를 사용하여, 모든 의류를 정성스럽게 관리합니다.<br/>
 			</div>
 		</div>
 		<script>

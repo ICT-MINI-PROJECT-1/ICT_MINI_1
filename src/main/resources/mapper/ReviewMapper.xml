@@ -7,26 +7,36 @@
 <mapper namespace="com.sc.main.dao.ReviewDAO">
 	<select id="reviewSelect" resultType="com.sc.main.vo.ReviewVO">
 		select * from review 
-		<if test="searchWord!=null and searchWord!=''">
-			<choose>
-				<when test="searchKey!='total'"><!-- 전체검색이 아닐 때 -->
-					where ${searchKey} like '%${searchWord}%'
-				</when>
-				<otherwise><!-- 전체검색 -->
-					where (subject like '%${searchWord}%'
-					or content like '%${searchWord}%'
-					or roomno like '%${searchWord}%')
-				</otherwise>
-			</choose>
-			<choose>
-			<when test="searchConcept==0">
+		<choose>
+			<when test="searchWord!=null and searchWord!=''">
+				<choose>
+					<when test="searchKey!='total'"><!-- 전체검색이 아닐 때 -->
+						where ${searchKey} like '%${searchWord}%'
+					</when>
+					<otherwise><!-- 전체검색 -->
+						where (subject like '%${searchWord}%'
+						or content like '%${searchWord}%'
+						or roomno like '%${searchWord}%')
+					</otherwise>
+				</choose>
+				<choose>
+					<when test="searchConcept==0">
+					</when>
+					<otherwise>
+						<![CDATA[and roomno > ${searchConcept}-100 and roomno < ${searchConcept}]]>
+					</otherwise>
+				</choose>
 			</when>
 			<otherwise>
-				<![CDATA[and roomno > ${searchConcept}-100 and roomno < ${searchConcept}]]>
+				<choose>
+					<when test="searchConcept==0">
+					</when>
+					<otherwise>
+						<![CDATA[where roomno > ${searchConcept}-100 and roomno < ${searchConcept}]]>
+					</otherwise>
+				</choose>
 			</otherwise>
-			</choose>	
-		</if>
-
+		</choose>
 		<choose>
 			<when test="searchHR=='hit'">
 				order by hit desc
@@ -66,18 +76,36 @@
 	</delete>
 	<select id="reviewTotalRecord" resultType="int">
 		select count(reviewno) cnt from review
-		<if test="searchWord!=null and searchWord!=''">
-			<choose>
-				<when test="searchKey!='total'">
-					where ${searchKey} like '%${searchWord}%'
-				</when>
-				<otherwise>
-					where subject like '%${searchWord}%'
-					or content like '%${searchWord}%'
-					or roomno like '%${searchWord}%'
-				</otherwise>
-			</choose>
-		</if>
+		<choose>
+			<when test="searchWord!=null and searchWord!=''">
+				<choose>
+					<when test="searchKey!='total'"><!-- 전체검색이 아닐 때 -->
+						where ${searchKey} like '%${searchWord}%'
+					</when>
+					<otherwise><!-- 전체검색 -->
+						where (subject like '%${searchWord}%'
+						or content like '%${searchWord}%'
+						or roomno like '%${searchWord}%')
+					</otherwise>
+				</choose>
+				<choose>
+					<when test="searchConcept==0">
+					</when>
+					<otherwise>
+						<![CDATA[and roomno > ${searchConcept}-100 and roomno < ${searchConcept}]]>
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>
+				<choose>
+					<when test="searchConcept==0">
+					</when>
+					<otherwise>
+						<![CDATA[where roomno > ${searchConcept}-100 and roomno < ${searchConcept}]]>
+					</otherwise>
+				</choose>
+			</otherwise>
+		</choose>
 	</select>
 	<select id="reviewImageSelect" resultType="com.sc.main.vo.ReviewImgVO">
 		select * from reviewimg where reviewno=${reviewno}
@@ -95,4 +123,7 @@
 		select roomno,reservdate,reservno from reservation where userid=#{param1} and now() > DATE_ADD(reservenddate, INTERVAL 1 DAY)
 		and not reservno = any(select reservno from review where userid=#{param1}) order by reservdate desc;
 	</select>
+	<select id="reviewSelectByUserid" resultType="com.sc.main.vo.ReviewVO">
+        SELECT * FROM review WHERE userid = #{userid}
+    </select>
 </mapper>

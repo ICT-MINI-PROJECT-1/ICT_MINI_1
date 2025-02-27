@@ -5,10 +5,11 @@
 <script>
 	document.addEventListener('DOMContentLoaded', () => {
 		const search_form = document.getElementById("write-srch");
-		search_form.addEventListener("submit", (event) => {
-			  event.preventDefault();
-			  postSearching();
-		});
+		if(search_form)
+			search_form.addEventListener("submit", (event) => {
+				  event.preventDefault();
+				  postSearching();
+			});
 	});
 </script>
 <div id="fade">
@@ -19,6 +20,11 @@
 		<span>REVIEW</span>
 	</div>
 	</c:if>
+	<div id="review-edit-modal">
+		<div id="review-edit-exit" onclick="reviewDelete(2)">X</div>
+		<p>정말 글을 삭제하실건가요?</p>
+		<button class="review-submit" id="review-edit-button" onclick="reviewDelete(1)">삭제하기</button>
+	</div>
 	<div class="review-wrap">
 		<c:if test="${pVO != null}">
 		<script>
@@ -32,35 +38,85 @@
 			<ul id="review-select-sort">
 				<li id="sort">정렬</li>
 				<c:if test="${pVO.searchHR=='hit'}">
-					<li style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
-					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
+					<li id="sort-hit" style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
+					<li id="sort-rating"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
 				</c:if>
 				<c:if test="${pVO.searchHR=='rating'}">
-					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
-					<li style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
+					<li id="sort-hit"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
+					<li id="sort-rating" style="font-weight:bold;"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
 				</c:if>
 				<c:if test="${pVO.searchHR==null || pVO.searchHR==''}">
-					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
-					<li><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
+					<li id="sort-hit"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','hit','${pVO.searchConcept }')">조회순</a></li>
+					<li id="sort-rating"><a href="#" onclick="postPaging('${pVO.nowPage}','${pVO.searchWord }','${pVO.searchKey }','rating','${pVO.searchConcept }')">평점순</a></li>
 				</c:if>
 			</ul>
 			<!-- 검색창 -->
 			<div class="review-search">
 				<form id="write-srch">
 					<select id="searchConcept" name="searchConcept">
-						<option value="0">전체 컨셉</option>
-						<option value="309">Contemporary Art</option>
-						<option value="409">Art Nouveau</option>
-						<option value="509">Art Déco</option>
-						<option value="609">Asian</option>
+						<c:if test="${pVO.searchConcept == 0}">
+							<option value="0" selected>전체 컨셉</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept != 0}">
+							<option value="0">전체 컨셉</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept != 309}">
+							<option value="309">Contemporary Art</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept == 309}">
+							<option value="309" selected>Contemporary Art</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept == 409}">
+							<option value="409" selected>Art Nouveau</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept != 409}">
+							<option value="409">Art Nouveau</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept != 509}">
+							<option value="509">Art Déco</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept == 509}">
+							<option value="509" selected>Art Déco</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept == 609}">
+							<option value="609" selected>Asian</option>
+						</c:if>
+						<c:if test="${pVO.searchConcept != 609}">
+							<option value="609">Asian</option>
+						</c:if>
 					</select>
 					<select id="searchKey" name="searchKey">
-						<option value="total">전체 검색</option>
-						<option value="subject">제목</option>
-						<option value="content">내용</option>
-						<option value="roomno">호수</option>
+						<c:if test="${pVO.searchKey == 'total'}">
+							<option value="total" selected>전체 검색</option>
+						</c:if>
+						<c:if test="${pVO.searchKey != 'total'}">
+							<option value="total">전체 검색</option>
+						</c:if>
+						<c:if test="${pVO.searchKey != 'subject'}">
+							<option value="subject">제목</option>
+						</c:if>
+						<c:if test="${pVO.searchKey == 'subject'}">
+							<option value="subject" selected>제목</option>
+						</c:if>
+						<c:if test="${pVO.searchKey != 'content'}">
+							<option value="content">내용</option>
+						</c:if>
+						<c:if test="${pVO.searchKey == 'content'}">
+							<option value="content" selected>내용</option>
+						</c:if>
+						<c:if test="${pVO.searchKey != 'roomno'}">
+							<option value="roomno">호수</option>
+						</c:if>
+						<c:if test="${pVO.searchKey == 'roomno'}">
+							<option value="roomno" selected>호수</option>
+						</c:if>
 					</select>
-					<input type="text" id="searchWord" name="searchWord">
+					<c:if test="${pVO.searchWord!=null}">
+						<input type="text" id="searchWord" name="searchWord" value="${pVO.searchWord }">
+					</c:if>
+					<c:if test="${pVO.searchWord==null}">
+						<input type="text" id="searchWord" name="searchWord" value="">
+					</c:if>
 					<input type="button" onclick="postSearching()" value="검색" id="review-search-btn">
 				</form>
 			</div>
@@ -74,7 +130,9 @@
 					</c:if>
 					<ul class="review-list-title">
 						<li onclick="openModal('${list.get(i).reviewno}','${list.get(i).userid }','${loginId }', '${list.get(i).roomno }')">${list.get(i).subject }</li>
-						<li>${list.get(i).rating }</li>
+						<li><div class="review-star-box">
+					<div class="review-star-fill" style="width:${list.get(i).rating*20}%"></div>
+				</div></li>
 					</ul>
 				</div>
 			</c:forEach>
@@ -124,7 +182,7 @@
 	</div>
 	<!-- 모달팝업 -->
 	<div id="review-list-modal">
-		<p id="modal-exit" onclick="closeModal()">X</p>
+		<span id="modal-exit" onclick="closeModal()">X</span>
 		<div id="modal-grid">
 			<div id="modal-img">
 				<div id="modal-img-main"></div>
@@ -142,9 +200,9 @@
 					<li id="modal-hit"></li>
 				</ul>
 				<ul>
-					<li>호수</li>
+					<li id="modal-rating-style">호수</li>
 					<li id="modal-roomno"></li>
-					<li>평점</li>
+					<li id="modal-rating-style">평점</li>
 					<li id="modal-rating"></li>
 				</ul>
 				<ul>
@@ -155,8 +213,8 @@
 				</ul>
 				<div id="modal-content"></div>
 				<div id="btn">
-					<input type="button" value="수정" onclick="reviewEdit()">
-					<input type="button" value="삭제" onclick="reviewDelete()">
+					<input type="button" id="editBtn" value="수정" onclick="reviewEdit()">
+					<input type="button" id="delBtn" value="삭제" onclick="reviewDelete(0)">
 				</div>
 			</div>
 		</div>

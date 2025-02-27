@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sc.main.service.ReservService;
 import com.sc.main.service.ReviewService;
 import com.sc.main.service.RoomService;
 import com.sc.main.vo.ModalReviewVO;
+import com.sc.main.vo.PagingVO;
 import com.sc.main.vo.ReviewImgVO;
 import com.sc.main.vo.ReviewVO;
 
@@ -36,7 +38,7 @@ public class ReviewController {
 	@Inject
 	ReservService reserv_service;
 	
-	//¸ğ´ŞÆË¾÷(ºñµ¿±â)
+	//ï§â‘¤ë––ï¿½ë™˜ï¿½ë¾½(é®ê¾¨ë£æ¹²ï¿½)
 	@PostMapping("/modalReview")
 	@ResponseBody
 	//public ReviewVO modalReview(@RequestBody String reviewno, String roomno) {
@@ -47,7 +49,7 @@ public class ReviewController {
 		int reviewno = Integer.parseInt(requestData.get("reviewno").toString());
 		int roomno = Integer.parseInt(requestData.get("roomno").toString());
 		
-		//Á¶È¸¼ö Áõ°¡
+		//è­°ê³ ì‰¶ï¿½ë‹” ï§ì•·ï¿½
 		service.reviewHitCount(reviewno);
 		ModalReviewVO mrvo= new ModalReviewVO();
 		mrvo.setVo(service.reviewDetail(reviewno));
@@ -55,7 +57,7 @@ public class ReviewController {
 		return mrvo;
 	}
 	
-	//¸®ºä ÀÛ¼ºÆû
+	//ç”±Ñ‰ëŸ­ ï¿½ì˜‰ï¿½ê½¦ï¿½ë¤Œ
 	@GetMapping("/write")
 	public ModelAndView reviewWrite(HttpServletRequest request, HttpSession session) {
 		String userid=(String) session.getAttribute("loginId");
@@ -66,15 +68,19 @@ public class ReviewController {
 		return mav;
 	}
 
-	//¸®ºä ÀÛ¼º(DB), ÆÄÀÏ ¾÷·Îµå
+	//ç”±Ñ‰ëŸ­ ï¿½ì˜‰ï¿½ê½¦(DB), ï¿½ë™†ï¿½ì”ª ï¿½ë¾½æ¿¡ì’•ë±¶
 	@PostMapping("/writeOk")
-	public ModelAndView reviewWriteOk(ReviewVO vo, HttpServletRequest request, ReviewImgVO imgVO, MultipartFile[] mf) {
+	public ModelAndView reviewWriteOk(ReviewVO vo, HttpServletRequest request, ReviewImgVO imgVO, MultipartFile[] mf, RedirectAttributes redirect) {
 		HttpSession session = request.getSession();
 		mav = new ModelAndView();
 		String userid = (String)session.getAttribute("loginId");
+		if(vo.getReservno()==-1) {
+			redirect.addAttribute("msg","rir");
+			mav.setViewName("redirect:/notice");
+			return mav;
+		}
 		vo.setUserid(userid);
 		vo.setRoomno(reserv_service.selectRoomnoByReservNo(vo.getReservno()));
-		
 		int result = service.reviewInsert(vo);
 		int reviewno = service.reviewImage(userid);
 		
@@ -90,18 +96,18 @@ public class ReviewController {
 				f.transferTo(file);
 			}catch(Exception e) {e.printStackTrace();}
 			
-			imgVO.setFilename(orgFilename); //Á¦¸ñ, ±Û³»¿ë, ±Û¾´ÀÌ, ÆÄÀÏ¸í
+			imgVO.setFilename(orgFilename); //ï¿½ì £ï§ï¿½, æ¹²ï¿½ï¿½ê¶¡ï¿½ìŠœ, æ¹²ï¿½ï¿½ë²–ï¿½ì” , ï¿½ë™†ï¿½ì”ªï§ï¿½
 			
 			int imgResult = 0;
 			
 			try {
 				imgVO.setReviewno(reviewno);
-				//·¹ÄÚµå Ãß°¡
-				//vo.setUserid(null);	//¿À·ùÅ×½ºÆ® : ÀÏºÎ·¯ ¿À·ù³»·Á°í not null Ç×¸ñÀ» null·Î ¼ÂÆÃÇÔ.
+				//ï¿½ì …è‚„ë¶¾ë±¶ ç•°ë¶½ï¿½
+				//vo.setUserid(null);	//ï¿½ì‚¤ç‘œì„‘ë€’ï¿½ë’ªï¿½ë“ƒ : ï¿½ì”ªéºï¿½ï¿½ìœ­ ï¿½ì‚¤ç‘œì„ê¶¡ï¿½ì ®æ€¨ï¿½ not null ï¿½ë¹†ï§â‘¹ì“£ nullæ¿¡ï¿½ ï¿½ë€‘ï¿½ë˜¿ï¿½ë¸¿.
 				imgResult = service.imgInsert(imgVO);	
-			}catch(Exception e) { //insertÇÏ´Ù°¡ ½ÇÆĞÇÏ¸é ÆÄÀÏÀ» »èÁ¦ÇØ¾ßÇÔ
+			}catch(Exception e) { //insertï¿½ë¸¯ï¿½ë–åª›ï¿½ ï¿½ë–ï¿½ë™£ï¿½ë¸¯ï§ï¿½ ï¿½ë™†ï¿½ì”ªï¿½ì“£ ï¿½ê¶˜ï¿½ì £ï¿½ë¹ï¿½ë¹ï¿½ë¸¿
 				e.printStackTrace();
-				//·¹ÄÚµå°¡ »ı¼ºµÇÁö ¾Ê¾Æ ÀÌ¹Ì ¾÷·Îµå µÇ¾îÀÖ´Â ÆÄÀÏÀ» »èÁ¦ÇØ¾ßÇÑ´Ù.
+				//ï¿½ì …è‚„ë¶¾ë±¶åª›ï¿½ ï¿½ê¹®ï¿½ê½¦ï¿½ë¦ºï§ï¿½ ï¿½ë¸¡ï¿½ë¸˜ ï¿½ì” èª˜ï¿½ ï¿½ë¾½æ¿¡ì’•ë±¶ ï¿½ë¦ºï¿½ë¼±ï¿½ì—³ï¿½ë’— ï¿½ë™†ï¿½ì”ªï¿½ì“£ ï¿½ê¶˜ï¿½ì £ï¿½ë¹ï¿½ë¹ï¿½ë¸³ï¿½ë–.
 				File fi = new File(path, orgFilename);
 				fi.delete();
 			}
@@ -115,20 +121,20 @@ public class ReviewController {
 		return mav;
 	}
 	
-	//ÆÄÀÏ¸í º¯°æ
+	//ï¿½ë™†ï¿½ì”ªï§ï¿½ è¹‚ï¿½å¯ƒï¿½
 	public String fileRename(File file, String path, String orgFilename) {
-		//file.exists() : ÆÄÀÏÀÌ Á¸ÀçÇÏ¸é true, Á¸ÀçÇÏÁö ¾ÊÀ¸¸é false
-		if(file.exists()) {//ÀÖÀ¸¸é »õ·Î¿î ÆÄÀÏ¸íÀ» ¸¸µé°í
+		//file.exists() : ï¿½ë™†ï¿½ì”ªï¿½ì”  è­°ëŒì˜±ï¿½ë¸¯ï§ï¿½ true, è­°ëŒì˜±ï¿½ë¸¯ï§ï¿½ ï¿½ë¸¡ï¿½ì‘ï§ï¿½ false
+		if(file.exists()) {//ï¿½ì—³ï¿½ì‘ï§ï¿½ ï¿½ê¹‰æ¿¡ì’–ìŠ« ï¿½ë™†ï¿½ì”ªï§ë‚†ì“£ ï§ëš®ë±¾æ€¨ï¿½
 			for(int i=1; ;i++) {
-				//ÆÄÀÏ¸í°ú È®ÀåÀÚ ±¸ºĞ
+				//ï¿½ë™†ï¿½ì”ªï§ë‚ƒë‚µ ï¿½ì†—ï¿½ì˜£ï¿½ì˜„ æ´Ñ‰í…‡
 				int point = orgFilename.lastIndexOf(".");
-				String f = orgFilename.substring(0, point);	//Æ÷ÀÎÆ® ¾Õ±îÁö ±¸ÇØÁü
-				String ext = orgFilename.substring(point+1);	//Æ÷ÀÎÆ® µÚºÎÅÍ ³¡±îÁö ±¸ÇØÁü
+				String f = orgFilename.substring(0, point);	//ï¿½ë£·ï¿½ì”¤ï¿½ë“ƒ ï¿½ë¸µæºëš¯ï¿½ æ´Ñ‹ë¹ï§ï¿½
+				String ext = orgFilename.substring(point+1);	//ï¿½ë£·ï¿½ì”¤ï¿½ë“ƒ ï¿½ë®˜éºï¿½ï¿½ê½£ ï¿½ê±¹æºëš¯ï¿½ æ´Ñ‹ë¹ï§ï¿½
 				
-				//»õ·Î¿î ÆÄÀÏ¸í
+				//ï¿½ê¹‰æ¿¡ì’–ìŠ« ï¿½ë™†ï¿½ì”ªï§ï¿½
 				String newFilename = f + " ("+i+")."+ext;//01(1).jpeg
 				file = new File(path, newFilename);
-				if(!file.exists()) {//Á¸ÀçÇÏÁö ¾Ê´Â ÆÄÀÏÀÌ¸é
+				if(!file.exists()) {//è­°ëŒì˜±ï¿½ë¸¯ï§ï¿½ ï¿½ë¸¡ï¿½ë’— ï¿½ë™†ï¿½ì”ªï¿½ì” ï§ï¿½
 					orgFilename = newFilename;
 					break;
 				}
@@ -137,7 +143,7 @@ public class ReviewController {
 		return orgFilename;
 	}
 
-	//¸®ºä ¼öÁ¤Æû
+	//ç”±Ñ‰ëŸ­ ï¿½ë‹”ï¿½ì ™ï¿½ë¤Œ
 	@PostMapping("/edit")
 	public ModelAndView reviewEdit(String reviewno) {
 		mav = new ModelAndView();
@@ -148,18 +154,14 @@ public class ReviewController {
 		return mav;
 	}
 	
-	//¸®ºä ¼öÁ¤(DB)
+	//ç”±Ñ‰ëŸ­ ï¿½ë‹”ï¿½ì ™(DB)
 	@PostMapping("/editOk")
 	public ModelAndView reviewEdit(ReviewVO vo, ReviewImgVO imgVO, MultipartFile[] mf, HttpSession session) {
 		mav = new ModelAndView();
 		int reviewno = service.reviewImage((String)session.getAttribute("loginId"));
-		//¾÷·ÎµåÇÑ »çÁø ÆÄÀÏ¸í ºÒ·¯¿Í¾ßÇÔ
 		String path = session.getServletContext().getRealPath("/uploadfile/"+Integer.toString(reviewno));
 
-		ArrayList<ReviewImgVO> orgVO = service.reviewImageSelect(vo.getReviewno()); //¾÷µ¥ÀÌÆ®Àü ·¹ÄÚµå - ÆÄÀÏ »èÁ¦½Ã DB¿¡ ÀúÀåµÈ ÆÄÀÏ¸íÀÌ ÇÊ¿äÇÔ
-		//Ã·ºÎµÈ ÆÄÀÏÀÌ ÀÖÀ» ¶§ - Á¦¸ñ, ±Û³»¿ë, ÆÄÀÏ¸í ¼öÁ¤
-		//ÆÄÀÏ¾÷·Îµå ÇØ¾ßÇÔ.
-		//±âÁ¸ ÆÄÀÏ »èÁ¦ ÇØ¾ßÇÔ.
+		ArrayList<ReviewImgVO> orgVO = service.reviewImageSelect(vo.getReviewno()); //ï¿½ë¾½ï¿½ëœ²ï¿½ì” ï¿½ë“ƒï¿½ìŸ¾ ï¿½ì …è‚„ë¶¾ë±¶ - ï¿½ë™†ï¿½ì”ª ï¿½ê¶˜ï¿½ì £ï¿½ë–† DBï¿½ë¿‰ ï¿½ï¿½ï¿½ì˜£ï¿½ë§‚ ï¿½ë™†ï¿½ì”ªï§ë‚†ì”  ï¿½ë¸˜ï¿½ìŠ‚ï¿½ë¸¿.
 		String orgFilename="";
 		int flag=0;
 		int over;
@@ -206,24 +208,24 @@ public class ReviewController {
 					if(orgFilename!="") {
 						File file = new File(path, orgFilename);
 						orgFilename = fileRename(file, path, orgFilename);
-						//¾÷·Îµå
+						//ï¿½ë¾½æ¿¡ì’•ë±¶
 						try {
 							file = new File(path, orgFilename);
 							f.transferTo(file);
 						}catch(Exception e) {
-							System.out.println("ÆÄÀÏ ¾÷·Îµå½Ã ¿¡·¯ ->"+e);
+							System.out.println("ï¿½ë™†ï¿½ì”ª ï¿½ë¾½æ¿¡ì’•ë±¶ï¿½ë–† ï¿½ë¿‰ï¿½ìœ­ ->"+e);
 						}
 						orgVO.get(idx).setFilename(orgFilename);
 					}
 					try {
-						//¸®ºäÀÌ¹ÌÁö db¾÷µ¥ÀÌÆ®
+						//ç”±Ñ‰ëŸ­ï¿½ì” èª˜ëª„ï¿½ dbï¿½ë¾½ï¿½ëœ²ï¿½ì” ï¿½ë“ƒ
 						System.out.println(orgVO.get(idx).toString());
-						service.reviewImageUpdate(orgVO.get(idx));	//review ÀÌ¹ÌÁö ¾÷µ¥ÀÌÆ®
+						service.reviewImageUpdate(orgVO.get(idx));	//review ï¿½ì” èª˜ëª„ï¿½ ï¿½ë¾½ï¿½ëœ²ï¿½ì” ï¿½ë“ƒ
 	
-						mav.setViewName("redirect:/page/review");	//db¾÷µ¥ÀÌÆ® ¼º°øÇßÀ» ¶§ review_main.jsp·Î ÀÌµ¿
+						mav.setViewName("redirect:/page/review");	//dbï¿½ë¾½ï¿½ëœ²ï¿½ì” ï¿½ë“ƒ ï¿½ê½¦æ€¨ë“¯ë»½ï¿½ì“£ ï¿½ë¸£ review_main.jspæ¿¡ï¿½ ï¿½ì” ï¿½ë£
 					}catch(Exception e) {
-						//»õ·Î ¾÷·ÎµåÇÑ ÆÄÀÏ »èÁ¦ - ¾÷µ¥ÀÌÆ® ½ÇÆĞ½Ã
-						System.out.println("»õ·Î ¾÷·ÎµåÇÑ ÆÄÀÏ »èÁ¦ ½ÇÆĞ->"+e);
+						//ï¿½ê¹‰æ¿¡ï¿½ ï¿½ë¾½æ¿¡ì’•ë±¶ï¿½ë¸³ ï¿½ë™†ï¿½ì”ª ï¿½ê¶˜ï¿½ì £ - ï¿½ë¾½ï¿½ëœ²ï¿½ì” ï¿½ë“ƒ ï¿½ë–ï¿½ë™£ï¿½ë–†
+						System.out.println("ï¿½ê¹‰æ¿¡ï¿½ ï¿½ë¾½æ¿¡ì’•ë±¶ï¿½ë¸³ ï¿½ë™†ï¿½ì”ª ï¿½ê¶˜ï¿½ì £ ï¿½ë–ï¿½ë™£->"+e);
 						if(imgVO.getFilename()!=null) {
 							File fi = new File(path, imgVO.getFilename());
 							fi.delete();
@@ -251,18 +253,18 @@ public class ReviewController {
 						mf[i].transferTo(file);
 					}catch(Exception e) {e.printStackTrace();}
 					
-					imgVO.setFilename(orgFilename); //Á¦¸ñ, ±Û³»¿ë, ±Û¾´ÀÌ, ÆÄÀÏ¸í
+					imgVO.setFilename(orgFilename); //ï¿½ì £ï§ï¿½, æ¹²ï¿½ï¿½ê¶¡ï¿½ìŠœ, æ¹²ï¿½ï¿½ë²–ï¿½ì” , ï¿½ë™†ï¿½ì”ªï§ï¿½
 					
 					int imgResult = 0;
 					
 					try {
 						imgVO.setReviewno(reviewno);
-						//·¹ÄÚµå Ãß°¡
-						//vo.setUserid(null);	//¿À·ùÅ×½ºÆ® : ÀÏºÎ·¯ ¿À·ù³»·Á°í not null Ç×¸ñÀ» null·Î ¼ÂÆÃÇÔ.
+						//ï¿½ì …è‚„ë¶¾ë±¶ ç•°ë¶½ï¿½
+						//vo.setUserid(null);	//ï¿½ì‚¤ç‘œì„‘ë€’ï¿½ë’ªï¿½ë“ƒ : ï¿½ì”ªéºï¿½ï¿½ìœ­ ï¿½ì‚¤ç‘œì„ê¶¡ï¿½ì ®æ€¨ï¿½ not null ï¿½ë¹†ï§â‘¹ì“£ nullæ¿¡ï¿½ ï¿½ë€‘ï¿½ë˜¿ï¿½ë¸¿.
 						imgResult = service.imgInsert(imgVO);	
-					}catch(Exception e) { //insertÇÏ´Ù°¡ ½ÇÆĞÇÏ¸é ÆÄÀÏÀ» »èÁ¦ÇØ¾ßÇÔ
+					}catch(Exception e) { //insertï¿½ë¸¯ï¿½ë–åª›ï¿½ ï¿½ë–ï¿½ë™£ï¿½ë¸¯ï§ï¿½ ï¿½ë™†ï¿½ì”ªï¿½ì“£ ï¿½ê¶˜ï¿½ì £ï¿½ë¹ï¿½ë¹ï¿½ë¸¿
 						e.printStackTrace();
-						//·¹ÄÚµå°¡ »ı¼ºµÇÁö ¾Ê¾Æ ÀÌ¹Ì ¾÷·Îµå µÇ¾îÀÖ´Â ÆÄÀÏÀ» »èÁ¦ÇØ¾ßÇÑ´Ù.
+						//ï¿½ì …è‚„ë¶¾ë±¶åª›ï¿½ ï¿½ê¹®ï¿½ê½¦ï¿½ë¦ºï§ï¿½ ï¿½ë¸¡ï¿½ë¸˜ ï¿½ì” èª˜ï¿½ ï¿½ë¾½æ¿¡ì’•ë±¶ ï¿½ë¦ºï¿½ë¼±ï¿½ì—³ï¿½ë’— ï¿½ë™†ï¿½ì”ªï¿½ì“£ ï¿½ê¶˜ï¿½ì £ï¿½ë¹ï¿½ë¹ï¿½ë¸³ï¿½ë–.
 						File fi = new File(path, orgFilename);
 						fi.delete();
 					}
@@ -271,12 +273,12 @@ public class ReviewController {
 		} else {
 			mav.setViewName("redirect:/page/review");
 		}
-		int result = service.reviewUpdate(vo);	//review ±Û ¾÷µ¥ÀÌÆ®
+		int result = service.reviewUpdate(vo);	//review æ¹²ï¿½ ï¿½ë¾½ï¿½ëœ²ï¿½ì” ï¿½ë“ƒ
 	
 		return mav;
 	}
 
-	//¸®ºä »èÁ¦
+	//ç”±Ñ‰ëŸ­ ï¿½ê¶˜ï¿½ì £
 	@PostMapping("/delete")
 	public ModelAndView reviewDelete(String reviewno, HttpServletRequest request) {
 		
@@ -286,23 +288,19 @@ public class ReviewController {
 		
 		/////////////////////////////////////////////////////
 		
-		//ÇØ´ç·¹ÄÚµå ¸ÕÀú ¼±ÅÃ
+		//ï¿½ë¹ï¿½ë–¦ï¿½ì …è‚„ë¶¾ë±¶ ç™’ì‡±ï¿½ ï¿½ê½‘ï¿½ê¹®
 		ArrayList<ReviewImgVO> imgVO = service.reviewImageSelect(Integer.parseInt(reviewno));
 		System.out.println("reviewno="+reviewno);
 		System.out.println(imgVO.toString());
-		//ÇØ´ç·¹ÄÚµå Áö¿ì±â
 		for(int t=0;t<imgVO.size();t++) {
 			try {
-				//ÆÄÀÏ»èÁ¦
 				String path = request.getSession().getServletContext().getRealPath("/uploadfile/"+reviewno);
 				File file = new File(path, imgVO.get(t).getFilename());
 				file.delete();
 				File folder = new File(path,"");
 				folder.delete();
-				//±Û¸ñ·Ï
 				mav.setViewName("redirect:/page/review");
 			}catch(Exception e) {
-				System.out.println("¸®ºäÀÌ¹ÌÁö »èÁ¦½Ã ¿¡·¯->"+e);
 				mav.setViewName("page/review/review_result");
 			}
 		}
@@ -314,19 +312,17 @@ public class ReviewController {
 		}
 		
 		return mav;
-		
-
-		
-		/////////////////////////////////////////////////////
-		
-		/*
-		if(result>0) {
-			mav.setViewName("redirect:/page/review");
-		}else {
-			mav.setViewName("page/review/review_result");
-		}
-		
-		return mav;
-		*/
 	}
+
+	@GetMapping("/mypageReview")
+    @ResponseBody
+    public List<ReviewVO> mypageReview(HttpSession session) {
+        String userid = (String) session.getAttribute("loginId");
+        if (userid != null) {
+            PagingVO pVO = new PagingVO();
+            pVO.setUserid(userid);
+            return service.reviewSelectByUserid(pVO);
+        }
+        return null;
+    }
 }

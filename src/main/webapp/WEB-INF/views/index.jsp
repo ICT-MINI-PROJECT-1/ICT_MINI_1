@@ -158,12 +158,22 @@
 					<div class="main-content-box" id="main-content-three">
 						<div id="main-content-title">Destination</div>
 						<div id="main-content-road">
-							지도
+							<div id="daumRoughmapContainer1740538747700" class="root_daum_roughmap root_daum_roughmap_landing" style="width:100%; height:85%;"></div>
+												
+							<script charset="UTF-8" class="daum_roughmap_loader_script" src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
+							
+							<script charset="UTF-8">
+								new daum.roughmap.Lander({
+									"timestamp" : "1740538747700",
+									"key" : "2n6dt",
+									/* "mapWidth" : "640",
+									"mapHeight" : "360" */
+								}).render();
+							</script>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</body>
+	</body>
 </html>

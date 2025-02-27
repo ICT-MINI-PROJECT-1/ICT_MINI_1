@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+	document.addEventListener('keydown', function(event) {
+	  if (event.keyCode === 13 && event.target.id != "write-content") {
+	    event.preventDefault();
+	  };
+	}, true);
 	review_wrap=document.getElementsByClassName("review-wrap")[0];
 	review_title=document.getElementsByClassName("review-title")[0];
 	
@@ -10,34 +15,90 @@ document.addEventListener('DOMContentLoaded', () => {
 	var alert_content = document.getElementById("alert-content");
 	var alert_file = document.getElementById("alert-file");
 	
-	write_subject.addEventListener("input", ()=>{
-		if(write_subject.value.length<5){
-			alert_subject.innerHTML = "제목을 5자 이상 입력해주세요.";
-			alert_subject.style.opacity = 1;
-			subjectOk = 0;
-		}else if(write_subject.value.length>45){
-			alert_subject.innerHTML = "제목을 45자 이하로 입력해주세요.";
-			alert_subject.style.opacity = 1;
-			subjectOk = 0;
-		}else{
-			alert_subject.style.opacity = 0;
-			subjectOk = 1;
+	if(write_subject!=null)
+		write_subject.addEventListener("input", ()=>{
+			if(write_subject.value.length<5){
+				alert_subject.innerHTML = "제목을 5자 이상 입력해주세요.";
+				alert_subject.style.opacity = 1;
+				subjectOk = 0;
+			}else if(write_subject.value.length>45){
+				alert_subject.innerHTML = "제목을 45자 이하로 입력해주세요.";
+				alert_subject.style.opacity = 1;
+				subjectOk = 0;
+			}else{
+				alert_subject.style.opacity = 0;
+				subjectOk = 1;
+			}
+		});
+	if(write_content!=null)	
+		write_content.addEventListener("input",()=>{
+			if(write_content.value.length<10){
+				alert_content.innerHTML = "내용을 10자 이상 입력해주세요.";
+				alert_content.style.opacity = 1;
+				contentOk = 0;
+			}else if(write_content.value.length>500){
+				alert_content.innerHTML = "내용을 500자 이하로 입력해주세요.";
+				alert_content.style.opacity = 1;
+				contentOk = 0;
+			}else{
+				alert_content.style.opacity = 0;
+				contentOk = 1;
+			}
+		});
+		
+	let modal=document.getElementById("review-list-modal");
+	let clicked=0;
+	let f_x=0;
+	let f_y=0;
+	
+	let m_x=0;
+	let m_y=0;
+	
+	let c_x=0;
+	let c_y=0;
+	
+	let cnt=0;
+	if(modal)
+	modal.addEventListener("mousedown", (e) =>{
+		if(clicked==0) {
+			c_x=getNumberFromPixel(modal.style.left);
+			c_y=getNumberFromPixel(modal.style.top);
+			modal.style.cursor="grabbing";
+			clicked=1;
 		}
+		setTimeout(function moveModal(){
+			modal.style.left=c_x+m_x-f_x+'px';
+			modal.style.top=c_y+m_y-f_y+'px';
+			c_x=getNumberFromPixel(modal.style.left);
+			c_y=getNumberFromPixel(modal.style.top);
+			f_x=m_x;
+			f_y=m_y;
+			setTimeout(moveModal,10);
+			cnt++;
+		},10);
+		window.addEventListener("mouseup", (e) =>{
+			cnt=0;
+			clicked=0;
+			modal.style.cursor="grab";
+		});
+		let mml = window.addEventListener("mousemove",(e)=>{
+			if(clicked==1) {
+				m_x=e.clientX;
+				m_y=e.clientY;
+				if(cnt<1000000) {
+					cnt=1000000;
+					f_x=e.clientX;
+					f_y=e.clientY;
+				}
+			}
+		});
 	});
-	write_content.addEventListener("input",()=>{
-		if(write_content.value.length<10){
-			alert_content.innerHTML = "내용을 10자 이상 입력해주세요.";
-			alert_content.style.opacity = 1;
-			contentOk = 0;
-		}else if(write_content.value.length>500){
-			alert_content.innerHTML = "내용을 500자 이하로 입력해주세요.";
-			alert_content.style.opacity = 1;
-			contentOk = 0;
-		}else{
-			alert_content.style.opacity = 0;
-			contentOk = 1;
-		}
-	});
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.keyCode == 27) {
+        closeModal();
+    }
 });
 
 var review_result = 0;
@@ -59,7 +120,7 @@ function writeChk(){
 		alert_content.style.opacity = 1;
 	}
 	if(where=="review_edit") {
-	
+
 	}
 	else {
 		if(fileOk==0){
@@ -72,16 +133,14 @@ function writeChk(){
 }
 
 //첨부파일 갯수 5개로 제한
-function addFile(obj){
+function addFile(){
+/*
 	let alert_file = document.getElementById("alert-file");
-	//alert(obj);
-	const minFileCnt = 1;
-	const maxFileCnt = 5;	//첨부파일 최대 개수
+	const minFileCnt = 0;
+	const maxFileCnt = 4;	//첨부파일 최대 개수
 	
-	//var attFileCnt = document.getElementById("filename").files.length; //기존에 추가된 첨부파일 개수
-	//var remainFileCnt = maxFileCnt - attFileCnt; //추가로 첨부가능한 개수
-	var curFileCnt = obj.files.length; //현재 선택된 첨부파일 개수
-	//alert("attFileCnt="+attFileCnt);
+	var curFileCnt = dataTransfer.files.length; //현재 선택된 첨부파일 개수
+	console.log(curFileCnt+"!!");
 	if(curFileCnt<minFileCnt || curFileCnt>maxFileCnt){
 		alert_file.innerHTML = "파일을 1-5개 넣어주세요.";
 		alert_file.style.opacity = 1;
@@ -89,7 +148,7 @@ function addFile(obj){
 	}else{
 		alert_file.style.opacity = 0;
 		fileOk = 1;
-	}
+	}*/
 
 }
 
@@ -155,7 +214,8 @@ function openModal(reviewno,userid,sessionid,roomno){
 	let review_modal = document.getElementById("review-list-modal");
 	review_modal.style.opacity=1;
 	review_modal.style.zIndex=10;
-	
+	review_modal.style.left=(window.innerWidth-review_modal.offsetWidth)/2 + 'px';
+	review_modal.style.top=window.innerHeight/4+'px';
 	fetch("/page/review/modalReview",{
 		method: "POST",
 		headers: {
@@ -184,7 +244,11 @@ function openModal(reviewno,userid,sessionid,roomno){
 		}
 		document.getElementById("modal-subject").innerHTML = data.vo.subject;
 		document.getElementById("modal-roomno").innerHTML = data.vo.roomno;
-		document.getElementById("modal-rating").innerHTML = data.vo.rating;
+		document.getElementById("modal-rating").innerHTML = `
+				<div class="modal-star-box">
+					<div class="modal-star-fill" style="width:`+data.vo.rating*20+`%"></div>
+				</div>
+			`;
 		document.getElementById("modal-writedate").innerHTML = data.vo.writedate;
 		document.getElementById("modal-userid").innerHTML = data.vo.userid;
 		document.getElementById("modal-content").innerHTML = data.vo.content;
@@ -205,9 +269,11 @@ function openModal(reviewno,userid,sessionid,roomno){
 	if(userid == sessionid) document.getElementById("btn").style.display='block';
 }
 function closeModal(){
-	if(document.getElementById("review-list-modal")!=null)
+	if(document.getElementById("review-list-modal")!=null){
 		document.getElementById("review-list-modal").style.opacity = 0;
 		document.getElementById("review-list-modal").style.zIndex = -5;
+		reviewDelete(2);
+	}
 }
 
 //리뷰수정 버튼
@@ -226,7 +292,20 @@ function reviewEdit(){
 	f.submit();
 }
 //리뷰삭제 버튼
-function reviewDelete(){
+function reviewDelete(wh){
+	let dm = document.getElementById("review-edit-modal");
+	if(wh==0){ //open modal
+		dm.style.opacity=1;
+		dm.style.zIndex=20;
+	} else if(wh==1) {
+		reviewDeleteSubmit();
+	} else {
+		dm.style.opacity=0;
+		dm.style.zIndex=-1;
+	}
+}
+
+function reviewDeleteSubmit(){
 	let f = document.createElement('form');
 	f.setAttribute('method','post');
 	f.setAttribute('action','review/delete');

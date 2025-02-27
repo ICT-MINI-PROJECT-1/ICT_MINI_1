@@ -5,7 +5,6 @@
 <script src="https://code.jquery.com/jquery-3.7.0.js" 
 	integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" 
 	crossorigin="anonymous"></script>
-
 <div id="fade">
 	<div class="container">
 		<div class="dining-menu">
@@ -105,7 +104,7 @@
 							<div id="info-dish">
 								<p style="margin-left: -350px;">
 									한국의 식재료를 재해석하여 과감하고 <ruby>창의적인 음식으로,
-									<rt style="color: brown; margin-bottom:5px; letter-spacing: 0.1em;">분기별 팝업스토어 진행중</rt></ruby>
+									<rt style="color: brown; margin-bottom:5px; letter-spacing: 0.1em;">분기별 팝업레스토랑 진행중</rt></ruby>
 								</p>
 								<p style="margin-top: -30px;">압도적인 새로운 장르의 가치있는 경험을 선사시켜드리겠습니다.</p>
 					 	  	</div>
