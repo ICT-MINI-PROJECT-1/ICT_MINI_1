@@ -30,7 +30,7 @@
 		</html>
 	</c:when>
 	
-	<c:when test="${page == pageContext.request.contextPath}/page/dining/dining_main">
+	<c:otherwise>
 		<ul class="footer" style="display:none;">
 			<li id="footer-logo">
 	        <ul>
@@ -56,7 +56,7 @@
 			</ul>
 		</body>
 		</html>
-	</c:when>
+	</c:otherwise>
 </c:choose>
 
 
